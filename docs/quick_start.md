@@ -129,18 +129,18 @@ deleteDoc(example.doc('abc'))
 
 ### What Is Going On?
 
-Yes, in just one page, you learned how to run basic usage, equip with full fledged type safety.
+Yes, in just one page, you have learned how to use basic operations, equip with **full fledged** type safety.
 
 Everything is safe typed, this including collection ID, document ID, all operations, all field paths, all values, all query clauses, basically whatever FirelordJS exports.
 
-The type of every single value is inferred from the meta types defined in the very beginning, there is no need of type annotation and type casting.
+The type of every single value is inferred from the meta types defined in the very beginning.
 
-And this is the only time you deal with the type, **type it and forget**.
+And this is the only time you deal with the type, **type it and forget**, there is no need for type annotation and type casting, never.
 
 This is done elegantly without complicated configuration while maintain API that is almost identical to the original Firestore API, and simpler.
 
 ### Beyond Typing
 
-On top of that FirelordJS prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries)** on type level.
+On top of that FirelordJS prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries#query_limitations)** on type level.
 
-Turn out the so called _Unparalleled Type safe_ is not a a bluff.
+Turn out the so called _Unparalleled Type Safe_ is **not a a bluff**, what a disappointment!

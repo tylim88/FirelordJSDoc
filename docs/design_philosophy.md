@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Design Philosophy
@@ -16,13 +16,37 @@ sidebar_position: 1
 
 <p align="center">
 <i>
-High Precision Typescript Wrapper for Firestore, Providing Unparalleled Type Safe and Dev Experience
+High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type Safe and Dev Experience
 </i></p>
 
 <p align="center">
 <i>
 Modular, Minuscule, Intuitive, Peaceful, Clean, Deep
 </i></p>
+
+## Firestore SDK Complications
+
+The Firestore SDK come with type definitions for every module but they are far from safe enough to handle complexity of a database.
+
+Few examples:
+
+1. The query clauses (eg: where, orderBy, startAt) has no type safe or what so ever, YOLO.
+2. All field values sharing the same type and you can use field value on everything, YOLO.
+3. UpdateDoc seem to have nice type definition, it able to generates all the dot notation paths(from top to the deepest) for you. Quite impressive, until you discover:
+   - It doesn't stop unknown member for non fresh value (value that is attached to a variable).
+   - It uses Partial, so all members accept `undefined`, BUT `undefined` is not a valid Firestore data type.
+
+Firestore SDK also comes with quirky runtime behavior that ready to kick your ass in your wet dream:
+
+1. Limit clause throw on negative and 0 value. Throw on negative is good but throw on 0 value is arguable because 0 can be result from correct computation.
+2. In some case, update behave partially like set, resulting in field deletion, danger!
+3. Let not start with how naughty is `null` in query....
+
+and more...
+
+An unsafe code is a huge technical debt, it creates problem in a dark corner, you need to revisit it constantly and put more works just to make it safer.
+
+Firestore SDK produce code that is not scalable, not maintainable and potentially dangerous.
 
 ## Core Principles
 
@@ -57,7 +81,7 @@ Core principles of FirelordJS:
 
 4. Prevent the preventable.
    - There is not much thing we can do to system and environment run time exceptions but we can do something to inputs exceptions.
-   - There is around 15++ known(documented directly or indirectly) inputs exceptions.
+   - There is around 15++ commonly known(documented directly or indirectly) inputs exceptions.
    - Prevent the exception in a way that does not alter developer's intention.
    - Do not prevent exception if it alters developer's intention.
    - Do not prevent exception that may indicate logic bug.
