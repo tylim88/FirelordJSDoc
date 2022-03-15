@@ -35,17 +35,18 @@ Few examples:
    - It doesn't stop unknown member for non fresh value (value that is attached to a variable).
    - It uses Partial, so all members accept `undefined`, BUT `undefined` is not a valid Firestore data type.
 
-Firestore SDK also comes with quirky runtime behavior that ready to kick your ass in your wet dream:
+Firestore SDK also comes with quirky runtime behaviors that ready to kick your ass in your wet dream:
 
 1. Limit clause throw on negative and 0 value. Throw on negative is good but throw on 0 value is arguable because 0 can be result from correct computation.
 2. In some case, update behave partially like set, resulting in field deletion, danger!
 3. Let not start with how naughty `null` is in query....
+4. All kinds of widely left open limitations for us to explore, adventures, yeah!
 
 and more...
 
 An unsafe code is a huge technical debt, it creates problem in a dark corner, you need to revisit it constantly and put more works just to make it safer.
 
-Firestore SDK produce code that is not scalable, not maintainable and potentially dangerous.
+Firestore SDK produces code that is not scalable, not maintainable and potentially dangerous.
 
 ## Core Principles
 
@@ -53,9 +54,9 @@ FirelordJS is created with one focus in mind: to gain true peace of mind, to cod
 
 Core principles of FirelordJS:
 
-1. Familiarity:
-   - The wrapper API must be at least identical to the original Firestore SDK API and can be only simpler onward.
-   - The wrapper runtime behavior must be at least identical to the Firestore SDK and can be only more intuitive onward.
+1. Familiarity (a.k.a knowledge reuse):
+   - The wrapper API must be at least identical to the original Firestore SDK API and can only be simpler onward.
+   - The wrapper runtime behavior must be at least identical to the Firestore SDK and can only be more intuitive onward.
    - Benefits:
      - Greatly reduce the learning cost, developers can simply reuse the knowledge they have learned in the original API.
      - No surprise behavior in runtime.
@@ -68,22 +69,22 @@ Core principles of FirelordJS:
    - This is also how Firestore SDK type definition works, however it does not fully utilize the potential.
 3. Always choose non invasive solution if possible.
 
-   - Never alter the run time behavior in any way that will alter developer's intention.(unopinionated)
-   - Only alter the run time behavior to be more intuitive if the original API run time behavior is quirky(high cognitive cost).
-   - Prefer type level validation over run time validation for inputs.
-     - Run time validation is costly:
-       - It adds code resulting in slower run time.
+   - Never alter the runtime behavior in any way that will alter developer's intention.(unopinionated)
+   - Only alter the runtime behavior to be more intuitive if the original API runtime behavior is quirky(high cognitive cost).
+   - Prefer type level validation over runtime validation for inputs.
+     - Runtime validation is costly:
+       - It adds code resulting in slower runtime.
        - Need to handle negative case.
      - Type level validation:
        - Do not need to handle negative case.
-       - Cleaner run time.
+       - Cleaner runtime.
 
 4. Prevent the preventable.
-   - There is not much thing we can do to system and environment run time exceptions but we can do something to inputs exceptions.
-   - There is around 15++ commonly known(documented directly or indirectly) inputs exceptions.
-   - Prevent the exception in a way that does not alter developer's intention.
-   - Do not prevent exception if it alters developer's intention.
-   - Do not prevent exception that may indicate logic bug.
+   - There is not much thing we can do to system and environment runtime exceptions but we can do something to inputs exceptions.
+   - There is around 15+ commonly known(documented directly or indirectly) inputs exceptions.
+   - Prevent the exception in a way that does not alter runtime behavior if possible.
+   - Prevent the exception in a way that does not alter developer's intention, no matter what.
+   - Do not prevent exception that indicates logic bug.
 
 ## What FirelordJS Is Not?
 

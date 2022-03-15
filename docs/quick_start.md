@@ -43,7 +43,7 @@ export type Example = Firelord<
 		a: number
 		b: { c: boolean; d: { e: string }[] }
 		f: { g: ServerTimestampFieldValue; h: 1010 | 2929 | 3838 }
-	},
+	}, // can go with even more chaotic data type, but not good for a quick tutorial
 	'SomeCollectionName',
 	string // document ID type, normally string
 >
@@ -91,27 +91,29 @@ import {
 	startAfter,
 } from 'firelordjs'
 
-setDoc(example.doc('abc'), {
+await setDoc(example.doc('abc'), {
 	a: 100,
 	b: { c: true, d: [{ e: 'abc' }] },
 	f: { g: serverTimestamp(), h: 1010 },
 })
 
-addDoc(example.collection(), {
+await addDoc(example.collection(), {
 	a: 900,
 	b: { c: false, d: [{ e: 'hi' }] },
 	f: { g: serverTimestamp(), h: 3838 },
 })
 
-updateDoc(example.doc('abc'), {
+await updateDoc(example.doc('abc'), {
 	a: increment(1),
 	'b.d': arrayUnion({ e: 'hello' }), // dot notation form
 	f: { h: 2929 }, // nested form
 })
 
-getDoc(example.doc('abc'))
+await deleteDoc(example.doc('abc'))
 
-getDocs(
+await getDoc(example.doc('abc'))
+
+await getDocs(
 	query(
 		example.collection(),
 		where('f.h', '>', 1010 as const),
@@ -131,8 +133,6 @@ onSnapshot(
 		// onNext
 	}
 )
-
-deleteDoc(example.doc('abc'))
 ```
 
 ## Batch
@@ -195,15 +195,15 @@ try {
 }
 ```
 
-## Did I Just Finished Everything?
+## Did I Just Learned Everything?
 
 Almost.
 
-In just one page, you have learned almost everything, equip with **full fledged** type safety, effortless.
+FirelordJS API looks and feels so similar to the original Firestore SDK API, to the point that in just one page, you have learned almost everything, equipped with **full fledged** type safety, effortlessly.
 
 Every value is safely typed, this including collection ID, document ID, all operations, all field paths, all values, all query clauses, basically whatever FirelordJS exports.
 
-FirelordJS can infer type of every single value from the MetaType defined in the very beginning, regardless how deep the type nested.
+FirelordJS infer types of every single value from the MetaType defined in the very beginning, regardless how deep the type nested.
 
 And this is the only time you ever deal with the type, there is no need for type annotation and type casting, **type it and forget**.
 
@@ -216,3 +216,5 @@ FirelordJS does not stop at just safe guarding your data type in all operations(
 Nothing come close to FirelordJS, and I doubt anything will, **FirelordJS is the end game in pursuing Firestore type safety**.
 
 Turn out the so called _<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_ is not a a bluff at all, what a disappointment!
+
+(I am not exaggerating, you are welcome to prove me wrong.)

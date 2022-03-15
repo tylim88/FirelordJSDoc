@@ -29,7 +29,7 @@ export type Child = Firelord<
 
 ## Firelord(caller)
 
-`Firelord` is not run time code, it is a type that generates **[MetaType](#metatypeoutput)** for collection, every collection need a `MetaType`.
+`Firelord` is not runtime code, it is a type that generates **[MetaType](#metatypeoutput)** for collection, every collection need a `MetaType`.
 
 ```ts
 type Firelord<Base, CollectionID, DocID, Parent, Settings> = MetaType
