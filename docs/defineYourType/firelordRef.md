@@ -8,7 +8,7 @@ sidebar_position: 3
 
 ```ts
 // import firelordRef (return of getFirelord)
-// import Example (MetaType return of Firelord)
+// import Example (MetaType, return of Firelord)
 
 export const example = firelordRef<Example>('SomeCollectionName')
 

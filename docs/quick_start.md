@@ -29,8 +29,8 @@ Documentation under development, will only release the npm package after the doc
 
 ## Installation
 
-```bash title='require typescript 4.5+'
-npm i firelordjs firebase && npm i -D typescript@^4.5
+```bash title='require typescript 4.5+ and of course firebase'
+npm i firelordjs
 ```
 
 ## Define The Meta Type
@@ -72,7 +72,7 @@ export const example = firelordRef<Example>('SomeCollectionName')
 
 ## Operations
 
-````ts title='operations.ts'
+```ts title='operations.ts'
 import { example } from './init'
 import {
 	getDoc,
@@ -133,9 +133,9 @@ onSnapshot(
 )
 
 deleteDoc(example.doc('abc'))
-``` -->
+```
 
-<!-- ## Batch
+## Batch
 
 ```ts title='batch.ts'
 import { example, db } from './init'
@@ -158,7 +158,42 @@ batch.update(example.doc('hij'), {
 batch.delete(example.doc('hij'))
 
 await batch.commit()
-````
+```
+
+## Transaction
+
+```ts title='transaction.ts'
+import { example, db } from './init'
+import {
+	runTransaction,
+	serverTimestamp,
+	increment,
+	arrayRemove,
+} from 'firelordjs'
+
+try {
+	await runTransaction(db, async transaction => {
+		await transaction.get(example.doc('lmn'))
+
+		transaction.set(example.doc('lmn'), {
+			a: 88,
+			b: { c: false, d: [{ e: 'opq' }] },
+			f: { g: serverTimestamp(), h: 2929 },
+		})
+
+		transaction.update(example.doc('lmn'), {
+			a: increment(1),
+			b: { d: arrayRemove({ e: 'rst' }) }, // nested form
+			'f.g': serverTimestamp(), // dot notation form
+		})
+
+		transaction.delete(example.doc('lmn'))
+	})
+	console.log('Transaction successfully committed!')
+} catch (e) {
+	console.log('Transaction failed: ', e)
+}
+```
 
 ## Did I Just Finished Everything?
 
@@ -168,16 +203,16 @@ In just one page, you have learned almost everything, equip with **full fledged*
 
 Every value is safely typed, this including collection ID, document ID, all operations, all field paths, all values, all query clauses, basically whatever FirelordJS exports.
 
-The type of every single value is inferred from the meta types defined in the very beginning.
+FirelordJS can infer type of every single value from the MetaType defined in the very beginning, regardless how deep the type nested.
 
-And this is the only time you deal with the type, **type it and forget**, there is no need for type annotation and type casting, never.
+And this is the only time you ever deal with the type, there is no need for type annotation and type casting, **type it and forget**.
 
 This is done elegantly without complicated configuration while maintain API that is nearly identical to the original Firestore API, and simpler.
 
 ## Beyond Typing
 
-FirelordJS does not stop at just safe guarding your data type in all operations(this alone already surpass conventional wrappers by a huge margin), it goes beyond that and further prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries#query_limitations)** on type level, none of the other wrappers able to offer this.
+FirelordJS does not stop at just safe guarding your data type in all operations(this alone already surpass conventional wrappers by a huge margin), it goes beyond that and further prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries#query_limitations)** and **[Firestore Pagination Limitation](https://firebase.google.com/docs/firestore/query-data/order-limit-data?hl=en&authuser=0#limitations)** on type level(non invasive), none of the other wrappers able to offer this.
 
 Nothing come close to FirelordJS, and I doubt anything will, **FirelordJS is the end game in pursuing Firestore type safety**.
 
-Turn out the so called **_<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_** is not a a bluff at all, what a disappointment!
+Turn out the so called _<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_ is not a a bluff at all, what a disappointment!
