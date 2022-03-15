@@ -152,11 +152,13 @@ batch.set(example.doc('hij'), {
 
 batch.update(example.doc('hij'), {
 	a: 6,
-	b: { c: false, d: [{ e: 'xyz' }] },
-	f: { g: serverTimestamp(), h: 1010 },
+	b: { c: false }, // nested form
+	'f.g': serverTimestamp(), // dot notation form
 })
 
 batch.delete(example.doc('hij'))
+
+await batch.commit()
 ```
 
 ## Did I Just Finished Everything?
@@ -179,4 +181,4 @@ FirelordJS does not stop at just safe guarding your data type in all operations(
 
 Nothing come close to FirelordJS, and I doubt anything will, **FirelordJS is the end game in pursuing Firestore type safety**.
 
-Turn out the so called _<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_ is **not a a bluff** at all, what a disappointment!
+Turn out the so called **_<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_** is not a a bluff at all, what a disappointment!
