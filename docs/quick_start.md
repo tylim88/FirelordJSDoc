@@ -12,7 +12,7 @@ sidebar_position: 1
 <p align="center">
  <a href="https://www.npmjs.com/package/firelordjs" rel="nofollow"><img src="https://img.shields.io/npm/v/firelordjs" alt="Created by tylim88"/></a>
  &nbsp;
- <a href="https://github.com/tylim88/firelordjs/blob/main/LICENSE" rel="nofollow"><img src="https://img.shields.io/github/license/tylim88/firelordjs" alt="License"/></a>
+ <a href="https://github.com/tylim88/firelordjs/blob/main/LICENSE" rel="nofollow"><img src="https://img.shields.io/github/license/tylim88/firelordjs" alt="License"/></a>&nbsp;
 </p>
 
 <p align="center">
@@ -25,7 +25,7 @@ High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type
 Modular, Minuscule, Intuitive, Peaceful, Craftsmanship, Deep
 </i></p>
 
-## Do Not Install
+<!-- ## Do Not Install
 
 Documentation under development, will only release the npm package after the documentation is done!
 
@@ -135,7 +135,7 @@ onSnapshot(
 )
 
 deleteDoc(example.doc('abc'))
-```
+``` -->
 
 ## Batch
 
