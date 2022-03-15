@@ -16,7 +16,7 @@ sidebar_position: 1
 
 <p align="center">
 <i>
-High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type Safety and Dev Experience
+High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type Safe and Dev Experience
 </i></p>
 
 <p align="center">
@@ -24,11 +24,7 @@ High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type
 Modular, Minuscule, Intuitive, Peaceful, Clean, Deep
 </i></p>
 
-## Where Is The Intro?
-
-Straight to the point first, then we talk.
-
-## Installation
+### Installation
 
 ```bash
 npm i firelordjs firebase
@@ -39,10 +35,9 @@ Require Typescript 4.5+.
 ### Define The Meta Type
 
 ```ts title='dataType.ts'
-import { Firelord, getFirelord, ServerTimestampFieldValue } from 'firelordjs'
-import { getFirestore } from 'firebase/firestore'
+import { Firelord, ServerTimestampFieldValue } from 'firelordjs'
 
-type Example = Firelord<
+export type Example = Firelord<
 	{
 		a: number
 		b: { c: boolean; d: { e: string }[] }
@@ -51,18 +46,31 @@ type Example = Firelord<
 	'SomeCollectionName',
 	string // document ID type, normally string
 >
+```
+
+### Initiazlize App And Create References
+
+```ts title='init.ts'
+import { getFirelord } from 'firelordjs'
+import { getFirestore } from 'firebase/firestore'
+import { initializeApp } from 'firebase/app'
+import { Example } from './dataType'
+
+initializeApp({
+	apiKey: '### FIREBASE API KEY ###',
+	authDomain: '### FIREBASE AUTH DOMAIN ###',
+	projectId: '### CLOUD FIRESTORE PROJECT ID ###',
+})
 
 const firelord = getFirelord(getFirestore())
 
 export const example = firelord<Example>('SomeCollectionName')
 ```
 
-Make sure you **[initialize Firebase App](https://firebase.google.com/docs/firestore/quickstart)** before this piece of code run.
-
 ### Basic Usage
 
 ```ts title='usage.ts'
-import { example } from './dataType'
+import { example } from './init'
 import {
 	getDoc,
 	getDocs,
@@ -93,25 +101,15 @@ addDoc(example.collection(), {
 })
 
 updateDoc(example.doc('abc'), {
-	// you can skip any member, be it in dot notation form or nested form
 	a: increment(1),
-	'b.c': true, // dot notation form
-	'b.d': arrayUnion({ e: 'hello' }),
-	f: { h: 2929 }, // nested form, read <Why Firestore SDK Typing is Inherently Unsafe and Dangerous>
+	'b.d': arrayUnion({ e: 'hello' }), // dot notation form
+	f: { h: 2929 }, // nested form
 })
 
 getDoc(example.doc('abc'))
 
 getDocs(
-	query(
-		example.collection(),
-		where(
-			'f.h',
-			'>',
-			1010 as const // numeric literal type need const assertion
-		),
-		orderBy('f.h') // Read <How Firelord Safe Guard You against Firestore Limitations On Type Level>
-	)
+	query(example.collection(), where('f.h', '>', 1010 as const), orderBy('f.h'))
 )
 
 onSnapshot(
@@ -122,7 +120,7 @@ onSnapshot(
 		startAfter(new Date())
 	),
 	querySnapshot => {
-		// do something
+		// onNext
 	}
 )
 
@@ -131,12 +129,18 @@ deleteDoc(example.doc('abc'))
 
 ### What Is Going On?
 
-Everything is safe typed, this including collection ID, document ID, all operations, all field paths, all values, query clauses, basically all FirelordJS exports.
+Yes, in just one page, you learned how to run basic usage, equip with full fledged type safety.
+
+Everything is safe typed, this including collection ID, document ID, all operations, all field paths, all values, all query clauses, basically whatever FirelordJS exports.
 
 The type of every single value is inferred from the meta types defined in the very beginning, there is no need of type annotation and type casting.
 
 And this is the only time you deal with the type, **type it and forget**.
 
-This is done elegantly without complicated configuration while maintain api that is almost identical to the original Firestore API, and simpler.
+This is done elegantly without complicated configuration while maintain API that is almost identical to the original Firestore API, and simpler.
 
-On top of that FirelordJS handle **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries)** on type level, preventing runtime errors without altering runtime behavior and developer's intention.
+### Beyond Typing
+
+On top of that FirelordJS prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries)** on type level.
+
+Turn out the so called _Unparalleled Type safe_ is not a a bluff.
