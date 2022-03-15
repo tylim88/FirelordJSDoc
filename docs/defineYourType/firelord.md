@@ -85,4 +85,4 @@ type MetaTypes = {
 | write          | translated type, use in all add and set operations                                                 |
 | writeFlatten   | translated type, use in all update operations                                                      |
 | compare        | translated type, also a flatten type, use in query                                                 |
-| base           | the `base` type defined in `Firelord`                                                              |
+| base           | the `Base` type defined in `Firelord`                                                              |

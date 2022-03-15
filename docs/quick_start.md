@@ -21,18 +21,20 @@ High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type
 
 <p align="center">
 <i>
-Modular, Minuscule, Intuitive, Peaceful, Clean, Deep
+Modular, Minuscule, Intuitive, Peaceful, Craftsmanship, Deep
 </i></p>
 
-### Installation
+## Do Not Install
 
-```bash
-npm i firelordjs firebase
+Documentation under development, will only release the npm package after the documentation is done!
+
+## Installation
+
+```bash title='require typescript 4.5+'
+npm i firelordjs firebase && npm i -D typescript@^4.5
 ```
 
-Require Typescript 4.5+.
-
-### Define The Meta Type
+## Define The Meta Type
 
 ```ts title='dataType.ts'
 import { Firelord, ServerTimestampFieldValue } from 'firelordjs'
@@ -48,7 +50,7 @@ export type Example = Firelord<
 >
 ```
 
-### Initiazlize App And Create References
+## Create Firelord References
 
 ```ts title='init.ts'
 import { getFirelord } from 'firelordjs'
@@ -62,14 +64,16 @@ initializeApp({
 	projectId: '### CLOUD FIRESTORE PROJECT ID ###',
 })
 
-const firelordRef = getFirelord(getFirestore())
+export const db = getFirestore()
+
+const firelordRef = getFirelord(db)
 
 export const example = firelordRef<Example>('SomeCollectionName')
 ```
 
-### Basic Usage
+## Operations
 
-```ts title='usage.ts'
+```ts title='operations.ts'
 import { example } from './init'
 import {
 	getDoc,
@@ -109,7 +113,12 @@ updateDoc(example.doc('abc'), {
 getDoc(example.doc('abc'))
 
 getDocs(
-	query(example.collection(), where('f.h', '>', 1010 as const), orderBy('f.h'))
+	query(
+		example.collection(),
+		where('f.h', '>', 1010 as const),
+		orderBy('f.h'),
+		limit(10)
+	)
 )
 
 onSnapshot(
@@ -127,20 +136,47 @@ onSnapshot(
 deleteDoc(example.doc('abc'))
 ```
 
-### What Is Going On?
+## Batch
 
-Yes, in just one page, you have learned how to use basic operations, equip with **full fledged** type safety.
+```ts title='batch.ts'
+import { example, db } from './init'
+import { writeBatch, serverTimestamp } from 'firelordjs'
 
-Everything is safe typed, this including collection ID, document ID, all operations, all field paths, all values, all query clauses, basically whatever FirelordJS exports.
+const batch = writeBatch(db)
+
+batch.set(example.doc('hij'), {
+	a: 6,
+	b: { c: false, d: [{ e: 'xyz' }] },
+	f: { g: serverTimestamp(), h: 1010 },
+})
+
+batch.update(example.doc('hij'), {
+	a: 6,
+	b: { c: false, d: [{ e: 'xyz' }] },
+	f: { g: serverTimestamp(), h: 1010 },
+})
+
+batch.delete(example.doc('hij'))
+```
+
+## Did I Just Finished Everything?
+
+Almost.
+
+In just one page, you have learned almost everything, equip with **full fledged** type safety, effortless.
+
+Every value is safely typed, this including collection ID, document ID, all operations, all field paths, all values, all query clauses, basically whatever FirelordJS exports.
 
 The type of every single value is inferred from the meta types defined in the very beginning.
 
 And this is the only time you deal with the type, **type it and forget**, there is no need for type annotation and type casting, never.
 
-This is done elegantly without complicated configuration while maintain API that is almost identical to the original Firestore API, and simpler.
+This is done elegantly without complicated configuration while maintain API that is nearly identical to the original Firestore API, and simpler.
 
-### Beyond Typing
+## Beyond Typing
 
-On top of that FirelordJS prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries#query_limitations)** on type level.
+FirelordJS does not stop at just safe guarding your data type in all operations(this alone already surpass conventional wrappers by a huge margin), it goes beyond that and further prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries#query_limitations)** on type level, none of the other wrappers able to offer this.
 
-Turn out the so called _Unparalleled Type Safe_ is **not a a bluff**, what a disappointment!
+Nothing come close to FirelordJS, and I doubt anything will, **FirelordJS is the end game in pursuing Firestore type safety**.
+
+Turn out the so called _<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_ is **not a a bluff** at all, what a disappointment!

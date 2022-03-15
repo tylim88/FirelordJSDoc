@@ -19,7 +19,7 @@ Keep in mind you need to initialize firebase before you call `getFirestore`
 
 ## getFirelord(caller)
 
-return a **[firelordRef](#firelordRef)** function where you can use to generates references(document, collection and collection group)
+return a **[firelordRef](../defineYourType/firelordRef)** function where you can use to generates references(document, collection and collection group)
 
 ```ts
 const getFirelord = firestore => firelordRef
@@ -27,8 +27,8 @@ const getFirelord = firestore => firelordRef
 
 | Parameter | Type      | Description                  |
 | --------- | --------- | ---------------------------- |
-| firestore | Firestore | firebase firestore reference |
+| firestore | Firestore | Firebase Firestore reference |
 
 ## firelordRef(return)
 
-see [**firelordRef**](../defineYourType/firelordRef.md)
+see [**firelordRef**](../defineYourType/firelordRef)

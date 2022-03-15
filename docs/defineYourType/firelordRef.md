@@ -19,7 +19,7 @@ const collectionGroupRef = example.collectionGroup()
 
 ## firelordRef(caller)
 
-Not available directly, return of **[getFirelord](../defineYourType/getFirelord.md)**
+Not available directly, return of **[getFirelord](../defineYourType/getFirelord)**
 
 ```ts
 const firelordRef = <MetaType>(collectionPath) => refs

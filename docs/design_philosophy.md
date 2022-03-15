@@ -21,7 +21,7 @@ High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type
 
 <p align="center">
 <i>
-Modular, Minuscule, Intuitive, Peaceful, Clean, Deep
+Modular, Minuscule, Intuitive, Peaceful, Craftsmanship, Deep
 </i></p>
 
 ## Firestore SDK Complications
@@ -40,7 +40,7 @@ Firestore SDK also comes with quirky runtime behavior that ready to kick your as
 
 1. Limit clause throw on negative and 0 value. Throw on negative is good but throw on 0 value is arguable because 0 can be result from correct computation.
 2. In some case, update behave partially like set, resulting in field deletion, danger!
-3. Let not start with how naughty is `null` in query....
+3. Let not start with how naughty `null` is in query....
 
 and more...
 
@@ -88,4 +88,4 @@ Core principles of FirelordJS:
 
 ## What FirelordJS Is Not?
 
-FirelordJS is not an ODM despite it does remap the data a little bit, but the purpose is to fix the bad design in the Firestore SDK API, not trying to introduce whole new way of doing thing. The current Firestore SDK API is good enough, there is no reason to design a whole new API on top of it, FirelordJS simply put Firestore SDK type safety on turbo mode, which is what it needs now.
+FirelordJS is not an ODM despite it does remap the data a little bit, but the purpose is to circumvent unreasonable runtime behavior in the Firestore SDK, not trying to introduce whole new way of doing thing. The current foundation of current Firestore SDK API is good enough, there is no reason to design a whole new API on top of it, FirelordJS simply put Firestore SDK API type safety on turbo mode, which is what it lacking of.
