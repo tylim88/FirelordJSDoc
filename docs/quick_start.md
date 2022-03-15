@@ -137,7 +137,7 @@ onSnapshot(
 deleteDoc(example.doc('abc'))
 ``` -->
 
-## Batch
+<!-- ## Batch
 
 ```ts title='batch.ts'
 import { example, db } from './init'
@@ -182,4 +182,4 @@ FirelordJS does not stop at just safe guarding your data type in all operations(
 
 Nothing come close to FirelordJS, and I doubt anything will, **FirelordJS is the end game in pursuing Firestore type safety**.
 
-Turn out the so called **_<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_** is not a a bluff at all, what a disappointment!
+Turn out the so called **_<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_** is not a a bluff at all, what a disappointment! -->
