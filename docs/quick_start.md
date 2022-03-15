@@ -4,10 +4,10 @@ sidebar_position: 1
 
 # Quick Start
 
-<p align="center">
+<!-- <p align="center">
  <a href="https://github.com/tylim88/Firelord/blob/main/img/ozai.png" rel="nofollow"><img src="https://raw.githubusercontent.com/tylim88/Firelord/main/img/ozai.png" width="200px" align="center" /></a>
   <h1 align="center">FirelordJS 烈火君JS</h1>
-</p>
+</p> -->
 
 <p align="center">
  <a href="https://www.npmjs.com/package/firelordjs" rel="nofollow"><img src="https://img.shields.io/npm/v/firelordjs" alt="Created by tylim88"/></a>
@@ -15,7 +15,7 @@ sidebar_position: 1
  <a href="https://github.com/tylim88/firelordjs/blob/main/LICENSE" rel="nofollow"><img src="https://img.shields.io/github/license/tylim88/firelordjs" alt="License"/></a>&nbsp;
 </p>
 
-<p align="center">
+<!-- <p align="center">
 <i>
 High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type Safe and Dev Experience
 </i></p>
@@ -23,7 +23,7 @@ High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type
 <p align="center">
 <i>
 Modular, Minuscule, Intuitive, Peaceful, Craftsmanship, Deep
-</i></p>
+</i></p> -->
 
 <!-- ## Do Not Install
 
