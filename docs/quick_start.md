@@ -4,28 +4,26 @@ sidebar_position: 1
 
 # Quick Start
 
-<!-- <p align="center">
- <a href="https://github.com/tylim88/Firelord/blob/main/img/ozai.png" rel="nofollow"><img src="https://raw.githubusercontent.com/tylim88/Firelord/main/img/ozai.png" width="200px" align="center" /></a>
-  <h1 align="center">FirelordJS 烈火君JS</h1>
-</p> -->
+<div align="center">
+		<img src="https://raw.githubusercontent.com/tylim88/Firelord/main/img/ozai.png" width="200px" align="center" />
+		<h1>FirelordJS 烈火君JS</h1>
+</div>
 
-<p align="center">
- <a href="https://www.npmjs.com/package/firelordjs" rel="nofollow"><img src="https://img.shields.io/npm/v/firelordjs" alt="Created by tylim88"/></a>
- &nbsp;
- <a href="https://github.com/tylim88/firelordjs/blob/main/LICENSE" rel="nofollow"><img src="https://img.shields.io/github/license/tylim88/firelordjs" alt="License"/></a>&nbsp;
-</p>
+<div align="center">
+		<a href="https://www.npmjs.com/package/firelordjs" rel="nofollow"><img src="https://img.shields.io/npm/v/firelordjs" alt="Created by tylim88"/></a>
+		&nbsp;
+		<a href="https://github.com/tylim88/firelordjs/blob/main/LICENSE" rel="nofollow"><img src="https://img.shields.io/github/license/tylim88/firelordjs" alt="License"/></a>
+</div>
+<br/>
+<div align="center">
+		<i>High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type Safe and Dev Experience</i>
+</div>
+<br/>
+<div align="center">
+		<i>Modular, Minuscule, Intuitive, Peaceful, Craftsmanship, Deep</i>
+</div>
 
-<!-- <p align="center">
-<i>
-High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type Safe and Dev Experience
-</i></p>
-
-<p align="center">
-<i>
-Modular, Minuscule, Intuitive, Peaceful, Craftsmanship, Deep
-</i></p> -->
-
-<!-- ## Do Not Install
+## Do Not Install
 
 Documentation under development, will only release the npm package after the documentation is done!
 
@@ -74,7 +72,7 @@ export const example = firelordRef<Example>('SomeCollectionName')
 
 ## Operations
 
-```ts title='operations.ts'
+````ts title='operations.ts'
 import { example } from './init'
 import {
 	getDoc,
@@ -160,7 +158,7 @@ batch.update(example.doc('hij'), {
 batch.delete(example.doc('hij'))
 
 await batch.commit()
-```
+````
 
 ## Did I Just Finished Everything?
 
@@ -182,4 +180,4 @@ FirelordJS does not stop at just safe guarding your data type in all operations(
 
 Nothing come close to FirelordJS, and I doubt anything will, **FirelordJS is the end game in pursuing Firestore type safety**.
 
-Turn out the so called **_<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_** is not a a bluff at all, what a disappointment! -->
+Turn out the so called **_<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_** is not a a bluff at all, what a disappointment!

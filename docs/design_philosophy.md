@@ -4,25 +4,24 @@ sidebar_position: 2
 
 # Design Philosophy
 
-<p align="center">
- <a href="https://github.com/tylim88/Firelord/blob/main/img/ozai.png" rel="nofollow"><img src="https://raw.githubusercontent.com/tylim88/Firelord/main/img/ozai.png" width="200px" align="center" /></a>
-  <h1 align="center">FirelordJS 烈火君JS</h1>
-</p>
+<div align="center">
+		<img src="https://raw.githubusercontent.com/tylim88/Firelord/main/img/ozai.png" width="200px" align="center" />
+		<h1>FirelordJS 烈火君JS</h1>
+</div>
 
-<p align="center">
- <a href="https://www.npmjs.com/package/firelordjs" rel="nofollow"><img src="https://img.shields.io/npm/v/firelordjs" alt="Created by tylim88"/></a>&nbsp;
- <a href="https://github.com/tylim88/firelordjs/blob/main/LICENSE" rel="nofollow"><img src="https://img.shields.io/github/license/tylim88/firelordjs" alt="License"/></a>&nbsp;
-</p>
-
-<p align="center">
-<i>
-High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type Safe and Dev Experience
-</i></p>
-
-<p align="center">
-<i>
-Modular, Minuscule, Intuitive, Peaceful, Craftsmanship, Deep
-</i></p>
+<div align="center">
+		<a href="https://www.npmjs.com/package/firelordjs" rel="nofollow"><img src="https://img.shields.io/npm/v/firelordjs" alt="Created by tylim88"/></a>
+		&nbsp;
+		<a href="https://github.com/tylim88/firelordjs/blob/main/LICENSE" rel="nofollow"><img src="https://img.shields.io/github/license/tylim88/firelordjs" alt="License"/></a>
+</div>
+<br/>
+<div align="center">
+		<i>High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type Safe and Dev Experience</i>
+</div>
+<br/>
+<div align="center">
+		<i>Modular, Minuscule, Intuitive, Peaceful, Craftsmanship, Deep</i>
+</div>
 
 ## Firestore SDK Complications
 
