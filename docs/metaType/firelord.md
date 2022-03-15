@@ -4,6 +4,29 @@ sidebar_position: 1
 
 # Firelord
 
+## Basic Usage
+
+```ts
+import { Firelord } from 'firelordjs'
+
+export type Parent = Firelord<
+	{
+		a: number
+	},
+	'IAmParent',
+	string
+>
+
+export type Child = Firelord<
+	{
+		b: string
+	},
+	'IAmChild',
+	string,
+	Parent // place the parent here
+>
+```
+
 ## Firelord(caller)
 
 `Firelord` is not run time code, it is a type that generates **[MetaType](#metatypeoutput)** for collection, every collection need a `MetaType`.
@@ -12,15 +35,15 @@ sidebar_position: 1
 type Firelord<Base, CollectionID, DocID, Parent, Settings> = MetaType
 ```
 
-| Generic      | Extend                               | Default | Description                                                                         |
-| ------------ | ------------------------------------ | ------- | ----------------------------------------------------------------------------------- |
-| Base         | `Record<string, unknown>`            | `never` | base data type, Firelord will translate it into `read`, `write` and `compare` types |
-| CollectionID | `string literal`                     | `never` | type of collection ID, only accept `string literal`                                 |
-| DocId        | `string`                             | `never` | type of document ID, can be string literal, but normally `string`                   |
-| Parent       | `MetaType`                           | `never` | `MetaType` of parent. If this is top level collection, leave this empty or `never`  |
-| Settings     | see **[settings](#settingsgeneric)** |
+| Generic      | Extend                            | Default | Description                                                                         |
+| ------------ | --------------------------------- | ------- | ----------------------------------------------------------------------------------- |
+| Base         | `Record<string, unknown>`         | `never` | base data type, Firelord will translate it into `read`, `write` and `compare` types |
+| CollectionID | `string literal`                  | `never` | type of collection ID, only accept `string literal`                                 |
+| DocId        | `string`                          | `never` | type of document ID, can be string literal, but normally `string`                   |
+| Parent       | `MetaType`                        | `never` | `MetaType` of parent. If this is top level collection, leave this empty or `never`  |
+| Settings     | see **[settings](#settingsargs)** |
 
-## Settings(generic)
+## Settings(args)
 
 Configure how `Firelord` translate `Base` type.
 
@@ -28,10 +51,10 @@ Configure how `Firelord` translate `Base` type.
 type Settings = { allFieldsPossiblyUndefined?: boolean; banNull?: boolean }
 ```
 
-| Index                      | Default | Description                                               |
-| -------------------------- | ------- | --------------------------------------------------------- |
-| allFieldsPossiblyUndefined | `false` | if true, union all fields in `read` type with `undefined` |
-| banNull                    | `false` | if true, replace every `null` type with an error message  |
+| Index                      | Default | Description                                                                          |
+| -------------------------- | ------- | ------------------------------------------------------------------------------------ |
+| allFieldsPossiblyUndefined | `false` | if true, union all fields(including object in array) in `read` type with `undefined` |
+| banNull                    | `false` | if true, replace every `null` type with an error message                             |
 
 ## MetaType(output)
 
@@ -52,14 +75,14 @@ type MetaTypes = {
 }
 ```
 
-| Index          | Description                                                                                    |
-| -------------- | ---------------------------------------------------------------------------------------------- |
-| collectionPath | full path of the collection                                                                    |
-| collectionID   | last segment of the `collectionPath`                                                           |
-| docPath        | full path of the document                                                                      |
-| docID          | last segment of the `docPath`                                                                  |
-| read           | translated type, is further translated into readFlatten(unexposed), use in all read operations |
-| write          | translated type, use in all add and set operations                                             |
-| writeFlatten   | translated type, use in all update operations                                                  |
-| compare        | translated type, also a flatten type, use in query                                             |
-| base           | the `base` type defined in `Firelord`                                                          |
+| Index          | Description                                                                                        |
+| -------------- | -------------------------------------------------------------------------------------------------- |
+| collectionPath | full path of the collection                                                                        |
+| collectionID   | last segment of the `collectionPath`                                                               |
+| docPath        | full path of the document                                                                          |
+| docID          | last segment of the `docPath`                                                                      |
+| read           | translated type, and is further translated into readFlatten(unexposed), use in all read operations |
+| write          | translated type, use in all add and set operations                                                 |
+| writeFlatten   | translated type, use in all update operations                                                      |
+| compare        | translated type, also a flatten type, use in query                                                 |
+| base           | the `base` type defined in `Firelord`                                                              |
