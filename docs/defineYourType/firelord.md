@@ -43,7 +43,7 @@ type Firelord<Base, CollectionID, DocID, Parent, Settings> = MetaType
 | Parent       | `MetaType`                        | `never` | `MetaType` of parent. If this is top level collection, leave this empty or `never`  |
 | Settings     | see **[settings](#settingsargs)** |
 
-## Settings(args)
+## Settings(generic)
 
 Configure how `Firelord` translate `Base` type.
 
@@ -56,9 +56,9 @@ type Settings = { allFieldsPossiblyUndefined?: boolean; banNull?: boolean }
 | allFieldsPossiblyUndefined | `false` | if true, union all fields(including object in array) in `read` type with `undefined` |
 | banNull                    | `false` | if true, replace every `null` type with an error message                             |
 
-## MetaType(output)
+## MetaType(return)
 
-`MetaType` is an output type, created by `Firelord`. It does not require any configuration and you can extract information from it.
+`MetaType` is type return by `Firelord`. It does not require any configuration and you can extract information from it.
 
 ```ts
 type MetaTypes = {

@@ -26,7 +26,7 @@ const config = {
 					routeBasePath: '/',
 					sidebarPath: require.resolve('./sidebars.js'),
 					// Please change this to your repo.
-					editUrl: 'https://github.com/tylim88/FirelordJSDoc',
+					editUrl: 'https://github.com/tylim88/FirelordJSDoc/tree/main',
 				},
 				blog: {
 					showReadingTime: true,

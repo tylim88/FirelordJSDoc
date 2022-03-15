@@ -62,9 +62,9 @@ initializeApp({
 	projectId: '### CLOUD FIRESTORE PROJECT ID ###',
 })
 
-const firelord = getFirelord(getFirestore())
+const firelordRef = getFirelord(getFirestore())
 
-export const example = firelord<Example>('SomeCollectionName')
+export const example = firelordRef<Example>('SomeCollectionName')
 ```
 
 ### Basic Usage
