@@ -97,4 +97,4 @@ FirelordJS is not an ODM despite it does remap the data a little bit, but the pu
 
 ### Not A Schema Validator
 
-FirelordJS is not a validator, it is out of the scope of this library. If you need a validator, I recommend **[Zod]("https://www.npmjs.com/package/zod")**. In future I may make a tool to ease the integration of Zod and FirelordJS(admin version).
+FirelordJS is not a validator, it is out of the scope of this library. If you need a validator, I recommend **[Zod](https://www.npmjs.com/package/zod)**. In future I may make a tool to ease the integration of Zod and FirelordJS(admin version).
