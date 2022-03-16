@@ -40,6 +40,8 @@ Documentation under development, will only release the npm package after the doc
 npm i firelordjs
 ```
 
+The library looks big(200KB-300KB) due to all kind of type declarations, but the runtime code is only 1KB after minified and zipped.
+
 ## Define The Meta Type
 
 ```ts title='dataType.ts'
@@ -206,13 +208,11 @@ try {
 
 Long answer: Almost, short answer: Yes.
 
-FirelordJS API looks and feels so similar to the original Firestore SDK API, to the point that in just one page, you have learned almost everything, equipped with **full fledged** type safety, effortlessly.
+FirelordJS API looks and feels nearly identical to the original Firestore SDK API, to the point that in just one page, you have learned almost everything, equipped with **full fledged** type safety, effortlessly.
 
 Every value is safely typed, this including collection ID, document ID, all operations, all field paths, all values, all query clauses, basically whatever FirelordJS exports.
 
-FirelordJS infer types of every single value from the MetaType defined in the very beginning, regardless how deep the type nested.
-
-And this is the only time you ever deal with the type, there is no need for type annotation and type casting, **type it and forget**.
+FirelordJS infer types of every single value from the MetaType defined in the very beginning, and this is the only time you ever have to deal with the type, there is no need for type annotation and type casting, **type it and forget**.
 
 This is done elegantly without complicated configuration while maintain API that is nearly identical to the original Firestore API, and simpler.
 
