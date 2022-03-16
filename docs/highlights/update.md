@@ -18,4 +18,15 @@ There are 2 type issues and 1 critical runtime issue in the original Firestore S
 
 2. Accept `undefined` but `undefined` is not a valid Firestore value.
 
-<div align='center'><img src='../../static/img/update1.png'/></div>
+<div align='center'><img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/update1.png?raw=true' /></div>
+<div align='center'><small>Figure showing Unsafe Firestore Update Type</small></div>
+<br/>
+
+3. And guess what will happens to the code below:
+
+<div align='center'><img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/update2.png?raw=true' /></div>
+<div align='center'><small>Do you know the answer?</small></div>
+<br/>
+The value of `a`, `c` and `e` will be updated, meanwhile `d` will be deleted.
+
+Yup you see that right, `d` is deleted, in an **update** operation.
