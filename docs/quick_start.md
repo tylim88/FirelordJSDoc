@@ -22,6 +22,13 @@ sidebar_position: 1
 <div align="center">
 		<i>Modular, Minuscule, Intuitive, Peaceful, Craftsmanship, Deep</i>
 </div>
+<br/>
+<div align="center">
+		<i>Of The VOUFT, For The VOUFT, By The VOUFT*</i>
+</div>
+<br/>
+
+\*Victims Of Unsafe Firestore Type
 
 ## Do Not Install
 
@@ -43,7 +50,7 @@ export type Example = Firelord<
 		a: number
 		b: { c: boolean; d: { e: string }[] }
 		f: { g: ServerTimestampFieldValue; h: 1010 | 2929 | 3838 }
-	}, // can go with even more chaotic data type, but not good for a quick tutorial
+	}, // can go with even more crazy looking data type, but not good for a quick tutorial
 	'SomeCollectionName',
 	string // document ID type, normally string
 >
@@ -197,7 +204,7 @@ try {
 
 ## Did I Just Learned Everything?
 
-Almost.
+Long answer: Almost, short answer: Yes.
 
 FirelordJS API looks and feels so similar to the original Firestore SDK API, to the point that in just one page, you have learned almost everything, equipped with **full fledged** type safety, effortlessly.
 
@@ -213,7 +220,7 @@ This is done elegantly without complicated configuration while maintain API that
 
 FirelordJS does not stop at just safe guarding your data type in all operations(this alone already surpass conventional wrappers by a huge margin), it goes beyond that and further prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries#query_limitations)** and **[Firestore Pagination Limitation](https://firebase.google.com/docs/firestore/query-data/order-limit-data?hl=en&authuser=0#limitations)** on type level(non invasive), none of the other wrappers able to offer this.
 
-Nothing come close to FirelordJS, and I doubt anything will, **FirelordJS is the end game in pursuing Firestore type safety**.
+Nothing come close to FirelordJS, and I doubt anything will, **FirelordJS is the End Game of pursuing Firestore's type safety**.
 
 Turn out the so called _<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_ is not a a bluff at all, what a disappointment!
 
