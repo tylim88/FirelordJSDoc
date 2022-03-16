@@ -24,11 +24,11 @@ sidebar_position: 1
 </div>
 <br/>
 <div align="center">
-		<i>Of The VOUFT, For The VOUFT, By The VOUFT*</i>
+		<i>Of The VFQAT, By The VFQAT, For The VFQAT **</i>
 </div>
 <br/>
 
-\*Victims Of Unsafe Firestore Type
+\*\* Victims Of Firestore Quarter Ass Typing
 
 ## Do Not Install
 
@@ -204,7 +204,7 @@ try {
 }
 ```
 
-## Did I Just Learned Everything?
+## Did I Just Learned Everything In A Page?
 
 Long answer: Almost, short answer: Yes.
 
@@ -212,7 +212,7 @@ FirelordJS API looks and feels nearly identical to the original Firestore SDK AP
 
 Every value is safely typed, this including collection ID, document ID, all operations, all field paths, all values, all query clauses, basically whatever FirelordJS exports.
 
-FirelordJS infer types of every single value from the MetaType defined in the very beginning, and this is the only time you ever have to deal with the type, there is no need for type annotation and type casting, **type it and forget**.
+FirelordJS infers types of every single value from the MetaType defined in the very beginning, and this is the only time you ever have to deal with the type, there is no need for type annotation and type casting, **type it and forget**.
 
 This is done elegantly without complicated configuration while maintain API that is nearly identical to the original Firestore API, and simpler.
 

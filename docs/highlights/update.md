@@ -48,4 +48,4 @@ Note 1: FirelordJS detect the unknown member and print out the unknown member in
 
 Note 2: FirelordJS lose precision when dealing with fresh value, instead of highlight only `d`, it highlight everything. However it will still displays the same error message just like it did to the stale value. Currently there is no way to overcome this because it is impossible to determine whether a value is stale or fresh on type level, a small price to pay for salvation.
 
-🌈 For the 3rd case, it is only solve-able in runtime. While Firestore not able to handle nested form correctly, but it has no problem with dot notation form, so FirelordJS simply flatten down the data before pass it to Firestore update and that eliminates the problem. What you see will always be what you expect in the database.
+🌈 For the 3rd case, it is only solve-able in runtime. While Firestore not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to Firestore update and that eliminates the problem. What you see will always be what you expect in the database, no extra knowledge and attention required.
