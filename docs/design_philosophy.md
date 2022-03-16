@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Design Philosophy
+# Design Philosophy 📖
 
 <div align="center">
 		<img src="https://raw.githubusercontent.com/tylim88/Firelord/main/img/ozai.png" width="200px" align="center" />

@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Quick Start
+# Quick Start ⛷️
 
 <div align="center">
 		<img src="https://raw.githubusercontent.com/tylim88/Firelord/main/img/ozai.png" width="200px"/>
@@ -40,7 +40,7 @@ Documentation under development, will only release the npm package after the doc
 npm i firelordjs
 ```
 
-The library looks big(200KB-300KB) due to all kind of type declarations, but the runtime code is only 1KB after minified and zipped.
+The library looks big(200KB-300KB) due to all kind of type declarations, but the runtime code is merely 1KB after minified and zipped.
 
 ## Define The Meta Type
 
@@ -218,10 +218,6 @@ This is done elegantly without complicated configuration while maintain API that
 
 ## Beyond Typing
 
-FirelordJS does not stop at just safe guarding your data type in all operations(this alone already surpass conventional wrappers by a huge margin), it goes beyond that and further prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries#query_limitations)** and **[Firestore Pagination Limitation](https://firebase.google.com/docs/firestore/query-data/order-limit-data?hl=en&authuser=0#limitations)** on type level(non invasive), none of the other wrappers able to offer this.
-
-Nothing come close to FirelordJS, and I doubt anything will, **FirelordJS is the End Game of pursuing Firestore's type safety**.
+FirelordJS does not stop at just safe guarding your data type in all operations, it goes beyond that and further prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries#query_limitations)** and **[Firestore Pagination Limitation](https://firebase.google.com/docs/firestore/query-data/order-limit-data?hl=en&authuser=0#limitations)** on type level(non invasive), **FirelordJS is the End Game of pursuing Firestore's type safety**.
 
 Turn out the so called _<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_ is not a a bluff at all, what a disappointment!
-
-(I am not exaggerating, you are welcome to prove me wrong.)
