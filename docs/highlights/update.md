@@ -12,7 +12,7 @@ This section discuss how updates works, we will use `updateDoc` in the example, 
 
 ## Dangerous Firestore SDK Update API
 
-There are 2 type issues and 1 critical runtime issue in the original Firestore SDK update API
+There are 2 type issues and 1 critical runtime issue in the original Firestore SDK update API.
 
 1. Accept unknown member from stale value, stale value refer to value that is attached to a variable.
 
@@ -25,16 +25,16 @@ There are 2 type issues and 1 critical runtime issue in the original Firestore S
 3. And guess what will happens to the code below:
 
 <div align='center'><img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/update2.png?raw=true' /></div>
-<div align='center'><small>Do You Know What Will Happen After The Code Run?</small></div>
+<div align='center'><small>Do You Know What Will Happen After This Code Run?</small></div>
 <br/>
 
 The value of `a`, `c` and `e` will be updated, meanwhile `d` will be deleted.
 
 Yup you see that right, `d` is deleted, in an **update** operation, this is terrible because you need extra knowledge in order to be aware of such behavior, in short, it is not intuitive.
 
-Data deletion should be done explicitly, by assigning a `delete` field value in that field. Then by looking at the code, you clearly know it is going to delete the field without the need to look into the Firestore documentation.
+Data/field deletion(or any operation) should be done explicitly, a proper way to do so is by assigning a `delete` field value and by looking at the code, even newbie know it is going to delete the field without the need to look into the Firestore documentation.
 
-This is definitely a failed API design by Firestore, in term of usability.
+This is a very flawed API design by Firestore, truly lack of consideration.
 
 ## The FirelordJS's Way
 

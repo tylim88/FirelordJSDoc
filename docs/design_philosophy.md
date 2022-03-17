@@ -5,14 +5,16 @@ sidebar_position: 2
 # Design Philosophy 📖
 
 <div align="center">
-		<img src="https://raw.githubusercontent.com/tylim88/Firelord/main/img/ozai.png" width="200px" align="center" />
+		<img src="https://raw.githubusercontent.com/tylim88/Firelord/main/img/ozai.png" width="200px"/>
 		<h1>FirelordJS 烈火君JS</h1>
 </div>
 
 <div align="center">
 		<a href="https://www.npmjs.com/package/firelordjs" rel="nofollow"><img src="https://img.shields.io/npm/v/firelordjs" alt="Created by tylim88"/></a>
 		&nbsp;
-		<a href="https://github.com/tylim88/firelordjs/blob/main/LICENSE" rel="nofollow"><img src="https://img.shields.io/github/license/tylim88/firelordjs" alt="License"/></a>
+		<a href="https://github.com/tylim88/firelordjs/blob/main/LICENSE" rel="nofollow"><img src="https://img.shields.io/github/license/tylim88/firelordjs" alt="License"/></a>&nbsp;
+		<img src="https://img.shields.io/badge/minified%2Bgzipped-1KB-brightgreen" alt="package size"/>&nbsp;
+		<a href="https://www.npmjs.com/package/firelordjs?activeTab=dependencies" rel="nofollow"><img src="https://img.shields.io/badge/dynamic/json?url=https://api.npmutil.com/package/firelordjs&label=dependencies&query=$.dependencies.count" alt="dependency count"/></a>
 </div>
 <br/>
 <div align="center">
@@ -97,4 +99,4 @@ FirelordJS is not an ODM despite it does remap the data a little bit, but the pu
 
 ### Not A Schema Validator
 
-FirelordJS is not a validator, it is out of the scope of this library. If you need a validator, I recommend **[Zod](https://www.npmjs.com/package/zod)**. In future I may make a tool to ease the integration of Zod and FirelordJS(admin version).
+FirelordJS is not a validator, it is out of the scope of this library. If you need a validator, I recommend **[Zod](https://www.npmjs.com/package/zod)**. Keep in mind that the objective of using validator in front end is user experience, not security.

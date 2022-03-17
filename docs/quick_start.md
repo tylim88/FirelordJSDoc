@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Quick Start ⛷️
+# Quick Start 🔥
 
 <div align="center">
 		<img src="https://raw.githubusercontent.com/tylim88/Firelord/main/img/ozai.png" width="200px"/>
@@ -12,7 +12,9 @@ sidebar_position: 1
 <div align="center">
 		<a href="https://www.npmjs.com/package/firelordjs" rel="nofollow"><img src="https://img.shields.io/npm/v/firelordjs" alt="Created by tylim88"/></a>
 		&nbsp;
-		<a href="https://github.com/tylim88/firelordjs/blob/main/LICENSE" rel="nofollow"><img src="https://img.shields.io/github/license/tylim88/firelordjs" alt="License"/></a>
+		<a href="https://github.com/tylim88/firelordjs/blob/main/LICENSE" rel="nofollow"><img src="https://img.shields.io/github/license/tylim88/firelordjs" alt="License"/></a>&nbsp;
+		<img src="https://img.shields.io/badge/minified%2Bgzipped-1KB-brightgreen" alt="package size"/>&nbsp;
+		<a href="https://www.npmjs.com/package/firelordjs?activeTab=dependencies" rel="nofollow"><img src="https://img.shields.io/badge/dynamic/json?url=https://api.npmutil.com/package/firelordjs&label=dependencies&query=$.dependencies.count" alt="dependency count"/></a>
 </div>
 <br/>
 <div align="center">
@@ -32,7 +34,7 @@ sidebar_position: 1
 
 ## Do Not Install
 
-Documentation under development, will only release the npm package after the documentation is done!
+Documentation under development, DO NOT install from NPM!
 
 ## Installation
 
@@ -40,7 +42,7 @@ Documentation under development, will only release the npm package after the doc
 npm i firelordjs
 ```
 
-The library looks big(200KB-300KB) due to all kind of type declarations, but the runtime code is merely 1KB after minified and zipped.
+The library size on disk is 300KB, but the runtime code is at mere 1KB after minified and gzipped.
 
 ## Define The Meta Type
 
