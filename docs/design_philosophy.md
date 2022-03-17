@@ -32,7 +32,7 @@ Few examples:
 1. The query clauses (eg: where, orderBy, startAt) has no type safe or what so ever, YOLO.
 2. All field values sharing the same type and you can use field value on everything, YOLO.
 3. UpdateDoc seem to have nice type definition, it able to generates all the dot notation paths(from top to the deepest) for you. Quite impressive, until you discover:
-   - It doesn't stop unknown member for stale value (value that is attached to a variable).
+   - It doesn't stop unknown member of a stale value (value that is attached to a variable).
    - It uses Partial, so all members accept `undefined`, BUT `undefined` is not a valid Firestore data type.
 
 Firestore SDK also comes with quirky runtime behaviors that ready to kick your ass in your wet dream:

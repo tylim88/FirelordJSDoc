@@ -32,7 +32,7 @@ The value of `a`, `c` and `e` will be updated, meanwhile `d` will be deleted.
 
 Yup you see that right, `d` is deleted, in an **update** operation, this is terrible because you need extra knowledge in order to be aware of such behavior, in short, it is not intuitive.
 
-Data deletion should be done in an explicit way, by assigning a `delete` field value in that field. Then by looking at the code, you clearly know it going to delete the field without the need to look into the Firestore documentation.
+Data deletion should be done explicitly, by assigning a `delete` field value in that field. Then by looking at the code, you clearly know it is going to delete the field without the need to look into the Firestore documentation.
 
 This is definitely a failed API design by Firestore, in term of usability.
 
@@ -44,8 +44,10 @@ FirelordJS solves all the stated concerns:
 <div align='center'><small>FirelordJS Able to Detect Unknown Member In The Stale Value</small></div>
 <br/>
 
-Note 1: FirelordJS detect the unknown member and print out the unknown member in Typescript error message.
+Note 1: FirelordJS lose precision when dealing with fresh value, instead of highlight only `d`, it highlight everything. However it will still displays the same error message just like it did to the stale value in Note 2. Currently there is no way to overcome this because it is impossible to determine whether a value is stale or fresh on type level, a small price to pay for salvation.
 
-Note 2: FirelordJS lose precision when dealing with fresh value, instead of highlight only `d`, it highlight everything. However it will still displays the same error message just like it did to the stale value. Currently there is no way to overcome this because it is impossible to determine whether a value is stale or fresh on type level, a small price to pay for salvation.
+Note 2: FirelordJS detect the unknown member and print out the unknown member in Typescript error message.
 
-🌈 For the 3rd case, it is only solve-able in runtime. While Firestore not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to Firestore update and that eliminates the problem. What you see will always be what you expect in the database, no extra knowledge and attention required.
+Note 3: FirelordJS update allow you to skip member while rejecting `undefined`.
+
+🌈 How Firelord overcome data deletion? While Firestore not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to Firestore update and that eliminates the problem. What you see will always be what you expect in the database, no extra knowledge and attention required.
