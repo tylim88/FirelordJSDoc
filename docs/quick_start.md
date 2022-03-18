@@ -56,7 +56,7 @@ Not yet released, DO NOT install.
 
 ## Installation
 
-```bash title='require typescript 4.5+ and of course firebase'
+```bash title='require typescript 4.6.2+ and firebase 9'
 npm i firelordjs
 ```
 
