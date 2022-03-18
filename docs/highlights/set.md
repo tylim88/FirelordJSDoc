@@ -33,7 +33,6 @@ Like update, FirelordJS stop unknown member from entering Firestore.
     </div>
 </div>
 <br/>
-
 <div align='center'>
 
 see **[update](./update#the-firelordjss-way)** for more explanation.
@@ -42,9 +41,9 @@ see **[update](./update#the-firelordjss-way)** for more explanation.
 
 ## Merge And Merge Field
 
-With merge or merge field, set can behave like update, all members are partial, except that update can only update on exiting document while set simply create the document if it does not exist.
+A merge set(set with merge or merge field) can behave like update, all members are partial, except that update can only updates exiting document while set simply create the document if it does not exist.
 
-Set also possess the same weakness like update, that is accepting `undefined` value and `undefined` is not a valid firestore data type.
+Merge set also possess the same weakness like update, that is accepting `undefined` value and `undefined` is not a valid firestore data type.
 
 <div  style={{ display:'flex', justifyContent:'space-between' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
@@ -57,3 +56,18 @@ Set also possess the same weakness like update, that is accepting `undefined` va
     </div>
 </div>
 <br/>
+<div align='center'>
+
+And of course FirelordJS stop the `undefined` value.
+
+</div>
+
+NOTE 1:
+
+Do you remember how update deals with nested form?
+
+Well, it behave like set and replace the whole map.
+
+Now here is the interesting thing, in the case of merge set, it will not replace the whole object, instead it will only set the value you see here, which mean `d` will not be deleted.
+
+A merge set is behaving like update than update itself, another prank API by Firestore!
