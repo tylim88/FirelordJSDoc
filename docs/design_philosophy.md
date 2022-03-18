@@ -29,7 +29,15 @@ sidebar_position: 2
 		</a>
 		&nbsp;
 		<a href="https://codecov.io/gh/tylim88/Firelordjs">
-			<img src="https://codecov.io/gh/tylim88/Firelordjs/branch/main/graph/badge.svg?token=8DYIREMOGN"/>
+			<img src="https://codecov.io/gh/tylim88/Firelordjs/branch/main/graph/badge.svg?token=8DYIREMOGN" alt="code coverage"/>
+		</a>
+		&nbsp;
+		<a href="https://snyk.io/test/github/tylim88/FirelordJS">
+			<img src="https://snyk.io/test/github/tylim88/FirelordJS/badge.svg" alt="code coverage"/>
+		</a>
+		&nbsp;
+		<a href="https://lgtm.com/projects/g/tylim88/Firelordjs/context:javascript">
+			<img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/tylim88/Firelordjs.svg?logo=lgtm&logoWidth=18"/>
 		</a>
 </div>
 <br/>
