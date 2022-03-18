@@ -7,15 +7,13 @@ sidebar_position: 2
 ## Basic Usage
 
 ```ts
-// import Example MetaType
-import { getFirestore } from 'firebase/firestore'
-import { Firelord, getFirelord } from 'firelordjs'
+import { getFirelord } from 'firelordjs'
 
-const firelordRef = getFirelord(getFirestore())
+const firelordRef = getFirelord()
 ```
 
 `Example` is **[MetaType](../defineYourType/firelordRef#metatypeoutput)** return of `Firelord`.
-Keep in mind you need to initialize firebase before you call `getFirestore`
+Keep in mind you need to initialize firebase before you call `getFirelord`
 
 ## getFirelord(caller)
 
