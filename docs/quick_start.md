@@ -52,7 +52,7 @@ sidebar_position: 1
 
 Documentation is still under development(English is hard!)
 
-Not yet available on npm, DO NOT install from NPM!
+Not yet released, DO NOT install.
 
 ## Installation
 
@@ -82,7 +82,6 @@ export type Example = Firelord<
 
 ```ts title='init.ts'
 import { getFirelord } from 'firelordjs'
-import { getFirestore } from 'firebase/firestore'
 import { initializeApp } from 'firebase/app'
 import { Example } from './dataType'
 
@@ -92,9 +91,7 @@ initializeApp({
 	projectId: '### CLOUD FIRESTORE PROJECT ID ###',
 })
 
-export const db = getFirestore()
-
-const firelordRef = getFirelord(db)
+const firelordRef = getFirelord()
 
 export const example = firelordRef<Example>('SomeCollectionName')
 ```
@@ -167,10 +164,10 @@ onSnapshot(
 ## Batch
 
 ```ts title='batch.ts'
-import { example, db } from './init'
+import { example } from './init'
 import { writeBatch, serverTimestamp } from 'firelordjs'
 
-const batch = writeBatch(db)
+const batch = writeBatch()
 
 batch.set(example.doc('hij'), {
 	a: 6,
@@ -192,7 +189,7 @@ await batch.commit()
 ## Transaction
 
 ```ts title='transaction.ts'
-import { example, db } from './init'
+import { example } from './init'
 import {
 	runTransaction,
 	serverTimestamp,
@@ -201,7 +198,7 @@ import {
 } from 'firelordjs'
 
 try {
-	await runTransaction(db, async transaction => {
+	await runTransaction(async transaction => {
 		await transaction.get(example.doc('lmn'))
 
 		transaction.set(example.doc('lmn'), {
