@@ -1,3 +1,3 @@
-# Website
+# Documentation Website
 
-In development...
+of [FirelordJS](https://github.com/tylim88/Firelordjs)
