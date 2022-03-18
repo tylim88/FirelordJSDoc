@@ -9,7 +9,7 @@ sidebar_position: 2
 ```ts
 import { getFirelord } from 'firelordjs'
 
-const firelordRef = getFirelord()
+export const firelordRef = getFirelord()
 ```
 
 `Example` is **[MetaType](../defineYourType/firelordRef#metatypeoutput)** return of `Firelord`.
