@@ -115,7 +115,7 @@ Dot Notation will be treated as unknown member
 
 Unlike update, set treats `b.c` as field `b.c` not field `c` of `b`.
 
-If the code runs, this is what you see in the database:
+If the code runs, this is what you will see in the database:
 
 ```ts
 {
@@ -133,7 +133,7 @@ NOT:
 }
 ```
 
-The question is, should FirelorsJS alters the behavior of set, so it tallies with the behavior of update?
+The question is, should FirelordJS alters the behavior of set, so it tallies with the behavior of update?
 
 FirestoreJS trying not to alters the behavior if possible, the reason FirelordJS alters update because of implicit data deletion effect, alteration is out of necessity.
 

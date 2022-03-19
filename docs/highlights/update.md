@@ -6,12 +6,6 @@ sidebar_position: 1
 
 This section discuss how updates works, we will use `updateDoc` in the example, but it works the same for `batch.update` and `transaction.update`.
 
-<div align='center'>
-
-🌈 FirelordJS alters slightly the behavior of Firestore SDK <strong>update</strong> to become more intuitive.
-
-</div>
-
 ## Dangerous Firestore SDK Update API
 
 There are 2 type issues and 1 critical runtime issue in the original Firestore SDK update API.
@@ -61,4 +55,6 @@ Note 2: FirelordJS detect the unknown member and print out the unknown member in
 
 Note 3: FirelordJS update allow you to skip member while rejecting `undefined`.
 
-🌈 How FirelordJS circumvent data deletion? While Firestore not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to Firestore update and that eliminates the problem. What you see will always be what you expect in the database, no extra knowledge and attention required.
+## Circumvent Implicit Data Deletion ⚠️
+
+How FirelordJS circumvent data deletion? While Firestore not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to Firestore update and that eliminates the problem. What you see will always be what you expect in the database, no extra knowledge and attention required.
