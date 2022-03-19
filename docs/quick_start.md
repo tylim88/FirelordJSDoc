@@ -36,10 +36,6 @@ sidebar_position: 1
 			<img src="https://snyk.io/test/github/tylim88/FirelordJS/badge.svg" alt="code coverage"/>
 		</a>
 		&nbsp;
-		<a href="https://lgtm.com/projects/g/tylim88/Firelordjs/alerts/" target="_blank">
-			<img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/tylim88/Firelordjs.svg?logo=lgtm&logoWidth=18"/>
-		</a>
-		&nbsp;
 		<a href="https://lgtm.com/projects/g/tylim88/Firelordjs/context:javascript" target="_blank">
 			<img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/tylim88/Firelordjs.svg?logo=lgtm&logoWidth=18"/>
 		</a>
@@ -50,7 +46,7 @@ sidebar_position: 1
 </div>
 <br/>
 <div align="center">
-		<i>Modular, Minuscule, Intuitive, Craftsmanship, Peaceful, Deep</i>
+		<i>Modular, Minuscule, Intuitive, Unopinionated, Craftsmanship, Peaceful, Deep</i>
 </div>
 <br/>
 <div align="center">

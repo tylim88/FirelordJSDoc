@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Set 🏔️
+# Set 🍒
 
 This section discuss how sets works, we will use `setDoc` in the example, but it works the same for `batch.set` and `transaction.set`.
 
@@ -52,7 +52,9 @@ Merge set also possess the same weakness like update, that is accepting `undefin
 <div  style={{ display:'flex', justifyContent:'space-around' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set3.png?raw=true' />
-        <small>Firestore</small>
+        <small>Firestore
+        
+        </small>
     </div>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set4.png?raw=true' />
@@ -109,7 +111,7 @@ You cannot use dot notation for data, both Firestore and FirelordJS will stop yo
 <br/>
 <div align='center'>
 
-Dot Notation will be treated as unknown member
+Dot Notation will be treated as unknown member.
 
 </div>
 

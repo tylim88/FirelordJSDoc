@@ -12,7 +12,9 @@ The documentSnapshot section also works similarly for `onSnapshot` and `GetDocs`
 
 If `SnapshotOptions` is `{ serverTimestamps: 'none' }`, then all the server timestamp is null if it is not yet resolved when you read it, **[source](https://stackoverflow.com/a/65627037/5338829)**.
 
-The default value of `SnapshotOptions` is `{ serverTimestamps: 'none' }` and made explicit in examples below:
+NOTE: The default value of `SnapshotOptions` is `{ serverTimestamps: 'none' }` but made explicit in all examples in this page.
+
+NOTE: Firestore does not have distinct type for server timestamp, all field values in Firestore have the same type, that is `FieldValue`, read **[Masking Field Value](./masking_field_value.md)** for more info.
 
 <div  style={{ display:'flex', justifyContent:'space-around' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
@@ -21,7 +23,10 @@ The default value of `SnapshotOptions` is `{ serverTimestamps: 'none' }` and mad
     </div>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get2.png?raw=true' />
-        <small>FirelordJS</small>
+        <small>FirelordJS
+        
+        
+        </small>
     </div>
 </div>
 <br/>
@@ -42,24 +47,16 @@ If other value is selected:
 </div>
 <br/>
 
-## DocumentSnapshot's Get
+## documentSnapshot.get
 
-Firestore goes full YOLO on document snapshot get
+Firestore goes full YOLO on documentSnapshot.get, it simply does not care.
 
-<div  style={{ display:'flex', justifyContent:'space-around' }}>
-    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get4.png?raw=true' />
-        <small>Firestore</small>
-    </div>
-    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get5.png?raw=true' />
-        <small>FirelordJS</small>
-    </div>
+<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get4.png?raw=true' />
+    <small>Firestore does not reject unknown path and return any.</small>
 </div>
 <br/>
-<div align='center'>
-
-Firelord union the `null` with `Timestamp` regardless of depth.
-
+<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get5.png?raw=true' />
+    <small>FirelordJS reject unknown path and return accurate type.</small>
 </div>
-<br/>
