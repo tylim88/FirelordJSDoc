@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Get 🌊
 
-This page discuss how get works in general, we will use `get` in the example, but it works the same for`transaction.get`.
+This page discusses how get works in general, we will use `get` in the example, but it works the same for`transaction.get`.
 
 The documentSnapshot section also works similarly for `onSnapshot` and `GetDocs`.
 
@@ -49,7 +49,7 @@ If other value is selected:
 
 ## documentSnapshot.get 🕊️
 
-Firestore choose to goes full YOLO on documentSnapshot.get, it simply does not care.
+Firestore chooses to go full YOLO on documentSnapshot.get, it simply does not care.
 
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
     <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get4.png?raw=true' />

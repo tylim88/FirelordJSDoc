@@ -2,9 +2,9 @@
 sidebar_position: 4
 ---
 
-# Masking Field Values 🍁
+# Field Values 🍁
 
-This page discuss how FirelordJS tackles the homogeneous `FieldValue` types.
+This page discusses how FirelordJS tackles the homogeneous `FieldValue` types.
 
 ## Conversion Table 🕊️
 
@@ -29,4 +29,4 @@ FirelordJS solves this by masking the field value, here is how it works:
 
 ## UnassignedAble Field Values 🕊️
 
-Type wise: `arrayRemove`, `arrayUnion` and `increment` are not assignable, meaning it is only available as output after type translation, you cannot actively assign them as types and if you do, FirelordJS will replace them with error messages.
+`arrayRemove`, `arrayUnion` and `increment` are not assignable as type, they only available as output type after type translation, you cannot actively assign them as types and if you do, FirelordJS will replace them with error messages.

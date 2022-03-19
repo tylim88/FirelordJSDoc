@@ -4,9 +4,9 @@ sidebar_position: 2
 
 # Set 🍒
 
-This page discuss how sets works, we will use `setDoc` in the example, but it works the same for `batch.set` and `transaction.set`.
+This page discusses how sets works, we will use `setDoc` in the example, but it works the same for `batch.set` and `transaction.set`.
 
-## Set Operation Requires Complete Members
+## Set Operation Requires Complete Members 🕊️
 
 In set operation, both Firestore and FirelordJS forbid you from skipping any member(field), with exception if set merge is set to true or merge field is defined.
 
@@ -141,6 +141,6 @@ FirestoreJS trying not to alters the behavior if possible, the reason FirelordJS
 
 But there is no dangerous implicit effect in set operations, so FirestoreJS keep thing as it is now.
 
-## About Merge And Merge Fields
+## About Merge And Merge Fields 🕊️
 
 Keep in mind that because all members are partial, merge and merge fields introduce 3 filters states, avoid it if possible.

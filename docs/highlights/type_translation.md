@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Type Translation 🪶
 
-This page discuss how FirelordJS translate your type for various use internally.
+This page discusses how FirelordJS translates your types for various uses internally.
 
 ## Conversion Table 🕊️
 
