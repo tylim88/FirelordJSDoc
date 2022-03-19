@@ -77,13 +77,13 @@ The library size on disk is 300KB, but the runtime code is at mere 1KB after min
 ## Define The Meta Type
 
 ```ts title='dataType.ts'
-import { Firelord, ServerTimestampFieldValue } from 'firelordjs'
+import { MetaTypeCreator, ServerTimestamp } from 'firelordjs'
 
-export type Example = Firelord<
+export type Example = MetaTypeCreator<
 	{
 		a: number
 		b: { c: boolean; d: { e: string }[] }
-		f: { g: ServerTimestampFieldValue; h: 1010 | 2929 | 3838 }
+		f: { g: ServerTimestamp; h: 1010 | 2929 | 3838 }
 	}, // can go with even more crazy looking data type, but not good for a quick tutorial
 	'SomeCollectionName',
 	string // document ID type, normally string

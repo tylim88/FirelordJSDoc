@@ -61,4 +61,4 @@ Note 2: FirelordJS detect the unknown member and print out the unknown member in
 
 Note 3: FirelordJS update allow you to skip member while rejecting `undefined`.
 
-🌈 How Firelord overcome data deletion? While Firestore not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to Firestore update and that eliminates the problem. What you see will always be what you expect in the database, no extra knowledge and attention required.
+🌈 How FirelordJS circumvent data deletion? While Firestore not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to Firestore update and that eliminates the problem. What you see will always be what you expect in the database, no extra knowledge and attention required.

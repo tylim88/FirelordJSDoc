@@ -12,7 +12,7 @@ import { getFirelord } from 'firelordjs'
 export const firelordRef = getFirelord()
 ```
 
-`Example` is **[MetaType](../defineYourType/firelordRef#metatypeoutput)** return of `Firelord`.
+`Example` is **[MetaType](../defineYourType/firelordRef#metatypeoutput)** return of `MetaTypeCreator`.
 Keep in mind you need to initialize firebase before you call `getFirelord`
 
 ## getFirelord(caller)
@@ -23,9 +23,9 @@ return a **[firelordRef](../defineYourType/firelordRef)** function where you can
 const getFirelord = firestore => firelordRef
 ```
 
-| Parameter | Type      | Description                  |
-| --------- | --------- | ---------------------------- |
-| firestore | Firestore | Firebase Firestore reference |
+| Parameter | Type                       | Default        | Description                  |
+| --------- | -------------------------- | -------------- | ---------------------------- |
+| firestore | `Firestore` \| `undefined` | getFirestore() | Firebase Firestore reference |
 
 ## firelordRef(return)
 
