@@ -2,21 +2,21 @@
 
 This section discuss how sets works, we will use `setDoc` in the example, but it works the same for `batch.set` and `transaction.set`.
 
-## Set Operation Require Full Member
+## Set Operation Require Full Members
 
 In set operation, both Firestore and FirelordJS forbid you from skipping any member(field), with exception if set merge is set to true or merge field is defined.
 
-It is recommended to set full member and fill the field you do not need with default value rather than dropping it.
+It is recommended to set full members and fill the field you do not need with default value rather than dropping it.
 
 This is because a missing field is not query-able by filter, and this creates 3 document states:
 
 - document that can be searched by equality operator,
 - document that can be searched by inequality operator,
-- document that cant be search by neither equality or inequality operator.
+- document that cant be search by either equality or inequality operator.
 
 It is easier to deal with 2 states than 3 states.
 
-`null` maybe a interesting choice as default value but is not recommend.
+`null` maybe a interesting choice as default value but is not recommended.
 
 ## Stop Unknown Member
 
@@ -64,7 +64,7 @@ And of course FirelordJS stop the `undefined` value.
 
 NOTE 1:
 
-From previous article, when dealing with nested form, update behaves like set and replace the whole map.
+From **[update](./update#the-firelordjss-way)**, we know that when dealing with nested form, update behaves like set and replace the whole map.
 
 Now here is the interesting thing, in the case of merge set, it will not replace the whole map, instead it will only set the value you see here, which mean `d` will not be deleted.
 
@@ -88,4 +88,18 @@ Firestore does not reject unknown field path:
 </div>
 <br/>
 
-## Merge Set And Dot Notation
+## Dot Notation
+
+You cannot use dot notation for data, both Firestore and FirelordJS will stop you from you doing so.
+
+<div  style={{ display:'flex', justifyContent:'space-between' }}>
+    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set7.png?raw=true' />
+        <small>Firestore</small>
+    </div>
+    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set8.png?raw=true' />
+        <small>FirelordJS</small>
+    </div>
+</div>
+<br/>
