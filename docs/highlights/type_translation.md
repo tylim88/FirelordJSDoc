@@ -4,6 +4,10 @@ sidebar_position: 0
 
 # Type Translation 🪶
 
+This page discuss how FirelordJS translate your type for various use internally.
+
+## Conversion Table 🕊️
+
 | Base                             | Read                   | Write                                                        | Compare                          |
 | -------------------------------- | ---------------------- | ------------------------------------------------------------ | -------------------------------- |
 | `number`                         | `number`               | `number` \| `FirelordJS Increment`                           | `number`                         |
@@ -16,12 +20,8 @@ sidebar_position: 0
 | `object`                         | `object`               | `object`                                                     | `object`                         |
 | `A[]`                            | `A[]`                  | `A[]` \| `FirelordJS ArrayRemove` \| `FirelordJS ArrayUnion` | `A[]`                            |
 
-Internally this is how FirelordJS translate your type for various use.
-
-NEVER memorize this, use common sense.
-
 Key Points:
 
-- FirelordJS does not allow you to `increment`(field value) `numeric literal` type, for obvious reason(do this need an explanation?).
+- FirelordJS forbid you from `increment`(field value) `numeric literal` type, for obvious reason.
 
 - FirelordJS does not allow you to write `Date` or `Timestamp` to `ServerTimestamp`, this is to preserve the data integrity because some datetime has to be server timestamp, such as `createdAt` and `updatedAt`. However you can union `ServerTimestamp` with `Date` and `Timestamp` if you want to use `Date` and `Timestamp` for `ServerTimestamp`.

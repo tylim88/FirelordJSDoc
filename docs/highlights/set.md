@@ -4,13 +4,13 @@ sidebar_position: 2
 
 # Set 🍒
 
-This section discuss how sets works, we will use `setDoc` in the example, but it works the same for `batch.set` and `transaction.set`.
+This page discuss how sets works, we will use `setDoc` in the example, but it works the same for `batch.set` and `transaction.set`.
 
-## Set Operation Require Full Members
+## Set Operation Requires Complete Members
 
 In set operation, both Firestore and FirelordJS forbid you from skipping any member(field), with exception if set merge is set to true or merge field is defined.
 
-It is recommended to set full members and fill the field you do not need with default value rather than dropping it.
+It is recommended to set complete members and fill the field you do not need with default value rather than dropping it.
 
 This is because a missing field is not query-able by filter, and this creates 3 filters states:
 
@@ -22,7 +22,7 @@ It is easier to deal with 2 states than 3 states.
 
 `null` maybe a interesting choice as default value but is not recommended.
 
-## Stop Unknown Member
+## Stop Unknown Member 🕊️
 
 Like update, FirelordJS stop unknown member from entering Firestore.
 
@@ -43,7 +43,7 @@ see **[update](./update#the-firelordjss-way)** for more explanation.
 
 </div>
 
-## Merge
+## Merge 🕊️
 
 A merge set(set with merge : true) can behave like update, all members are partial, except that update can only updates exiting document while set simply create the document if it does not exist.
 
@@ -76,7 +76,7 @@ Now here is the interesting thing, in the case of merge set, it will not replace
 
 A merge set is behaving like update than update itself, another prank API by Firestore!
 
-## Merge Fields
+## Merge Fields 🕊️
 
 Merge fields Set behave like merge, except that it updates only the listed member and ignore the rest.
 
@@ -94,7 +94,7 @@ Firestore does not reject unknown field path:
 </div>
 <br/>
 
-## Dot Notation Path
+## Dot Notation Path 🕊️
 
 You cannot use dot notation for data, both Firestore and FirelordJS will stop you from you doing so.
 
@@ -126,7 +126,7 @@ If the code runs, this is what you will see in the database:
 }
 ```
 
-NOT:
+This is NOT what you will get:
 
 ```ts
 {

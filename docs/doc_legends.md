@@ -2,7 +2,13 @@
 sidebar_position: 3
 ---
 
-# Doc Legends
+# Doc Legends 🕊️
+
+## Common
+
+| Legends | Descriptions                                                                                               |
+| ------- | ---------------------------------------------------------------------------------------------------------- |
+| 🕊️      | Section is purely informative or is taken cared by FirelordJS, sit down and relax, no memorization needed. |
 
 ## On Uninstalled
 

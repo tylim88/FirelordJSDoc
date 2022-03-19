@@ -4,9 +4,9 @@ sidebar_position: 1
 
 # Update 🍃
 
-This section discuss how updates works, we will use `updateDoc` in the example, but it works the same for `batch.update` and `transaction.update`.
+This page discuss how updates works, we will use `updateDoc` in the example, but it works the same for `batch.update` and `transaction.update`.
 
-## Dangerous Firestore SDK Update API
+## Dangerous Firestore SDK Update API 🕊️
 
 There are 2 type issues and 1 critical runtime issue in the original Firestore SDK update API.
 
@@ -38,7 +38,7 @@ Data/field deletion(or any operation) should be done explicitly, a proper way to
 
 A very questionable API design by Firestore, truly lack of consideration.
 
-## The FirelordJS's Way
+## The FirelordJS's Way 🕊️
 
 FirelordJS solves all the stated concerns:
 
