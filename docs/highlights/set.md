@@ -8,7 +8,7 @@ In set operation, both Firestore and FirelordJS forbid you from skipping any mem
 
 It is recommended to set full members and fill the field you do not need with default value rather than dropping it.
 
-This is because a missing field is not query-able by filter, and this creates 3 document states:
+This is because a missing field is not query-able by filter, and this creates 3 filters states:
 
 - document that can be searched by equality operator,
 - document that can be searched by inequality operator,
@@ -22,7 +22,7 @@ It is easier to deal with 2 states than 3 states.
 
 Like update, FirelordJS stop unknown member from entering Firestore.
 
-<div  style={{ display:'flex', justifyContent:'space-between' }}>
+<div  style={{ display:'flex', justifyContent:'space-around' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set1.png?raw=true' />
         <small>Firestore</small>
@@ -45,7 +45,7 @@ A merge set(set with merge : true) can behave like update, all members are parti
 
 Merge set also possess the same weakness like update, that is accepting `undefined` value and `undefined` is not a valid firestore data type.
 
-<div  style={{ display:'flex', justifyContent:'space-between' }}>
+<div  style={{ display:'flex', justifyContent:'space-around' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set3.png?raw=true' />
         <small>Firestore</small>
@@ -72,11 +72,11 @@ A merge set is behaving like update than update itself, another prank API by Fir
 
 ## Merge Fields
 
-Merge Fields Set behave like merge, except that it updates only the listed member and ignore the rest.
+Merge fields Set behave like merge, except that it updates only the listed member and ignore the rest.
 
 Firestore does not reject unknown field path:
 
-<div  style={{ display:'flex', justifyContent:'space-between' }}>
+<div  style={{ display:'flex', justifyContent:'space-around' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set5.png?raw=true' />
         <small>Firestore</small>
@@ -88,11 +88,11 @@ Firestore does not reject unknown field path:
 </div>
 <br/>
 
-## Dot Notation
+## Dot Notation Path
 
 You cannot use dot notation for data, both Firestore and FirelordJS will stop you from you doing so.
 
-<div  style={{ display:'flex', justifyContent:'space-between' }}>
+<div  style={{ display:'flex', justifyContent:'space-around' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set7.png?raw=true' />
         <small>Firestore</small>
@@ -103,3 +103,38 @@ You cannot use dot notation for data, both Firestore and FirelordJS will stop yo
     </div>
 </div>
 <br/>
+<div align='center'>
+
+Dot Notation will be treated as unknown member
+
+</div>
+
+Unlike update, set treats `b.c` as field `b.c` not field `c` of `b`.
+
+If the code runs, this is what you see in the database:
+
+```ts
+{
+	a: 1,
+	'b.c': 1,
+}
+```
+
+NOT:
+
+```ts
+{
+	a: 1,
+	b: { c: 1 },
+}
+```
+
+The question is, should FirelorsJS alters the behavior of set, so it tallies with the behavior of update?
+
+FirestoreJS trying not to alters the behavior if possible, the reason FirelordJS alters update because of implicit data deletion effect, alteration is out of necessity.
+
+But there is no dangerous implicit effect in set operations, so FirestoreJS keep thing as it is now.
+
+## About Merge And Merge Fields
+
+Keep in mind that because all members are partial, merge and merge fields introduce 3 filters states, avoid it if possible.
