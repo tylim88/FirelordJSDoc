@@ -12,12 +12,12 @@ import { getFirelord } from 'firelordjs'
 export const firelordRef = getFirelord()
 ```
 
-`Example` is **[MetaType](../defineYourType/firelordRef#metatypeoutput)** return of `MetaTypeCreator`.
+`Example` is **[MetaType](../defineYourMetaType/firelordRef#metatypeoutput)** return of `MetaTypeCreator`.
 Keep in mind you need to initialize firebase before you call `getFirelord`
 
 ## getFirelord(caller)
 
-return a **[firelordRef](../defineYourType/firelordRef)** function where you can use to generates references(document, collection and collection group)
+return a **[firelordRef](../defineYourMetaType/firelordRef)** function where you can use to generates references(document, collection and collection group)
 
 ```ts
 const getFirelord = firestore => firelordRef
@@ -29,4 +29,4 @@ const getFirelord = firestore => firelordRef
 
 ## firelordRef(return)
 
-see [**firelordRef**](../defineYourType/firelordRef)
+see [**firelordRef**](../defineYourMetaType/firelordRef)

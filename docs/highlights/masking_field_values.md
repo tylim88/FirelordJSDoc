@@ -30,5 +30,3 @@ FirelordJS solves this by masking the field value, here is how it works:
 ## UnassignedAble Field Values 🕊️
 
 Type wise: `arrayRemove`, `arrayUnion` and `increment` are not assignable, meaning it is only available as output after type translation, you cannot actively assign them as types and if you do, FirelordJS will replace them with error messages.
-
-Values wise: FirelordJS only allowed you to use `arrayRemove`, `arrayUnion` and `increment` in write operations.
