@@ -25,9 +25,9 @@ Not available directly, return of **[getFirelord](../defineYourMetaType/getFirel
 const firelordRef = <MetaType>(collectionPath) => refs
 ```
 
-| Generic  | Type       | Description                                                        |
-| -------- | ---------- | ------------------------------------------------------------------ |
-| MetaType | `MetaType` | see **[MetaType](../defineYourMetaType/firelord#metatypereturn)**. |
+| Generic  | Type       | Description                                                               |
+| -------- | ---------- | ------------------------------------------------------------------------- |
+| MetaType | `MetaType` | see **[MetaType](../defineYourMetaType/metaTypeCreator#metatypereturn)**. |
 
 | Parameter      | Type                         | Description                                |
 | -------------- | ---------------------------- | ------------------------------------------ |
