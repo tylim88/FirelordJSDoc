@@ -149,7 +149,9 @@ await updateDoc(example.doc('abc'), {
 
 await deleteDoc(example.doc('abc'))
 
-await getDoc(example.doc('abc'))
+await getDoc(example.doc('abc')).then(docSnapshot => {
+	const data = docSnapshot.data()
+})
 
 await getDocs(
 	query(
@@ -160,7 +162,7 @@ await getDocs(
 	)
 )
 
-onSnapshot(
+const unsub = onSnapshot(
 	query(
 		example.collection(),
 		where('b.d', 'array-contains', { e: 'hello' }),
@@ -168,8 +170,11 @@ onSnapshot(
 		startAfter(new Date())
 	),
 	querySnapshot => {
-		// onNext
-	}
+		querySnapshot.forEach(docSnapshot => {
+			const data = docSnapshot.data()
+		})
+	},
+	{ includeMetadataChanges: false } // optional
 )
 ```
 
@@ -211,7 +216,9 @@ import {
 
 try {
 	await runTransaction(async transaction => {
-		await transaction.get(example.doc('lmn'))
+		await transaction.get(example.doc('lmn')).then(docSnapshot => {
+			const data = docSnapshot.data()
+		})
 
 		transaction.set(example.doc('lmn'), {
 			a: 88,
