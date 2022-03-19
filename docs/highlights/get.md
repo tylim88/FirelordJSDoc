@@ -10,7 +10,9 @@ The documentSnapshot section also work for `onSnapshot` and `GetDocs`.
 
 ## SnapshotOptions
 
-If SnapshotOptions is `{ serverTimestamps: 'none' }`, then all the server timestamp is null if it is not yet resolved when you read it, **[source](https://stackoverflow.com/a/65627037/5338829)**.
+If `SnapshotOptions` is `{ serverTimestamps: 'none' }`, then all the server timestamp is null if it is not yet resolved when you read it, **[source](https://stackoverflow.com/a/65627037/5338829)**.
+
+The default value of `SnapshotOptions` is `{ serverTimestamps: 'none' }` and made explicit in examples below:
 
 <div  style={{ display:'flex', justifyContent:'space-around' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
@@ -28,3 +30,11 @@ If SnapshotOptions is `{ serverTimestamps: 'none' }`, then all the server timest
 Firelord union the `null` with Timestamp regardless of depth.
 
 </div>
+<br/>
+<div  style={{ display:'flex', justifyContent:'space-around' }}>
+    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get3.png?raw=true' />
+        <small>FirelordJS will not union with timestamp if other value is selected. </small>
+    </div>
+</div>
+<br/>
