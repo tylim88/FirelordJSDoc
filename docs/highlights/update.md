@@ -53,8 +53,18 @@ Note 1: FirelordJS lose precision when dealing with fresh value, instead of high
 
 Note 2: FirelordJS detect the unknown member and print out the unknown member in Typescript error message.
 
-Note 3: FirelordJS update allow you to skip member while rejecting `undefined`.
+Note 3: FirelordJS update allows you to skip member while rejecting `undefined`.
 
 ## Circumvent Implicit Data Deletion ⚠️
 
 How FirelordJS circumvent data deletion? While Firestore not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to Firestore update and that eliminates the problem. What you see will always be what you expect in the database, no extra knowledge and attention required.
+
+Important, if you uninstalled FirelordJS and revert back to original Firestore SDK, please replace all the nested form with dot notation form or else your fields may get deleted.
+
+## Why Not Just Drop The Nested Form Support? 🕊️
+
+_Q: Why not simply forbid developers from using nested form? It would be easier for user to revert back to original Firestore SDK._
+
+The reason is simple: usability.
+
+If FirelordJS allow only dot notation form, then developers have to flatten the object every time he use update API. Developers with normal object all the time, not flatten object, so it is better to keep the nested form for common use cases.

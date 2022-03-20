@@ -6,21 +6,23 @@ sidebar_position: 2
 
 This page discusses how sets works, we will use `setDoc` in the example, but it works the same for `batch.set` and `transaction.set`.
 
-## Set Operation Requires Complete Members 🕊️
+## Ternary Filter States 🦜
 
 In set operation, both Firestore and FirelordJS forbid you from skipping any member(field), with exception if set merge is set to true or merge field is defined.
 
 It is recommended to set complete members and fill the field you do not need with default value rather than dropping it.
 
-This is because a missing field is not query-able by filter, and this creates 3 filters states:
+NOTE: `null` is a choice of default value but is not recommended.
+
+This is because a missing field is not query-able by filter, and this creates 3 filter states:
 
 - document that can be searched by equality operator,
 - document that can be searched by inequality operator,
 - document that cant be search by either equality or inequality operator.
 
-It is easier to deal with 2 states than 3 states.
+Needless to say, 2 states easier to deal with than 3 states.
 
-`null` maybe a interesting choice as default value but is not recommended.
+Keep in mind that with merge and merge fields options on, all members become partial, this also introducing 3 filter states.
 
 ## Stop Unknown Member 🕊️
 
@@ -39,7 +41,7 @@ Like update, FirelordJS stop unknown member from entering Firestore.
 <br/>
 <div align='center'>
 
-see **[update](./update#the-firelordjss-way)** for more explanation.
+see **[update](./update#the-firelordjss-way)** for more explanation about this behavior.
 
 </div>
 
@@ -74,7 +76,7 @@ From **[update](./update#the-firelordjss-way)**, we know that when dealing with 
 
 Now here is the interesting thing, in the case of merge set, it will not replace the whole map, instead it will only set the value you see here, which mean `d` will not be deleted.
 
-A merge set is behaving like update than update itself, another prank API by Firestore!
+A merge set is behaving like real update than update itself, another mind f\* by Firestore!
 
 ## Merge Fields 🕊️
 
@@ -135,12 +137,10 @@ This is NOT what you will get:
 }
 ```
 
-The question is, should FirelordJS alters the behavior of set, so it tallies with the behavior of update?
+The question is, should FirelordJS alters the behavior of set, so it tallies with the characteristic of update?
 
-FirestoreJS trying not to alters the behavior if possible, the reason FirelordJS alters update because of implicit data deletion effect, alteration is out of necessity.
+FirestoreJS trying not to alters the behavior if possible, the reason FirelordJS alters update because of update's implicit data deletion, so it is out of necessity.
 
 But there is no dangerous implicit effect in set operations, so FirestoreJS keep thing as it is now.
 
-## About Merge And Merge Fields 🕊️
-
-Keep in mind that because all members are partial, merge and merge fields introduce 3 filters states, avoid it if possible.
+Will give this a deeper thought in future.
