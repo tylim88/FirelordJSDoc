@@ -19,10 +19,10 @@ sidebar_position: 2
 		</a>
 		&nbsp;
 		<a href="https://www.npmjs.com/package/firelordjs?activeTab=dependencies" target="_blank">
-			<img src="https://img.shields.io/badge/dynamic/json?url=https://api.npmutil.com/package/firelordjs&label=dependencies&query=$.dependencies.count" alt="dependency count"/>
+			<img src="https://img.shields.io/badge/dynamic/json?url=https://api.npmutil.com/package/firelordjs&label=dependencies&query=$.dependencies.count&color=brightgreen" alt="dependency count"/>
 		</a>
 		&nbsp;
-		<img src="https://img.shields.io/badge/minified%2Bgzipped-1KB-brightgreen" alt="package size"/>
+		<img src="https://img.shields.io/badge/minified%2Bgzipped-2KB-brightgreen" alt="package size"/>
 		&nbsp;
 		<a href="https://github.com/tylim88/Firelordjs/actions" target="_blank">
 			<img src="https://github.com/tylim88/Firelordjs/actions/workflows/github-actions.yml/badge.svg" alt="github action"/>
@@ -42,12 +42,13 @@ sidebar_position: 2
 </div>
 <br/>
 <div align="center">
-		<i>High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type Safe and Dev Experience</i>
+		<i>Extremely High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type Safe and Dev Experience</i>
 </div>
 <br/>
 <div align="center">
-		<i>Modular, Minuscule, Intuitive, Unopinionated, Craftsmanship, Peaceful, Deep</i>
+		<i>Modular, Minuscule, Intuitive, Unopinionated, Craftsmanship, Ultimate, Peaceful, Deep</i>
 </div>
+<br/>
 
 ## The Root Of Evils
 
@@ -113,7 +114,7 @@ Core principles of FirelordJS:
    - There is around 20 commonly known(documented directly or indirectly) inputs exceptions.
    - Prevent the exception in a way that does not alter runtime behavior if possible.
    - Prevent the exception in a way that does not alter developers' intention, no matter what.
-   - Do not prevent exception that indicates logic bug.
+   - Do not prevent exception that may indicates logic bug.
 
 ## What FirelordJS Is Not?
 

@@ -2,13 +2,13 @@
 sidebar_position: 2
 ---
 
-# Set 🍒
+# Set ☀️
 
 This page discusses how sets works, we will use `setDoc` in the example, but it works the same for `batch.set` and `transaction.set`.
 
-## Ternary Filter States 🦜
+## Ternary Filter States 🦤
 
-In set operation, both Firestore and FirelordJS forbid you from skipping any member(field), with exception if set merge is set to true or merge field is defined.
+In set operation, both Firestore and FirelordJS forbid you from skipping any member(field), with the exception if set merge is set to true or merge field is defined.
 
 It is recommended to set complete members and fill the field you do not need with default value rather than dropping it.
 
@@ -22,7 +22,9 @@ This is because a missing field is not query-able by filter, and this creates 3 
 
 Needless to say, 2 states easier to deal with than 3 states.
 
-Keep in mind that with merge and merge fields options on, all members become partial, this also introducing 3 filter states.
+Keep in mind that with merge and merge fields options on, all members become partial, this also creates 3 filter states.
+
+Practically speaking we cannot avoid ternary filter states 100%, because a no sql database add and remove fields from time to time.
 
 ## Stop Unknown Member 🕊️
 
@@ -76,7 +78,9 @@ From **[update](./update#the-firelordjss-way)**, we know that when dealing with 
 
 Now here is the interesting thing, in the case of merge set, it will not replace the whole map, instead it will only set the value you see here, which mean `d` will not be deleted.
 
-A merge set is behaving like real update than update itself, another mind f\* by Firestore!
+A merge set is behaving like proper update than update itself!
+
+Apparently Firestore want us to question our existence.
 
 ## Merge Fields 🕊️
 

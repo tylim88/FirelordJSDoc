@@ -19,10 +19,10 @@ sidebar_position: 1
 		</a>
 		&nbsp;
 		<a href="https://www.npmjs.com/package/firelordjs?activeTab=dependencies" target="_blank">
-			<img src="https://img.shields.io/badge/dynamic/json?url=https://api.npmutil.com/package/firelordjs&label=dependencies&query=$.dependencies.count" alt="dependency count"/>
+			<img src="https://img.shields.io/badge/dynamic/json?url=https://api.npmutil.com/package/firelordjs&label=dependencies&query=$.dependencies.count&color=brightgreen" alt="dependency count"/>
 		</a>
 		&nbsp;
-		<img src="https://img.shields.io/badge/minified%2Bgzipped-1KB-brightgreen" alt="package size"/>
+		<img src="https://img.shields.io/badge/minified%2Bgzipped-2KB-brightgreen" alt="package size"/>
 		&nbsp;
 		<a href="https://github.com/tylim88/Firelordjs/actions" target="_blank">
 			<img src="https://github.com/tylim88/Firelordjs/actions/workflows/github-actions.yml/badge.svg" alt="github action"/>
@@ -42,11 +42,11 @@ sidebar_position: 1
 </div>
 <br/>
 <div align="center">
-		<i>High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type Safe and Dev Experience</i>
+		<i>Extremely High Precision Typescript Wrapper for Firestore Web, Providing Unparalleled Type Safe and Dev Experience</i>
 </div>
 <br/>
 <div align="center">
-		<i>Modular, Minuscule, Intuitive, Unopinionated, Craftsmanship, Peaceful, Deep</i>
+		<i>Modular, Minuscule, Intuitive, Unopinionated, Craftsmanship, Ultimate, Peaceful, Deep</i>
 </div>
 <br/>
 <div align="center">
@@ -68,7 +68,7 @@ Not yet released, DO NOT install.
 npm i firelordjs
 ```
 
-The library size on disk is 300KB, but the runtime code is at mere 1KB after minified and gzipped.
+The library size on disk is 300KB, but the runtime code is at mere 2KB after minified and gzipped.
 
 ## Define The Meta Type
 

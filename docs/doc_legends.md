@@ -6,10 +6,11 @@ sidebar_position: 3
 
 ## Common
 
-| Legends | Descriptions                                                                                               |
-| ------- | ---------------------------------------------------------------------------------------------------------- |
-| 🕊️      | Section is purely informative or is taken cared by FirelordJS, sit down and relax, no memorization needed. |
-| 🦜      | Section that contains useful advice that can't be enforce with Typescript.                                 |
+| Legends | Descriptions                                                                                                    |
+| ------- | --------------------------------------------------------------------------------------------------------------- |
+| 🕊️      | Section that is purely informative or is taken cared by FirelordJS, sit down and relax, no memorization needed. |
+| 🦤       | Section that contains useful advice.                                                                            |
+| 🦜      | Section that need to pay attention in order to use it properly.                                                 |
 
 ## On Uninstall
 
@@ -24,8 +25,8 @@ If you decide to uninstalled FirelordJS and revert back the original Firestore S
 
 <br/>
 
-**Active Attention**: Warn by nothing, can only rely on developer themselves.
+**Active Attention**: nothing warn you, can only rely on yourself.
 
-**Passive Attention**: Warn by Typescript, impossible to miss.
+**Passive Attention**: Typescript warn you.
 
 Basically you just need to pay extra attention to ⚠️ when removing FirelordJS, the rest will let you know by Typescript.

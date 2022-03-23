@@ -49,9 +49,9 @@ FirelordJS solves all the stated concerns:
 </div>
 <br/>
 
-Note 1: FirelordJS lose precision when dealing with fresh value, instead of highlight only `d`, it highlight everything. However it will still displays the same error message just like it did to the stale value in Note 2. Currently there is no way to overcome this because it is impossible to determine whether a value is stale or fresh on type level, a small price to pay for salvation.
+Note 1: FirelordJS highlight the unknown member of the fresh value.
 
-Note 2: FirelordJS detect the unknown member and print out the unknown member in Typescript error message.
+Note 2: FirelordJS detect the unknown member and print out the unknown member in Typescript error message, the same error message is also shown for fresh value.
 
 Note 3: FirelordJS update allows you to skip member while rejecting `undefined`.
 

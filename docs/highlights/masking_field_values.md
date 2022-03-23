@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Field Values 🍁
+# Masking Field Values 🦋
 
 This page discusses how FirelordJS tackles the homogeneous `FieldValue` types.
 
