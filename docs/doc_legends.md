@@ -12,6 +12,10 @@ sidebar_position: 3
 | 🦤       | Section that contains useful advice.                                                                            |
 | 🦜      | Section that need to pay attention in order to use it properly.                                                 |
 
+Here is a list of topics with 🦜:
+
+1. **[deletable field](./highlights/delete_field.md#deletable-field🦜)**
+
 ## On Uninstall
 
 If you decide to uninstalled FirelordJS and revert back the original Firestore SDK, pay attention to the legends below:
@@ -31,6 +35,6 @@ If you decide to uninstalled FirelordJS and revert back the original Firestore S
 
 Basically you just need to pay extra attention to ⚠️ when removing FirelordJS, the rest will let you know by Typescript.
 
-Here is a list of module with ⚠️:
+Here is a list of topics with ⚠️:
 
-1. **[update implicit data deletion](./highlights/update#circumvent-implicit-data-deletion-%EF%B8%8F)**
+1. **[update implicit data deletion](./highlights/update#circumvent-implicit-data-deletion-⚠️)**

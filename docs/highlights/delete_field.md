@@ -6,11 +6,16 @@ sidebar_position: 5
 
 This section discusses how deleteField works.
 
-## Deletable 🦜
+## Deletable Field🦜
 
 Firestore allow you to use deleteField anytime you want, but inn FirelordJS, field are not deletable by default, you need to assign `deleteField` type in order to use it.
 
 <div  style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField1.png?raw=true' />
-        <small>You can delete 'a' because one of the 'a' types is 'deleteField' </small>
+        <small>Firestore</small>
 </div>
+<br/>
+
+You can delete 'a' field because one of the 'a' field types is 'deleteField'.
+
+This mechanism is needed because if a field is deletable, then it is possibly `undefined` when you read it and the `deleteField` union `undefined` to the field's `read` type.
