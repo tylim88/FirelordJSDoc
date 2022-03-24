@@ -15,6 +15,7 @@ sidebar_position: 3
 Here is a list of topics with 🦜:
 
 1. **[deletable field](./highlights/delete_field.md#deletable-field🦜)**
+2. **[possibly read as undefined](./highlights/possibly_undefined.md#possibly-read-as-undefined❓)**
 
 ## On Uninstall
 
