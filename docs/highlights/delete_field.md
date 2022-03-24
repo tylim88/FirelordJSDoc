@@ -20,7 +20,7 @@ You can delete 'a' field because one of the 'a' field types is 'deleteField'.
 
 <div  style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField2.png?raw=true' />
-        <small>Union 'a' field's read type with undefined</small>
+        <small>Union 'a' field's read type with 'undefined'</small>
 </div>
 <br/>
 

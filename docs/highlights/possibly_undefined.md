@@ -16,6 +16,14 @@ This is what `PossiblyReadAsUndefined` for, it allows you to read a particular f
 
 <div  style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined1.png?raw=true' />
-        <small>Union 'a' field's read type with undefined</small>
+        <small>Union 'a' field's read type with 'undefined'</small>
+</div>
+<br/>
+
+If you are a paranoid, a type safe maniac or simply terrible in securing your data completeness, you can easily union every field read type with one configuration:
+
+<div  style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined2.png?raw=true' />
+        <small>Union every field's read type with 'undefined'</small>
 </div>
 <br/>
