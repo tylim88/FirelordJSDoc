@@ -47,6 +47,8 @@ Reasons:
 1. `DeleteField[]`: doesn't make sense and field value is not allowed in array.
 2. `[{ a: DeleteField }]`: field value is not allowed in array.
 
+<br/>
+
 However it is legal to union `DeleteField` with array type:
 
 <div  style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
