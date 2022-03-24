@@ -27,3 +27,24 @@ If you are a paranoid, a type safe maniac or simply terrible in securing your da
         <small>Union every field's read type with 'undefined'</small>
 </div>
 <br/>
+
+## Array 🕊️
+
+If you assign `PossiblyReadAsUndefined` to array type directly or indirectly, FirelordJS will replace them with error message.
+
+<div  style={{ display:'flex', justifyContent:'space-around' }}>
+    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField3.png?raw=true' />
+        <small>directly</small>
+    </div>
+    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField4.png?raw=true' />
+        <small>indirectly</small>
+    </div>
+</div>
+<br/>
+
+Reasons:
+
+1. `PossiblyReadAsUndefined[]`: doesn't make sense and field value is not allowed in array.
+2. `[{ a: DeleteField }]`: field value is not allowed in array.
