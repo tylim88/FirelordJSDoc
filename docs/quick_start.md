@@ -54,7 +54,7 @@ sidebar_position: 1
 </div>
 <br/>
 
-\*\* Victims Of Firestore Quarter Ass Typing
+\*\* Victim Of Firestore Quarter Ass Typing
 
 ## Do Not Install
 
@@ -250,6 +250,17 @@ This is done elegantly without complicated configuration while maintain API that
 
 ## Beyond Typing
 
-FirelordJS does not stop at just safe guarding your data type in all operations, it goes beyond that and further prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries#query_limitations)** and **[Firestore Pagination Limitation](https://firebase.google.com/docs/firestore/query-data/order-limit-data?hl=en&authuser=0#limitations)** on type level(non invasive), **FirelordJS is the End Game of pursuing Firestore's type safety**.
+FirelordJS does not stop at just safe guarding your data type in all operations, it goes beyond that and further prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries#query_limitations)** and **[Firestore Pagination Limitation](https://firebase.google.com/docs/firestore/query-data/order-limit-data?hl=en&authuser=0#limitations)** on type level(non invasive),
+
+Confuse? Fine let us take one example:
+
+- In a compound query, range (<, <=, >, >=) and not equals (!=, not-in) comparisons must all filter on the same field:
+
+<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/query1.png?raw=true' />
+    <small>Firestore</small>
+</div>
+
+**FirelordJS is the End Game of pursuing Firestore's type safety**.
 
 Turn out the so called _<span style={{color:'red'}}>Unparalleled Type Safe and Dev Experience</span>_ is not a a bluff at all, what a disappointment!

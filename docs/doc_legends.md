@@ -19,7 +19,7 @@ Here is a list of topics with 🦜:
 
 ## On Uninstall
 
-If you miss the PTSD given to you by the original Firestore API and decide to uninstalled FirelordJS, pay attention to the legends below:
+If you miss the PTSD given to you by the original Firestore API and decide to uninstall FirelordJS, pay attention to the legends below:
 
 | Legends | Descriptions                                                                                                                                                                                                   | Require Attention? |
 | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |

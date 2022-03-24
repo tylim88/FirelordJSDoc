@@ -16,7 +16,7 @@ Firestore allow you to use `deleteField` anytime you want, but in FirelordJS, fi
 </div>
 <br/>
 
-You can delete 'a' field because one of the 'a' field types is 'deleteField'.
+You can delete 'a' field because one of the 'a' field types is 'deleteField', this is not the same case with 'b'.
 
 <div  style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField2.png?raw=true' />
