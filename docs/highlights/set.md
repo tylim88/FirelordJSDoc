@@ -30,17 +30,17 @@ Practically speaking we cannot avoid ternary filter states 100%, because a no sq
 
 Like update, FirelordJS stop unknown member from entering Firestore.
 
-<div  style={{ display:'flex', justifyContent:'space-around' }}>
-    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set1.png?raw=true' />
-        <small>Firestore</small>
-    </div>
-    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set2.png?raw=true' />
-        <small>FirelordJS</small>
-    </div>
+<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set1.png?raw=true' />
+    <small>Firestore</small>
 </div>
 <br/>
+<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set2.png?raw=true' />
+    <small>FirelordJS</small>
+</div>
+<br/>
+
 <div align='center'>
 
 see **[update](./update#the-firelordjss-way)** for more explanation about this behavior.
@@ -86,19 +86,15 @@ Apparently Firestore want us to question our existence.
 
 Merge fields Set behave like merge, except that it updates only the listed member and ignore the rest.
 
-Firestore does not reject unknown field path:
-
-<div  style={{ display:'flex', justifyContent:'space-around' }}>
-    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set5.png?raw=true' />
-        <small>Firestore</small>
-    </div>
-    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set6.png?raw=true' />
-        <small>FirelordJS</small>
-    </div>
+<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set5.png?raw=true' />
+    <small>Firestore does not reject unknown field path</small>
 </div>
 <br/>
+<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set6.png?raw=true' />
+    <small>FirelordJS reject unknown field path</small>
+</div>
 
 ## Dot Notation Path 🕊️
 

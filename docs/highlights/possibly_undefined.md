@@ -43,17 +43,15 @@ If you assign `PossiblyReadAsUndefined` to array type directly, FirelordJS will 
 
 However assigning to array indirectly and union with array are legal:
 
-<div  style={{ display:'flex', justifyContent:'space-around' }}>
-    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined4.png?raw=true' />
-        <small>directly</small>
-    </div>
-    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined5.png?raw=true' />
-        <small>indirectly</small>
-    </div>
+<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined4.png?raw=true' />
+    <small>directly</small>
 </div>
 <br/>
+<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined5.png?raw=true' />
+    <small>indirectly</small>
+</div>
 
 ## Write 🕊️
 
@@ -61,13 +59,12 @@ What happen to `PossiblyReadAsUndefined` type in write operation?
 
 Simple, FirelordJS excludes it.
 
-<div  style={{ display:'flex', justifyContent:'space-around' }}>
-    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined6.png?raw=true' />
-        <small>left 'number' </small>
-    </div>
-    <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined7.png?raw=true' />
-        <small>nothing left, hence 'never'</small>
-    </div>
+<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined6.png?raw=true' />
+    <small>left 'number' </small>
+</div>
+<br/>
+<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined7.png?raw=true' />
+    <small>nothing left, hence 'never'</small>
 </div>
