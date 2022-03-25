@@ -34,6 +34,18 @@ require Typescript 4.6.2+ and Firebase 9+
 The library size on disk is 300KB, however the runtime code is at mere 2KB after minified and gzipped.
 :::
 
+## Typescript Configuration
+
+```json title='tsconfig.json'
+{   // ...other configs
+	"compilerOptions": {
+		// ...other options
+		"strict": true, // compulsory
+		"noUncheckedIndexedAccess": true, // optional
+	},
+}
+```
+
 ## Define The Meta Type
 
 ```ts title='dataType.ts'
