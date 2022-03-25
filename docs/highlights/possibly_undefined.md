@@ -28,6 +28,10 @@ If you are a paranoid, a type safe maniac or simply terrible in securing your da
 </div>
 <br/>
 
+:::note
+Union all read fields with `undefined` degrade developer experience because you need to always check for the `undefined`. Security comes with tradeoff, keep that in mind.
+:::
+
 ## Array 🕊️
 
 If you assign `PossiblyReadAsUndefined` to array type directly, FirelordJS will replace them with error message.
