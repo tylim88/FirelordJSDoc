@@ -10,4 +10,4 @@ This awesome documentation is made possible by **[Docusaurus](https://docusaurus
 
 Slick CI/CD by **[Github](https://github.com/)**.
 
-Couldn't make it at all without folk at **[Stack Overflow](https://stackoverflow.com/)**.
+Couldn't make it at all without folks at **[Stack Overflow](https://stackoverflow.com/)**.

@@ -75,8 +75,7 @@ const config = {
 			},
 			footer: {
 				style: 'dark',
-				copyright: `© 2021-${new Date().getFullYear()}. 
-				Unprecedented Firestore Type Safe Bring To You By Acid Coder.`,
+				copyright: `© 2021-${new Date().getFullYear()}`,
 			},
 			prism: {
 				theme: lightCodeTheme,
