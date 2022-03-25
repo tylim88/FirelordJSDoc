@@ -56,9 +56,7 @@ Merge set also possess the same weakness like update, that is accepting `undefin
 <div  style={{ display:'flex', justifyContent:'space-around' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set3.png?raw=true' />
-        <small>Firestore
-        
-        </small>
+        <small>Firestore</small>
     </div>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set4.png?raw=true' />
@@ -78,9 +76,12 @@ From **[update](./update#the-firelordjss-way)**, we know that when dealing with 
 
 Now here is the interesting thing, in the case of merge set, it will not replace the whole map, instead it will only set the value you see here, which mean `d` will not be deleted.
 
+:::note
+
 A merge set is behaving like proper update than update itself!
 
-Apparently Firestore want us to question our existence.
+Apparently Firestore want us to start questioning our own existence.
+:::
 
 ## Merge Fields 🕊️
 

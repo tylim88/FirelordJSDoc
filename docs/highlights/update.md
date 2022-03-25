@@ -36,7 +36,13 @@ Yup you see that right, `d` is deleted, in an **update** operation, this is terr
 
 Data/field deletion(or any operation) should be done explicitly, a proper way to do so is by assigning a `delete` field value and by looking at the code, even newbie know it is going to delete the field without the need to look into the Firestore documentation.
 
-A very questionable API design by Firestore, truly lack of consideration.
+:::note
+
+This is a a very questionable API design by Firestore with no proper documentation on such dangerous behavior.
+
+Truly lack of consideration.
+
+:::
 
 ## The FirelordJS's Way 🕊️
 

@@ -29,12 +29,14 @@ If you are a paranoid, a type safe maniac or simply terrible in securing your da
 <br/>
 
 :::note
-Union all read fields with `undefined` degrade developer experience because you need to always check for the `undefined`. Security comes with tradeoff, keep that in mind.
+Union all read fields with `undefined` degrade developer experience because you always need to check for `undefined`.
+
+The tradeoff of security is often ease of use.
 :::
 
 ## Array 🕊️
 
-If you assign `PossiblyReadAsUndefined` to array type directly, FirelordJS will replace them with error message.
+If you assign `PossiblyReadAsUndefined` to an array type directly, FirelordJS will replace them with error message.
 
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
     <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined3.png?raw=true' />

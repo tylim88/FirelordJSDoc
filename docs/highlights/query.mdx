@@ -3,7 +3,7 @@ sidebar_position: 7
 ---
 
 
-# Query 🍎
+# Query 🍁
 
 This section discuss about how `query` rules typing works.
 
@@ -11,12 +11,11 @@ import { Image } from '@site/src/components/Image'
 
 ## Rules Typing
 
-FirelordJS protects you against runtime exceptions in your queries on type level.
+FirelordJS protects you against Firestore runtime exceptions in your queries on type level.
 
 - In a compound query, range (<, <=, >, >=) and not equals (!=, not-in) comparisons must all filter on the same field
 
 <Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/query1.png?raw=true' text='FirelordJS displays what error you make in the hint.'/>
-
 
 - If you include a filter with a range comparison (<, <=, >, >=), your first ordering must be on the same field
 
