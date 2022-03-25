@@ -66,7 +66,9 @@ Note 3: FirelordJS update allows you to skip member while rejecting `undefined`.
 How FirelordJS circumvent data deletion? While Firestore not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to Firestore update and that eliminates the problem. What you see will always be what you expect in the database, no extra knowledge and attention required.
 
 :::caution
+
 Important, if you want to uninstall FirelordJS and revert back to original Firestore SDK, please replace all the nested form with dot notation form or else your fields may get deleted.
+
 :::
 
 ## Why Not Just Drop The Nested Form Support? 🕊️

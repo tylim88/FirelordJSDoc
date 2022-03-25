@@ -81,6 +81,7 @@ Now here is the interesting thing, in the case of merge set, it will not replace
 A merge set is behaving like proper update than update itself!
 
 Apparently Firestore want us to start questioning our own existence.
+
 :::
 
 ## Merge Fields 🕊️

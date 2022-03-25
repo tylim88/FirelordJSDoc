@@ -29,9 +29,11 @@ If you are a paranoid, a type safe maniac or simply terrible in securing your da
 <br/>
 
 :::note
+
 Union all read fields with `undefined` degrade developer experience because you always need to check for `undefined`.
 
 The tradeoff of security is often ease of use.
+
 :::
 
 ## Array 🕊️

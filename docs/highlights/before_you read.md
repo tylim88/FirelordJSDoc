@@ -14,4 +14,20 @@ You don't need to memorize most of thing here, Typescript will do all the hard w
 
 ## Exports
 
-FirelordJS export every function found in the Firestore SDK, so you can use them directly.
+FirelordJS wraps and exports every function found in the `@firebase/firestore/dist/index.d.ts`, however there are functions that FirelordJS export directly without wrapping, this is because their input has nothing to do with document data type, those functions are:
+
+- loadBundle
+- clearIndexedDbPersistence
+- connectFirestoreEmulator
+- disableNetwork
+- enableIndexedDbPersistence
+- enableMultiTabIndexedDbPersistence
+- enableNetwork
+- onSnapshotsInSync
+- namedQuery
+
+:::note
+
+Firelord does not exports type declarations from `@firebase/firestore/dist/index.d.ts`.
+
+:::
