@@ -11,7 +11,7 @@ import { Image } from '@site/src/components/Image'
 
 ## Rules Typing
 
-FirelordJS protects you against input exceptions in your queries on type level.
+FirelordJS protects you against runtime exceptions in your queries on type level.
 
 - In a compound query, range (<, <=, >, >=) and not equals (!=, not-in) comparisons must all filter on the same field
 
@@ -33,3 +33,15 @@ FirelordJS protects you against input exceptions in your queries on type level.
 - You can't combine not-in with not equals !=
 
 <Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/query5.png?raw=true' text='FirelordJS displays what error you make in the hint.'/>
+
+- You can use at most one array-contains clause per query. You can't combine array-contains with array-contains-any
+
+<Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/query6.png?raw=true' text='FirelordJS displays what error you make in the hint.'/>
+
+- Too many arguments provided to startAt/startAfter/endAt/endBefore(). The number of arguments must be less than or equal to the number of orderBy() clauses
+
+<Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/query7.png?raw=true' text='FirelordJS displays what error you make in the hint.'/>
+
+- You cannot use more than one '!=' filter (undocumented limitation)
+
+<Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/query8.png?raw=true' text='FirelordJS displays what error you make in the hint.'/>
