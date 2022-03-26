@@ -2,9 +2,9 @@
 sidebar_position: 8
 ---
 
-# Where 🍒
+# Where And documentId()🍒
 
-This section discuss how `where` and field path sentinel `documentId` works.
+This section discuss how `where` and field path sentinel `documentId()` types works.
 
 import { Image } from '@site/src/components/Image'
 
@@ -34,3 +34,9 @@ When querying a collection group by documentId(), FirelorsJS rejects the value i
 <Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where4.png?raw=true' text={`FirelordJS displays error mesagae in hint if it detects path is wrong.`}/>
 
 <Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where5.png?raw=true' text={`FirelordJS counts and compares the number of slash and displays it in hint`}/>
+
+### With OrderBy
+
+The field path of `documentId()` is is `s__name__`, this is how you use it with orderBy (for some reason you want to order document by Id).
+
+<Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where6.png?raw=true' text={`Order by document Id`}/>
