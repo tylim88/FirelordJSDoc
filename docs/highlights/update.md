@@ -59,7 +59,7 @@ Note 1: FirelordJS highlight the unknown member of the fresh value.
 
 Note 2: FirelordJS detect the unknown member and print out the unknown member in Typescript error message, the same error message is also shown for fresh value.
 
-Note 3: FirelordJS update allows you to skip member while rejecting `undefined`.
+Note 3: Partial But no Undefined. FirelordJS update allows you to skip member while rejecting `undefined`.
 
 ## Circumvent Implicit Data Deletion ⚠️
 

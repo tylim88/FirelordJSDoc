@@ -60,7 +60,7 @@ Merge set also possess the same weakness like update, that is accepting `undefin
     </div>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set4.png?raw=true' />
-        <small>FirelordJS</small>
+        <small>FirelordJS Partial But No Undefined</small>
     </div>
 </div>
 <br/>
