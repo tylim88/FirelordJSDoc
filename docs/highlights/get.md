@@ -12,9 +12,17 @@ The documentSnapshot section also works similarly for `onSnapshot` and `GetDocs`
 
 If `SnapshotOptions` is `{ serverTimestamps: 'none' | 'previous' }`, then all the server timestamp is null if it is not yet resolved when you read it, **[source](https://stackoverflow.com/a/65627037/5338829)**.
 
-NOTE: The default value of `SnapshotOptions` is `{ serverTimestamps: 'none' | 'previous' }` but made explicit in all examples in this page.
+:::note
 
-NOTE: Firestore does not have distinct type for server timestamp, all field values in Firestore have the same type, that is `FieldValue`, read **[Masking Field Values](./masking_field_values.md)** for more info.
+The default value of `SnapshotOptions` is `{ serverTimestamps: 'none' | 'previous' }` but made explicit in all examples in this page.
+
+:::
+
+:::info
+
+Firestore does not have distinct type for server timestamp, all field values in Firestore have the same type, that is `FieldValue`, read **[Masking Field Values](./masking_field_values.md)** for more info.
+
+:::
 
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
     <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get1.png?raw=true' />

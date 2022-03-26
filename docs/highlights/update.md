@@ -67,7 +67,7 @@ How FirelordJS circumvent data deletion? While Firestore not able to handle nest
 
 :::caution
 
-Important, if you want to uninstall FirelordJS and revert back to original Firestore SDK, please replace all the nested form with dot notation form or else your fields may get deleted.
+Important, if you want to uninstall FirelordJS and revert back to original Firestore SDK, please replace all the nested form with dot notation form or else your fields may get deleted due to original Firestore SDK behavior.
 
 :::
 

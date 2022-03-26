@@ -4,7 +4,7 @@ sidebar_position: -1
 
 # Before You Read 🐤
 
-This section will not touch on conventional type safe mechanism (value type safe) because it is a basic quality every wrapper should have and it is just waste of time reiterate them.
+This section will not touch on conventional type safe mechanism (value type safe) because it is a basic quality every wrapper should has and it is just waste of time reiterate them.
 
 Instead this section focus on advanced type safe techniques that is rarely seen in any kind of wrapper out there.
 
@@ -14,7 +14,9 @@ You don't need to memorize most of thing here, Typescript will do all the hard w
 
 ## Exports
 
-FirelordJS wraps and exports every function found in the `@firebase/firestore/dist/index.d.ts`, however there are functions that FirelordJS export directly without wrapping, this is because their input has nothing to do with document data type, those functions are:
+FirelordJS wraps and exports every function found in the `@firebase/firestore/dist/index.d.ts`.
+
+However there are functions that FirelordJS export directly without wrapping, this is because their input has nothing to do with document data type, those functions are:
 
 - loadBundle
 - clearIndexedDbPersistence
@@ -26,8 +28,8 @@ FirelordJS wraps and exports every function found in the `@firebase/firestore/di
 - onSnapshotsInSync
 - namedQuery
 
-:::note
+:::info
 
-Firelord does not exports type declarations from `@firebase/firestore/dist/index.d.ts`.
+Firelord does not exports any type declaration from `@firebase/firestore/dist/index.d.ts`.
 
 :::
