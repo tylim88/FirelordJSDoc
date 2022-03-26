@@ -3,6 +3,7 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
+		"rei": "rm -rf node_modules/ && rm package-lock.json && npm i",
 		"docusaurus": "docusaurus",
 		"start": "docusaurus start",
 		"build": "docusaurus build",
@@ -15,8 +16,8 @@
 		"typecheck": "tsc"
 	},
 	"dependencies": {
-		"@docusaurus/core": "^2.0.0-beta.18",
-		"@docusaurus/preset-classic": "^2.0.0-beta.18",
+		"@docusaurus/core": "2.0.0-beta.17",
+		"@docusaurus/preset-classic": "2.0.0-beta.17",
 		"@mdx-js/react": "^1.6.22",
 		"clsx": "^1.1.1",
 		"prism-react-renderer": "^1.2.1",
@@ -24,7 +25,7 @@
 		"react-dom": "^17.0.1"
 	},
 	"devDependencies": {
-		"@docusaurus/module-type-aliases": "^2.0.0-beta.18",
+		"@docusaurus/module-type-aliases": "2.0.0-beta.17",
 		"@tsconfig/docusaurus": "^1.0.4",
 		"eslint": "^8.11.0",
 		"eslint-config-prettier": "^8.5.0",
