@@ -13,21 +13,29 @@ import { Image } from '@site/src/components/Image'
 
 When working with literal types, due of Typescript limitation, you need `const` assertion in order to infers the type correctly, no warnsing from FirelordJS.
 
-<Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where1.png?raw=true' text={`const assertion is needed for collection reference`}/>
+<Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where1.png?raw=true' text={`const assertion is needed`}/>
 
-## documentId() 🦜
+:::caution
+
+You still need to do `const` assertion even if you declare `const` variable.
+
+<Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where7.png?raw=true' text={`You still need to assert const variable as const`}/>
+
+:::
+
+## documentId() 🕊️
 
 When working with dield path sentinel `documentId()`, `const` assertion is needed for the same reason, however in this case FirelordJS warns you when you are not using `const` assertion.
 
 <Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where2.png?raw=true' text={`FirelordJS warns you when you are not using const assertion.`}/>
 
-### Collection Reference
+### Collection Reference 🕊️
 
 When querying a collection by documentId(), you must provide a plain document ID, without any forward slash.
 
 <Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where3.png?raw=true' text={`FirelordJS displays error mesagae in hint if it detects any invalid character.`}/>
 
-### Collection Group
+### Collection Group 🕊️
 
 When querying a collection group by documentId(), FirelorsJS rejects the value if the value is not a valid full document path.
 
@@ -35,7 +43,7 @@ When querying a collection group by documentId(), FirelorsJS rejects the value i
 
 <Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where5.png?raw=true' text={`FirelordJS counts and compares the number of slash and displays it in hint`}/>
 
-### With OrderBy
+### With OrderBy 🕊️
 
 The field path of `documentId()` is is `s__name__`, this is how you use it with orderBy (for some reason you want to order document by Id).
 
