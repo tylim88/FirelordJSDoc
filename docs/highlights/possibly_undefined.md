@@ -47,7 +47,7 @@ If you assign `PossiblyReadAsUndefined` to an array type directly, FirelordJS wi
 
 <br/>
 
-`PossiblyReadAsUndefined[]` simply doesn't make sense.
+Explanation: `PossiblyReadAsUndefined[]` simply doesn't make sense.
 
 However assigning to array indirectly and union with array are legal:
 
