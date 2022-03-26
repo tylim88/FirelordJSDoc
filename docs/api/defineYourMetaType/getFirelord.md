@@ -7,9 +7,10 @@ sidebar_position: 2
 ## Basic Usage
 
 ```ts
+// import Example (MetaType, return of MetaTypeCreator)
 import { getFirelord } from 'firelordjs'
 
-export const firelordRef = getFirelord()
+export const firelordRef = getFirelord<Example>()
 ```
 
 `Example` is **[MetaType](../defineYourMetaType/firelordRef#metatypeoutput)** return of `MetaTypeCreator`.
@@ -20,8 +21,12 @@ Keep in mind you need to initialize firebase before you call `getFirelord`
 return a **[firelordRef](../defineYourMetaType/firelordRef)** function where you can use to generates references(document, collection and collection group)
 
 ```ts
-const getFirelord = firestore => firelordRef
+const getFirelord = <MetaType>(firestore) => firelordRef
 ```
+
+| Generic  | Type       | Description                                                               |
+| -------- | ---------- | ------------------------------------------------------------------------- |
+| MetaType | `MetaType` | see **[MetaType](../defineYourMetaType/metaTypeCreator#metatypereturn)**. |
 
 | Parameter | Type                       | Default        | Description                  |
 | --------- | -------------------------- | -------------- | ---------------------------- |

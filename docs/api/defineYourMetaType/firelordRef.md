@@ -8,7 +8,6 @@ sidebar_position: 3
 
 ```ts
 // import firelordRef (return of getFirelord)
-// import Example (MetaType, return of MetaTypeCreator)
 
 export const example = firelordRef<Example>('SomeCollectionName')
 
@@ -25,10 +24,6 @@ Not available directly, return of **[getFirelord](../defineYourMetaType/getFirel
 const firelordRef = <MetaType>(collectionPath) => refs
 ```
 
-| Generic  | Type       | Description                                                               |
-| -------- | ---------- | ------------------------------------------------------------------------- |
-| MetaType | `MetaType` | see **[MetaType](../defineYourMetaType/metaTypeCreator#metatypereturn)**. |
-
 | Parameter      | Type                         | Description                                |
 | -------------- | ---------------------------- | ------------------------------------------ |
 | collectionPath | `MetaType['collectionPath']` | collection path value in MetaType generic. |
@@ -44,10 +39,6 @@ const refs = {
 ```
 
 ### refs.doc(caller)
-
-| Parameter  | Type                     | Description                            |
-| ---------- | ------------------------ | -------------------------------------- |
-| documentID | `MetaType['documentID']` | document id value in MetaType generic. |
 
 | Return            | Type                                   | Description                   |
 | ----------------- | -------------------------------------- | ----------------------------- |

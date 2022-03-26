@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Should I Read The API Doc?
 
-If you are a masochist, sure, yes, why not, go ahead and do your best, you have my blessing.
+If you are some kind of masochist, then yes...
 
 If you have the knowledge of the original Firestore SDK, and you have read the previous sections, you need nothing from this section.
 
