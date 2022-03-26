@@ -6,16 +6,26 @@ sidebar_position: 3
 
 ## Common
 
-| Legends | Descriptions                                                                                                    |
-| ------- | --------------------------------------------------------------------------------------------------------------- |
-| 🕊️      | Section that is purely informative or is taken cared by FirelordJS, sit down and relax, no memorization needed. |
-| 🦤       | Section that contains useful advice.                                                                            |
-| 🦜      | Section that need to pay attention in order to use it properly.                                                 |
+| Legends | Descriptions                                                                                                    | Require Attention? |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------------ |
+| 🕊️      | Section that is purely informative or is taken cared by FirelordJS, sit down and relax, no memorization needed. | none               |
+| 🦤       | Section that contains useful advice.                                                                            | none               |
+| 🦜      | Section that need to pay attention in order to use it properly.                                                 | passive            |
+| 🐧      | Section contains limitation that you need to pay attention to.                                                  | active             |
 
-Here is a list of topics with 🦜:
+**Active Attention**: nothing warn you, require memorization.
 
-1. **[deletable field](./highlights/delete_field.md#deletable-field🦜)**
-2. **[possibly read as undefined](./highlights/possibly_undefined.md#possibly-read-as-undefined❓)**
+**Passive Attention**: Typescript warn you.
+
+Here is a list of 🦜 topics:
+
+1. **[deletable field](./highlights/delete_field.md#deletable-field-)**
+2. **[possibly read as undefined](./highlights/possibly_undefined.md#possibly-read-as-undefined-)**
+
+List of 🐧 topics:
+
+1. **[where no autocomplete](./highlights/where.mdx#no-autocomplete-for-value-)**
+1. **[where dealing with literals](./highlights/where.mdx#dealing-with-literal-types-)**
 
 ## On Uninstall
 
@@ -28,7 +38,7 @@ If you miss the PTSD given to you by the original Firestore API and decide to un
 | 🍋      | Alter runtime but does not require active attention when revert back to original Firestore SDK. Yield Typescript warning on revert.                                                                            | passive            |
 | 🍐      | Does not alter runtime but alters the API. Will yield Typescript warning when revert back to original Firestore SDK. Does not require active attention.                                                        | passive            |
 
-<br/>
+<br />
 
 **Active Attention**: nothing warn you, can only rely on yourself.
 
@@ -38,4 +48,4 @@ Basically you just need to pay extra attention to ⚠️ when removing FirelordJ
 
 Here is a list of topics with ⚠️:
 
-1. **[update implicit data deletion](./highlights/update#circumvent-implicit-data-deletion-⚠️)**
+1. **[update implicit data deletion](./highlights/update#circumvent-implicit-data-deletion-%EF%B8%8F)**
