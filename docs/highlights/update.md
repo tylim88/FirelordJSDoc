@@ -42,7 +42,7 @@ The value of `a`, `c` and `e` will be updated, meanwhile `d` will be deleted.
 
 Yup you see that right, `d` is deleted, in an **update** operation, this is terrible because you need extra knowledge in order to be aware of such behavior, in short, it is not intuitive.
 
-Data/field deletion(or any operation) should be done explicitly, a proper way to do so is by assigning a `delete` field value and by looking at the code, even newbie know it is going to delete the field without the need to look into the Firestore documentation.
+Data/field deletion(or any operation in general) should be done explicitly, a proper way to do so is by assigning a `delete` field value and just by looking at the code, even beginner knows it is going to delete the field without the need to look into the Firestore documentation.
 
 :::note
 
