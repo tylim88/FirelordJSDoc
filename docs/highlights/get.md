@@ -14,7 +14,7 @@ If `SnapshotOptions` is `{ serverTimestamps: 'none' | 'previous' }`, then all th
 
 :::note
 
-The default value of `SnapshotOptions` is `{ serverTimestamps: 'none' | 'previous' }` but made explicit in all examples in this page.
+The default value of `SnapshotOptions` is `{ serverTimestamps: 'none' }` but made explicit in all examples in this page.
 
 :::
 
