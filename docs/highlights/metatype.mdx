@@ -37,3 +37,43 @@ In case you want to explore MetaType, you can use index accessor, this is useful
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/metaType4.png?raw=true"
 	text="Explore MetaType with index accessor."
 />
+
+## Limitation 🐧
+
+### No Union With Object Type
+
+You cannot union any type with object type, except **[`PossiblyReadAsUndefined`]('./possibly_undefined.md')**.
+
+If you do, FirelordJS will replaces it with error message:
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/metaType5.png?raw=true"
+	text="FirelordJS forbid you from union any type with object type."
+/>
+
+### Collection Reference Parent Type Casting
+
+FirelordJS try to avoid the need of type casting agressivley to ensure upmost developer experience.
+
+However due to not possible to self referencing in Typescript type, there is one type that we need to cast, that is the parent of collection reference.
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/metaType6.png?raw=true"
+	text="You need to type cast the parent of collection reference."
+/>
+
+Here is how you type cast it:
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/metaType7.png?raw=true"
+	text="Type cast the parent of collection reference."
+/>
+
+### Do Not Use Numeric Index Mapped Types
+
+Do not use `Record<number, unknown>` in any way, numeric index is not parseable by Typescript.
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/metaType8.png?raw=true"
+	text="Numeric index is not flattenable."
+/>

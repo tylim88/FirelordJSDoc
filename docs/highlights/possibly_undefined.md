@@ -38,7 +38,7 @@ The tradeoff of security is often ease of use.
 
 ## Array 🕊️
 
-If you assign `PossiblyReadAsUndefined` to an array type directly, FirelordJS will replace them with error message.
+If you assign `PossiblyReadAsUndefined` to an array type directly, FirelordJS will replaces them with error message.
 
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
     <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined3.png?raw=true' />

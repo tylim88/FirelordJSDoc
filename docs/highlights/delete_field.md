@@ -28,7 +28,7 @@ This mechanism is needed because we need to tell FirelordJS if a field is deleta
 
 ## Array 🕊️
 
-If you assign `DeleteField` to array type directly or indirectly, FirelordJS will replace them with error message.
+If you assign `DeleteField` to array type directly or indirectly, FirelordJS will replaces them with error message.
 
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
     <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField3.png?raw=true' />
