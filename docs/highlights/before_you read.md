@@ -10,7 +10,7 @@ Instead this section focus on advanced type safe techniques that is rarely seen 
 
 It is recommend that you be familiar with the original Firestore SDK first, which I believe most people already did, which is why you are here.
 
-You don't need to memorize most of thing here, Typescript will do all the hard works for you, think this section as a detour rather than a manual, just pay attention to topics that are marked with 🦜 and ⚠️ legends.
+You don't need to memorize most of thing here, Typescript will do all the hard works for you, think this section as a detour rather than a manual, just pay attention to topics that are marked with 🦜, 🐧 and ⚠️ legends.
 
 ## Exports 🕊️
 
