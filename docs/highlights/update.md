@@ -6,11 +6,19 @@ sidebar_position: 1
 
 This page discusses how updates works, we will use `updateDoc` in the example, but it works the same for `batch.update` and `transaction.update`.
 
-## Dangerous Firestore SDK Update API 🕊️
+## Dangerous Firestore SDK Update API 🦤
 
 There are 2 type issues and 1 critical runtime issue in the original Firestore SDK update API.
 
-1. Accept unknown member from stale value, stale value refer to value that is attached to a variable.
+1. Accept unknown member from stale value.
+
+:::info
+
+Stale value refer to value that is attached to a variable.
+
+Fresh value refer to value that is not attached to a variable.
+
+:::
 
 2. Accept `undefined` but `undefined` is not a valid Firestore value.
 
@@ -77,4 +85,4 @@ _Q: Why not simply forbid developers from using nested form? It would be easier 
 
 The reason is simple: usability.
 
-If FirelordJS allow only dot notation form, then developers have to flatten the object every time he use update API. Developers with normal object all the time, not flatten object, so it is better to keep the nested form for common use cases.
+If FirelordJS allows only dot notation form, then developers have to flatten the object every time he use the update API. Developers deal with normal object all the time, not flatten object, so it is better to keep the nested form for common use cases.
