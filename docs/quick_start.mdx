@@ -92,19 +92,13 @@ export const example = firelordRef('SomeCollectionName')
 import { example } from './init'
 import {
 	getDoc,
-	getDocs,
 	setDoc,
 	updateDoc,
 	deleteDoc,
 	addDoc,
-	query,
 	serverTimestamp,
 	increment,
 	arrayUnion,
-	where,
-	orderBy,
-	onSnapshot,
-	startAfter,
 } from 'firelordjs'
 
 await setDoc(example.doc('abc'), {
@@ -130,6 +124,21 @@ await deleteDoc(example.doc('abc'))
 await getDoc(example.doc('abc')).then(docSnapshot => {
 	const data = docSnapshot.data()
 })
+```
+
+## Query And Onsnapshot
+
+```ts
+import { example } from './init'
+import {
+	getDocs,
+	query,
+	where,
+	orderBy,
+	onSnapshot,
+	startAfter,
+	limit,
+} from 'firelordjs'
 
 await getDocs(
 	query(
