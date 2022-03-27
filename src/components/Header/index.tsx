@@ -39,7 +39,7 @@ export const Header = () => (
 			</a>
 			&nbsp;
 			<img
-				src="https://img.shields.io/badge/minified%2Bgzipped-2KB-brightgreen"
+				src="https://img.shields.io/badge/gzipped-2KB-brightgreen"
 				alt="package size"
 			/>
 			&nbsp;
@@ -57,10 +57,27 @@ export const Header = () => (
 				/>
 			</a>
 			&nbsp;
+			<a href="https://github.com/tylim88/Firelordjs/issues" target="_blank">
+				<img
+					alt="GitHub issues"
+					src="https://img.shields.io/github/issues-raw/tylim88/firelordjs"
+				></img>
+			</a>
+			&nbsp;
 			<a href="https://snyk.io/test/github/tylim88/FirelordJS" target="_blank">
 				<img
 					src="https://snyk.io/test/github/tylim88/FirelordJS/badge.svg"
 					alt="code coverage"
+				/>
+			</a>
+			&nbsp;
+			<a
+				href="https://lgtm.com/projects/g/tylim88/Firelordjs/alerts/"
+				target="_blank"
+			>
+				<img
+					alt="Total alerts"
+					src="https://img.shields.io/lgtm/alerts/g/tylim88/Firelordjs.svg?logo=lgtm&logoWidth=18"
 				/>
 			</a>
 			&nbsp;
