@@ -40,7 +40,7 @@ In case you want to explore MetaType, you can use index accessor, this is useful
 
 ## Limitation 🐧
 
-### No Union With Object Type
+### No Union With Object Type 🐧
 
 You cannot union any type with object type, except **[`PossiblyReadAsUndefined`](./possibly_undefined.md)**.
 
@@ -51,7 +51,7 @@ If you do, FirelordJS will replaces it with error message:
 	text="FirelordJS forbid you from union any type with object type."
 />
 
-### Collection Reference Parent Type Casting
+### Collection Reference Parent Type Casting 🐧
 
 FirelordJS try to avoid the need of type casting agressivley to ensure upmost developer experience.
 
@@ -69,7 +69,7 @@ Here is how you type cast it:
 	text="Type cast the parent of collection reference."
 />
 
-### Do Not Use Numeric Index Mapped Types
+### Do Not Use Numeric Index Mapped Types 🐧
 
 Do not use `Record<number, unknown>` in any way, numeric index is not parseable by Typescript.
 
