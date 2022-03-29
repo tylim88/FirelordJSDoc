@@ -58,23 +58,23 @@ However it is legal to union `DeleteField` with array type:
 </div>
 <br />
 
-## DeleteField Rule 🕊️
+## DeleteField Rules 🕊️
 
 This is how the rule you need to obey when using original Firestore deleteField:
 
-1. To use deleteField in set operation, you need to set merge to true, or have any merge field(empty array also works). The exceptions:
+1. To use deleteField in set operation, you need to set merge to true, or have any merge field(empty array also works).
 
-:::info
+:::caution this is how the exception look like:
 
-Function setDoc() called with invalid data. deleteField() cannot be used with set() unless you pass {merge:true} (found in field a.b.c in document sandBox/mergeTestCase)
+Function setDoc() called with invalid data. deleteField() cannot be used with set() unless you pass {merge:true} (found in field x in document sandBox/mergeTestCase)
 
 :::
 
 2. To use deleteField in update operation, you can only use it on top level (no nested object, full dot notation is considered as top level.). The exceptions:
 
-:::info
+:::caution this is how the exception look like:
 
-Function updateDoc() called with invalid data. deleteField() can only appear at the top level of your update data (found in field a.b.c in document sandBox/mergeTestCase)
+Function updateDoc() called with invalid data. deleteField() can only appear at the top level of your update data (found in field x in document sandBox/mergeTestCase)
 
 :::
 
@@ -91,12 +91,13 @@ Seriously who make these APIs, they are terrible!
 
 <br />
 
-:::note
+:::danger ffs
 
 <div align="center">
 	<i>
-		Don't be mad bro, it is just a prank, a prank! &#160;&#160;&#160;--Firestore
-	</i>{' '}
+		Don't be mad bro, it is just a prank, a prank, relax bro!
+		&#160;&#160;&#160;--Firestore
+	</i>
 </div>
 <br />
 
@@ -104,7 +105,7 @@ Seriously who make these APIs, they are terrible!
 
 <br />
 
-With FirelordJS:
+### With FirelordJS 🕊️
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField7.png?raw=true"
