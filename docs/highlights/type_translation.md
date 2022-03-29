@@ -20,8 +20,14 @@ This page discusses how FirelordJS translates your types for various uses intern
 | `object`                         | `object`               | `object`                                                     | `object`                         |
 | `A[]`                            | `A[]`                  | `A[]` \| `FirelordJS ArrayRemove` \| `FirelordJS ArrayUnion` | `A[]`                            |
 
+Internally, FirelordJS converts your type into 3 different types for different purpose:
+
+- Read type for getDoc, getDocs and onSnapshot.
+- Write type for setDoc and updateDoc.
+- Compare type for where and orderBy.
+
 Key Points:
 
-- FirelordJS forbid you from `increment`(field value) `numeric literal` type, for obvious reason.
+- FirelordJS forbids you from `increment`(field value) `numeric literal` type, for obvious reason.
 
 - FirelordJS does not allow you to write `Date` or `Timestamp` to `ServerTimestamp`, this is to preserve the data integrity because some datetime has to be server timestamp, such as `createdAt` and `updatedAt`. However you can union `ServerTimestamp` with `Date` and `Timestamp` if you want to use `Date` and `Timestamp` for `ServerTimestamp`.
