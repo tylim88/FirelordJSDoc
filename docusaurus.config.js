@@ -75,7 +75,7 @@ const config = {
 			},
 			footer: {
 				style: 'dark',
-				copyright: `© 2021-${new Date().getFullYear()}`,
+				copyright: `© 2021-${new Date().getFullYear()}. Unprecedented Type Safe Brought To You By Acid Coder`,
 			},
 			prism: {
 				theme: lightCodeTheme,
