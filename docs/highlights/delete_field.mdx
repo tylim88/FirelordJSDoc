@@ -1,0 +1,68 @@
+---
+sidebar_position: 5
+---
+
+# Delete Field 🍄
+
+This section discusses how `deleteField` works.
+
+import { Image } from '@site/src/components/Image'
+
+## Deletable Field 🦜
+
+Firestore allow you to use `deleteField` anytime you want, but in FirelordJS, field are not deletable by default, you need to assign `deleteField` type in order to use it.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField1.png?raw=true" />
+	<small>Only 'a' is deletable</small>
+</div>
+<br />
+
+You can delete 'a' field because one of the 'a' field types is 'deleteField', this is not the same case with 'b'.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField2.png?raw=true" />
+	<small>Union 'a' field's read type with 'undefined'</small>
+</div>
+<br />
+
+This mechanism is needed because we need to tell FirelordJS if a field is deletable, then its read type is possibly `undefined` and the `DeleteField` union `undefined` to the field's read type.
+
+## Array 🕊️
+
+If you assign `DeleteField` to array type directly or indirectly, FirelordJS will replaces them with error message.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField3.png?raw=true" />
+	<small>directly</small>
+</div>
+
+<br />
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField4.png?raw=true" />
+	<small>indirectly</small>
+</div>
+
+Explanations:
+
+1. `DeleteField[]`: doesn't make sense and field value is not allowed in array.
+2. `[{ a: DeleteField }]`: field value is not allowed in array.
+
+<br />
+
+However it is legal to union `DeleteField` with array type:
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField5.png?raw=true" />
+	<small>DeleteField | any[]</small>
+</div>
+<br />
+
+## Only Top Level
+
+You can only use delete field at top level, if you use it in nested object or array, it will result in runtime exception.
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField6.png?raw=true"
+	text="no Typescript warning"
+/>
