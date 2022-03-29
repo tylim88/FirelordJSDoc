@@ -58,11 +58,29 @@ However it is legal to union `DeleteField` with array type:
 </div>
 <br />
 
-## Only Top Level
+## DeleteField Rule
 
-You can only use delete field at top level, if you use it in nested object or array, it will result in runtime exception.
+This is how the rule you need to obey when using original Firestore deleteField:
+
+1. To use deleteField in set operation, you need to set merge to true, or have any merge field(empty array also works).
+2. To use deleteField in update operation, you can only use it on top level (no nested object, full dot notation is considered as top level.)
+
+:::note
+
+<div align="center">
+	<i>Its is a prank bro, a prank! &#160;&#160;&#160;--Firestore</i>{' '}
+</div>
+<br />
+
+:::
+
+<br />
+
+Seriously who designed these APIs, they are terrible!
+
+<br />
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField6.png?raw=true"
-	text="no Typescript warning"
+	text="some smart guy in Firebase decided that convulated rule like this is a good idea"
 />
