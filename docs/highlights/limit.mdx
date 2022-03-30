@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 # Limit 🔟
@@ -8,7 +8,7 @@ This section discusses how `limit` type works.
 
 import { Image } from '@site/src/components/Image'
 
-## Block Illegal Number Type
+## Block Illegal Number Type 🕊️
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/limit1.png?raw=true"
@@ -19,13 +19,13 @@ FirelordJS block decimal, 0 and negative number, however FirelordJS does not blo
 
 This is because `number` type is a common type, and if your value come from an expression, then it is unavoidable a `number` type.
 
-## Exceptions
+## Exceptions 🕊️
 
 FirelordJS will not try to replace any illegal number with legal number like 1, to prevent runtime exception.
 
 Because illegal number like negative number and decimal number is most likely result from your logic bug, and exception need to be thrown to remind you something is wrong with your code.
 
-## 0
+## The Zero 🦤
 
 Firestore throw on 0, like how it throw on other illegal number, this is actually not a good idea.
 
