@@ -14,6 +14,8 @@ You don't need to memorize most of thing here, Typescript will do all the hard w
 
 ## Exports 🕊️
 
+### Functions 🕊️
+
 FirelordJS wraps and exports every function found in the `@firebase/firestore/dist/index.d.ts`.
 
 However there are functions that FirelordJS export directly without wrapping, this is because their input has nothing to do with document data type, those functions are:
@@ -33,3 +35,33 @@ However there are functions that FirelordJS export directly without wrapping, th
 Firelord does not exports any type declaration from `@firebase/firestore/dist/index.d.ts`.
 
 :::
+
+### Type Definitions🕊️
+
+Firestore exports its own type definitions:
+
+Main:
+
+- MetaTypeCreator
+
+Field Value:
+
+- ServerTimestamp
+- DeleteField,
+- PossiblyReadAsUndefined
+
+References:
+
+- DocumentReference
+- CollectionReference
+- Query
+
+Snapshot:
+
+- DocumentSnapshot
+- QuerySnapshot
+- QueryDocumentSnapshot
+
+Data Type:
+
+- MetaType

@@ -2,9 +2,9 @@
 sidebar_position: 0
 ---
 
-# Type Translation 🪶
+# Type Transformation 🪶
 
-This page discusses how FirelordJS translates your types for various uses internally.
+This page discusses how FirelordJS transforms your types for various uses internally.
 
 ## Conversion Table 🕊️
 
@@ -20,11 +20,13 @@ This page discusses how FirelordJS translates your types for various uses intern
 | `object`                         | `object`               | `object`                                                     | `object`                         |
 | `A[]`                            | `A[]`                  | `A[]` \| `FirelordJS ArrayRemove` \| `FirelordJS ArrayUnion` | `A[]`                            |
 
-Internally, FirelordJS converts your type into 3 different types for different purpose:
+Internally, FirelordJS converts your type into 3 main types for different purpose:
 
 - Read type for getDoc, getDocs and onSnapshot.
 - Write type for setDoc and updateDoc.
 - Compare type for where and orderBy.
+
+The main types are further transformed for even more specific use cases internally.
 
 Key Points:
 
