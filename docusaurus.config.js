@@ -15,7 +15,6 @@ const config = {
 	favicon: 'img/favicon.ico',
 	organizationName: 'tylim88', // Usually your GitHub org/user name.
 	projectName: 'FirelordJS', // Usually your repo name.
-
 	presets: [
 		[
 			'classic',
@@ -28,11 +27,7 @@ const config = {
 					// Please change this to your repo.
 					editUrl: 'https://github.com/tylim88/FirelordJSDoc/tree/main',
 				},
-				blog: {
-					showReadingTime: true,
-					// Please change this to your repo.
-					editUrl: 'https://github.com/tylim88/FirelordJSDoc',
-				},
+				blog: false,
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),
 				},

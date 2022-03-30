@@ -28,6 +28,12 @@ You can delete 'a' field because one of the 'a' field types is 'deleteField', th
 
 This mechanism is needed because we need to tell FirelordJS if a field is deletable, then its read type is possibly `undefined` and the `DeleteField` union `undefined` to the field's read type.
 
+:::note
+
+We cannot simply union every type with `undefined` by default, because it degrades developer experience.
+
+:::
+
 ## Array 🕊️
 
 If you assign `DeleteField` to array type directly or indirectly, FirelordJS will replaces them with error message.
@@ -64,7 +70,7 @@ This is how the rule you need to obey when using original Firestore deleteField:
 
 1. To use deleteField in set operation, you need to set merge to true, or have any merge field(empty array also works).
 
-:::note this is how the exception look like:
+:::info this is how the exception look:
 
 Function setDoc() called with invalid data. deleteField() cannot be used with set() unless you pass {merge:true} (found in field x in document sandBox/mergeTestCase)
 
@@ -72,7 +78,7 @@ Function setDoc() called with invalid data. deleteField() cannot be used with se
 
 2. To use deleteField in update operation, you can only use it on top level (no nested object, full dot notation is considered as top level.). The exceptions:
 
-:::note this is how the exception look like:
+:::info this is how the exception look:
 
 Function updateDoc() called with invalid data. deleteField() can only appear at the top level of your update data (found in field x in document sandBox/mergeTestCase)
 

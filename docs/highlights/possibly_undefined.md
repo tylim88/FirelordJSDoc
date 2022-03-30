@@ -20,7 +20,9 @@ This is what `PossiblyReadAsUndefined` for, it allows you to read a particular f
 </div>
 <br/>
 
-If you are a paranoid, a type safe maniac or simply terrible in securing your data completeness, you can easily union every field read type with one configuration:
+## All Fields Read As Undefined 🦜
+
+If you want maximum type safe, you can easily union every field read type with one configuration:
 
 <div  style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined2.png?raw=true' />
@@ -28,11 +30,11 @@ If you are a paranoid, a type safe maniac or simply terrible in securing your da
 </div>
 <br/>
 
-:::note
+:::caution
 
 Union all read fields with `undefined` degrade developer experience because you always need to check for `undefined`.
 
-The tradeoff of security is often ease of use.
+The tradeoff of security is ease of use.
 
 :::
 
