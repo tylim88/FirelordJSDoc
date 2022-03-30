@@ -36,6 +36,25 @@ You still need to assert `const` variable as `const`.
 
 :::
 
+## Dealing With Empty Array ⚠️
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where8.png?raw=true"
+	text={`FirelordJS forbid never[] but allow correctType[] even if it is empty`}
+/>
+
+FirelordJS forbid `never[]` to stop you from accidentally assign empty array(never[]) directly, small convenience.
+
+However it is impossible to block empty array totally as long as the type is correct, FirelordJS handle this in runtime by replacing empty array with `['some long random string']`.
+
+This prevents runtime exceptions while keeping the result intact without altering developer's intention.
+
+:::caution
+
+If you decides to revert back to the original Firestore API, please add logic to deal with the empty array.
+
+:::
+
 ## documentId() 🕊️
 
 When working with dield path sentinel `documentId()`, `const` assertion is needed for the same reason, however in this case FirelordJS warns you when you are not using `const` assertion.
