@@ -4,4 +4,37 @@ sidebar_position: 8
 
 # Limit 🔟
 
+This section discusses how `limit` type works.
+
 import { Image } from '@site/src/components/Image'
+
+## Block Illegal Number Type
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/limit1.png?raw=true"
+	text="limit"
+/>
+
+FirelordJS block decimal, 0 and negative number, however FirelordJS does not block `number` type.
+
+This is because `number` type is a common type, and if your value come from an expression, then it is unavoidable a `number` type.
+
+## Exceptions
+
+FirelordJS will not try to replace any illegal number with legal number like 1, to prevent runtime exception.
+
+Because illegal number like negative number and decimal number is most likely result from your logic bug, and exception need to be thrown to remind you something is wrong with your code.
+
+## 0
+
+Firestore throw on 0, like how it throw on other illegal number, this is actually not a good idea.
+
+While negative number and decimal number is a result of buggy code, 0 however is not.
+
+This is because 0 can be a result from a correct calculation, getting 0 amount of items is something that make sense and computationally possible.
+
+Firelord does not try to circumvent this, like replacing it with 1.
+
+This is because ultimately 1 and 0 are different values, by changing 0 to 1, we alter the developer's intention and this is a big no.
+
+So yeah the only way is for you to do the checking by yourself.
