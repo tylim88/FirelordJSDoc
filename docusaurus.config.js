@@ -76,6 +76,11 @@ const config = {
 				theme: lightCodeTheme,
 				darkTheme: darkCodeTheme,
 			},
+			algolia: {
+				appId: 'HG686FA5BG',
+				apiKey: '5005f463dd1748fc06883377ef325971',
+				indexName: 'firelordjs',
+			},
 		}),
 }
 
