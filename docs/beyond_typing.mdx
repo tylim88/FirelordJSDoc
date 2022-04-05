@@ -15,14 +15,21 @@ FirelordJS goes beyond guarding data type, FirelordJS further prevents **[Firest
 
 Confused? Well it is not something that you see in your day to day Typescript, so let us take a look at an example, at how FirelordJS handles this limitation:
 
-<div align='center'>
-
-In a compound query, range (&lt, &lt=, &gt, &gt=) and not equals (!=, not-in) comparisons must all filter on the same field:
-
+<div align="center">
+	<i>
+		In a compound query, range (&lt, &lt=, &gt, &gt=) and not equals (!=,
+		not-in) comparisons must all filter on the same field:
+	</i>
 </div>
-<Image src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/query1.png?raw=true' text='FirelordJS warn you when you violate the limitation and display related error message in the hint.'/>
+<br />
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/query1.png?raw=true"
+	text="FirelordJS warn you when you violate the limitation and display related error message in the hint."
+/>
 
-If this left uncheck, you will be greeted with an runtime exception. FirelordJS stop many exceptions on type level, this including documented, indirectly documented, and undocumented exceptions.
+If this is left uncheck, you will be greeted with an runtime exception.
+
+FirelordJS stop many exceptions on type level, this including documented, indirectly documented, and undocumented exceptions.
 
 ## Persistent And Deep
 
