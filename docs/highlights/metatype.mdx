@@ -51,24 +51,6 @@ If you do, FirelordJS will replaces it with error message:
 	text="FirelordJS forbid you from union any type with object type."
 />
 
-### Collection Reference Parent Type Casting 🐧
-
-FirelordJS try to avoid the need of type casting agressivley to ensure upmost developer experience.
-
-However due to not possible to self referencing in Typescript type, there is one type that we need to cast, that is the parent of collection reference.
-
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/metaType6.png?raw=true"
-	text="You need to type cast the parent of collection reference."
-/>
-
-Here is how you type cast it:
-
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/metaType7.png?raw=true"
-	text="Type cast the parent of collection reference."
-/>
-
 ### Do Not Use Numeric Index Mapped Types 🐧
 
 Do not use `Record<number, unknown>` in any way, numeric index is not parseable by Typescript.
