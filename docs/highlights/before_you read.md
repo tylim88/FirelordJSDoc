@@ -55,6 +55,7 @@ References:
 - DocumentReference
 - CollectionReference
 - Query
+- FirelordRef
 
 Snapshot:
 
