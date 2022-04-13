@@ -36,7 +36,7 @@ Firelord does not exports any type declaration from `@firebase/firestore/dist/in
 
 :::
 
-### Type Definitions🕊️
+### Type Definitions🦜
 
 Firestore exports its own type definitions:
 
