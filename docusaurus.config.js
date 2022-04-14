@@ -57,11 +57,6 @@ const config = {
 						label: 'Docs',
 					},
 					{
-						href: 'https://discord.com/invite/BN2cgc3',
-						label: 'Discord',
-						position: 'right',
-					},
-					{
 						href: 'https://github.com/tylim88/FirelordJS',
 						label: 'GitHub',
 						position: 'right',
