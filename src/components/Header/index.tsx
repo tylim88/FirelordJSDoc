@@ -43,17 +43,22 @@ export const Header = () => (
 				alt="package size"
 			/>
 			&nbsp;
+			<img
+				src="https://img.shields.io/badge/gzipped-2KB-brightgreen"
+				alt="package size"
+			/>
+			&nbsp;
 			<a href="https://github.com/tylim88/Firelordjs/actions" target="_blank">
 				<img
-					src="https://github.com/tylim88/Firelordjs/actions/workflows/github-actions.yml/badge.svg"
+					src="https://github.com/tylim88/Firelordjs/workflows/Main/badge.svg"
 					alt="github action"
 				/>
 			</a>
 			&nbsp;
 			<a href="https://codecov.io/gh/tylim88/Firelordjs" target="_blank">
 				<img
-					src="https://github.com/tylim88/Firelordjs/workflows/Main/badge.svg"
-					alt="github action"
+					src="https://codecov.io/gh/tylim88/Firelordjs/branch/main/graph/badge.svg"
+					alt="code coverage"
 				/>
 			</a>
 			&nbsp;
