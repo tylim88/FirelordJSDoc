@@ -52,8 +52,8 @@ export const Header = () => (
 			&nbsp;
 			<a href="https://codecov.io/gh/tylim88/Firelordjs" target="_blank">
 				<img
-					src="https://codecov.io/gh/tylim88/Firelordjs/branch/main/graph/badge.svg"
-					alt="code coverage"
+					src="https://github.com/tylim88/Firelordjs/workflows/Main/badge.svg"
+					alt="github action"
 				/>
 			</a>
 			&nbsp;
