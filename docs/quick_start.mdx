@@ -75,15 +75,16 @@ export type Example = MetaTypeCreator<
 ```ts title='init.ts'
 import { getFirelord } from 'firelordjs'
 import { initializeApp } from 'firebase/app'
+import { getFirestore } from 'firebase/firestore'
 import { Example } from './dataType'
 
-initializeApp({
+const app = initializeApp({
 	apiKey: '### FIREBASE API KEY ###',
 	authDomain: '### FIREBASE AUTH DOMAIN ###',
 	projectId: '### CLOUD FIRESTORE PROJECT ID ###',
 })
-
-const firelordRef = getFirelord<Example>()
+const db = getFirestore()
+const firelordRef = getFirelord<Example>(db) // or getFirelord<Example>()
 
 export const example = firelordRef('SomeCollectionName')
 ```
@@ -173,7 +174,7 @@ const unsub = onSnapshot(
 import { example } from './init'
 import { writeBatch, serverTimestamp } from 'firelordjs'
 
-const batch = writeBatch()
+const batch = writeBatch() // or writeBatch(db)
 
 batch.set(example.doc('hij'), {
 	a: 6,
@@ -205,6 +206,7 @@ import {
 
 try {
 	await runTransaction(async transaction => {
+		// or await runTransaction(db, async transaction => {...})
 		await transaction.get(example.doc('lmn')).then(docSnapshot => {
 			const data = docSnapshot.data()
 		})
