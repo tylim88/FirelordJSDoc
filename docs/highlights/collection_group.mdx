@@ -1,0 +1,63 @@
+---
+sidebar_position: 14
+---
+
+# Collection Group 🪅
+
+This section discusses how `Collection Group` works.
+
+import { Image } from '@site/src/components/Image'
+
+## Dealing With Document Name 🦜
+
+Here is how you do it:
+
+```tsx
+import { MetaTypeCreator, getFirelord } from 'firelordjs'
+
+type Parent = MetaTypeCreator<
+	{
+		a: 1
+	},
+	'a',
+	string
+>
+const firelordParent = getFirelord<Parent>()
+const ParentCollectionGroup = firelordParent('a').collectionGroup()
+```
+
+So far so good.
+
+What if we are dealing with subcollection where the document ID type is `string`? (which is very a common type for document ID)
+
+```tsx
+type Child = MetaTypeCreator<
+	{
+		a: 1
+	},
+	'b',
+	string,
+	Parent
+>
+const firelordChild = getFirelord<Child>()
+
+const ChildCollectionGroup = firelordChild('a/??????????/b').collectionGroup()
+```
+
+What should you replace `??????????` with?
+
+The answer is simple, any string.
+
+```tsx
+const ChildCollectionGroupQuery = firelordChild(
+	'a/putAnyStringHere/b'
+).collectionGroup()
+```
+
+Collection Group care only the Collection ID of the last segment
+
+in case of `Parent`, it is `a`
+
+in case of `Child`, it is `b`
+
+Collection group doesn't care about document ID at all, so just any character to fill the document ID.
