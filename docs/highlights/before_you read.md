@@ -32,7 +32,7 @@ However there are functions that FirelordJS export directly without wrapping, th
 
 :::info
 
-Firelord does not exports any type declaration from `@firebase/firestore/dist/index.d.ts`.
+Firelord does not exports any type definition from `@firebase/firestore/dist/index.d.ts`.
 
 :::
 
