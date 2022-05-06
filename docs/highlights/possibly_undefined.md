@@ -55,7 +55,7 @@ However assigning to array indirectly and union with array are legal:
 
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
     <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined4.png?raw=true' />
-    <small>directly</small>
+    <small>union</small>
 </div>
 <br/>
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
