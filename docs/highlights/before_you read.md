@@ -40,10 +40,6 @@ Firelord does not exports any type definition from `@firebase/firestore/dist/ind
 
 Firestore exports its own type definitions:
 
-Main:
-
-- MetaTypeCreator
-
 Field Value:
 
 - ServerTimestamp
