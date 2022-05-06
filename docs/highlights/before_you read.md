@@ -30,7 +30,7 @@ However there are functions that FirelordJS export directly without wrapping, th
 - onSnapshotsInSync
 - namedQuery
 
-:::info
+:::note
 
 Firelord does not exports any type definition from `@firebase/firestore/dist/index.d.ts`.
 

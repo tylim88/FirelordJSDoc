@@ -19,6 +19,7 @@ This page discusses how FirelordJS transforms your types for various uses intern
 | `FirelordJS GeoPoint`            | `FirelordJS GeoPoint`  | `FirelordJS GeoPoint`                                        | `FirelordJS GeoPoint`            |
 | `object`                         | `object`               | `object`                                                     | `object`                         |
 | `A[]`                            | `A[]`                  | `A[]` \| `FirelordJS ArrayRemove` \| `FirelordJS ArrayUnion` | `A[]`                            |
+| `Bytes`                          | `Bytes`                | `Bytes`                                                      | `Bytes`                          |
 
 Internally, FirelordJS converts your type into 3 main types for different purpose:
 
@@ -32,4 +33,4 @@ Key Points:
 
 - FirelordJS forbids you from `increment`(field value) `numeric literal` type, for obvious reason.
 
-- FirelordJS does not allow you to write `Date` or `Timestamp` to `ServerTimestamp`, this is to preserve the data integrity because some datetime has to be server timestamp, such as `createdAt` and `updatedAt`. However you can union `ServerTimestamp` with `Date` and `Timestamp` if you want to use `Date` and `Timestamp` for `ServerTimestamp`.
+- FirelordJS does not allow you to write `Date` or `Timestamp` to `ServerTimestamp`, this is to preserve the data integrity because some datetime has to be server timestamp, such as `createdAt` and `updatedAt`. However you can union `ServerTimestamp` with `Date` and `Timestamp` if you want to use `Date` and `Timestamp` together with `ServerTimestamp`.
