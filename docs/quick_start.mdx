@@ -86,9 +86,9 @@ const app = initializeApp({
 
 export const db = getFirestore()
 
-const firelordExample = getFirelord<Example>(db)
+export const firelordExample = getFirelord<Example>(db)
 // OR
-const firelordExample_Alt = getFirelord<Example>()
+export const firelordExample_Alt = getFirelord<Example>()
 
 export const example = firelordExample('SomeCollectionName')
 ```

@@ -20,12 +20,12 @@ Few examples:
    - It doesn't stop unknown member of a stale value (value that is attached to a variable).
    - It uses Partial, so all members accept `undefined`, BUT `undefined` is not a valid Firestore data type.
 
-Firestore SDK also comes with quirky runtime behaviors that ready to kick your ass in your wet dream:
+Firestore SDK also comes with quirky runtime behaviors that ready to kick your ass and ruin your wet dream:
 
-1. Limit clause throw on negative and 0 value. Throw on negative is good but throw on 0 value is arguable because 0 can be result from correct computation.
+1. Limit clause throw on negative and 0 value. Throw on negative is good but throw on 0 value is arguable because 0 can be resulted from correct computation.
 2. In some case, update behave partially like set, resulting in field deletion, danger!
-3. Let not start with how naughty `null` is in query....
-4. All kinds of widely left open limitations(known but does not bother to do anything about it) for us to explore, adventures, yeah!
+3. Let not start with how [naughty](https://stackoverflow.com/questions/71171678/firestore-should-we-avoid-using-value-type-null) `null` is in query....
+4. All kinds of unguarded limitations(known but does not bother to do anything about it) for us to explore, adventures, yeah!
 
 and more...
 
@@ -50,10 +50,12 @@ Core principles of FirelordJS:
      - Low cost to get in, low cost to get out.
 
 2. Type it and forget.
+
    - The only time developers deal with type is when they define the Meta Types, no type annotation and type cast onward.
    - Annotate and casting repetitively are annoying, it brings in more code, hurts readability and more point of failure. The solution is bind a type to a reference and infer from the reference.
    - References(doc, collection, collection group and query) are the perfect spots to bind types because all operations depend on it, then the operations simply infer the type from the reference.
    - This is also how Firestore SDK type definition works, however it does not fully utilize the potential.
+
 3. Always choose non invasive solution if possible.
 
    - Never alter the runtime behavior in any way that will alter developers' intention.(unopinionated)
