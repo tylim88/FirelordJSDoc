@@ -38,14 +38,15 @@ import {
 } from 'firelordjs'
 import firebasejson from '../firebase.json'
 
+type User = MetaTypeCreator<{ name: string; age: number }, 'User', string>
+
 const port = firebasejson.emulators.firestore.port
 
-type User = MetaTypeCreator<{ name: string; age: number }, 'User', string>
+let testEnv = undefined as unknown as RulesTestEnvironment
 let userRef = undefined as unknown as FirelordRef<User>
 let testEnvFirestore = undefined as unknown as ReturnType<
 	RulesTestContext['firestore']
 >
-let testEnv = undefined as unknown as RulesTestEnvironment
 
 describe('test with @firebase/rules-unit-testing and jest', () => {
 	beforeAll(async () => {
