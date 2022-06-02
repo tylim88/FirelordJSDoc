@@ -86,7 +86,7 @@ const app = initializeApp({
 
 export const db = getFirestore()
 
-// Recommendation: Export this if the collection is sub-collection and then fill in the value later, because sub collection has multiple dynamic document ID.
+// Recommendation: Export this if the collection is sub-collection and then fill in the value later, because sub collection may have multiple dynamic document ID.
 export const firelordExample = getFirelord<Example>(db)
 // OR
 export const firelordExample_Alt = getFirelord<Example>()
