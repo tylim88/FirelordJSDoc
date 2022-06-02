@@ -86,13 +86,18 @@ const app = initializeApp({
 
 export const db = getFirestore()
 
-// Recommendation: Export this if the collection is sub-collection and then fill in the value later, because sub collection may have multiple dynamic document ID.
+// Recommendation: Export this if the collection is sub-collection and then fill in the value later, because sub collection most likely have multiple dynamic document ID.
 export const firelordExample = getFirelord<Example>(db)
 // OR
 export const firelordExample_Alt = getFirelord<Example>()
 
 // Recommendation: Export this if the collection is root collection
-export const example = firelordExample('SomeCollectionName') // the value is guided by Typescript
+export const example = firelordExample('SomeCollectionName')
+// the collection path name is full collection path name(basically full document path minus the last document ID)
+// for example:
+// if your full document path is "User/UserId", the collection path name is "User"
+// if your full document path is "User/UserId/Item/ItemId", the collection path name is "User/UserId/Item"
+// this value is typed, FirelordJS also check the number of forward slash
 ```
 
 ## Operations
