@@ -92,12 +92,12 @@ export const firelordExample = getFirelord<Example>(db)
 export const firelordExample_Alt = getFirelord<Example>()
 
 // Recommendation: Export this if the collection is root collection
-export const example = firelordExample('SomeCollectionName')
-// the collection path name is full collection path name(basically full document path minus the last document ID)
+export const example = firelordExample('SomeCollectionPath')
+// the collection path name document path minus the last document ID segment
 // for example:
-// if your full document path is "User/UserId", the collection path name is "User"
-// if your full document path is "User/UserId/Item/ItemId", the collection path name is "User/UserId/Item"
-// this value is typed, FirelordJS also check the number of forward slash
+// if your document path is "User/UserId", the collection path name is "User"
+// if your document path is "User/UserId/Item/ItemId", the collection path name is "User/UserId/Item"
+// this paramater is typed, FirelordJS also check the number of forward slash so you wont messed up the number of segments.
 ```
 
 ## Operations
