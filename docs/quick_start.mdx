@@ -218,11 +218,8 @@ import {
 } from 'firelordjs'
 
 try {
+	// db argument is optional, you can skip it
 	await runTransaction(db, async transaction => {
-		// ...
-	})
-	// OR you can skip 'db'
-	await runTransaction(async transaction => {
 		await transaction.get(example.doc('lmn')).then(docSnapshot => {
 			const data = docSnapshot.data()
 		})
