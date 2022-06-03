@@ -10,7 +10,7 @@ This page discusses how updates works, we will use `updateDoc` in the example, b
 
 There are 2 type issues and 1 critical runtime issue in the original Firestore SDK update API.
 
-1. Accept unknown member from stale value.
+1. Accept unknown(excess) member from stale value, resulting in storing unnecessary information in Firestore.
 
 :::info
 
