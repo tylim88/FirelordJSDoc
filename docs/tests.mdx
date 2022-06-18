@@ -42,11 +42,9 @@ type User = MetaTypeCreator<{ name: string; age: number }, 'User', string>
 
 const port = firebasejson.emulators.firestore.port
 
-let testEnv = undefined as unknown as RulesTestEnvironment
-let userRef = undefined as unknown as FirelordRef<User>
-let testEnvFirestore = undefined as unknown as ReturnType<
-	RulesTestContext['firestore']
->
+let userRef: FirelordRef<User> = undefined!
+let firestore: ReturnType<RulesTestContext['firestore']> = undefined!
+let testEnv: RulesTestEnvironment = undefined!
 
 describe('test with @firebase/rules-unit-testing and jest', () => {
 	beforeAll(async () => {
