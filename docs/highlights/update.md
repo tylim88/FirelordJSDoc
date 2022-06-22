@@ -46,7 +46,7 @@ Data/field deletion(or any operation in general) should be done explicitly, a pr
 
 :::note
 
-This is a a very questionable API design by Firestore with no proper documentation on such dangerous behavior.
+This is a very questionable API design by Firestore with no proper documentation on such dangerous behavior.
 
 Truly lack of consideration.
 
@@ -65,24 +65,24 @@ FirelordJS solves all the stated concerns:
 
 Note 1: FirelordJS highlight the unknown member of the fresh value.
 
-Note 2: FirelordJS detect the unknown member and print out the unknown member in Typescript error message, the same error message is also shown for fresh value.
+Note 2: FirelordJS highlight the unknown member of the stale value and print out the unknown member in Typescript error message, the same error message is also shown for the fresh value.
 
-Note 3: Partial But no Undefined. FirelordJS update allows you to skip member while rejecting `undefined`.
+Note 3: Partial But no Undefined. FirelordJS update allows you to skip member while rejecting `undefined`, stopping undefined from entering database(undefined is not a valid data type).
 
 ## Circumvent Implicit Data Deletion ⚠️
 
-How FirelordJS circumvent data deletion? While Firestore not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to Firestore update and that eliminates the problem. What you see will always be what you expect in the database, no extra knowledge and attention required.
+How FirelordJS circumvent data deletion? While the original SDK not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to original SDK update. What you see will always be what you expect in the database, no extra knowledge and attention required.
 
 :::caution
 
-Important, if you want to uninstall FirelordJS and revert back to original Firestore SDK, please replace all the nested form with dot notation form or else your fields may get deleted due to original Firestore SDK behavior.
+Important, if you want to uninstall FirelordJS and revert to original SDK, please replace all the nested form with dot notation form or else your fields may get deleted due to original SDK behavior.
 
 :::
 
 ## Why Not Just Drop The Nested Form Support? 🕊️
 
-_Q: Why not simply forbid developers from using nested form? It would be easier for user to revert back to original Firestore SDK._
+_Q: Why not simply forbid developers from using nested form? It would be easier for user to revert to original SDK._
 
 The reason is simple: usability.
 
-If FirelordJS allows only dot notation form, then developers have to flatten the object every time he use the update API. Developers deal with normal object all the time, not flatten object, so it is better to keep the nested form for common use cases.
+If FirelordJS allows only dot notation form, then developers have to flatten the object by himself, this is not ideal as object literal is a common syntax.
