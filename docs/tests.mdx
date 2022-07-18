@@ -4,7 +4,7 @@ sidebar_position: 4.5
 
 # Tests 🧪
 
-This section discuss how to use FirelordJS with [@firebase/rules-unit-testing](https://www.npmjs.com/package/@firebase/rules-unit-testing)
+This section discuss how to use FirelordJS with [@firebase/rules-unit-testing](https://www.npmjs.com/package/@firebase/rules-unit-testing) and `jest`.
 
 :::note
 This is not a tutorial of how to use `@firebase/rules-unit-testing` and `jest`, we assume you already know how to use them.
@@ -14,7 +14,13 @@ import { Image } from '@site/src/components/Image'
 
 ## Usage 🦜
 
-Using FireLordJS with `@firebase/rules-unit-testing` is simple, here is how you use it with testing library like `jest`:
+:::caution
+When using `@firebase/rules-unit-testing`, you must supply Firestore instance to `getFirelord`, `WriteBatch` and `runTransaction`.
+
+We can migitate this problem by making the parameter mandatory, but it degrades dev experience (we need to always supply the Firestore instance).
+
+Nevertheless, it only affects tests, so it is ok to leave it as it is.
+:::
 
 ```ts
 import {
