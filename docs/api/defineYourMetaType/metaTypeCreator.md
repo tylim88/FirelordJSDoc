@@ -48,13 +48,13 @@ type MetaTypeCreator<Base, CollectionID, DocID, Parent, Settings> = MetaType
 Configure how `MetaTypeCreator` translate `Base` type.
 
 ```ts
-type Settings = { allFieldsPossiblyUndefined; banNull }
+type Settings = { allFieldsPossiblyReadAsUndefined; banNull }
 ```
 
-| Index                      | Type      | Default | Description                                                                            |
-| -------------------------- | --------- | ------- | -------------------------------------------------------------------------------------- |
-| allFieldsPossiblyUndefined | `boolean` | `false` | if `true`, union all fields(including object in array) in `read` type with `undefined` |
-| banNull                    | `boolean` | `false` | if `true`, replace every `null` type with an error message                             |
+| Index                            | Type      | Default | Description                                                                            |
+| -------------------------------- | --------- | ------- | -------------------------------------------------------------------------------------- |
+| allFieldsPossiblyReadAsUndefined | `boolean` | `false` | if `true`, union all fields(including object in array) in `read` type with `undefined` |
+| banNull                          | `boolean` | `false` | if `true`, replace every `null` type with an error message                             |
 
 ## MetaType(return)
 
