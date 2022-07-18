@@ -27,11 +27,12 @@ support **[@firebase/rules-unit-testing](/tests)**
 
 ```bash
 npm i firelordjs
+npm i -D @firebase/rules-unit-testing
 ```
 
 :::caution
 
-require Typescript 4.6.2+ and Firebase 9+
+require Typescript 4.6.2+, Firebase 9+ and @firebase/rules-unit-testing 2+
 
 :::
 
@@ -65,7 +66,7 @@ export type Example = MetaTypeCreator<
 		b: { c: boolean; d: { e: string }[] }
 		f: { g: ServerTimestamp; h: 1010 | 2929 | 3838 }
 	}, // can go with even more crazy looking data type
-	'SomeCollectionName', // collection ID type, must be string literal type
+	'someCollectionName', // collection ID type, must be string literal type
 	string // document ID type, normally string
 >
 ```
@@ -86,18 +87,13 @@ const app = initializeApp({
 
 export const db = getFirestore()
 
-// Recommendation: Export this if the collection is sub-collection and then fill in collection path later, because sub collection most likely have multiple dynamic document ID.
-export const firelordExample = getFirelord<Example>(db)
-// OR
-export const firelordExample_Alt = getFirelord<Example>()
+// Recommendation: Export this if the collection is sub-collection and then fill in collection path later, because sub collection most likely have dynamic document ID.
+export const firelordExample = getFirelord<Example>(db) // shorthand: getFirelord<Example>()
+// then call them using
+// const example = firelordExample(`parentCollectionName/${someDocId}/someCollectionName`)
 
 // Recommendation: Export this if the collection is root collection
-export const example = firelordExample('SomeCollectionPath')
-// argument is collection path (basically document path minus the last document ID segment)
-// for example:
-// if your document path is "User/UserId", the collection path name is "User"
-// if your document path is "User/UserId/Item/ItemId", the collection path name is "User/UserId/Item"
-// this paramater is typed, FirelordJS also check the number of forward slash so you wont mess up the number of segments.
+export const example = firelordExample('someCollectionName')
 ```
 
 ## Operations
