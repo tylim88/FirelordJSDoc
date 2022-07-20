@@ -10,7 +10,7 @@ This section discusses how `PossiblyReadAsUndefined` works.
 
 Firestore has the flexibility to add any field we want, in case like this, the read type of newly added data is `undefined` if we try to read it from the old data.
 
-And this is not the only reason a field could be missing, insecure data integrity is generally main reason why a data is incomplete.
+And this is not the only reason a field could be missing, data could be missing for various reason like insecure data integrity is generally main reason why a data is incomplete.
 
 This is what `PossiblyReadAsUndefined` for, it allows you to read a particular field as `undefined`, here is how you use it.
 
@@ -22,6 +22,10 @@ This is what `PossiblyReadAsUndefined` for, it allows you to read a particular f
 
 ## All Fields Read As Undefined 🦜
 
+:::Caution
+The setting `allFieldsPossiblyUndefined` had been renamed to `allFieldsPossiblyReadAsUndefined` in version 1.5.0
+:::
+
 If you want maximum type safe, you can easily union every field read type with one configuration:
 
 <div  style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
@@ -32,7 +36,7 @@ If you want maximum type safe, you can easily union every field read type with o
 
 :::caution
 
-Union all read fields with `undefined` degrade developer experience because you always need to check for `undefined`.
+Union all read fields with `undefined` degrade developer experience because you always need to check for `undefined`(albeit safer).
 
 The tradeoff of security is ease of use.
 
@@ -74,6 +78,9 @@ Simple, FirelordJS excludes it.
     <small>left 'number' </small>
 </div>
 <br/>
+
+If you assign only `PossiblyReadAsUndefined` type.
+
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
     <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/possiblyReadAsUndefined7.png?raw=true' />
     <small>nothing left, hence 'never'</small>

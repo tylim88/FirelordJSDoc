@@ -34,36 +34,6 @@ FirelordJS does not simply union every type with `undefined` by default, because
 
 :::
 
-## Array 🕊️
-
-If you assign `DeleteField` to array type directly or indirectly, FirelordJS will replaces them with error message.
-
-<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField3.png?raw=true" />
-	<small>directly</small>
-</div>
-
-<br />
-<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField4.png?raw=true" />
-	<small>indirectly</small>
-</div>
-
-Explanations:
-
-1. `DeleteField[]`: doesn't make sense and field value is not allowed in array.
-2. `[{ a: DeleteField }]`: field value is not allowed in array.
-
-<br />
-
-However it is legal to union `DeleteField` with array type:
-
-<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField5.png?raw=true" />
-	<small>DeleteField | any[]</small>
-</div>
-<br />
-
 ## DeleteField Rules 🕊️
 
 This is how the rule you need to obey when using original Firestore deleteField:
@@ -93,7 +63,7 @@ Function updateDoc() called with invalid data. deleteField() can only appear at 
 
 <br />
 
-Seriously who make these APIs, they are terrible! The insimilarity between set and update are beyond words.
+Seriously who make these APIs, they are terrible! The insimilarity between `set` and `update` are beyond words.
 
 <br />
 
@@ -102,7 +72,7 @@ Seriously who make these APIs, they are terrible! The insimilarity between set a
 <div align="center">
 	<i>
 		Don't be mad bro, it is just a prank bro, relax bro!
-		&#160;&#160;&#160;--Firestore
+		&#160;&#160;&#160;--Firestore Dev
 	</i>
 </div>
 <br />
@@ -119,7 +89,37 @@ Seriously who make these APIs, they are terrible! The insimilarity between set a
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField7.png?raw=true"
-	text="FirelordJS prevent you from doing it the wrong way and provide guide line in hint."
+	text="FirelordJS stops you from doing it the wrong way, provide hint and relax certain limitation with internal flatten."
 />
 
-You are safe against set no merge options, set { merge:false } and update low level exceptions, no room for errors.
+You are safe against `set` no merge options, `set` with { merge:false } and `update` low level exceptions, no room for errors.
+
+## Array 🕊️
+
+If you assign `DeleteField` to array type directly or indirectly, FirelordJS will replaces them with error message.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField3.png?raw=true" />
+	<small>directly</small>
+</div>
+
+<br />
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField4.png?raw=true" />
+	<small>indirectly</small>
+</div>
+
+Explanations:
+
+1. `DeleteField[]`: doesn't make sense and field value is not allowed in array.
+2. `[{ a: DeleteField }]`: field value is not allowed in array.
+
+<br />
+
+However it is legal to union `DeleteField` with array type:
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField5.png?raw=true" />
+	<small>DeleteField | any[]</small>
+</div>
+<br />
