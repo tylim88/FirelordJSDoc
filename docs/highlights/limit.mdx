@@ -21,20 +21,26 @@ This is because `number` type is a common type, and if your value come from an e
 
 ## Exceptions 🕊️
 
-FirelordJS will not try to replace any illegal number with legal number like 1, to prevent runtime exception.
+FirelordJS does not check the runtime value of the input.
 
-Because illegal number like negative number and decimal number is most likely result from your logic bug, and exception need to be thrown to remind you something is wrong with your code.
+Because illegal number like negative number and decimal number is most likely result from our logic bug, and exception need to be thrown to remind us something is wrong with your code.
 
 ## The Zero 🦤
 
-Firestore throw on 0, like how it throw on other illegal number, this is actually not a good idea.
+Firestore throws on 0, like how it throws on other illegal number.
+
+This is actually not a good idea.
 
 While negative number and decimal number is a result of buggy code, 0 however is not.
 
-This is because 0 can be a result from a correct calculation, getting 0 amount of items is something that make sense and computationally possible.
+This is because 0 can be a result from a correct calculation, getting 0 amount of items is something that make sense and is both computationally and physically possible.
 
-Firelord does not try to circumvent this, like replacing it with 1.
+FirelordJS does not try to circumvent this(like replacing it with 1), no action taken.
 
-This is because ultimately 1 and 0 are different values, by changing 0 to 1, we alter the developer's intention and this is a big no.
+This is because ultimately 1 and 0 are different values, by changing 0 to 1, we alter the developer's intention and this is against the philosophy of this library.
 
-So yeah the only way is for you to do the checking by yourself.
+There is one solution that we can try, we can return empty array upon 0.
+
+But this may create other problem, example the type `QuerySnapshot` comes with metadatas like `readTime`(in admin only) and we need to provide correct value for metadatas and we need to do this without impact the API significantly.
+
+Details like this is what the library will works on in the future.
