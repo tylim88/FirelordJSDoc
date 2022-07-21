@@ -27,19 +27,21 @@ Because illegal number like negative number and decimal number is most likely re
 
 ## The Zero 🦤
 
-Firestore throws on 0, like how it throws on other illegal number.
-
-This is actually not a good idea.
+Firestore throws on 0, like how it throws on other illegal number, this is not a very good design decision.
 
 While negative number and decimal number is a result of buggy code, 0 however is not.
 
-This is because 0 can be a result from a correct calculation, getting 0 amount of items is something that make sense and is both computationally and physically possible.
+This is because 0 can be a result from a correct calculation, getting 0 amount of items is not something that is absurd.
 
-FirelordJS does not try to circumvent this(like replacing it with 1), no action taken.
+Which mean eventhough assigning 0 directly is pointless, but assigning 0 as a result of computation is meaningful.
 
-This is because ultimately 1 and 0 are different values, by changing 0 to 1, we alter the developer's intention and this is against the philosophy of this library.
+However Firestore throw on 0, we need another strategy to deal with it.(Currently FirelodJS does not handle computed 0 value.)
 
-There is one solution that we can try, we can return empty array upon 0.
+Can we replace the 0 with 1? The answer is no and this is never an option.
+
+This is because by changing 0 to 1, it may affects calcultion and resulting in hard to catch bug.
+
+Another solution that we can try, we can return empty array upon 0.
 
 But this may create other problem, example the type `QuerySnapshot` comes with metadatas like `readTime`(in admin only) and we need to provide correct value for metadatas and we need to do this without impact the API significantly.
 
