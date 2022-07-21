@@ -4,4 +4,4 @@
 
 of [FirelordJS](https://github.com/tylim88/Firelordjs)
 
-all contents is in the docs folder
+all contents are in the `docs` folder
