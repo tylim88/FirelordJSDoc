@@ -34,6 +34,18 @@ const config = {
 			}),
 		],
 	],
+	plugins: [
+		[
+			'@docusaurus/plugin-content-docs',
+			{
+				id: 'firelord',
+				path: 'firelord',
+				routeBasePath: 'firelord',
+				sidebarPath: require.resolve('./sidebarsFirelord.js'),
+				// ... other options
+			},
+		],
+	],
 
 	themeConfig:
 		/** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -54,7 +66,14 @@ const config = {
 						type: 'doc',
 						docId: 'quick_start',
 						position: 'left',
-						label: 'Docs',
+						label: 'Web',
+					},
+					{
+						type: 'doc',
+						docId: 'quick_start',
+						position: 'left',
+						label: 'Admin',
+						docsPluginId: 'firelord',
 					},
 					{
 						href: 'https://github.com/tylim88/FirelordJS',

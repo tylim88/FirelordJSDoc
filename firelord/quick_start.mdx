@@ -4,41 +4,36 @@ sidebar_position: 1
 
 # Quick Start 🔥
 
-import { Header } from '@site/src/components/Header'
+import { Header } from '@site/src/components/Header2'
 
 <Header />
-<div align="center">
-	<i>
-		Of The VFQAT &#160;&#160;||&#160;&#160; By The VFQAT
-		&#160;&#160;||&#160;&#160; For The VFQAT
-	</i>
-</div>
-<br />
-<div align="center">
-	<i>End Firestore Typing Madness</i>
-</div>
-<br />
-
-VFQAT = Victim Of Firestore Quarter Ass Typing
-
-support **[@firebase/rules-unit-testing](/tests)**
 
 ## Installation
 
 ```bash
-npm i firebase firelordjs
-npm i -D @firebase/rules-unit-testing typescript
+npm i firebase-admin firelord
+npm i -D typescript
 ```
 
 :::caution
 
-require Typescript 4.6.2+, Firebase 9+ and @firebase/rules-unit-testing 2+
+require Typescript 4.6.2+, firebase-admin 11+
 
 :::
 
 :::info
 
-The library size on disk is 350KB, most of the code are type definition, the runtime code is at mere 6KB after minified and gzipped.
+The library size on disk is 350KB, most of the code are type definitions, the runtime code is at mere 6KB after minified and gzipped.
+
+:::
+
+:::tip
+Firelord API is almost exactly as same as [FirelordJS](https://firelordjs.com/quick_start/quick_start), which mean:
+
+1. Tthey share basically the same documentation, hence we will skip most of the documentation to avoid repetition.
+2. They can also share data type definition.
+
+On surface, only the installation process is different and we import from `firelord` instead of `firelordjs`.
 
 :::
 
@@ -58,7 +53,7 @@ The library size on disk is 350KB, most of the code are type definition, the run
 ## Define The Meta Type
 
 ```ts title='dataType.ts'
-import { MetaTypeCreator, ServerTimestamp } from 'firelordjs'
+import { MetaTypeCreator, ServerTimestamp } from 'firelord'
 
 export type Example = MetaTypeCreator<
 	{
@@ -74,15 +69,17 @@ export type Example = MetaTypeCreator<
 ## Create Firelord References
 
 ```ts title='init.ts'
-import { getFirelord } from 'firelordjs'
-import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
+import { getFirelord } from 'firelord'
+import { getFirestore } from 'firebase-admin/firestore'
+import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app'
 import { Example } from './dataType'
+import serviceAccount from './serviceAccount.json' // get it from firebase console --> project setting --> service accounts, THIS IS A SECERT!
+// if you run in cloud function
+const app = initializeApp()
 
+// if you run in custom backend or you run in cloud function but want to access other project firestore
 const app = initializeApp({
-	apiKey: '### FIREBASE API KEY ###',
-	authDomain: '### FIREBASE AUTH DOMAIN ###',
-	projectId: '### CLOUD FIRESTORE PROJECT ID ###',
+	credential: cert(serviceAccount as ServiceAccount),
 })
 
 export const db = getFirestore()
@@ -109,7 +106,7 @@ import {
 	serverTimestamp,
 	increment,
 	arrayUnion,
-} from 'firelordjs'
+} from 'firelord'
 
 await setDoc(example.doc('abc'), {
 	a: 100,
@@ -148,7 +145,7 @@ import {
 	onSnapshot,
 	startAfter,
 	limit,
-} from 'firelordjs'
+} from 'firelord'
 
 await getDocs(
 	query(
@@ -179,7 +176,7 @@ const unsub = onSnapshot(
 
 ```ts title='batch.ts'
 import { example, db } from './init'
-import { writeBatch, serverTimestamp } from 'firelordjs'
+import { writeBatch, serverTimestamp } from 'firelord'
 
 const batch = writeBatch(db)
 // OR
@@ -211,7 +208,7 @@ import {
 	serverTimestamp,
 	increment,
 	arrayRemove,
-} from 'firelordjs'
+} from 'firelord'
 
 try {
 	// db argument is optional, you can skip it
@@ -240,18 +237,4 @@ try {
 }
 ```
 
-## Did I Learn Everything In A Page?
-
-You basically learned 95% of FirelordJS API, in one page.
-
-The knowledge gap between casual user and advanced user is only 5%.
-
-FirelordJS API looks and feels nearly identical to the original Firestore SDK, to the point that in one page, you have learned almost everything, equipped with **full fledged** type safety, effortlessly.
-
-Every value is safely typed, this including collection ID, document ID, all operations, all field paths, all inputs, all outputs, all query clauses, basically whatever FirelordJS exports.
-
-FirelordJS infers types of every single value from the MetaType defined in the very beginning, and this is the only time you ever have to deal with the type, there is no need for type annotation and type casting, **type it and forget**.
-
-This is done elegantly without complicated configuration while maintain API that is nearly identical to the original Firestore API, and simpler.
-
-FirelordJS offer deep type safe mechanisms that are not found on other wrappers: the **Rules Typing**.
+To learn more, read the [Web]('https://firelordjs.com/quick_start/quick_start') section.
