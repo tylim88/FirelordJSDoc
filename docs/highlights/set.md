@@ -4,7 +4,9 @@ sidebar_position: 2
 
 # Set ☀️
 
-This page discusses how sets works, we will use `setDoc` in the example, but it works the same for `batch.set` and `transaction.set`.
+This page discusses how sets works and its quirks.
+
+We will use `setDoc` in the example, but it works the same for `batch.set` and `transaction.set`.
 
 ## Ternary Filter States 🦤
 

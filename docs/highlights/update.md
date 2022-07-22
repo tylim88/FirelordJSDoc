@@ -4,7 +4,9 @@ sidebar_position: 1
 
 # Update 🍃
 
-This page discusses how updates works, we will use `updateDoc` in the example, but it works the same for `batch.update` and `transaction.update`.
+This page discusses how updates works and its quirks.
+
+We will use `updateDoc` in the example, but it works the same for `batch.update` and `transaction.update`.
 
 ## Dangerous Firestore SDK Update API 🦤
 

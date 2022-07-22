@@ -6,8 +6,6 @@ sidebar_position: 3
 
 This page discusses how get works in general, we will use `get` in the example, but it works the same for`transaction.get`.
 
-The documentSnapshot section also works similarly for `onSnapshot` and `GetDocs`.
-
 ## SnapshotOptions 🕊️
 
 If `SnapshotOptions` is `{ serverTimestamps: 'none' | 'previous' }`, then all the server timestamp is null if it is not yet resolved when you read it, **[source](https://stackoverflow.com/a/65627037/5338829)**.
@@ -20,7 +18,7 @@ The default value of `SnapshotOptions` is `{ serverTimestamps: 'none' }` but mad
 
 :::info
 
-Firestore does not have distinct type for server timestamp, all field values in Firestore have the same type, that is `FieldValue`, read **[Masking Field Values](./inhomogeneous_field_values.md)** for more info.
+Firestore does not have distinct type for server timestamp, all field values in Firestore have the same type, that is `FieldValue`, read **[Inhomogeneous Field Values](./inhomogeneous_field_values.md)** for more info.
 
 :::
 
