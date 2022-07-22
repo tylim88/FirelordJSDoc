@@ -1,0 +1,12 @@
+---
+sidebar_position: 4
+---
+
+# Limitation 🕊️
+
+There are few data type that is not supported by FirelordJS, they are:
+
+1. any data type that can extends `Record<number, unknown>`.
+2. tuple, we already have array plus tuple is not a practical data type.
+3. interface and class, you must declare your type with `type`, not `interface` and `class`.
+4. function (why you want to do so?).
