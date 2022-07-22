@@ -14,8 +14,14 @@ FirelordJS wraps and exports every function found in the `@firebase/firestore/di
 
 ### Functions 🕊️
 
-These are functions that FirelordJS export directly without wrapping, this is because their input has nothing to do with document data type, those functions are:
+These are items that FirelordJS export directly without wrapping, this is because their input has nothing to do with document data type, those functions are:
 
+- Timestamp
+- GeoPoint
+- Bytes
+- getFirestore
+- terminate
+- initializeFirestore
 - loadBundle
 - clearIndexedDbPersistence
 - connectFirestoreEmulator
@@ -25,6 +31,8 @@ These are functions that FirelordJS export directly without wrapping, this is be
 - enableNetwork
 - onSnapshotsInSync
 - namedQuery
+- waitForPendingWrites
+- CACHE_SIZE_UNLIMITED
 
 :::note
 

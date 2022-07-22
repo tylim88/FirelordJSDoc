@@ -8,7 +8,7 @@ Firelord wraps and exports every function found in the `firebase-admin\lib\fires
 
 ## Functions 🕊️
 
-These are functions that Firelord export directly without wrapping, this is because their input has nothing to do with document data type, those functions are:
+These are items that Firelord export directly without wrapping, this is because their input has nothing to do with document data type, those functions are:
 
 - Timestamp
 - GeoPoint

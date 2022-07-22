@@ -20,7 +20,7 @@ The default value of `SnapshotOptions` is `{ serverTimestamps: 'none' }` but mad
 
 :::info
 
-Firestore does not have distinct type for server timestamp, all field values in Firestore have the same type, that is `FieldValue`, read **[Masking Field Values](./masking_field_values.md)** for more info.
+Firestore does not have distinct type for server timestamp, all field values in Firestore have the same type, that is `FieldValue`, read **[Masking Field Values](./inhomogeneous_field_values.md)** for more info.
 
 :::
 
