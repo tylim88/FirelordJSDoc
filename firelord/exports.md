@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Exports 🕊️
+# Exports ✈️
 
 Firelord wraps and exports every function found in the `firebase-admin\lib\firestore\index.d.ts`.
 
