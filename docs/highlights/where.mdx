@@ -18,7 +18,7 @@ You can access the `MetaType` using **[index accessor](../guides/children_and_me
 
 ## Dealing With Literal Types 🐧
 
-When working with literal types, you need `const` assertion in order to infers the type correctly, else Typescript will not allow it.
+When working with literal types, you need `const` assertion in order to infers the type correctly.
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where1.png?raw=true"
@@ -43,28 +43,32 @@ You still need to assert `const` variable as `const`.
 	text={`FirelordJS forbid never[] but allow correctType[] even if it is empty`}
 />
 
-FirelordJS forbid `never[]` to stop you from accidentally assign empty array(never[]) directly, small convenience.
+FirelordJS forbid `never[]` and `[]` to stop you from accidentally assign empty array(never[]) directly, small convenience.
 
-However it is impossible to block empty array totally as long as the type is correct, FirelordJS handle this in runtime by replacing empty array with `['some long random string']`.
+However it is impossible to block empty array if the empty array type is same as the type defined, so FirelordJS handle this in runtime by replacing empty array with `['some long unique value']`.
 
-This prevents runtime exceptions while keeping the result intact without altering developer's intention.
+This prevents runtime exceptions while keeping the query accurate.
 
-:::caution
-
-If you decides to revert back to the original Firestore API, please add logic to deal with the empty array.
-
+:::danger
+If you revert back to the original Firestore API, please handle the empty array.
 :::
 
 ## documentId() 🕊️
 
-When working with dield path sentinel `documentId()`, `const` assertion is needed for the same reason, however in this case FirelordJS warns you when you are not using `const` assertion.
+:::caution
+When working with dield path sentinel `documentId()`, `const` assertion is needed so Typescript can count number of slash and ensure the number of segment is correct.
+:::
+
+:::tips
+FirelordJS reminds you when you are not using `const` assertion.
+:::
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where2.png?raw=true"
 	text={`FirelordJS warns you when you are not using const assertion.`}
 />
 
-### Collection Reference 🕊️
+### Collection 🕊️
 
 When querying a collection by documentId(), you must provide a plain document ID, without any forward slash.
 
