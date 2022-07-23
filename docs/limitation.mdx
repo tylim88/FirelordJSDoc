@@ -4,10 +4,31 @@ sidebar_position: 5.1
 
 # Limitation 🛑
 
-There are few data type that is not supported by FirelordJS, they are:
+This section list down limitions of FirelordJS due to reason like:
+
+1. unsupported
+2. serve as other purpose
+3. or straight up impossible
+
+## Data Type
 
 1. any data type that can extends `Record<number, unknown>`.
 2. tuple, we already have array plus tuple is not a practical data type.
-3. interface (is treated as utility type in FirelordJS).
-4. class (why you want to do so?).
-5. function (why you want to do so?).
+3. function (why you want to do so?).
+
+1 and 2 may be supported in the future, 3 doesn't make sense to support it
+
+## Declaration
+
+1. interface (is treated as utility type in FirelordJS).
+2. class (why you want to do so?).
+
+## Empty Value Handling
+
+1. limit and limitToLast cannot stop computed 0 value, resulting in runtime error.
+2. cursor rest argument must need tuple type to work, it will rejects all array type, resulting in type error.
+   - What this mean is, for some reason you want to have computed array as cursor rest argument(maybe you are doing some high level abstraction), it will never pass the type check.
+   - But if you ignoring the type error and force your way in, and if the computed array turn out to be an emtpty array, it will not result in runtime error because FirelordJS handle them by removing the cursor.
+   - It is still safe to run.
+
+1 may has remedy in future, 2 see no possibility to improve at current stage.
