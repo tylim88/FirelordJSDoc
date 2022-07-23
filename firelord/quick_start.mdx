@@ -108,6 +108,12 @@ import {
 	arrayUnion,
 } from 'firelord'
 
+await createDoc(example.doc('abc'), {
+	a: 500,
+	b: { c: true, d: [{ e: 'efg' }] },
+	f: { g: serverTimestamp(), h: 2929 },
+})
+
 await setDoc(example.doc('abc'), {
 	a: 100,
 	b: { c: true, d: [{ e: 'abc' }] },
@@ -183,12 +189,18 @@ const batch_Alt = writeBatch()
 
 batch.set(example.doc('hij'), {
 	a: 6,
+	b: { c: true, d: [{ e: '123' }] },
+	f: { g: serverTimestamp(), h: 2929 },
+})
+
+batch.set(example.doc('hij'), {
+	a: 7,
 	b: { c: false, d: [{ e: 'xyz' }] },
 	f: { g: serverTimestamp(), h: 1010 },
 })
 
 batch.update(example.doc('hij'), {
-	a: 6,
+	a: 8,
 	b: { c: false }, // nested form
 	'f.g': serverTimestamp(), // dot notation form
 })
@@ -214,6 +226,12 @@ try {
 	await runTransaction(db, async transaction => {
 		await transaction.get(example.doc('lmn')).then(docSnapshot => {
 			const data = docSnapshot.data()
+		})
+
+		transaction.createDoc(example.doc('lmn'), {
+			a: 500,
+			b: { c: true, d: [{ e: 'efg' }] },
+			f: { g: serverTimestamp(), h: 3838 },
 		})
 
 		transaction.set(example.doc('lmn'), {
