@@ -77,7 +77,12 @@ const config = {
 					},
 					{
 						href: 'https://github.com/tylim88/FirelordJS',
-						label: 'GitHub',
+						label: 'Web GH',
+						position: 'right',
+					},
+					{
+						href: 'https://github.com/tylim88/Firelord',
+						label: 'Admin GH',
 						position: 'right',
 					},
 				],
