@@ -4,7 +4,7 @@ sidebar_position: 9
 
 # Limit 🔟
 
-This section discusses how `limit` type works.
+This section discusses how `limit` and `limitToLast` type works.
 
 import { Image } from '@site/src/components/Image'
 
@@ -46,3 +46,22 @@ Another solution that we can try, we can return empty array upon 0.
 But this may create other problem, example the type `QuerySnapshot` comes with metadatas like `readTime`(in admin only) and we need to provide correct value for metadatas and we need to do this without impact the API significantly.
 
 Details like this is what the library will works on in the future.
+
+## LimitToLast
+
+`limitToLast` type works like `limit` type, but with one extra catch: at least one `orderBy` clause is needed.
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/limit2.png?raw=true"
+	text="limitToLast"
+/>
+
+### Multiple Clause
+
+Only the last one is effective, similar to behavior of original sdk.
+
+```ts
+query(colRef, limit(1), limit(2)) //  reduce to query(colRef, limitToLast(2))
+query(colRef, limitToLast(1), limitToLast(2)) //  reduce to query(colRef, limitToLast(2))
+query(colRef, limit(1), limitToLast(2)) //  reduce to query(colRef, limitToLast(2))
+```
