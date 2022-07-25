@@ -34,7 +34,7 @@ If you want maximum type safe, you can easily union every field read type with o
 </div>
 <br/>
 
-:::caution
+:::note
 
 Union all read fields with `undefined` degrade developer experience because you always need to check for `undefined`(albeit safer).
 
