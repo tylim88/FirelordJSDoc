@@ -4,20 +4,20 @@ sidebar_position: 1
 
 # Quick Start 🔥
 
-import { Header } from '@site/src/components/Header2'
+import { Header } from '@site/src/components/Header3'
 
 <Header />
 
 ## Installation
 
 ```bash
-npm i firebase-admin firelord
+npm i @react-native-firebase/app @react-native-firebase/firestore firelordrn
 npm i -D typescript
 ```
 
 :::caution
 
-require Typescript 4.6.2+, firebase-admin 11+
+require Typescript 4.6.2+, @react-native-firebase/app and @react-native-firebase/firestore v6
 
 :::
 
@@ -28,12 +28,12 @@ The library size on disk is 350KB, most of the code are type definitions, the ru
 :::
 
 :::tip
-Firelord API is almost exactly as same as [FirelordJS](https://firelordjs.com/quick_start), which mean:
+FirelordRN API is almost exactly as same as [Firelord](https://firelordjs.com/firelord/quick_start), which mean:
 
 1. They share basically the same documentation, hence we will skip most of the documentation to avoid repetition.
 2. They can also share data type definition.
 
-On surface, only the installation process is different and we import from `firelord` instead of `firelordjs`.
+On surface, only the installation process is different and we import from `firelordrn` instead of `firelord`.
 
 :::
 
@@ -53,7 +53,7 @@ On surface, only the installation process is different and we import from `firel
 ## Define The Meta Type
 
 ```ts title='dataType.ts'
-import { MetaTypeCreator, ServerTimestamp } from 'firelord'
+import { MetaTypeCreator, ServerTimestamp } from 'firelordrn'
 
 export type Example = MetaTypeCreator<
 	{
@@ -69,9 +69,8 @@ export type Example = MetaTypeCreator<
 ## Create Firelord References
 
 ```ts title='init.ts'
-import { getFirelord } from 'firelord'
-import { getFirestore } from 'firebase-admin/firestore'
-import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app'
+import { getFirelord } from 'firelordrn'
+import { getFirestore } from '@react-native-firebase/firestore'
 import { Example } from './dataType'
 import serviceAccount from './serviceAccount.json' // get it from firebase console --> project setting --> service accounts, THIS IS A SECERT!
 // if you run in cloud function
@@ -106,7 +105,7 @@ import {
 	serverTimestamp,
 	increment,
 	arrayUnion,
-} from 'firelord'
+} from 'firelordrn'
 
 await createDoc(example.doc('abc'), {
 	a: 500,
@@ -151,7 +150,7 @@ import {
 	onSnapshot,
 	startAfter,
 	limit,
-} from 'firelord'
+} from 'firelordrn'
 
 await getDocs(
 	query(
@@ -181,7 +180,7 @@ const unsub = onSnapshot(
 
 ```ts title='batch.ts'
 import { example, db } from './init'
-import { writeBatch, serverTimestamp } from 'firelord'
+import { writeBatch, serverTimestamp } from 'firelordrn'
 
 const batch = writeBatch(db)
 // OR
@@ -219,7 +218,7 @@ import {
 	serverTimestamp,
 	increment,
 	arrayRemove,
-} from 'firelord'
+} from 'firelordrn'
 
 try {
 	// db argument is optional, you can skip it

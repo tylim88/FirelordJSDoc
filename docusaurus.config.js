@@ -41,7 +41,17 @@ const config = {
 				id: 'firelord',
 				path: 'firelord',
 				routeBasePath: 'firelord',
-				sidebarPath: require.resolve('./sidebarsFirelord.js'),
+				sidebarPath: require.resolve('./sidebarsAdmin.js'),
+				// ... other options
+			},
+		],
+		[
+			'@docusaurus/plugin-content-docs',
+			{
+				id: 'firelordrn',
+				path: 'firelordrn',
+				routeBasePath: 'firelordrn',
+				sidebarPath: require.resolve('./sidebarsRN.js'),
 				// ... other options
 			},
 		],
@@ -76,6 +86,13 @@ const config = {
 						docsPluginId: 'firelord',
 					},
 					{
+						type: 'doc',
+						docId: 'quick_start',
+						position: 'left',
+						label: 'React Native',
+						docsPluginId: 'firelordrn',
+					},
+					{
 						href: 'https://github.com/tylim88/FirelordJS',
 						label: 'Web GH',
 						position: 'right',
@@ -83,6 +100,11 @@ const config = {
 					{
 						href: 'https://github.com/tylim88/Firelord',
 						label: 'Admin GH',
+						position: 'right',
+					},
+					{
+						href: 'https://github.com/tylim88/Firelordrn',
+						label: 'RN GH',
 						position: 'right',
 					},
 				],
