@@ -1,0 +1,64 @@
+---
+sidebar_position: 8.5
+---
+
+# DocumentId🦩
+
+This section discuss how `where` and field path sentinel `documentId()` types works.
+
+import { Image } from '@site/src/components/Image'
+
+## No Autocomplete for Value 🐧
+
+When using `where` with `documentId`, there would be no auto complete for the value argument(`where`'s' third argument) because we need to make way for more type check.
+
+FirelordJS will still make sure the value type is correct.
+
+You can access the `MetaType` using **[index accessor](../guides/children_and_metatype#index-accessor-%EF%B8%8F)** to check what type you need.
+
+## Const Assertion 🕊️
+
+:::caution
+When working with dield path sentinel `documentId()`, `const` assertion is needed so Typescript can count number of slash and ensure the number of segment is correct.
+:::
+
+:::tips
+FirelordJS reminds you to use `const` assertion.
+:::
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/documentId1.png?raw=true"
+	text={`FirelordJS warns you when you are not using const assertion.`}
+/>
+
+### Collection 🕊️
+
+When querying a collection by documentId(), you must provide a plain document ID, without any forward slash.
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/documentId2.png?raw=true"
+	text={`FirelordJS displays error mesagae in the hint if it detects any invalid character.`}
+/>
+
+### Collection Group 🕊️
+
+When querying a collection group by documentId(), FirelorsJS rejects the value if the value is not a valid full document path.
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/documentId3.png?raw=true"
+	text={`FirelordJS displays error mesagae in the hint if it detects path is wrong.`}
+/>
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/documentId4.png?raw=true"
+	text={`FirelordJS counts and compares the number of slash and displays it in the hint`}
+/>
+
+### With OrderBy 🦜
+
+The field path of `documentId()` is `__name__`, this is how you use it with orderBy (for some reason you want to order document by Id).
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/documentId5.png?raw=true"
+	text={`Order by document Id`}
+/>

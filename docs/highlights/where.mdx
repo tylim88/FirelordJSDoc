@@ -2,19 +2,11 @@
 sidebar_position: 8
 ---
 
-# Where And documentId🍒
+# Where🍒
 
-This section discuss how `where` and field path sentinel `documentId()` types works.
+This section discuss how `where` works.
 
 import { Image } from '@site/src/components/Image'
-
-## No Autocomplete for Value 🐧
-
-There is autocomplete for `where`'s field path and operation string parameter, however due to Typescript limitation there is no autocomplete for the value parameter.
-
-FirelordJS will still make sure the value type is correct.
-
-You can access the `MetaType` using **[index accessor](../guides/children_and_metatype#index-accessor-%EF%B8%8F)** to check what type you need.
 
 ## Dealing With Literal Types 🐧
 
@@ -30,7 +22,7 @@ When working with literal types, you need `const` assertion in order to infers t
 You still need to assert `const` variable as `const`.
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where7.png?raw=true"
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where2.png?raw=true"
 	text={`You still need to assert const variable as const`}
 />
 
@@ -39,7 +31,7 @@ You still need to assert `const` variable as `const`.
 ## Dealing With Empty Array ⚠️
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where8.png?raw=true"
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where3.png?raw=true"
 	text={`FirelordJS forbid never[] but allow correctType[] even if it is empty`}
 />
 
@@ -52,50 +44,3 @@ This prevents runtime exceptions while keeping the query accurate.
 :::danger
 If you revert back to the original Firestore API, please handle the empty array.
 :::
-
-## documentId() 🕊️
-
-:::caution
-When working with dield path sentinel `documentId()`, `const` assertion is needed so Typescript can count number of slash and ensure the number of segment is correct.
-:::
-
-:::tips
-FirelordJS reminds you when you are not using `const` assertion.
-:::
-
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where2.png?raw=true"
-	text={`FirelordJS warns you when you are not using const assertion.`}
-/>
-
-### Collection 🕊️
-
-When querying a collection by documentId(), you must provide a plain document ID, without any forward slash.
-
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where3.png?raw=true"
-	text={`FirelordJS displays error mesagae in the hint if it detects any invalid character.`}
-/>
-
-### Collection Group 🕊️
-
-When querying a collection group by documentId(), FirelorsJS rejects the value if the value is not a valid full document path.
-
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where4.png?raw=true"
-	text={`FirelordJS displays error mesagae in the hint if it detects path is wrong.`}
-/>
-
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where5.png?raw=true"
-	text={`FirelordJS counts and compares the number of slash and displays it in the hint`}
-/>
-
-### With OrderBy 🦜
-
-The field path of `documentId()` is `__name__`, this is how you use it with orderBy (for some reason you want to order document by Id).
-
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/where6.png?raw=true"
-	text={`Order by document Id`}
-/>
