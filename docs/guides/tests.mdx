@@ -6,6 +6,14 @@ sidebar_position: 4.5
 
 This section discuss how to use FirelordJS with [emulator](https://firebase.google.com/docs/emulator-suite), [@firebase/rules-unit-testing](https://www.npmjs.com/package/@firebase/rules-unit-testing) and [jest](https://jestjs.io/).
 
+Remember to prepare script like this:
+
+```json
+{
+	"test": "firebase emulators:exec --only firestore \"jest --forceExit\""
+}
+```
+
 :::note
 This is not a tutorial of how to use `emulator`, `@firebase/rules-unit-testing` and `jest`, we assume you already know how to use them.
 :::
@@ -101,14 +109,6 @@ We can migitate this problem by making the parameter mandatory, but it degrades 
 
 Nevertheless, it only affects tests, so it is ok to leave it as it is.
 :::
-
-npm script we need:
-
-```json
-{
-	"test": "firebase emulators:exec --only firestore \"jest --forceExit\""
-}
-```
 
 Example:
 

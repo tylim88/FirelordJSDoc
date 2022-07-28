@@ -6,6 +6,14 @@ sidebar_position: 3
 
 This section discuss how to use Firelord with [emulator](https://firebase.google.com/docs/emulator-suite) and `jest`.
 
+Remember to prepare script like this:
+
+```json
+{
+	"test": "firebase emulators:exec --only firestore \"jest --forceExit\""
+}
+```
+
 :::note
 This is not a tutorial of how to use `emulator` and `jest`, we assume you already know how to use them.
 :::
@@ -15,16 +23,8 @@ import { Image } from '@site/src/components/Image'
 ## Usage 🦜
 
 :::tip
-Firestore Admin doesnt require `@firebase/rules-unit-testing` to test. And unlike the web version, in admin version you can skip the firestore instance parameter of everything.
+Firestore Admin doesnt require `@firebase/rules-unit-testing` to test. And unlike the web version.
 :::
-
-npm script we need:
-
-```json
-{
-	"test": "firebase emulators:exec --only firestore \"jest --forceExit\""
-}
-```
 
 ```ts
 import {
