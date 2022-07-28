@@ -38,7 +38,7 @@ If you want maximum type safe, you can easily union every field read type with o
 
 Union all read fields with `undefined` degrade developer experience because you always need to check for `undefined`(albeit safer).
 
-The tradeoff of security is ease of use.
+The trade-off of security is ease of use.
 
 :::
 
