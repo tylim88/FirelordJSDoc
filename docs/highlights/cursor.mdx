@@ -10,19 +10,32 @@ import { Image } from '@site/src/components/Image'
 
 ## Empty Rest Parameter 🕊️
 
-Firestore throw if cursor has no argument, FirelordJS handle it by blocking all non-tuple type.
+Firestore throw if cursor has no argument, FirelordJS handle it by blocking all non-tuple type and empty tuple type.
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/cursor1.png?raw=true"
 	text="same behavior apply to all other cursors"
 />
 
-## Limitation
+Why block empty tuple type?
 
-Cursor rest argument must be tuple type to work, it will rejects all array type, resulting in type error.
+## Why block Empty Tuple Type?
 
-- What this mean is, for some reason if you want to have computed array as cursor rest argument(maybe you are doing some high level abstraction), it will never pass the type check.
-- But if you ignoring the type error and force your way in, and if the computed array turn out to be an emtpty array, it will not result in runtime error because FirelordJS handle them by removing the cursor.
+Because Firestore will throw if cursor don't have any argument.
+
+## Why block Array Type?
+
+In order to make certain rule typing work, FirelordJS need to know the position of each argument, array type does not hold such information.
+
+## What if the arguments is computed?
+
+It is not possible to represent computed arguments as tuple type, it will result in array type.
+
+So yeah it will not pass the type check.
+
+It is very to use computed value as cursor arguments, in case you **really need it**, then ignore the type error with `// @ts-expect-error`
+
+And dont worry about the computed arguments being an empty array, in such case FirelordJS will remove the cursor, there will be no runtime error.
 
 Example:
 
