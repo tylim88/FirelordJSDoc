@@ -83,7 +83,12 @@ export const Header = () => (
 		<div align="center">
 			<i>End Firestore Typing Madness</i>
 		</div>
-
+		<br />
+		<div align="center">
+			<a href="https://github.com/tylim88/FirelordRN" target="_blank">
+				Github
+			</a>
+		</div>
 		<br />
 	</>
 )

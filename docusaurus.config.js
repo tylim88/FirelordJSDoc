@@ -92,26 +92,20 @@ const config = {
 						label: 'React Native',
 						docsPluginId: 'firelordrn',
 					},
-					{
-						href: 'https://github.com/tylim88/FirelordJS',
-						label: 'Web GH',
-						position: 'right',
-					},
-					{
-						href: 'https://github.com/tylim88/Firelord',
-						label: 'Admin GH',
-						position: 'right',
-					},
-					{
-						href: 'https://github.com/tylim88/Firelordrn',
-						label: 'RN GH',
-						position: 'right',
-					},
 				],
 			},
 			footer: {
 				style: 'dark',
-				copyright: `© 2021-${new Date().getFullYear()}. Unprecedented Type Safe Brought To You By Acid Coder`,
+				copyright: `© 2021-${new Date().getFullYear()}. Brought To You By Acid Coder`,
+				links: [
+					{
+						html: `
+						  <a href="https://www.netlify.com" target="_blank" rel="noreferrer noopener" aria-label="Deploys by Netlify">
+							<img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" alt="Deploys by Netlify" width="114" height="51" />
+						  </a>
+						`,
+					},
+				],
 			},
 			prism: {
 				theme: lightCodeTheme,
