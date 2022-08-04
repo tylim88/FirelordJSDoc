@@ -2,7 +2,7 @@
 sidebar_position: 99
 ---
 
-# Doc Legends 🕊️
+# Doc Legends ☢️
 
 :::tip
 You can search a legend to find all topics that are marked with it.
@@ -27,7 +27,7 @@ If you miss the PTSD given to you by the original Firestore API and decide to un
 
 | Legends | Descriptions                                                                                                                                                                                                   | Require Attention? |
 | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| ⚠️      | Runtime alteration that requires active attention when revert FirelordJS to original Firestore SDK. Such alteration yield no explicit Typescript warning by original Firestore SDK of same function arguments. | active             |
+| ☢️      | Runtime alteration that requires active attention when revert FirelordJS to original Firestore SDK. Such alteration yield no explicit Typescript warning by original Firestore SDK of same function arguments. | active             |
 | 🥭      | Alter runtime but does not require active attention when revert back to original Firestore SDK. Yield Typescript warning on revert.                                                                            | passive            |
 | 🍋      | Alter runtime but does not require any attention when revert back to original Firestore SDK. Does not yield Typescript warning on revert.                                                                      | none               |
 | 🍐      | Alters the API. Will yield Typescript warning when revert back to original Firestore SDK. Does not require active attention.                                                                                   | passive            |
@@ -38,9 +38,10 @@ If you miss the PTSD given to you by the original Firestore API and decide to un
 
 **Passive Attention**: Typescript warns you.
 
-Basically you need to pay extra attention to ⚠️ when removing FirelordJS, the rest will let you know by Typescript.
+Basically you need to pay extra attention to ☢️ when removing FirelordJS, the rest will let you know by Typescript.
 
-Here is a list of topics with ⚠️:
+Here is a list of topics with ☢️:
 
 1. **[update implicit data deletion](../highlights/update#circumvent-implicit-data-deletion-%EF%B8%8F)**
 2. **[dealing with empty array(where clause)](../highlights/where##dealing-with-empty-array-%EF%B8%8F)**
+3. and this page itself.

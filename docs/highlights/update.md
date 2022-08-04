@@ -71,7 +71,7 @@ Note 2: FirelordJS highlight the unknown member of the stale value and print out
 
 Note 3: Partial But no Undefined. FirelordJS update allows you to skip member while rejecting `undefined`, stopping undefined from entering database(undefined is not a valid data type).
 
-## Circumvent Implicit Data Deletion ⚠️
+## Circumvent Implicit Data Deletion ☢️
 
 How FirelordJS circumvent data deletion? While the original SDK not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to original SDK update. What you see will always be what you expect in the database, no extra knowledge and attention required.
 
