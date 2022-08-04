@@ -31,4 +31,4 @@ Do note that they are concrete type, they are not existed just for being only as
 
 ## UnassignAble Field Values 🕊️
 
-`arrayRemove`, `arrayUnion` and `increment` are not assignable as type, they only available as output type after type translation, you cannot actively assign them as types and if you do, FirelordJS will replaces them with error messages.
+`arrayRemove`, `arrayUnion` and `increment` are not assignable types, they are type that automatically attached to other types. If we accidentally assign them as type, FirelordJS will replace them with error messages.
