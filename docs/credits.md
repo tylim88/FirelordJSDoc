@@ -4,7 +4,7 @@ sidebar_position: 100
 
 # Credits 🪙
 
-The FirelordJS logo is taken from **[IconPedia](https://www.iconspedia.com/icon/firelord-ozai-icon-25958.html)**.
+The logo is taken from **[IconPedia](https://www.iconspedia.com/icon/firelord-ozai-icon-25958.html)**.
 
 This awesome documentation is made possible by **[Docusaurus](https://docusaurus.io/docs)**.
 
