@@ -10,11 +10,13 @@ We will use `setDoc` in the example, but it works the same for `batch.set` and `
 
 ## Ternary Filter States 🦤
 
-In set operation, both Firestore and FirelordJS forbid you from skipping any member(field), with the exception if set merge is set to true or merge field is defined.
+In set operation, both Firestore and FirelordJS forbid you from skipping any member(field), with the exception if merge is set to true or merge field is defined.
 
-It is recommended to set complete members and fill the field you do not need with default value rather than dropping it.
+If you are using set without merge or merge field, it is recommended to set all members and fill the field we do not need now with **default value** rather than dropping it.
 
-NOTE: `null` is a choice of default value but is not recommended.
+:::caution
+Despite `null` being a popular default value, we strongly discourage the usage of null because it [messes up query](https://stackoverflow.com/a/71173190/5338829).
+:::
 
 This is because a missing field is not query-able by filter, and this creates 3 filter states:
 
@@ -26,7 +28,7 @@ Needless to say, 2 states easier to deal with than 3 states.
 
 Keep in mind that with merge and merge fields options on, all members become partial, this also creates 3 filter states.
 
-Practically speaking we cannot avoid ternary filter states 100%, because a no sql database add and remove fields from time to time.
+Practically speaking we cannot avoid ternary filter states 100%, because a no SQL database add and remove fields from time to time.
 
 ## Stop Unknown Member 🕊️
 
