@@ -29,7 +29,7 @@ In order to make certain rule typing work, FirelordJS need to know the position 
 
 ## What if the arguments is computed?
 
-Unless it is properly typed, most computed array is array type not tuple type hence it cannot pass the type check.
+Unless it is properly typed\*\*, most computed array is array type not tuple type hence it cannot pass the type check.
 
 It is very rare to use computed array as cursor arguments, but if you **really need it**, then ignore the type error with `// @ts-expect-error`
 
@@ -47,4 +47,18 @@ const arr = someArr.map(() => {
 	//.....
 })
 query(colRef, endAt(...arr)) // only reduce to query(colRef) if arr is empty array
+```
+
+\*\* Example of properly typed computed tuple
+
+```ts
+const concat = <T extends readonly unknown[], Y extends readonly unknown[]>(
+	arr1: T,
+	arr2: Y
+) => {
+	return [...arr1, ...arr2] as [...T, ...Y]
+}
+
+concat([1, 2, 3], [4, 5, 6]) // number[]
+concat([1, 2, 3] as const, [4, 5, 6] as const) // [1, 2, 3, 4, 5, 6]
 ```
