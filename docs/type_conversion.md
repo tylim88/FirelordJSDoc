@@ -2,7 +2,7 @@
 sidebar_position: 98
 ---
 
-# Type Conversion 🪶
+# Type Conversion
 
 This page discusses how FirelordJS transforms your types for various uses internally.
 
