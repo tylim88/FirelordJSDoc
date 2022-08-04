@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Possibly Read As Undefined❓
+# Possibly Read As Undefined
 
 This section discusses how `PossiblyReadAsUndefined` works.
 

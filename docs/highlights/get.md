@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Get 🌊
+# Get
 
 This page discusses how get works in general, we will use `get` in the example, but it works the same for`transaction.get`.
 

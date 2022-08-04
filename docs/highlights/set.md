@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Set ☀️
+# Set
 
 This page discusses how sets works and its quirks.
 

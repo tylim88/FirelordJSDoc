@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Inhomogeneous Field Values 🦋
+# Inhomogeneous Field Values
 
 This page discusses how FirelordJS tackles the homogeneous `FieldValue` types.
 

@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Update 🍃
+# Update
 
 This page discusses how updates works and its quirks.
 
