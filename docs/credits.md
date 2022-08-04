@@ -10,4 +10,4 @@ This awesome documentation is made possible by **[Docusaurus](https://docusaurus
 
 Slick CI/CD by **[Github Actions](https://github.com/features/actions/)**, CircleCi is such a nightmare.
 
-Couldn't make it at all without folks at **[Stack Overflow](https://stackoverflow.com/)**.
+Couldn't make it at all without folks at **[Stack Overflow](https://stackoverflow.com/)**, special thanks to [Titian](https://stackoverflow.com/users/125734/titian-cernicova-dragomir) and [jcalz](https://stackoverflow.com/users/2887218/jcalz).
