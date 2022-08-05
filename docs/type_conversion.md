@@ -10,18 +10,19 @@ Type transformation is needed because for read, write and compare operation requ
 
 ## Conversion Table 🕊️
 
-| Base                  | Read              | Write                                  | Compare               |
-| --------------------- | ----------------- | -------------------------------------- | --------------------- |
-| `number`              | `number`          | `number` \| `Increment`                | `number`              |
-| `numeric literal`     | `numeric literal` | `numeric literal`                      | `numeric literal`     |
-| `string`              | `string`          | `string`                               | `string`              |
-| `null`                | `null`            | `null`                                 | `null`                |
-| `Date` \| `Timestamp` | `Timestamp`       | `Timestamp` \| `Date`                  | `Timestamp` \| `Date` |
-| `ServerTimestamp`     | `Timestamp`       | `ServerTimestamp`                      | `Timestamp` \| `Date` |
-| `GeoPoint`            | `GeoPoint`        | `GeoPoint`                             | `GeoPoint`            |
-| `object`              | `object`          | `object`                               | `object`              |
-| `A[]`                 | `A[]`             | `A[]` \| `ArrayRemove` \| `ArrayUnion` | `A[]`                 |
-| `Bytes`               | `Bytes`           | `Bytes`                                | `Bytes`               |
+| Base                | Read              | Write                                        | Compare               |
+| ------------------- | ----------------- | -------------------------------------------- | --------------------- |
+| `number`            | `number`          | `number` \| `Increment`                      | `number`              |
+| `numeric literal`   | `numeric literal` | `numeric literal`                            | `numeric literal`     |
+| `string`            | `string`          | `string`                                     | `string`              |
+| `string literal`    | `string literal`  | `string literal`                             | `string literal`      |
+| `null`              | `null`            | `null`                                       | `null`                |
+| `Timestamp`\|`Date` | `Timestamp`       | `Timestamp` \| `Date`                        | `Timestamp` \| `Date` |
+| `ServerTimestamp`   | `Timestamp`       | `ServerTimestamp`                            | `Timestamp` \| `Date` |
+| `GeoPoint`          | `GeoPoint`        | `GeoPoint`                                   | `GeoPoint`            |
+| `object`            | `object`          | `object`                                     | `object`              |
+| `T[]`               | `T[]`             | `T[]` \| `ArrayRemove<T>` \| `ArrayUnion<T>` | `T[]`                 |
+| `Bytes`             | `Bytes`           | `Bytes`                                      | `Bytes`               |
 
 Internally, FirelordJS converts your type into 3 main types for different purpose:
 

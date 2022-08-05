@@ -2,7 +2,7 @@
 sidebar_position: -1
 ---
 
-# About 🐤
+# About
 
 The highlight section list down the nitty-gritty of Firestore APIs and how FirelordJS solves them.
 
