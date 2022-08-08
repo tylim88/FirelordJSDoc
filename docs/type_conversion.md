@@ -20,7 +20,6 @@ Type transformation is needed because for read, write and compare operation requ
 | `Timestamp`\|`Date` | `Timestamp`       | `Timestamp` \| `Date`                        | `Timestamp` \| `Date` |
 | `ServerTimestamp`   | `Timestamp`       | `ServerTimestamp`                            | `Timestamp` \| `Date` |
 | `GeoPoint`          | `GeoPoint`        | `GeoPoint`                                   | `GeoPoint`            |
-| `object`            | `object`          | `object`                                     | `object`              |
 | `T[]`               | `T[]`             | `T[]` \| `ArrayRemove<T>` \| `ArrayUnion<T>` | `T[]`                 |
 | `Bytes`             | `Bytes`           | `Bytes`                                      | `Bytes`               |
 
