@@ -1,0 +1,31 @@
+---
+sidebar_position: 1
+---
+
+# Contributing
+
+Simple:
+
+1. For starter, you can refactor files in `src/types` folder, especially `src/types/queryConstraintLimitation.ts`.
+
+2. Simplify type logic and remove dead code.
+
+3. Speed up the test like cache Firebase Tools in Github Action.
+
+4. Utilizing the latest Typescript feature, like [extends Constraints on infer Type Variables](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/#extends-constraints-on-infer-type-variables) to reduce code length.
+
+5. Cover more tests, currently need more cursor and limit tests.
+
+6. You can also work on the [documentation](https://github.com/tylim88/FirelordJSDoc).
+
+Hard:
+
+1. Looking for a challenge? Then you can try to implement `mandatory field type`:
+
+- It is a special type that assign (with union) to object member.
+- Members with such type become `required` even in `update` operations(all members in update operations are partial by default).
+- Practical usage is something like `updatedAt` member that keep track of document last updated time.
+
+2. Support tuple and Record<number, unknown> type.
+
+3. Query Constraint type affect Read type.
