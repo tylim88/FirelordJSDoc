@@ -105,9 +105,9 @@ describe('test whether works with emulator', () => {
 :::caution
 When using `@firebase/rules-unit-testing`, you must supply Firestore instance to `getFirelord`, `WriteBatch` and `runTransaction`.
 
-We can migitate this problem by making the parameter mandatory, but it degrades dev experience (we need to always supply the Firestore instance).
+We can migitate this problem by making the parameter mandatory, but it degrades dev experience (we don't want to always supply the Firestore instance).
 
-Nevertheless, it only affects tests, so it is ok to leave it as it is.
+Though I may fix this in future, nevertheless, it only affects tests, so it is ok to leave it as it is for now.
 :::
 
 Example:
