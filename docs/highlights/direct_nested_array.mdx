@@ -10,7 +10,7 @@ import { Image } from '@site/src/components/Image'
 
 ## What is Direct Nested Array 🕊️
 
-Direct nested array type is array type where its element type is also an array, eg: `number[][]` and `[{a:string[][]}]`, such types are invalid in Firestore.
+Direct nested array type is array type where its element type is also an array, eg: `number[][]` and `[{a:string[][]}]`, such types are invalid in Firestore（throw in runtime）.
 
 :::info
 indirect nested array is a valid type, eg: `[{ a:string[] }]` and `[{ a:{ b:string[] }[] }]`
