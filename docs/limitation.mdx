@@ -4,25 +4,30 @@ sidebar_position: 99
 
 # Limitation
 
-This section list down limitions of FirelordJS due to reason like:
-
-1. unsupported
-2. or straight up impossible
+This section list down limitions of FirelordJS due to reason unsupported or straight up impossible.
 
 ## Data Type
 
 1. Record<number, T>
-2. tuple.
-3. cannot union object type that are created with Type Alias with any other type except PossiblyReadAsUndefined.
-4. Record<string, T>
+2. Record<string, T>
+3. tuple.
+4. cannot union object type that are created with Type Alias with any other type except PossiblyReadAsUndefined.
 
-1, 2 and 3 may have some use case but not practical.
+1, 2 are technically possible (implemented in FiresageJS) but it is not a recommended practise in Firestore.
 
-4 is in the roadmap.
+Ideally key should not be arbitarly, it means we may trying to store potentially large data in a document (max 1 MB only), it is be tter to create a new collection instead.
+
+3 is also possible but why would we want to store a tuple? The only use case that is make sense is to store union of tuple: [1,2,3] | [4,5,6], but still doesn't offer huge advantage over array.
+
+4 is technically possible (implemented in FiresageJS internal use), it is possible to generate path for field that union object literal with other type by using Typesript distributive properties. But gain, not practical.
+
+so all 1,2,3,4 will not be supported in the future.
 
 ## Empty Value Handling
 
 1. limit and limitToLast cannot stop computed 0 value, resulting in runtime error.
 2. cursor rest argument must be tuple type to work.
 
-1 may has remedy in future, 2 see no possibility to be improved at current stage.
+It is possible to solve 1 but the solution is too fragile, so not going to work on it.
+
+2 see no possibility to be improved at current stage.
