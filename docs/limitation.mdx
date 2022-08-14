@@ -19,7 +19,7 @@ Ideally key should not be arbitarly, it means we may trying to store potentially
 
 3 is also possible but why would we want to store a tuple? The only use case that is make sense is to store union of tuple: [1,2,3] | [4,5,6], but still doesn't offer huge advantage over array.
 
-4 is technically possible (implemented in FiresageJS internal use), it is possible to generate path for field that union object literal with other type by using Typesript distributive properties. But gain, not practical.
+4 is technically possible (implemented in FiresageJS internal use), it is possible to generate path for field that union object literal with other type by using Typesript distributive properties. But again, not practical.
 
 so all 1,2,3,4 will not be supported in the future.
 
@@ -30,4 +30,4 @@ so all 1,2,3,4 will not be supported in the future.
 
 It is possible to solve 1 but the solution is too fragile, so not going to work on it.
 
-2 see no possibility to be improved at current stage.
+Not possible way to improve 2 at current stage because position must be known.
