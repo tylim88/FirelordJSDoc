@@ -82,7 +82,7 @@ Now here is the interesting thing, in the case of merge set, it will not replace
 
 :::note
 
-A merge set is behaving like proper update than update itself!
+merge set is behaving like proper update than update itself!
 
 Apparently Firestore want us to start questioning our own existence.
 
@@ -145,7 +145,7 @@ This is NOT what you will get:
 
 The question is, should FirelordJS alters the behavior of set, so it tallies with the characteristic of update?
 
-FirestoreJS trying not to alters the behavior if possible, the reason FirelordJS alters update because of update's implicit data deletion, so it is out of necessity.
+FirelordJS trying not to alters the behavior if possible, the reason FirelordJS alters update because of update's implicit data deletion behavior, so it is out of necessity.
 
 But there is no dangerous implicit effect in set operations, so FirestoreJS keep thing as it is now.
 
