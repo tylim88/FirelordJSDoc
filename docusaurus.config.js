@@ -35,26 +35,16 @@ const config = {
 		],
 	],
 	plugins: [
-		[
-			'@docusaurus/plugin-content-docs',
-			{
-				id: 'firelord',
-				path: 'firelord',
-				routeBasePath: 'firelord',
-				sidebarPath: require.resolve('./sidebarsAdmin.js'),
-				// ... other options
-			},
-		],
-		[
-			'@docusaurus/plugin-content-docs',
-			{
-				id: 'firelordrn',
-				path: 'firelordrn',
-				routeBasePath: 'firelordrn',
-				sidebarPath: require.resolve('./sidebarsRN.js'),
-				// ... other options
-			},
-		],
+		// [
+		// 	'@docusaurus/plugin-content-docs',
+		// 	{
+		// 		id: 'firelord',
+		// 		path: 'firelord',
+		// 		routeBasePath: 'firelord',
+		// 		sidebarPath: require.resolve('./sidebarsAdmin.js'),
+		// 		// ... other options
+		// 	},
+		// ],
 	],
 
 	themeConfig:
@@ -76,21 +66,7 @@ const config = {
 						type: 'doc',
 						docId: 'quick_start',
 						position: 'left',
-						label: 'Web',
-					},
-					{
-						type: 'doc',
-						docId: 'quick_start',
-						position: 'left',
-						label: 'Admin',
-						docsPluginId: 'firelord',
-					},
-					{
-						type: 'doc',
-						docId: 'quick_start',
-						position: 'left',
-						label: 'React Native',
-						docsPluginId: 'firelordrn',
+						label: 'Firestore',
 					},
 				],
 			},
