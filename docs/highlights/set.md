@@ -30,7 +30,7 @@ Keep in mind that with merge and merge fields options on, all members become par
 
 Practically speaking we cannot avoid ternary filter states 100%, because a no SQL database add and remove fields from time to time.
 
-## Stop Unknown Member 🕊️
+## Stop Unknown Member
 
 Like update, FirelordJS stop unknown member from entering Firestore.
 
@@ -51,7 +51,7 @@ see **[update](./update#the-firelordjss-way)** for more explanation about this b
 
 </div>
 
-## Merge 🕊️
+## Merge
 
 A merge set(set with merge : true) can behave like update, all members are partial, except that update can only updates exiting document while set simply create the document if it does not exist.
 
@@ -88,7 +88,7 @@ Apparently Firestore want us to start questioning our own existence.
 
 :::
 
-## Merge Fields 🕊️
+## Merge Fields
 
 Merge fields Set behave like merge, except that it updates only the listed member and ignore the rest.
 
@@ -102,7 +102,7 @@ Merge fields Set behave like merge, except that it updates only the listed membe
     <small>FirelordJS reject unknown field path</small>
 </div>
 
-## Dot Notation Path 🕊️
+## Dot Notation Path
 
 You cannot use dot notation for data, both Firestore and FirelordJS will stop you from you doing so.
 

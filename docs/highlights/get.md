@@ -6,7 +6,7 @@ sidebar_position: 3
 
 This page discusses how get works in general, we will use `get` in the example, but it works the same for`transaction.get`.
 
-## SnapshotOptions 🕊️
+## SnapshotOptions
 
 If `SnapshotOptions` is `{ serverTimestamps: 'none' | 'previous' }`, then all the server timestamp is null if it is not yet resolved when you read it, **[source](https://stackoverflow.com/a/65627037/5338829)**.
 
@@ -44,7 +44,7 @@ If `estimate` is selected:
 </div>
 <br/>
 
-## documentSnapshot.get 🕊️
+## documentSnapshot.get
 
 Firestore chooses to go full YOLO on documentSnapshot.get, it simply does not care.
 

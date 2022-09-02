@@ -42,7 +42,7 @@ The trade-off of security is ease of use.
 
 :::
 
-## Array 🕊️
+## Array
 
 If you assign `PossiblyReadAsUndefined` to an array type directly, FirelordJS will replaces them with error message.
 
@@ -67,7 +67,7 @@ However assigning to array indirectly and union with array are legal:
     <small>indirectly</small>
 </div>
 
-## Write 🕊️
+## Write
 
 What happen to `PossiblyReadAsUndefined` type in write operation?
 

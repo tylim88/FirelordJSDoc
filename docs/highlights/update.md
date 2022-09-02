@@ -54,7 +54,7 @@ Truly lack of consideration.
 
 :::
 
-## The FirelordJS's Way 🕊️
+## The FirelordJS's Way
 
 FirelordJS solves all the stated concerns:
 
@@ -81,7 +81,7 @@ Important, if you want to uninstall FirelordJS and revert to original SDK, pleas
 
 :::
 
-## Why Not Just Drop The Nested Form Support? 🕊️
+## Why Not Just Drop The Nested Form Support?
 
 _Q: Why not simply forbid developers from using nested form? It would be easier for user to revert to original SDK._
 

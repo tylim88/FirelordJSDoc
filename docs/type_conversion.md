@@ -8,7 +8,7 @@ This page discusses how FirelordJS transforms your types for various uses intern
 
 Type transformation is needed because for read, write and compare operation require or output different data type.
 
-## Conversion Table 🕊️
+## Conversion Table
 
 | Base                | Read              | Write                                        | Compare               |
 | ------------------- | ----------------- | -------------------------------------------- | --------------------- |

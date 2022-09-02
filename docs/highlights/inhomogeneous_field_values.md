@@ -6,7 +6,7 @@ sidebar_position: 4
 
 This page discusses how FirelordJS tackles the homogeneous `FieldValue` types.
 
-## Conversion Table 🕊️
+## Conversion Table
 
 There are 5 field values in Firestore:
 
@@ -29,6 +29,6 @@ FirelordJS solves this by assigning [unique symbol type](https://www.typescriptl
 
 Do note that they are concrete type, they are not existed just for being only as type, it is possible to access `Firelord.FieldValue` and `Firelord.ArrayFieldValue` value in run time.
 
-## UnassignAble Field Values 🕊️
+## UnassignAble Field Values
 
 `arrayRemove`, `arrayUnion` and `increment` are not assignable types, they are type that automatically attached to other types. If we accidentally assign them as type, FirelordJS will replace them with error messages.
