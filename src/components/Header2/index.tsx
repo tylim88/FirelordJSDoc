@@ -93,28 +93,7 @@ export const Header = () => (
 		</div>
 		<br />
 		<div align="center">
-			<i>
-				Extremely High Precision Typescript Wrapper for Firestore Admin,
-				Providing Unparalleled Type Safe and Dev Experience
-			</i>
-		</div>
-		<br />
-		<div align="center">
-			<i>
-				Modular, Minuscule, Intuitive, Unopinionated, Craftsmanship, Ultimate,
-				Peaceful, Deep
-			</i>
-		</div>
-		<br />
-		<div align="center">
-			<i>
-				Of The VFQAT &#160;&#160;||&#160;&#160; By The VFQAT
-				&#160;&#160;||&#160;&#160; For The VFQAT
-			</i>
-		</div>
-		<br />
-		<div align="center">
-			<i>End Firestore Typing Madness</i>
+			<i>Extremely High Precision Typescript Wrapper for Firestore Admin</i>
 		</div>
 		<br />
 		<div align="center">

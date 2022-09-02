@@ -61,27 +61,8 @@ export const Header = () => (
 		<br />
 		<div align="center">
 			<i>
-				Extremely High Precision Typescript Wrapper for Firestore React Native,
-				Providing Unparalleled Type Safe and Dev Experience
+				Extremely High Precision Typescript Wrapper for Firestore React Native
 			</i>
-		</div>
-		<br />
-		<div align="center">
-			<i>
-				Modular, Minuscule, Intuitive, Unopinionated, Craftsmanship, Ultimate,
-				Peaceful, Deep
-			</i>
-		</div>
-		<br />
-		<div align="center">
-			<i>
-				Of The VFQAT &#160;&#160;||&#160;&#160; By The VFQAT
-				&#160;&#160;||&#160;&#160; For The VFQAT
-			</i>
-		</div>
-		<br />
-		<div align="center">
-			<i>End Firestore Typing Madness</i>
 		</div>
 		<br />
 		<div align="center">
