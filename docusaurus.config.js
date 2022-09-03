@@ -35,16 +35,16 @@ const config = {
 		],
 	],
 	plugins: [
-		// [
-		// 	'@docusaurus/plugin-content-docs',
-		// 	{
-		// 		id: 'firelord',
-		// 		path: 'firelord',
-		// 		routeBasePath: 'firelord',
-		// 		sidebarPath: require.resolve('./sidebarsAdmin.js'),
-		// 		// ... other options
-		// 	},
-		// ],
+		[
+			'@docusaurus/plugin-content-docs',
+			{
+				id: 'rtdb',
+				path: 'rtdb',
+				routeBasePath: 'rtdb',
+				sidebarPath: require.resolve('./sidebarsRTDB.js'),
+				// ... other options
+			},
+		],
 	],
 
 	themeConfig:
@@ -67,6 +67,13 @@ const config = {
 						docId: 'quick_start',
 						position: 'left',
 						label: 'Firestore',
+					},
+					{
+						type: 'doc',
+						docId: 'quick_start',
+						position: 'left',
+						label: 'Realtime Database',
+						docsPluginId: 'rtdb',
 					},
 				],
 			},
