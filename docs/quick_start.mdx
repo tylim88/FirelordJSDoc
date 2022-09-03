@@ -42,13 +42,13 @@ require Typescript 4.6.2+, Firebase 9+ and @firebase/rules-unit-testing 2+
 
 :::
 
-:::info
+:::tip
 
 The library size on disk is 350KB, most of the code are type definition, the runtime code is at mere 6KB after minified and gzipped.
 
 :::
 
-:::tip
+:::info
 
 The documentation is far from finish, to get the idea how many API this library has, look into the Firebase Firestore API [documentation](https://firebase.google.com/docs/reference/js/firestore_).
 
@@ -65,13 +65,15 @@ Any help wth the documentation is welcomed.
 		// ...other options
 		"strict": true, // compulsory
 		// below options are optional, be sure to google what they do!
-		"noUncheckedIndexedAccess": true, // optional but recommended
+		"noUncheckedIndexedAccess": true,
 		"exactOptionalPropertyTypes": true
 	}
 }
 ```
 
 ## Define The Meta Type
+
+Meta Type is your single source of truth.
 
 ```ts title='dataType.ts'
 import { MetaTypeCreator, ServerTimestamp } from 'firelordjs'
@@ -94,9 +96,8 @@ After you created the Firelord Ref, you no longer need to write collection name 
 :::
 
 ```ts title='init.ts'
-import { getFirelord } from 'firelordjs'
+import { getFirelord, getFirestore } from 'firelordjs'
 import { initializeApp } from 'firebase/app'
-import { getFirestore } from 'firebase/firestore'
 import { Example } from './dataType'
 
 const app = initializeApp({

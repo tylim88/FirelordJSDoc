@@ -75,17 +75,8 @@ After you created the Firelord Ref, you no longer need to write collection name 
 :::
 
 ```ts title='init.ts'
-import { getFirelord } from 'firelordrn'
-import { getFirestore } from '@react-native-firebase/firestore'
+import { getFirelord, getFirestore } from 'firelordrn'
 import { Example } from './dataType'
-import serviceAccount from './serviceAccount.json' // get it from firebase console --> project setting --> service accounts, THIS IS A SECERT!
-// if you run in cloud function
-const app = initializeApp()
-
-// if you run in custom backend or you run in cloud function but want to access other project firestore
-const app = initializeApp({
-	credential: cert(serviceAccount as ServiceAccount),
-})
 
 export const db = getFirestore()
 
