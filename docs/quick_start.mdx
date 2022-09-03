@@ -52,6 +52,8 @@ The library size on disk is 350KB, most of the code are type definition, the run
 
 The documentation is far from finish, to get the idea how many API this library has, look into the Firebase Firestore API [documentation](https://firebase.google.com/docs/reference/js/firestore_).
 
+Unless stated explicitly, all API are similar to the official SDK.
+
 Any help wth the documentation is welcomed.
 
 :::
@@ -190,6 +192,7 @@ const unsub = onSnapshot(
 			const data = docSnapshot.data()
 		})
 	},
+	error => {}, // optional, you can skip this onError callback and move options to here instead
 	{ includeMetadataChanges: false } // optional
 )
 ```

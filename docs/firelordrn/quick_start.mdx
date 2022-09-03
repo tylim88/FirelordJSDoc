@@ -30,7 +30,7 @@ The library size on disk is 350KB and tests, most of the code are type definitio
 :::tip
 FirelordRN API is almost exactly as same as [Firelord](https://firelordjs.com/firelord/quick_start), which mean:
 
-1. They share basically the same documentation, hence we will skip most of the documentation to avoid repetition.
+1. They basically sharing the same documentation, hence we will skip most of the documentation to avoid repetition.
 2. They can also share data type definition.
 
 On surface, only the installation process is different and we import from `firelordrn` instead of `firelord`.
@@ -171,7 +171,9 @@ const unsub = onSnapshot(
 		querySnapshot.forEach(docSnapshot => {
 			const data = docSnapshot.data()
 		})
-	}
+	},
+	error => {}, // optional, you can skip this onError callback and move options to here instead
+	{ includeMetadataChanges: false } // optional
 )
 ```
 

@@ -182,7 +182,8 @@ const unsub = onSnapshot(
 		querySnapshot.forEach(docSnapshot => {
 			const data = docSnapshot.data()
 		})
-	}
+	},
+	error => {} // optional, onError callback
 )
 ```
 
