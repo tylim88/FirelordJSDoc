@@ -56,6 +56,8 @@ On surface, only the installation process is different and we import from `firel
 
 ## Define The Meta Type
 
+Meta Type is your single source of truth.
+
 ```ts title='dataType.ts'
 import { MetaTypeCreator, ServerTimestamp } from 'firelord'
 
@@ -89,10 +91,10 @@ const app = initializeApp({
 	credential: cert(serviceAccount as ServiceAccount),
 })
 
-export const db = getFirestore()
+export const db = getFirestore() // or getFirestore(app), you can skip this line
 
 // Recommendation: Export this if the collection is sub-collection and then fill in collection path later, because sub collection most likely have dynamic document ID.
-export const firelordExample = getFirelord<Example>(db) // shorthand: getFirelord<Example>()
+export const firelordExample = getFirelord<Example>() // or getFirelord<Example>(db)
 // then call them using
 // const example = firelordExample(`parentCollectionName/${someDocId}/SomeCollectionName`) // this is your firelordRef
 
