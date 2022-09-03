@@ -1,0 +1,64 @@
+---
+sidebar_position: 1
+---
+
+# Contributing
+
+Simple:
+
+1. Simplify type logic and remove dead code.
+
+2. Utilizing the latest Typescript feature.
+
+3. Cover more tests, type tests, run time tests etc etc.
+
+4. You can also work on the [documentation](https://github.com/tylim88/FirelordJSDoc).
+
+Hard:
+
+1. Looking for a challenge? Then you can try to implement `mandatory field type`:
+
+- It is a special type that assign (with union) to object member.
+- Members with such type become `required` even in `update` operations(all members in update operations are partial by default).
+- Practical usage is something like `updatedAt` member that keep track of document last updated time.
+
+2. Query Constraint type affect Read type.
+
+## Running The Source Code
+
+Run `npm i`, then create a `.env` file in the project root directory and add this line:
+
+This library test against both emulator and real Firestore, please allow restriction free read and write in your Firestore rule.
+
+please use dummy Firebase project.
+
+### For Web:
+
+```
+PROJECT_ID="your-firebase-project-id"
+```
+
+Despite PROJECT_ID is not a secret, you should hide(don't upload to Github) it because you want to allow restriction free read and write for smooth testing.
+
+### For Admin:
+
+```
+TYPE="xxx"
+PROJECT_ID="xxx"
+PRIVATE_KEY_ID="xxx"
+PRIVATE_KEY='"xxx"'
+CLIENT_EMAIL="xxx"
+CLIENT_ID="xxx"
+AUTH_URI="xxx"
+TOKEN_URI="xxx"
+AUTH_PROVIDER_X509_CERT_URL="xxx"
+CLIENT_X509_CERT_URL="xxx"
+```
+
+Do not expose admin secrets.
+
+Place a copy the `.env` file into `codeForDoc` directory, then run:
+
+1. `npm run d-test` to test development code.
+2. `npm run d-b-test` to test built code.
+3. `npm run d-p-test` to test published code.

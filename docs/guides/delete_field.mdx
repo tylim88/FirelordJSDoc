@@ -26,7 +26,7 @@ You can delete 'a' field because one of the 'a' field types is 'deleteField', th
 </div>
 <br />
 
-This mechanism is needed because we need to tell FirelordJS if a field is deletable, then its read type is possibly `undefined` and the `DeleteField` union `undefined` to the field's read type.
+This mechanism is needed because we need to tell FirelordJS if a field is deletable, its read type is possibly `undefined`.
 
 :::note
 
@@ -36,7 +36,7 @@ FirelordJS does not simply union every type with `undefined` by default, because
 
 ## DeleteField Rules
 
-This is how the rule you need to obey when using original Firestore deleteField:
+This is the rule you need to obey when using original Firestore SDK deleteField:
 
 1. To use deleteField in set operation, you need to set merge to true, or have any merge field(empty array also works).
 
@@ -63,7 +63,7 @@ Function updateDoc() called with invalid data. deleteField() can only appear at 
 
 <br />
 
-Seriously who make these APIs, they are terrible! The insimilarity between `set` and `update` are beyond words.
+Confused? You should.
 
 <br />
 
@@ -85,28 +85,36 @@ Seriously who make these APIs, they are terrible! The insimilarity between `set`
 	text=""
 />
 
-### With FirelordJS
+## With FirelordJS
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField7.png?raw=true"
 	text="FirelordJS stops you from doing it the wrong way, provide hint and relax certain limitation with internal flatten."
 />
 
+For field union with `DeleteField` type.
+
+With set: no delete operation, trigger type error.
+
+With set merge: delete operation is allowed just like original SDK.
+
+With update: FirelordJS allow the delete operation regardless of nested or flatten.
+
 You are safe against `set` no merge options, `set` with { merge:false } and `update` low level exceptions, no room for errors.
 
 ## Array
 
-If you assign `DeleteField` to array type directly or indirectly, FirelordJS will replaces them with error message.
+If you assign `DeleteField` as array type or as array element type, FirelordJS will replaces them with error message.
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField3.png?raw=true" />
-	<small>directly</small>
+	<small>as array type</small>
 </div>
 
 <br />
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/deleteField4.png?raw=true" />
-	<small>indirectly</small>
+	<small>as array element type</small>
 </div>
 
 Explanations:

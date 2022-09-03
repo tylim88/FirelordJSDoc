@@ -92,10 +92,13 @@ export const Header = () => (
 			</a>
 		</div>
 		<br />
-		<div align="center">Typescript Wrapper for Realtime Database Web</div>
+		<div align="center">
+			Extreme Type Safe For Realtime Database Web, Write RTDB Code That Stand
+			The Test Of Time
+		</div>
 		<br />
 		<div align="center">
-			<i>In The Relentless Pursuit Of Absolute Type Correctness</i>
+			<i>In The Relentless Pursuit Of Correctness</i>
 		</div>
 		<br />
 		<div align="center">
