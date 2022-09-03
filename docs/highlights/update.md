@@ -8,9 +8,9 @@ This page discusses how updates works and its quirks.
 
 We will use `updateDoc` in the example, but it works the same for `batch.update` and `transaction.update`.
 
-## Dangerous Firestore SDK Update API 🦤
+There are 2 type safe issues and 1 critical runtime issue in the original Firestore SDK update API.
 
-There are 2 type issues and 1 critical runtime issue in the original Firestore SDK update API.
+## Unsafe Type
 
 1. Accept unknown(excess) member from stale value, resulting in storing unnecessary information in Firestore.
 
@@ -31,7 +31,9 @@ Fresh value refer to value that is not attached to a variable.
 </div>
 <br/>
 
-3. And guess what will happens to the code below:
+## Implicit Data Deletion🦤
+
+Guess what will happens to the code below:
 
 <div align='center'>
     <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/update2.png?raw=true' /></div>
@@ -54,7 +56,7 @@ Truly lack of consideration.
 
 :::
 
-## The FirelordJS's Way
+## Solution To Unsafe Type
 
 FirelordJS solves all the stated concerns:
 
@@ -71,9 +73,9 @@ Note 2: FirelordJS highlight the unknown member of the stale value and print out
 
 Note 3: Partial But no Undefined. FirelordJS update allows you to skip member while rejecting `undefined`, stopping undefined from entering database(undefined is not a valid data type).
 
-## Circumvent Implicit Data Deletion ☢️
+## Solution to Implicit Data Deletion ☢️
 
-How FirelordJS circumvent data deletion? While the original SDK not able to handle nested form correctly, it has no issue with dot notation form, so FirelordJS simply flatten down the data before pass it to original SDK update. What you see will always be what you expect in the database, no extra knowledge and attention required.
+How FirelordJS circumvent data deletion? While the original SDK not able to handle nested form correctly, it has no issue with dot notation(flatten) form, so FirelordJS simply flatten down the data before pass it to original SDK update. Your input is always what you expect in the database, with no extra knowledge and attention required.
 
 :::caution
 
