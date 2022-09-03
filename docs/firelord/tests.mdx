@@ -40,9 +40,39 @@ import {
 	MetaTypeCreator,
 } from 'firelordjs'
 import { getFirestore } from 'firebase-admin/firestore'
-import { initializeApp } from 'firebase-admin/app'
+import { initializeApp, ServiceAccount } from 'firebase-admin/app'
 
-initializeApp({ projectId: 'forTestJustUseRandomId' })
+// for cloud function
+initializeApp()
+
+// for custom backend, in the .env file:
+/* 
+TYPE="xxx"
+PROJECT_ID="xxx"
+PRIVATE_KEY_ID="xxx"
+PRIVATE_KEY='"-----BEGIN PRIVATE KEY-----\nXXX\n-----END PRIVATE KEY-----\n"' # yup, must enclosed inside single quotes
+CLIENT_EMAIL="xxx"
+CLIENT_ID="xxx"
+AUTH_URI="xxx"
+TOKEN_URI="xxx"
+AUTH_PROVIDER_X509_CERT_URL="xxx"
+CLIENT_X509_CERT_URL="xxx"
+*/
+const env = process.env
+initializeApp({
+	credential: cert({
+		type: env.TYPE,
+		project_id: env.PROJECT_ID,
+		private_key_id: env.PRIVATE_KEY_ID,
+		private_key: JSON.parse(env.PRIVATE_KEY!),
+		client_email: `firebase-adminsdk-ptef8@${env.PROJECT_ID}.iam.gserviceaccount.com`,
+		client_id: env.CLIENT_ID,
+		auth_uri: env.AUTH_URI,
+		token_uri: env.TOKEN_URI,
+		auth_provider_x509_cert_url: env.AUTH_PROVIDER_X509_CERT_URL,
+		client_x509_cert_url: env.CLIENT_X509_CERT_URL,
+	} as ServiceAccount),
+})
 
 type User = MetaTypeCreator<{ name: string; age: number }, 'User', string>
 const firestore = getFirestore()
