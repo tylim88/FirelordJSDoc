@@ -34,9 +34,9 @@ FirelordJS does not simply union every type with `undefined` by default, because
 
 :::
 
-## DeleteField Rules
+## Quirky Official SDK DeleteField
 
-This is the rule you need to obey when using original Firestore SDK deleteField:
+This is the rule you need to obey when using official Firestore SDK deleteField:
 
 1. To use deleteField in set operation, you need to set merge to true, or have any merge field(empty array also works).
 
@@ -96,7 +96,7 @@ For field union with `DeleteField` type.
 
 With set: no delete operation, trigger type error.
 
-With set merge: delete operation is allowed just like original SDK.
+With set merge: delete operation is allowed just like official SDK.
 
 With update: FirelordJS allow the delete operation regardless of nested or flatten.
 

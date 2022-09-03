@@ -16,7 +16,7 @@ The idea behind merging is code reuse and reduce maintenance, but there are tech
 
 4. FirelordJS wraps V9 into type safe V9 and Firelord wraps V8 into type safe V9. So the wrapping logics are different, which mean merging will add significant amount of code.
 
-5. Both libraries import original types from original SDKs to keep internal type safe. If we merge both library, then we would have 2 set of original types.
+5. Both libraries import official types from official SDKs to keep internal type safe. If we merge both library, then we would have 2 set of official types.
 
 6. Some tests are also different, for example FirelordJS need to test against `@firebase/rules-unit-testing` but Firelord don't have to.
 

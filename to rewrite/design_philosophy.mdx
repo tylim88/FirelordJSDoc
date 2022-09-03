@@ -41,12 +41,12 @@ Core principles of FirelordJS:
 
 1. Familiarity (a.k.a knowledge reuse):
 
-   - The wrapper API must be at least identical to the original Firestore SDK and can only be simpler onward.
-   - The wrapper runtime behavior must be at least identical to the original Firestore SDK and can only be more intuitive onward.
+   - The wrapper API must be at least identical to the official Firestore SDK and can only be simpler onward.
+   - The wrapper runtime behavior must be at least identical to the official Firestore SDK and can only be more intuitive onward.
    - Benefits:
-     - Greatly reduce the learning cost, developers can simply reuse the knowledge they have learned in the original API.
+     - Greatly reduce the learning cost, developers can simply reuse the knowledge they have learned in the official API.
      - No surprise behavior in runtime.
-     - If developers decided not to use the wrapper anymore, they can easily fallback to the original API.
+     - If developers decided not to use the wrapper anymore, they can easily fallback to the official API.
      - Low cost to get in, low cost to get out.
 
 2. Type it and forget.
@@ -59,7 +59,7 @@ Core principles of FirelordJS:
 3. Always choose non invasive solution if possible.
 
    - Never alter the runtime behavior in any way that will alter developers' intention.(unopinionated)
-   - Only alter the runtime behavior to be more intuitive if the original API runtime behavior is quirky(high cognitive cost).
+   - Only alter the runtime behavior to be more intuitive if the official API runtime behavior is quirky(high cognitive cost).
    - Prefer type level validation over runtime validation for inputs(code level input, not to be confused with user input validation, although those 2 can overlap).
      - Runtime validation is costly:
        - It adds code resulting in slower runtime.

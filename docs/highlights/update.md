@@ -8,7 +8,7 @@ This page discusses how updates works and its quirks.
 
 We will use `updateDoc` in the example, but it works the same for `batch.update` and `transaction.update`.
 
-There are 2 type safe issues and 1 critical runtime issue in the original Firestore SDK update API.
+There are 2 type safe issues and 1 critical runtime issue in the official Firestore SDK update API.
 
 ## Unsafe Type
 
@@ -75,17 +75,17 @@ Note 3: Partial But no Undefined. FirelordJS update allows you to skip member wh
 
 ## Solution to Implicit Data Deletion ☢️
 
-How FirelordJS circumvent data deletion? While the original SDK not able to handle nested form correctly, it has no issue with dot notation(flatten) form, so FirelordJS simply flatten down the data before pass it to original SDK update. Your input is always what you expect in the database, with no extra knowledge and attention required.
+How FirelordJS circumvent data deletion? While the official SDK not able to handle nested form correctly, it has no issue with dot notation(flatten) form, so FirelordJS simply flatten down the data before pass it to official SDK update. Your input is always what you expect in the database, with no extra knowledge and attention required.
 
 :::caution
 
-Important, if you want to uninstall FirelordJS and revert to original SDK, please replace all the nested form with dot notation form or else your fields may get deleted due to original SDK behavior.
+Important, if you want to uninstall FirelordJS and revert to official SDK, please replace all the nested form with dot notation form or else your fields may get deleted due to official SDK behavior.
 
 :::
 
 ## Why Not Just Drop The Nested Form Support?
 
-_Q: Why not simply forbid developers from using nested form? It would be easier for user to revert to original SDK._
+_Q: Why not simply forbid developers from using nested form? It would be easier for user to revert to official SDK._
 
 The reason is simple: usability.
 
