@@ -38,10 +38,10 @@ const config = {
 		[
 			'@docusaurus/plugin-content-docs',
 			{
-				id: 'rtdb',
-				path: 'rtdb',
-				routeBasePath: 'rtdb',
-				sidebarPath: require.resolve('./sidebarsRTDB.js'),
+				id: 'firesage',
+				path: 'firesage',
+				routeBasePath: 'firesage',
+				sidebarPath: require.resolve('./sidebarsFireSage.js'),
 				// ... other options
 			},
 		],
@@ -73,7 +73,7 @@ const config = {
 						docId: 'quick_start',
 						position: 'left',
 						label: 'Realtime Database',
-						docsPluginId: 'rtdb',
+						docsPluginId: 'firesage',
 					},
 				],
 			},
