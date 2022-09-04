@@ -63,7 +63,9 @@ Meta Type is your single source of truth.
 :::tip
 Every detail or rule stated in the code below may sound like runtime validation or something you have to remember, but they are in fact type level validation.
 
-Unless stated explicitly, eg: 'this is a runtime check' or 'you have to remmeber', you should assume everything you read is type level validation.
+Unless stated explicitly, you should assume everything you read is type level validation.
+
+You should also assume all path, key and value are narrowly validated.
 
 In this page, there is no "why", to understand "why", read next pages.
 :::
@@ -75,7 +77,7 @@ import {
 	MetaTypeCreator,
 	ServerTimestamp,
 	PushAbleOnly, // field type, special index signature, is Record<string, T> under the hood
-	PseudoArray, // field type, special index signature, is Record<`${number}`, T> under the hood
+	NumericKeyRecord, // field type, special index signature, is Record<`${number}`, T> under the hood
 	Removable, // field type, utility
 } from 'firesagejs'
 
@@ -89,8 +91,11 @@ export type Example = MetaTypeCreator<{
 	}
 	f: Record<string, 'a' | 'b' | 'c'> // normal index signature
 	g: PushAbleOnly<{ h: number }> // the child of PushAbleOnly node can only be created via `push` function.
-	i: PseudoArray<string> // Firesage replaces all numeric key node { 1:'a', 2:'b', 3:'c' } with error message, use PseudoArray instead
+	i: NumericKeyRecord<string> // Firesage replaces all numeric key node { 1:'a', 2:'b', 3:'c' } with error message, use NumericKeyRecord instead
 }>
+
+// primitive can union with primitive type and Removable
+// non-primitive type cannot union with any other type(except Removable), otherwise Firesage will replaces the type with an error message.
 ```
 
 ## Create Ref
