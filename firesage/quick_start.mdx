@@ -10,8 +10,8 @@ import { Header } from '@site/src/components/FireSageJSHeader'
 
 support **[@firebase/rules-unit-testing and emulator](/guides/tests)**
 
-:::danger
-documentation in progress
+:::tips
+documentation is still in active progress but is viable, you can use the library now.
 :::
 
 ## Installation
@@ -265,6 +265,7 @@ import {
 // onValue listener can listen to any node
 // can listen to both ref and query
 // every listener can accept onError callback and options, both are optional
+// snapshot typing mechanism is same as 'get' snapshot
 
 onChildAdded(
 	query(exampleRef('i'), orderByValue(), startAt('abc', '1'), limitToFirst(4)),
@@ -296,4 +297,27 @@ onValue(
 	error => {}, // optional, onError callback
 	{ onlyOnce: false } // optional, options
 )
+```
+
+## Transaction
+
+```ts
+import { exampleRef } from './createRef'
+import { runTransaction } from 'firesagejs'
+
+// type of 'g' node is PushAbleOnly<{ h: number; j: { k: boolean } }>
+// that is why the return is { h: 123, j: { k: false } }
+;async () => {
+	const result = await runTransaction(
+		exampleRef('g/a1b2c3'),
+		() => {
+			return { h: 123, j: { k: false } }
+		},
+		{ applyLocally: true } // optional, options
+	)
+
+	const committed = result.committed // boolean
+	const snapshot = result.snapshot // typing mechanism is same as 'get' snapshot work
+	const json = result.toJSON() // object
+}
 ```
