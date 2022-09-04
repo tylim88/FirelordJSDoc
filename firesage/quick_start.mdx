@@ -8,6 +8,145 @@ import { Header } from '@site/src/components/FireSageJSHeader'
 
 <Header />
 
-Coming Soon.
+support **[@firebase/rules-unit-testing and emulator](/guides/tests)**
 
-Yes, Typescript wrapper for RTDB is possible.
+:::danger
+documentation in progress
+:::
+
+## Installation
+
+```bash
+npm i firebase firesagejs
+npm i -D @firebase/rules-unit-testing typescript
+```
+
+:::caution
+
+require Typescript 4.8.2+, Firebase 9+ and @firebase/rules-unit-testing 2+
+
+:::
+
+:::tip
+
+The library size on disk is 300KB, most of the code are type definition, the runtime code is at mere 6KB after minified and gzipped.
+
+:::
+
+:::info
+
+The documentation is far from finish, to get the idea how many API this library has, look into the Firebase RTDB API [documentation](https://firebase.google.com/docs/reference/js/database).
+
+Any help wth the documentation is welcomed.
+
+:::
+
+## Typescript Configuration
+
+Meta Type is your single source of truth.
+
+```json title='tsconfig.json'
+{
+	// ...other configs
+	"compilerOptions": {
+		// ...other options
+		"strict": true, // compulsory
+		// below options are optional, be sure to google what they do!
+		"noUncheckedIndexedAccess": true,
+		"exactOptionalPropertyTypes": true
+	}
+}
+```
+
+## Define The Meta Type
+
+```ts title='defineMetaType.ts'
+import {
+	MetaTypeCreator,
+	ServerTimestamp,
+	PushAbleOnly, // field type, special index signature, is Record<string, T> under the hood
+	PseudoArray, // field type, special index signature, is Record<`${number}`, T> under the hood
+	Removable, // field type, utility
+} from 'firesagejs'
+
+export type Example = MetaTypeCreator<{
+	a: 1 | 90 | 3700
+	b: {
+		c: boolean | Removable // only Removable node can be removed via `remove` function.
+		d: {
+			e: ServerTimestamp // ServerTimestamp node only accept server timestamp and not number.
+		}
+	}
+	f: Record<string, 'a' | 'b' | 'c'> // normal index signature
+	g: PushAbleOnly<{ h: number }> // the child of PushAbleOnly node can only be created via `push` function.
+	i: PseudoArray<string> // Firesage replaces all numeric key node { 1:'a', 2:'b', 3:'c' } with error message, please use PseudoArray instead
+}>
+```
+
+## Create Ref
+
+```ts
+import { Example } from './defineMetaType'
+import { initializeApp } from 'firebase/app'
+import { getDatabase, createRef } from 'firesagejs'
+
+const app = initializeApp({
+	projectId: '### PROJECT ID ###',
+})
+
+export const db = getDatabase() // or getDatabase(app), you can skip this
+
+export const exampleRef = createRef<Example>() // or createRef<Example>(db)
+```
+
+## Operations
+
+```ts
+import { exampleRef, db } from './createRef'
+import {
+	set,
+	get,
+	update,
+	serverTimestamp,
+	remove,
+	push,
+	increment,
+} from 'firesagejs'
+//
+;async () => {
+	// it is impossible to use wrong path and wrong value
+	// you can skip db argument (the rest of examples will go without db)
+	// the type of node 'a' is numeric literal 1 | 90 | 3700, it is not possible to use `increment` on it
+	await set(exampleRef(db, 'a'), 1)
+
+	// 1st array is relative child paths
+	// 2nd array is values, 'b/c' is boolean, 'b/d/e' is server timestamp
+	// all paths and values are safely typed, it is impossible to use wrong path or match it with wrong value
+	// the length of values will match the length of paths
+	// finally it scans all paths to find out whether a child path is also a child of another path (if exist it will throw at runtime).
+	// all validations mentioned are done on type level
+	await update(exampleRef(), ['b/c', 'b/d/e'], [true, serverTimestamp()])
+
+	// everything here is type safe, it is impossible to use wrong child name!! See test file https://github.com/tylim88/FireSageJS/blob/main/src/operations/get.test.ts
+	const snapshot = await get(exampleRef('f'))
+	const val = snapshot.val() // value type is what defined in MetaType, in this case it is Record<string, 'a' | 'b' | 'c'> | null
+	const exists = snapshot.exists() // boolean
+	const size = snapshot.size // number
+	const hasChild = snapshot.hasChild('k') // type of argument is what defined in MetaType, in this case it is `string` because 'f' is Record<string, 'a' | 'b' | 'c'>
+	const hasChildren = snapshot.hasChildren() // boolean
+	const json = snapshot.toJSON() // object, this one you have to type cast it by yourself
+	snapshot.forEach((child, index) => {
+		// the official SDK does not provide index, but you get one here, for free
+		// like official SDK, child is also snapshot and can access forEach, val, key, size, exists, child, hasChild, hasChildren, toJSON
+		// child is recursively typed, hooray!!
+	})
+
+	// only node with Removable type can be removed and b/c is boolean | Removable
+	await remove(exampleRef('b/c'))
+
+	// only PushAbleOnly node can be pushed
+	// you cannot set or update PushAbleOnly node
+	// you can update or set the child of PushAbleOnly node, as long as the child itself is not PushAbleOnly
+	await push(exampleRef('g'), { h: increment(1) })
+}
+```
