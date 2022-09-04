@@ -65,8 +65,6 @@ Every detail or rule stated in the code below may sound like runtime validation 
 
 Unless stated explicitly, eg: 'this is a runtime check' or 'you have to remmeber', you should assume everything you read is type level validation.
 
-I hope by now you are aware that "Extreme Type Safe" is not an exaggeration😉.
-
 In this page, there is no "why", to understand "why", read next pages.
 :::
 
@@ -153,7 +151,7 @@ snapshot.forEach((child, index) => {
 // only node with Removable type can be removed and b/c is boolean | Removable
 await remove(exampleRef('b/c'))
 
-// only PushAbleOnly node can be pushed
+// only PushAbleOnly node can be pushed and g is PushAbleOnly<{ h: number }>
 // you cannot set or update PushAbleOnly node
 // you can update or set the child of PushAbleOnly node, as long as the child itself is not PushAbleOnly
 await push(exampleRef('g'), { h: increment(1) })
