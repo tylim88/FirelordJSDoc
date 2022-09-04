@@ -37,6 +37,8 @@ The library size on disk is 300KB, most of the code are type definition, the run
 
 The documentation is far from finish, to get the idea how many API this library has, look into the Firebase RTDB API [documentation](https://firebase.google.com/docs/reference/js/database).
 
+We designed this library to look almost identical to the official SDK to lower the learning curve.
+
 Any help wth the documentation is welcomed.
 
 :::
@@ -57,6 +59,14 @@ Meta Type is your single source of truth.
 	}
 }
 ```
+
+:::tip
+Every detail or rule stated in the code below may sound like runtime validation or something you have to remember and obey, but they are in fact type level validation.
+
+Unless stated explicitly, eg: 'this is a runtime check' or 'you have to remmeber', you should assume everything you read is type level validation.
+
+By now I hope you are aware of "Extreme Type Safe" is not an exaggeration.
+:::
 
 ## Define The Meta Type
 
@@ -124,7 +134,6 @@ import {
 	// all paths and values are safely typed, it is impossible to use wrong path or match it with wrong value
 	// the length of values will match the length of paths
 	// finally it scans all paths to find out whether a child path is also a child of another path (if exist it will throw at runtime).
-	// all validations mentioned are done on type level
 	await update(exampleRef(), ['b/c', 'b/d/e'], [true, serverTimestamp()])
 
 	// everything here is type safe, it is impossible to use wrong child name!! See test file https://github.com/tylim88/FireSageJS/blob/main/src/operations/get.test.ts
