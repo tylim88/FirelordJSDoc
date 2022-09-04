@@ -134,7 +134,7 @@ import {
 	const size = snapshot.size // number
 	const hasChild = snapshot.hasChild('k') // type of argument is what defined in MetaType, in this case it is `string` because 'f' is Record<string, 'a' | 'b' | 'c'>
 	const hasChildren = snapshot.hasChildren() // boolean
-	const json = snapshot.toJSON() // object, this one you have to type cast it by yourself
+	const json = snapshot.toJSON() // object, this one you have to type cast it
 	snapshot.forEach((child, index) => {
 		// the official SDK does not provide index, but you get one here, for free
 		// like official SDK, child is also snapshot and can access forEach, val, key, size, exists, child, hasChild, hasChildren, toJSON
