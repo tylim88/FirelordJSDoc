@@ -66,8 +66,6 @@ Every detail or rule stated in the code below may sound like runtime validation 
 Unless stated explicitly, everything you read is type level validation.
 
 All paths, keys and values are narrowly typed.
-
-In this page, there is no "why", to understand "why", read next pages.
 :::
 
 ## Define The Meta Type
@@ -216,8 +214,8 @@ import {
 			orderByKey(),
 			// when order by key:
 			// there would be no 2nd argument
-			// the 1st type argument must be non numeric string or numeric string
-			// in this case it is non numeric string because 'f' is Record<string, 'a' | 'b' | 'c'>
+			// the 1st argument type is non-numeric string or numeric string
+			// in this case it is non numeric string because type of 'f' is Record<string, 'a' | 'b' | 'c'>
 			endAt('abc'),
 			limitToLast(2)
 		)
@@ -261,11 +259,11 @@ import {
 	onValue,
 } from 'firesagejs'
 
-// onChild listener only listen to node of type Record<string, T>, PushAbleOnly<T> or NumericKeyRecord<T> can be listened, similar rule to query
+// onChild listener only listen to node of type Record<string, T>, PushAbleOnly<T> or NumericKeyRecord<T> can be listened
 // onValue listener can listen to any node
-// can listen to both ref and query
+// all listeners can listen to both ref and query
 // (function overloading)every listener can accept onError callback(optional) or options(optional) or both
-// snapshot typing mechanism is same as 'get' snapshot
+// snapshot typing is same as 'get' snapshot
 
 onChildAdded(
 	query(exampleRef('i'), orderByValue(), startAt('abc', '1'), limitToFirst(4)),
@@ -306,7 +304,7 @@ import { exampleRef } from './createRef'
 import { runTransaction } from 'firesagejs'
 
 // type of 'g' node is PushAbleOnly<{ h: number; j: { k: boolean } }>
-// hence the return is { { h: number; j: { k: boolean } }
+// hence the return type is { { h: number; j: { k: boolean } }
 ;async () => {
 	const result = await runTransaction(
 		exampleRef('g/a1b2c3'),
@@ -317,7 +315,7 @@ import { runTransaction } from 'firesagejs'
 	)
 
 	const committed = result.committed // boolean
-	const snapshot = result.snapshot // typing mechanism is same as 'get' snapshot work
+	const snapshot = result.snapshot // typing is same as 'get' snapshot
 	const json = result.toJSON() // object
 }
 ```
