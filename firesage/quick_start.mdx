@@ -61,7 +61,7 @@ Meta Type is your single source of truth.
 ```
 
 :::tip
-Every detail or rule stated in the code below may sound like runtime validation or something you have to remember, but they are in fact type level validation.
+Every detail or rule stated in the code below may sound like runtime validation or something you have to memorize, but they are in fact type level validation.
 
 Unless stated explicitly, everything you read is type level validation.
 
@@ -148,7 +148,7 @@ import {
 	const size = snapshot.size // number
 	const hasChild = snapshot.hasChild('k') // type of argument is what defined in MetaType, in this case it is `string` because 'f' is Record<string, 'a' | 'b' | 'c'>
 	const hasChildren = snapshot.hasChildren() // boolean
-	const json = snapshot.toJSON() // object, this one you have to type cast it
+	const json = snapshot.toJSON() // object, you have to type cast it
 	snapshot.forEach((child, index) => {
 		// the official SDK does not provide index, but you get one here, for free
 		// like official SDK, child is also snapshot and can access forEach, val, key, size, exists, child, hasChild, hasChildren, toJSON
@@ -204,7 +204,7 @@ import {
 			// and the 2nd argument type is numeric string because the key of NumericKeyRecord is `${number}`
 			startAt('abc', '1'),
 			// limit accept numeric literal that is not negative or float
-			// limit also accept the wide type number(for those who rely on runtime value)
+			// limit also accept the wide type 'number'(for those who rely on runtime value)
 			limitToFirst(4)
 		)
 	)
@@ -316,6 +316,6 @@ import { runTransaction } from 'firesagejs'
 
 	const committed = result.committed // boolean
 	const snapshot = result.snapshot // typing is same as 'get' snapshot
-	const json = result.toJSON() // object
+	const json = result.toJSON() // object, you have to type cast it
 }
 ```
