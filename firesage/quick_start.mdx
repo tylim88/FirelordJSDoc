@@ -140,7 +140,7 @@ import {
 	// 1st array is relative child paths
 	// 2nd array is values, it will try to match the path by index, 'b/c' is boolean, 'b/d/e' is server timestamp
 	// the length of values will match the length of paths
-	// finally it scans all paths to find out whether a child path is also a child of another path (reduce runtime exception).
+	// finally it scans all paths to find out whether a child path is also a child of another path (to prevent runtime exception).
 	await update(exampleRef(), ['b/c', 'b/d/e'], [true, serverTimestamp()])
 
 	// snapshot return by get are fully typed
@@ -188,10 +188,10 @@ import {
 
 // only node of type Record<string, T>, PushAbleOnly<T> or NumericKeyRecord<T> can be queried
 // orderBy clause must exist in order to use cursors (qualTo, endAt... etc etc)
-// there can be only one orderBy clause (reduce runtime exception)
+// there can be only one orderBy clause (to prevent runtime exception)
 // the type of cursor 1st argument must be at most string | boolean | number | null
 // the 2nd argument of cursor is optional except when order by key
-// any combination of cursor below will trigger type error(reduce runtime exception):
+// any combination of cursor below will trigger type error(to prevent runtime exception):
 // startAt and startAfter
 // endAt and endBefore
 // equalTo and any other cursor
