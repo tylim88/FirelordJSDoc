@@ -1,0 +1,73 @@
+---
+sidebar_position: 1
+---
+
+# String Manipulation
+
+import { Image } from '@site/src/components/Image'
+
+It is important to understand how Typescript string literal works to properly to secure the type of your path and key.
+
+## Convert `number` to `${number}`
+
+Let say we have something like this
+
+```ts
+import {
+	MetaTypeCreator,
+	NumericKeyRecord,
+	createRef,
+	update,
+} from 'firesagejs'
+
+type Example = MetaTypeCreator<{
+	a: NumericKeyRecord<boolean>
+}>
+
+const ref = createRef<Example>()
+
+const numericKey = 123
+
+update(ref('a'), [numericKey], [true]) // type error, expecting numeric string but number instead!
+
+update(ref('a'), [numericKey.toString()], [true]) // type error, expecting numeric string but got string instead!
+
+update(ref('a'), [`${numericKey}`], [true]) // working, because `${number}` is numeric string
+```
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/string1.png"
+	text="how to convert number to numeric string safely"
+/>
+
+Every path and key must be string, so `number`` type is not possible.
+
+the return type of `toString` is `string`, but FireSage able to tell apart non-numeric and numeric string and rejected it.
+
+## String Concatenation
+
+```ts
+import { MetaTypeCreator, NumericKeyRecord, createRef } from 'firesagejs'
+
+type Example = MetaTypeCreator<{
+	a: { b: NumericKeyRecord<boolean>; c: Record<string, 1 | 2 | 3> }
+}>
+
+const ref = createRef<Example>()
+
+const numericKey = 123
+const nonNumericKey = 'x7y8z9'
+
+const ref1 = ref('a/b/' + `${numericKey}`) // type error, type is string!
+
+const ref2 = ref('a/c/' + `${nonNumericKey}`) // type error, type is string!
+
+const ref3 = ref(`a/b/${numericKey}`) //ok, type is `a/b/123`!
+
+const ref4 = ref(`a/c/${nonNumericKey}`) // ok, type is `a/c/x7y8z9`!
+```
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/string2.png"
+	text="how to concate string safely"
+/>
