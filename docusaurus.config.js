@@ -12,7 +12,7 @@ const config = {
 	baseUrl: '/',
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
-	favicon: 'img/favicon.ico',
+	favicon: 'favicon.ico',
 	organizationName: 'tylim88', // Usually your GitHub org/user name.
 	projectName: 'FirelordJS', // Usually your repo name.
 	presets: [
