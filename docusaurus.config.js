@@ -59,7 +59,7 @@ const config = {
 				title: 'FirelordJS',
 				logo: {
 					alt: 'FirelordJS Logo',
-					src: 'firebase/logo.png',
+					src: 'logo.png',
 				},
 				items: [
 					{
