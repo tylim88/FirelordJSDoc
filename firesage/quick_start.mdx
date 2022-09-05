@@ -89,8 +89,8 @@ export type Example = MetaTypeCreator<{
 			e: ServerTimestamp // ServerTimestamp node write as serverTimestamp and read as number, write as number is not possible.
 		}
 	}
-	f: Record<string, 'a' | 'b' | 'c'> // normal index signature, any the key related argurment operate on this node only accept non-numeric string
-	g: PushAbleOnly<{ h: number; j: { k: boolean } }> // the child of PushAbleOnly node can only be created via `push` function, any the key related argurment operate on this node only accept non-numeric string
+	f: Record<string, 'a' | 'b' | 'c'> // normal index signature, any key related argurment operate on this node only accept non-numeric string
+	g: PushAbleOnly<{ h: number; j: { k: boolean } }> // the child of PushAbleOnly node can only be created via `push` function, any key related argurment operate on this node only accept non-numeric string
 	i: NumericKeyRecord<string> // Firesage replaces all numeric key node { 1:'a', 2:'b', 3:'c' } with error message, use NumericKeyRecord instead. Any the key related argurment operate on this node only accept numeric string
 }>
 
