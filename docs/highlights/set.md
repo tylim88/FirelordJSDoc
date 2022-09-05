@@ -35,12 +35,12 @@ Practically speaking we cannot avoid ternary filter states 100%, because a no SQ
 Like update, FirelordJS stop unknown member from entering Firestore.
 
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set1.png?raw=true' />
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set1.png?raw=true' />
     <small>Firestore</small>
 </div>
 <br/>
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set2.png?raw=true' />
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set2.png?raw=true' />
     <small>FirelordJS</small>
 </div>
 <br/>
@@ -59,11 +59,11 @@ Merge set also possess the same weakness like update, that is accepting `undefin
 
 <div  style={{ display:'flex', justifyContent:'space-around' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set3.png?raw=true' />
+        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set3.png?raw=true' />
         <small>Firestore</small>
     </div>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set4.png?raw=true' />
+        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set4.png?raw=true' />
         <small>FirelordJS Partial But No Undefined</small>
     </div>
 </div>
@@ -93,12 +93,12 @@ Apparently Firestore want us to start questioning our own existence.
 Merge fields Set behave like merge, except that it updates only the listed member and ignore the rest.
 
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set5.png?raw=true' />
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set5.png?raw=true' />
     <small>Firestore does not reject unknown field path</small>
 </div>
 <br/>
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set6.png?raw=true' />
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set6.png?raw=true' />
     <small>FirelordJS reject unknown field path</small>
 </div>
 
@@ -108,11 +108,11 @@ You cannot use dot notation for data, both Firestore and FirelordJS will stop yo
 
 <div  style={{ display:'flex', justifyContent:'space-around' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set7.png?raw=true' />
+        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set7.png?raw=true' />
         <small>Firestore</small>
     </div>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/set8.png?raw=true' />
+        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set8.png?raw=true' />
         <small>FirelordJS</small>
     </div>
 </div>

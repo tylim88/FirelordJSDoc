@@ -23,12 +23,12 @@ Firestore does not have distinct type for server timestamp, all field values in 
 :::
 
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get1.png?raw=true' />
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/get1.png?raw=true' />
     <small>Firestore</small>
 </div>
 <br/>
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get2.png?raw=true' />
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/get2.png?raw=true' />
     <small>Firelord union the `null` with `Timestamp` regardless of depth. </small>
 </div>
 
@@ -38,7 +38,7 @@ If `estimate` is selected:
 
 <div  style={{ display:'flex', justifyContent:'space-around' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get3.png?raw=true' />
+        <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/get3.png?raw=true' />
         <small>FirelordJS will not union null with Timestamp if 'estimate' is selected. </small>
     </div>
 </div>
@@ -49,11 +49,11 @@ If `estimate` is selected:
 Firestore chooses to go full YOLO on documentSnapshot.get, it simply does not care.
 
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get4.png?raw=true' />
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/get4.png?raw=true' />
     <small>Firestore does not reject unknown path and return any.</small>
 </div>
 <br/>
 <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/img/get5.png?raw=true' />
+    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/get5.png?raw=true' />
     <small>FirelordJS reject unknown path and return accurate type.</small>
 </div>
