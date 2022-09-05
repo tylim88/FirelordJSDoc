@@ -97,9 +97,9 @@ export type Example = MetaTypeCreator<{
 // note: alphanumeric is considered as non-numeric string
 // primitive can union with primitive type and Removable
 // non-primitive type cannot union with any other type(except Removable), otherwise Firesage will replaces the type with an error message.
-// FireSage able to deduce the correct type even if you:
+// FireSage able to deduce the correct type even you:
 // nest Record, PushAbleOnly and NumericKeyRecord into each other, eg NumericKeyRecord<Record<PushAbleOnly<{ a: number }>>>
-// union Removable in any way, eg { g : PushAbleOnly<{ h: number | Removable } | Removable> | Removable > | Removable
+// union Removable in any way, eg { g : PushAbleOnly<{ h: number | Removable } | Removable> } | Removable
 ```
 
 ## Create Ref
