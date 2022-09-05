@@ -93,7 +93,7 @@ export const Header = () => (
 		</div>
 		<br />
 		<div align="center">
-			Extreme Type Safe For Realtime Database Web, Write RTDB Code That Stand
+			Extreme Type Safe For Realtime Database Web, Write RTDB Code That Stands
 			The Test Of Time
 		</div>
 		<br />
