@@ -1,0 +1,74 @@
+---
+sidebar_position: 98
+---
+
+# Library Exports
+
+FireSageJS wraps and exports every function found in the `@firebase/database/dist/public.d.ts` with few exceptions.
+
+:::note
+FireSageJS does not suppport anything related to priority, eg: setPriority, setWithPriority, orderByPriority, this including methods and props.
+:::
+
+## Functions
+
+These are exports with wrapping:
+
+- increment
+- serverTimestamp
+  {/* - off */}
+- onChildAdded
+- onChildChanged
+- onChildMoved
+- onChildRemoved
+  {/* - onDisconnect */}
+- onValue
+- get
+- push
+- remove
+- set
+- update
+- endAt
+- endBefore
+- equalTo
+- limitToFirst
+- limitToLast
+- orderByChild
+- orderByKey
+- orderByValue
+- startAfter
+- startAt
+
+These are exports without wrapping:
+
+- getDatabase
+- connectDatabaseEmulator
+- enableLogging
+- goOffline
+- goOnline
+- forceLongPolling
+- forceWebSockets
+- off
+- onDisconnect
+
+## Type Definitions🦜
+
+Field Types:
+
+- ServerTimestamp
+- PushAble
+- PushAbleOnly
+- NumericKeyRecord
+- Removable
+
+References:
+
+- DatabaseReference
+- Query
+- Ref
+- DataSnapshot
+
+Utility:
+
+- MetaType
+- MetaTypeCreator
