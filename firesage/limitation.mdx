@@ -1,0 +1,18 @@
+---
+sidebar_position: 99
+---
+
+# Limitation 🐧
+
+This section list down limitions of FirelordJS due to reason unsupported or straight up impossible.
+
+## Data Type
+
+1. does not support numeric literal key eg: `{ 1:'a', 2:'b' }`
+2. cannot mix non-numeric key and numeric key eg: `{ 1:'a', b:2 }`
+
+## Empty Value Handling
+
+1. limit and limitToLast cannot prevent runtime value 0, resulting in runtime error.
+
+It is possible to solve 1 but the solution is too fragile, so not going to work on it.

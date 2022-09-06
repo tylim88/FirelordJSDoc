@@ -25,7 +25,7 @@ Hence all 1,2,3,4 will not be supported in the future.
 
 ## Empty Value Handling
 
-1. limit and limitToLast cannot stop computed 0 value, resulting in runtime error.
+1. limit and limitToLast cannot prevent runtime value 0, resulting in runtime error.
 2. cursor rest argument must be tuple type to work.
 
 It is possible to solve 1 but the solution is too fragile, so not going to work on it.
