@@ -264,32 +264,33 @@ import {
 // all listeners can listen to both ref and query
 // (function overloading)every listener can accept onError callback(optional) or options(optional) or both
 // snapshot typing is same as 'get' snapshot
+// call unsub to remove the listener
 
-onChildAdded(
+const unsub = onChildAdded(
 	query(exampleRef('i'), orderByValue(), startAt('abc', '1'), limitToFirst(4)),
 	snapshot => {}
 )
 
-onChildChanged(
+const unsub2 = onChildChanged(
 	exampleRef('g'),
 	snapshot => {},
 	error => {} // optional, onError callback
 )
 
-onChildRemoved(
+const unsub3 = onChildRemoved(
 	query(exampleRef('f'), orderByKey(), endAt('abc'), limitToLast(2)),
 	snapshot => {},
 	{ onlyOnce: false } // optional, options
 )
 
-onChildMoved(
+const unsub4 = onChildMoved(
 	exampleRef('f'),
 	snapshot => {},
 	error => {}, // optional, onError callback
 	{ onlyOnce: false } // optional, options
 )
 
-onValue(
+const unsub6 = onValue(
 	exampleRef('b/d/e'),
 	snapshot => {},
 	error => {}, // optional, onError callback
