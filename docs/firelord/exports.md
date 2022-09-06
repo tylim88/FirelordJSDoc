@@ -8,7 +8,7 @@ Firelord wraps and exports every function found in the `firebase-admin\lib\fires
 
 ## Functions
 
-These are items that Firelord export directly without wrapping, this is because their input has nothing to do with document data type, those functions are:
+These are items that Firelord export directly without wrapping:
 
 - Timestamp
 - GeoPoint
@@ -17,12 +17,6 @@ These are items that Firelord export directly without wrapping, this is because 
 - GrpcStatus
 - BundleBuilder
 - setLogFunction
-
-:::note
-
-Firelord does not exports any type definition from `firebase-admin\lib\firestore\index.d.ts`.
-
-:::
 
 ## Type Definitions🦜
 
