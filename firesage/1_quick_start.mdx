@@ -145,7 +145,7 @@ import {
 
 	// 'get' returns fully typed snapshot
 	const snapshot = await get(exampleRef('f'))
-	const val = snapshot.val() // value type is what defined in MetaType, in this case it is Record<string, 'a' | 'b' | 'c'> | null
+	const val = snapshot.val() // value type is what defined in MetaType union with null, in this case it is Record<string, 'a' | 'b' | 'c'> | null
 	const exists = snapshot.exists() // boolean
 	const size = snapshot.size // number
 	const hasChild = snapshot.hasChild('k') // type of argument is what defined in MetaType, in this case it is `string` because 'f' is Record<string, 'a' | 'b' | 'c'>
