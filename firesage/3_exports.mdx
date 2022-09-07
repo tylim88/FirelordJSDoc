@@ -7,7 +7,14 @@ sidebar_position: 98
 FireSageJS wraps and exports every function found in the `@firebase/database/dist/public.d.ts` with few exceptions.
 
 :::note
-FireSageJS does not suppport anything related to read or set priority.
+FireSageJS does not suppport function, methods and properties related to read or set priority, like setPriority, setWithPriority, orderByPriority, exportVal etc etc.
+
+Please use orderByChild instead.
+
+FireSageJS also does not export `off`, please use unsubscriber return by individual listener instead.
+
+Both `priority` and `off` are no longer recommended way to work with RTDB.
+
 :::
 
 ## Functions
@@ -20,6 +27,7 @@ These are exports with wrapping:
 - onChildChanged
 - onChildMoved
 - onChildRemoved
+- onDisconnect
 - onValue
 - get
 - push
@@ -46,10 +54,8 @@ These are exports without wrapping:
 - goOnline
 - forceLongPolling
 - forceWebSockets
-- off
-- onDisconnect
 
-## Type Definitions🦜
+## Type Definitions
 
 Field Types:
 

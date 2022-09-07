@@ -4,8 +4,6 @@ sidebar_position: 1
 
 # Contributing
 
-Simple:
-
 1. Simplify type logic and remove dead code.
 
 2. Utilizing the latest Typescript feature.
@@ -14,15 +12,15 @@ Simple:
 
 4. You can also work on the [documentation](https://github.com/tylim88/FirelordJSDoc).
 
-Hard:
-
-1. Looking for a challenge? Then you can try to implement `mandatory field type`:
+5. Implement `mandatory field type`:
 
 - It is a special type that assign (with union) to object member.
 - Members with such type become `required` even in `update` operations(all members in update operations are partial by default).
 - Practical usage is something like `updatedAt` member that keep track of document last updated time.
 
-2. Query Constraint type affect Read type.
+6. Query Constraint type affect Read type.
+
+7. Functionality test for onDisconnect.
 
 ## Running The Source Code
 
