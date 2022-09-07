@@ -8,7 +8,38 @@ FirelordJS wraps and exports every function found in the `@firebase/firestore/di
 
 ## Functions
 
-These are items that FirelordJS export directly without wrapping:
+These are exports with wrapping:
+
+- queryEqual
+- refEqual
+- snapshotEqual
+- documentId
+- arrayRemove
+- arrayUnion
+- deleteField
+- increment
+- serverTimestamp
+- onSnapshot
+- addDoc
+- deleteDoc
+- getDoc
+- getDocs
+- setDoc
+- updateDoc
+- endAt
+- endBefore
+- orderBy
+- startAfter
+- startAt
+- where
+- collection
+- collectionGroup
+- doc
+- query
+- runTransaction
+- writeBatch
+
+These are exports without wrapping:
 
 - Timestamp
 - GeoPoint
@@ -28,7 +59,7 @@ These are items that FirelordJS export directly without wrapping:
 - waitForPendingWrites
 - CACHE_SIZE_UNLIMITED
 
-## Type Definitions🦜
+## Type Definitions
 
 Firestore exports its own type definitions:
 
@@ -51,7 +82,7 @@ Snapshot:
 - QuerySnapshot
 - QueryDocumentSnapshot
 
-Data Type:
+Utility:
 
 - MetaType
 - MetaTypeCreator
