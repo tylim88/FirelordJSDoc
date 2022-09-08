@@ -6,9 +6,17 @@ sidebar_position: 6
 
 FirelordJS wraps and exports every function found in the `@firebase/firestore/dist/index.d.ts`.
 
+:::note
+Firelord does not support any function and methods related to `withConverter`.
+
+`withConverter` is runtime data transformer and people often confuse it with compilation type check thinking it can replace static type check, which is apple and orange comparison, `withConverter` can not do anything to improve coding experience.
+
+The reason Firerlord disables `withConverter` is because `Meta Type` should be the single source of truth and if we allow `withConverter`, we have the second source of truth: the returns of `toFirestore` and `fromFirestore`.
+:::
+
 ## Functions
 
-These are exports with wrapping:
+With wrapping:
 
 - queryEqual
 - refEqual
@@ -39,7 +47,7 @@ These are exports with wrapping:
 - runTransaction
 - writeBatch
 
-These are exports without wrapping:
+Without wrapping:
 
 - Timestamp
 - GeoPoint
@@ -61,9 +69,7 @@ These are exports without wrapping:
 
 ## Type Definitions
 
-Firestore exports its own type definitions:
-
-Field Value:
+Field Types:
 
 - ServerTimestamp
 - DeleteField
@@ -76,13 +82,13 @@ References:
 - Query
 - FirelordRef
 
-Snapshot:
+Snapshots:
 
 - DocumentSnapshot
 - QuerySnapshot
 - QueryDocumentSnapshot
 
-Utility:
+Utilities:
 
 - MetaType
 - MetaTypeCreator
