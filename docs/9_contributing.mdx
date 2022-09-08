@@ -17,7 +17,7 @@ sidebar_position: 9
 6. Looking for a challenge? Then you can try to implement `mandatory field type`:
 
 - It is a special type that assign (with union) to object member.
-- Members with such type become `required` even in `update` operations(all members in update operations are partial by default).
+- Members with such type become `required` even in `updateDoc` operations(all members in `updateDoc` operations are partial by default).
 - Practical usage is something like `updatedAt` member that keep track of document last updated time.
 
 7. Query Constraint type affect Read type. For example if we have `where('a', '==', true)`, then we can further narrow down the type of field `a` to only `true`.
