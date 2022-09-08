@@ -35,9 +35,9 @@ You still need to assert `const` variable as `const`. See [explanation](https://
 	text={`FirelordJS forbid never[] but allow correctType[] even if it is empty`}
 />
 
-FirelordJS forbid `never[]` and `[]` to stop you from accidentally assign empty array(never[]) directly, small convenience.
+FirelordJS block `never[]` and `[]` to stop you from accidentally assign empty array(never[]) directly, small convenience.
 
-However it is impossible to block empty array if the empty array type is same as the type defined, so FirelordJS handle this in runtime by replacing empty array with `['some long unique value']`.
+However it is impossible to block empty array on type level if its type is same as the type defined in Meta Type(eg: `string[]`, `number[]`), so FirelordJS handle the empty array in runtime by replacing empty array with `['some long unique value']`.
 
 This prevents runtime exceptions while keeping the query accurate.
 
