@@ -4,8 +4,6 @@ sidebar_position: 9
 
 # Contributing
 
-Simple:
-
 1. For starter, you can refactor files in `src/types` folder, especially `src/types/queryConstraintLimitation.ts`.
 
 2. Simplify type logic and remove dead code.
@@ -16,15 +14,15 @@ Simple:
 
 5. You can also work on the [documentation](https://github.com/tylim88/FirelordJSDoc).
 
-Hard:
-
-1. Looking for a challenge? Then you can try to implement `mandatory field type`:
+6. Looking for a challenge? Then you can try to implement `mandatory field type`:
 
 - It is a special type that assign (with union) to object member.
 - Members with such type become `required` even in `update` operations(all members in update operations are partial by default).
 - Practical usage is something like `updatedAt` member that keep track of document last updated time.
 
-2. Query Constraint type affect Read type.
+7. Query Constraint type affect Read type.
+
+8. Simplify getFirelord API, the current one seem unintuitive and confusing.
 
 ## Running The Source Code
 
