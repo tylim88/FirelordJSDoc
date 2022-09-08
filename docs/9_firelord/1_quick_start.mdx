@@ -232,9 +232,8 @@ import {
 } from 'firelord'
 
 try {
-	// db argument is optional, you can skip it
 	await runTransaction(
-		db,
+		db, // db argument is optional, you can skip it
 		async transaction => {
 			await transaction.get(example.doc('lmn')).then(docSnapshot => {
 				const data = docSnapshot.data()
@@ -260,7 +259,12 @@ try {
 
 			transaction.delete(example.doc('lmn'))
 		},
-		{ maxAttempts: 10 } // optional
+		{ readOnly: true, readTime: Timestamp.now() } // optional
+		// we can supply 2 set of options:
+		// 1. { readOnly?: false, maxAttempts?: number }
+		// note that in case 1 both properties are optional and readOnly is false
+		// 2. { readOnly: true, readTime?: Timestamp }
+		// note that in case only readTime is optional and readOnly is true
 	)
 	console.log('Transaction successfully committed!')
 } catch (e) {
