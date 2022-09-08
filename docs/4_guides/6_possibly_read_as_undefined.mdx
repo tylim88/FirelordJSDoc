@@ -42,7 +42,9 @@ However set merge(setDoc with merge) update the doc if the doc exists and create
 
 This is a convenient methods but it can be problematic because the data can now exist without full members and we may read certain members as `undefined`.
 
-This is where `PossiblyReadAsUndefined` is useful, however it is not a good solution, a good solution is to forbid set merge and create a field type that allow use to use set merge on certain field, kind of like how delete field works.
+This is where `PossiblyReadAsUndefined` is useful, though it is not a perfect solution, it is a good enough solution.
+
+A perfect solution is to forbid set merge and only allow set merge on field that has special type(like how delete field works), will give this a deeper thought in V2.
 
 ## All Fields Read As Undefined 🦜
 
