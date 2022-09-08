@@ -20,7 +20,7 @@ sidebar_position: 9
 - Members with such type become `required` even in `update` operations(all members in update operations are partial by default).
 - Practical usage is something like `updatedAt` member that keep track of document last updated time.
 
-7. Query Constraint type affect Read type.
+7. Query Constraint type affect Read type. For example if we have `where('a', '==', true)`, then we can further narrow down the type of field `a` to only `true`.
 
 8. Simplify getFirelord API, the current one seem unintuitive and confusing.
 
