@@ -35,4 +35,4 @@ Key Points:
 
 - FirelordJS forbids you from increment `numeric literal` type, for obvious reason.
 
-- FirelordJS forbids you from writing `Date` or `Timestamp` into `ServerTimestamp`, because some date time has to be server timestamp, such as `createdAt` and `updatedAt`. However you can overcome this limitation by union `ServerTimestamp` with `Date` and `Timestamp` when you declare the meta type.
+- FirelordJS forbids you from writing `Date` or `Timestamp` into `ServerTimestamp` type, because some date time has to be server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, you can by union `ServerTimestamp` with `Date` and `Timestamp`.
