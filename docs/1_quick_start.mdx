@@ -180,6 +180,7 @@ await getDocs(
 	)
 )
 
+// listen to query
 const unsub = onSnapshot(
 	query(
 		example.collection(),
@@ -194,6 +195,16 @@ const unsub = onSnapshot(
 	},
 	error => {}, // optional, you can skip this onError callback and move options to here instead
 	{ includeMetadataChanges: false } // optional
+)
+
+// listen to single document
+const unsub2 = onSnapshot(
+	example.doc('abc'),
+	documentSnapshot => {
+		const data = documentSnapshot.data()
+	},
+	error => {}, // optional, you can skip this onError callback and move options to here instead
+	{ includeMetadataChanges: true } // optional
 )
 ```
 
