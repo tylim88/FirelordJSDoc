@@ -18,7 +18,7 @@ sidebar_position: 1
 - Members with such type become `required` even in `update` operations(all members in `update` operations are partial by default).
 - Practical usage is something like `updatedAt` member that keep track of document last updated time.
 
-6. Query Constraint type affect Read type. For example if we have `orderByChild('a'), equalTo(true)`, then we can further narrow down the type of child node `a` to only `true`.
+6. Query Constraint type affect Read type. For example for `query(ref, orderByChild('a'), equalTo(true))`, we can further narrow down the type of child node `a` to only `true`.
 
 7. Functionality test for onDisconnect.
 
