@@ -1,10 +1,10 @@
 ---
-sidebar_position: 12
+sidebar_position: 6
 ---
 
 # Possibly Read As Undefined
 
-This section discusses how `PossiblyReadAsUndefined` works.
+This section discusses how `PossiblyReadAsUndefined` works and why do we need them.
 
 ## Undefined Read Field 🦜
 
@@ -19,6 +19,30 @@ This is what `PossiblyReadAsUndefined` for, it allows you to read a particular f
 	<small>Union 'a' field's read type with 'undefined'</small>
 </div>
 <br />
+
+## Why We Need To Read As Undefined? 🦜
+
+To understand why we do you need to read as undefined, we need to first understand how `setDoc` typing work.
+
+In `setDoc` operation, both Firestore and FirelordJS typing forbid you from skipping any member(field).
+
+If you are using set without merge or merge field, it is recommended to set all members and fill the field we do not need now with **default value** rather than dropping it.
+
+:::caution
+Despite `null` being a popular default value, we strongly discourage the usage of null because it [messes up query](https://stackoverflow.com/a/71173190/5338829).
+:::
+
+Now recall that`updateDoc` cannot update and throw exception if the doc does not exist, so what does all this mean?
+
+This mean that with **only** `set` and `updateDoc` operation, it is guarantee that if certain data exists in the database, it has full members.(assuming that we did not modify the database by other means).
+
+This mean that the type everything we read is same as what we define in the `Meta Type`, assuming that we do not modify the database by other means.
+
+However set merge(setDoc with merge) update the doc if the doc exists and create it if it does not exist, it is similar to `upsert` in SQL land.
+
+This is a convenient methods but it can be problematic because the data can now exist without full members and we may read certain members as `undefined`.
+
+This is where `PossiblyReadAsUndefined` is useful, however it is not a good solution, a good solution is to forbid set merge and create a field type that allow use to use set merge on certain field, kind of like how delete field works.
 
 ## All Fields Read As Undefined 🦜
 

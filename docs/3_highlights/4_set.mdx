@@ -8,42 +8,20 @@ This page discusses how sets works and its quirks.
 
 We will use `setDoc` in the example, but it works the same for `batch.set` and `transaction.set`.
 
-## Ternary Filter States 🦤
-
-In set operation, both Firestore and FirelordJS forbid you from skipping any member(field), with the exception if merge is set to true or merge field is defined.
-
-If you are using set without merge or merge field, it is recommended to set all members and fill the field we do not need now with **default value** rather than dropping it.
-
-:::caution
-Despite `null` being a popular default value, we strongly discourage the usage of null because it [messes up query](https://stackoverflow.com/a/71173190/5338829).
-:::
-
-This is because a missing field is not query-able by filter, and this creates 3 filter states:
-
-- document that can be searched by equality operator,
-- document that can be searched by inequality operator,
-- document that cant be search by either equality or inequality operator.
-
-Needless to say, 2 states easier to deal with than 3 states.
-
-Keep in mind that with merge and merge fields options on, all members become partial, this also creates 3 filter states.
-
-Practically speaking we cannot avoid ternary filter states 100%, because a no SQL database add and remove fields from time to time.
-
 ## Stop Unknown Member
 
 Like update, FirelordJS stop unknown member from entering Firestore.
 
-<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set1.png?raw=true' />
-    <small>Firestore</small>
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set1.png?raw=true" />
+	<small>Firestore</small>
 </div>
-<br/>
-<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set2.png?raw=true' />
-    <small>FirelordJS</small>
+<br />
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set2.png?raw=true" />
+	<small>FirelordJS</small>
 </div>
-<br/>
+<br />
 
 <div align='center'>
 
@@ -92,14 +70,14 @@ Apparently Firestore want us to start questioning our own existence.
 
 Merge fields Set behave like merge, except that it updates only the listed member and ignore the rest.
 
-<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set5.png?raw=true' />
-    <small>Firestore does not reject unknown field path</small>
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set5.png?raw=true" />
+	<small>Firestore does not reject unknown field path</small>
 </div>
-<br/>
-<div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
-    <img src='https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set6.png?raw=true' />
-    <small>FirelordJS reject unknown field path</small>
+<br />
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/set6.png?raw=true" />
+	<small>FirelordJS reject unknown field path</small>
 </div>
 
 ## Dot Notation Path
