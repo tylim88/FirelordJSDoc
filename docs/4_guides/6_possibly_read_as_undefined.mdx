@@ -38,7 +38,7 @@ This mean that with **only** `set` and `updateDoc` operation, it is guarantee th
 
 This mean that the type everything we read is same as what we define in the `Meta Type`, assuming that we do not modify the database by other means.
 
-However set merge(setDoc with merge) update the doc if the doc exists and create it if it does not exist, it is similar to `upsert` in SQL land.
+However set merge(setDoc with merge) update the doc if the doc exists and create it if it does not exist, also known as `upsert`.
 
 This is a convenient methods but it can be problematic because the data can now exist without full members and we may read certain members as `undefined`.
 
