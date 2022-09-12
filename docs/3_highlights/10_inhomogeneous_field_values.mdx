@@ -20,12 +20,12 @@ And they all sharing the same type: `FieldValue`, which means is it possible to 
 
 FirelordJS solves this by assigning [unique symbol type](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#unique-symbol):
 
-| Field Value                   | Interface               | Signature                                                                 | Note                                 |
-| ----------------------------- | ----------------------- | ------------------------------------------------------------------------- | ------------------------------------ |
-| `increment`                   | `Increment`             | `{ 'Firelord.FieldValue': unique symbol }`                                |                                      |
-| `serverTimestamp`             | `ServerTimestamp`       | `{ 'Firelord.FieldValue': unique symbol }`                                |                                      |
-| `arrayRemove` \| `arrayUnion` | `ArrayUnionOrRemove<T>` | `{ 'Firelord.FieldValue': unique symbol, 'Firelord.ArrayFieldValue': T }` | `T` is the element type of the array |
-| `deleteField`                 | `DeleteField`           | `{ 'Firelord.FieldValue': unique symbol }`                                |                                      |
+| Field Value                   | Interface               | Signature                                                                 | Note                     |
+| ----------------------------- | ----------------------- | ------------------------------------------------------------------------- | ------------------------ |
+| `increment`                   | `Increment`             | `{ 'Firelord.FieldValue': unique symbol }`                                | auto union with `number` |
+| `serverTimestamp`             | `ServerTimestamp`       | `{ 'Firelord.FieldValue': unique symbol }`                                |                          |
+| `arrayRemove` \| `arrayUnion` | `ArrayUnionOrRemove<T>` | `{ 'Firelord.FieldValue': unique symbol, 'Firelord.ArrayFieldValue': T }` | auto union with `T[]`    |
+| `deleteField`                 | `DeleteField`           | `{ 'Firelord.FieldValue': unique symbol }`                                |                          |
 
 Do note that they are concrete type, they are virtual type, which mean it is possible to access `Firelord.FieldValue` and `Firelord.ArrayFieldValue` value in run time.
 
