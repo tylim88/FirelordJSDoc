@@ -27,7 +27,7 @@ FirelordJS solves this by assigning [unique symbol type](https://www.typescriptl
 | `arrayRemove` \| `arrayUnion` | `{ 'Firelord.FieldValue': unique symbol, 'Firelord.ArrayFieldValue': T }` | This is generic type where `T` is the element of the array |
 | `deleteField`                 | `{ 'Firelord.FieldValue': unique symbol }`                                |                                                            |
 
-Do note that they are concrete type, they are not existed just for being only as type, it is possible to access `Firelord.FieldValue` and `Firelord.ArrayFieldValue` value in run time.
+Do note that they are concrete type, they are virtual type, which mean it is possible to access `Firelord.FieldValue` and `Firelord.ArrayFieldValue` value in run time.
 
 ## UnassignAble Field Values
 
