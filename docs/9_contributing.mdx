@@ -38,7 +38,7 @@ please use dummy Firebase project.
 PROJECT_ID="your-firebase-project-id"
 ```
 
-Despite PROJECT_ID is not a secret, you should hide(don't upload to Github) it because you want to allow restriction free read and write for smooth testing.
+Despite PROJECT_ID is not a secret, we should hide it(don't upload to Github) because we want to allow restriction free read and write for smooth testing.
 
 ### For Firelord(Admin):
 
@@ -46,7 +46,9 @@ Despite PROJECT_ID is not a secret, you should hide(don't upload to Github) it b
 TYPE="xxx"
 PROJECT_ID="xxx"
 PRIVATE_KEY_ID="xxx"
-PRIVATE_KEY='"-----BEGIN PRIVATE KEY-----\nXXX\n-----END PRIVATE KEY-----\n"' # yup, must enclosed inside single quotes
+# must enclosed private key inside single quotes
+# copy everything of private key including the double quotes
+PRIVATE_KEY='"-----BEGIN PRIVATE KEY-----\nSOME_SUPERLONG_STRING\n-----END PRIVATE KEY-----\n"'
 CLIENT_EMAIL="xxx"
 CLIENT_ID="xxx"
 AUTH_URI="xxx"
