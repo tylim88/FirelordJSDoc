@@ -20,15 +20,15 @@ And they all sharing the same type: `FieldValue`, which means is it possible to 
 
 FirelordJS solves this by assigning [unique symbol type](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#unique-symbol):
 
-| Field Value                   | Interface                                                                 | Note                                                       |
-| ----------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `increment`                   | `{ 'Firelord.FieldValue': unique symbol }`                                |                                                            |
-| `serverTimestamp`             | `{ 'Firelord.FieldValue': unique symbol }`                                |                                                            |
-| `arrayRemove` \| `arrayUnion` | `{ 'Firelord.FieldValue': unique symbol, 'Firelord.ArrayFieldValue': T }` | This is generic type where `T` is the element of the array |
-| `deleteField`                 | `{ 'Firelord.FieldValue': unique symbol }`                                |                                                            |
+| Field Value                   | Interface               | Interface Signature                                                       | Note                                                       |
+| ----------------------------- | ----------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `increment`                   | `Increment`             | `{ 'Firelord.FieldValue': unique symbol }`                                |                                                            |
+| `serverTimestamp`             | `ServerTimestamp`       | `{ 'Firelord.FieldValue': unique symbol }`                                |                                                            |
+| `arrayRemove` \| `arrayUnion` | `ArrayUnionOrRemove<T>` | `{ 'Firelord.FieldValue': unique symbol, 'Firelord.ArrayFieldValue': T }` | This is generic type where `T` is the element of the array |
+| `deleteField`                 | `DeleteField`           | `{ 'Firelord.FieldValue': unique symbol }`                                |                                                            |
 
 Do note that they are concrete type, they are virtual type, which mean it is possible to access `Firelord.FieldValue` and `Firelord.ArrayFieldValue` value in run time.
 
 ## UnassignAble Field Values
 
-`arrayRemove`, `arrayUnion` and `increment` are not assignable types, they are type that automatically attached to other types. If we accidentally assign them as type, FirelordJS will replace them with error messages.
+`ArrayUnionOrRemove<T>` and `Increment` are not assignable types and are not exported, they are passive type that automatically union with other types upon creation.
