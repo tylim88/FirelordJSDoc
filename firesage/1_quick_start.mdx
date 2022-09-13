@@ -228,8 +228,8 @@ import {
 			exampleRef('g'),
 			// the type of orderByChild argument is relative paths of 'g' grandchildren node
 			// type of 'g' node is PushAbleOnly<{ h: number; j: { k: boolean } }>
-			// so the valid types are 'h' and 'j/k'
-			// 'j' is not a valid type because the type of node 'j' is non-primitive
+			// descendants node are 'h', 'j' and 'j/k'
+			// however 'j' is not a valid type because the type of node 'j' is non-primitive
 			// in this case the error suggestion will appear on the cursor instead
 			orderByChild('j/k'),
 			// the 1st argument is boolean because the type of node 'j/k' is boolean
@@ -336,7 +336,7 @@ import { serverTimestamp, onDisconnect } from 'firesagejs'
 
 	await onDc.update(['c', 'd'], [false, { e: serverTimestamp() }])
 
-	await onDc.remove() // this will error if 'b' is not removable, in this case 'b' is removable
+	await onDc.remove() // type error if 'b' is not removable, in this case 'b' is removable
 
 	await onDc.cancel()
 }
