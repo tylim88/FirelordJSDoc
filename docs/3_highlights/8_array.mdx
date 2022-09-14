@@ -2,13 +2,13 @@
 sidebar_position: 8
 ---
 
-# Direct Nested Array
+# Array
 
-This section discusses how FirelordJS handle direct neted array.
+This section discusses how FirelordJS handle array quirks.
 
 import { Image } from '@site/src/components/Image'
 
-## What is Direct Nested Array
+## Direct Nested Array
 
 Direct nested array type is array type where its element type is also an array, eg: `number[][]` and `{ a: string[][] }[]`, such types are invalid in Firestore（throw in runtime）.
 
@@ -19,6 +19,6 @@ indirect nested array is a valid type, eg: `{ a:string[] }[]` and `{ a:{ b:strin
 If you accidentally defined a direct nested array type, FirelordJS will replace it with an error message.
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/directArray1.png?raw=true"
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/directArray1.png?raw=true"
 	text="direct nested array"
 />
