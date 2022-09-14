@@ -164,7 +164,7 @@ import {
 
 await getDocs(
 	query(
-		example.collection(),
+		example.collection(), // also accept example.collectionGroup()
 		where('f.h', '>', 1010 as const),
 		orderBy('f.h'),
 		limit(10)
@@ -173,7 +173,7 @@ await getDocs(
 
 const unsub = onSnapshot(
 	query(
-		example.collection(),
+		example.collectionGroup(), // also accept example.collection()
 		where('b.d', 'array-contains', { e: 'hello' }),
 		orderBy('f.g'),
 		startAfter(new Date())
