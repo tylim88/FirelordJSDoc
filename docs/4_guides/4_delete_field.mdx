@@ -13,7 +13,7 @@ import { Image } from '@site/src/components/Image'
 Firestore allow you to use `deleteField` anytime you want, but in FirelordJS, field are not deletable by default, you need to assign `deleteField` type in order to use it.
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/deleteField1.png?raw=true" />
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/deleteField1.png?raw=true" />
 	<small>Only 'a' is deletable</small>
 </div>
 <br />
@@ -21,7 +21,7 @@ Firestore allow you to use `deleteField` anytime you want, but in FirelordJS, fi
 You can delete 'a' field because one of the 'a' field types is 'deleteField', this is not the same case with 'b'.
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/deleteField2.png?raw=true" />
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/deleteField2.png?raw=true" />
 	<small>Union 'a' field's read type with 'undefined'</small>
 </div>
 <br />
@@ -57,7 +57,7 @@ Function updateDoc() called with invalid data. deleteField() can only appear at 
 <br />
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/deleteField6.png?raw=true"
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/deleteField6.png?raw=true"
 	text="terrible rules + terrible protection"
 />
 
@@ -81,14 +81,14 @@ Confused? You should.
 
 <br />
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/kidding.jpg?raw=true"
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/kidding.jpg?raw=true"
 	text=""
 />
 
 ## With FirelordJS
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/deleteField7.png?raw=true"
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/deleteField7.png?raw=true"
 	text="FirelordJS stops you from doing it the wrong way, provide hint and relax certain limitation with internal flatten."
 />
 
@@ -105,13 +105,13 @@ With update: FirelordJS allow the delete operation regardless of nested or flatt
 If you assign `DeleteField` as array type or as array element type, FirelordJS will replaces them with error message.
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/deleteField3.png?raw=true" />
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/deleteField3.png?raw=true" />
 	<small>as array type</small>
 </div>
 
 <br />
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/deleteField4.png?raw=true" />
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/deleteField4.png?raw=true" />
 	<small>as array element type</small>
 </div>
 
@@ -125,7 +125,7 @@ Explanations:
 However it is legal to union `DeleteField` with array type:
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelord/deleteField5.png?raw=true" />
+	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/deleteField5.png?raw=true" />
 	<small>DeleteField | any[]</small>
 </div>
 <br />
