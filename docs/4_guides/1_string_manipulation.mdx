@@ -11,34 +11,23 @@ It is important to understand how Typescript string literal works to properly to
 ## String Concatenation
 
 ```ts
-import { MetaTypeCreator, getFirelord } from 'firelordjs'
+import { MetaTypeCreator, getFirelord, getFirestore } from 'firelordjs'
+
+const db = getFirestore()
 
 type Example = MetaTypeCreator<
 	{
 		a: number
 	},
 	'colName',
-	string
+	`${string}12345`
 >
 
-type ExampleChild = MetaTypeCreator<
-	{
-		b: string
-	},
-	'childColName',
-	string,
-	Example
->
+const suffix = 12345
 
-const someDocId = 'someDocId'
+const docRef = getFirelord<Example>(db, 'colName').doc('a' + suffix) // type error, type is string!
 
-const exampleChild = getFirelord<ExampleChild>()(
-	'colName' + someDocId + 'childColName'
-) // type error, type is string!
-
-const exampleChild2 = getFirelord<ExampleChild>()(
-	`colName/${someDocId}/childColName`
-) // ok, type is `colName/${someDocId}/childColName`!
+const docRef2 = getFirelord<Example>(db, 'colName').doc(`a${suffix}`) // ok, type is `a12345`!
 ```
 
 <Image
@@ -47,48 +36,3 @@ const exampleChild2 = getFirelord<ExampleChild>()(
 />
 
 Do not use `+` to concate the string because `+` output string type. Always use template string to concate string.
-
-## Convert `number` to `${number}`
-
-Let say we have something like this
-
-```ts
-import { MetaTypeCreator, getFirelord } from 'firelordjs'
-
-type Example = MetaTypeCreator<
-	{
-		a: number
-	},
-	'colName',
-	string
->
-
-type ExampleChild = MetaTypeCreator<
-	{
-		b: string
-	},
-	'childColName',
-	string,
-	Example
->
-
-const someDocId = 'someDocId'
-
-const exampleChild = getFirelord<ExampleChild>()(
-	// @ts-expect-error
-	'colName' + someDocId + 'childColName'
-) // type error, type is string!
-
-const exampleChild2 = getFirelord<ExampleChild>()(
-	`colName/${someDocId}/childColName`
-) // ok, type is `colName/someDocId/childColName`!
-```
-
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/string2.png?raw=true"
-	text="how to convert number to numeric string safely"
-/>
-
-Every path and key must be string, so `number` type is not possible.
-
-the return type of `toString` is `string`, but FireSage able to tell apart non-numeric and numeric string and rejected it.
