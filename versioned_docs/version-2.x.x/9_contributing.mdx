@@ -1,0 +1,66 @@
+---
+sidebar_position: 9
+---
+
+# Contributing
+
+1. For starter, you can refactor files in `src/types` folder, especially `src/types/queryConstraintLimitation.ts`.
+
+2. Simplify type logic and remove dead code.
+
+3. Utilizing the latest Typescript feature, like [extends Constraints on infer Type Variables](https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/#extends-constraints-on-infer-type-variables) to reduce code length.
+
+4. Cover more tests, type tests, run time tests etc etc.
+
+5. You can also work on the [documentation](https://github.com/tylim88/FirelordJSDoc).
+
+6. Looking for a challenge? Then you can try to implement `mandatory field type`:
+
+- It is a special type that assign (with union) to object member.
+- Members with such type become `required` even in `updateDoc` operations(all members in `updateDoc` operations are partial by default).
+- Practical usage is something like `updatedAt` member that keep track of document last updated time.
+
+7. Query Constraint type affect Read type. For example for query `where('a', '==', true)`, we can further narrow down the type of field `a` to only `true`.
+
+8. Simplify getFirelord API, the current one seem unintuitive and confusing.
+
+## Running The Source Code
+
+Run `npm i`, then create a `.env` file in the project root directory and add this line:
+
+This library test against both emulator and real Firestore, please allow restriction free read and write in your Firestore rule.
+
+please use dummy Firebase project.
+
+### For FirelordJS(Web):
+
+```
+PROJECT_ID="your-firebase-project-id"
+```
+
+Despite PROJECT_ID is not a secret, we should hide it(don't upload to Github) because we want to allow restriction free read and write for smooth testing.
+
+### For Firelord(Admin):
+
+```
+TYPE="xxx"
+PROJECT_ID="xxx"
+PRIVATE_KEY_ID="xxx"
+# must enclosed private key with single quotes
+# copy everything of private key including the double quotes
+PRIVATE_KEY='"-----BEGIN PRIVATE KEY-----\nSOME_SUPERLONG_STRING\n-----END PRIVATE KEY-----\n"'
+CLIENT_EMAIL="xxx"
+CLIENT_ID="xxx"
+AUTH_URI="xxx"
+TOKEN_URI="xxx"
+AUTH_PROVIDER_X509_CERT_URL="xxx"
+CLIENT_X509_CERT_URL="xxx"
+```
+
+Do not expose admin secrets.
+
+Place a copy the `.env` file into `codeForDoc` directory, then run:
+
+1. `npm run d-test` to test development code.
+2. `npm run d-b-test` to test built code.
+3. `npm run d-p-test` to test published code(change the `version` in `package.json`` to test the version you want).

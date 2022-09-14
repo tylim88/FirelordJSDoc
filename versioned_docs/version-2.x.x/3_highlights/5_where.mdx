@@ -1,0 +1,46 @@
+---
+sidebar_position: 5
+---
+
+# Where
+
+This section discuss how `where` works.
+
+import { Image } from '@site/src/components/Image'
+
+## Dealing With Literal Types 🐧
+
+When working with literal types, you need `const` assertion in order to infers the type correctly.
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/where1.png?raw=true"
+	text={`const assertion is needed`}
+/>
+
+:::caution
+
+You still need to assert `const` variable as `const`. See [explanation](https://stackoverflow.com/questions/73307386/typescript-const-a-a-is-not-equal-to-const-a-a-as-const-and-const-aa) for such behavior.
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/where2.png?raw=true"
+	text={`You still need to assert const variable as const`}
+/>
+
+:::
+
+## Dealing With Empty Array ☢️
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/where3.png?raw=true"
+	text={`FirelordJS forbid never[] but allow correctType[] even if it is empty`}
+/>
+
+FirelordJS block `never[]` and `[]` to stop you from accidentally assign empty array(never[]) directly, small convenience.
+
+However it is impossible to block empty array on type level if its type is same as the type defined in Meta Type(eg: `string[]`, `number[]`), so FirelordJS handle the empty array in runtime by replacing empty array with `['some long unique value']`.
+
+This prevents runtime exceptions while keeping the query accurate.
+
+:::danger
+If you revert back to the official Firestore API, please handle the empty array.
+:::

@@ -1,0 +1,38 @@
+---
+sidebar_position: 1
+---
+
+# String Manipulation
+
+import { Image } from '@site/src/components/Image'
+
+It is important to understand how Typescript string literal works to properly to secure the type of your path and key.
+
+## String Concatenation
+
+```ts
+import { MetaTypeCreator, getFirelord, getFirestore } from 'firelordjs'
+
+const db = getFirestore()
+
+type Example = MetaTypeCreator<
+	{
+		a: number
+	},
+	'colName',
+	`${string}12345`
+>
+
+const suffix = 12345
+
+const docRef = getFirelord<Example>(db, 'colName').doc('a' + suffix) // type error, type is string!
+
+const docRef2 = getFirelord<Example>(db, 'colName').doc(`a${suffix}`) // ok, type is `a12345`!
+```
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/string1.png?raw=true"
+	text="how to concate string safely"
+/>
+
+Do not use `+` to concate the string because `+` output string type. Always use template string to concate string.

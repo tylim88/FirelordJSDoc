@@ -1,0 +1,33 @@
+---
+sidebar_position: 12
+---
+
+# Minified Size
+
+We obtained the minified size using `rollupjs` with below configuration:
+
+```ts
+import typescript from '@rollup/plugin-typescript'
+import { terser } from 'rollup-plugin-terser'
+
+export default {
+	input: 'src/index.ts',
+	output: {
+		dir: 'dist',
+		format: 'cjs',
+	},
+	plugins: [
+		typescript({
+			tsconfig: 'tsconfig.prod.json',
+		}),
+		terser(),
+	],
+}
+```
+
+You can run `npm run rollup` in the source code to build the minified `js` file (also see how to run the source code of [Firelord](./contributing#running-the-source-code) and [FireSage](../firesage/contributing#running-the-source-code)).
+
+However we do not publish the minified file, we publish the compiled files so you can:
+
+- view the source code properly in `node_modules`.
+- minify it with your choice of tool and setting.

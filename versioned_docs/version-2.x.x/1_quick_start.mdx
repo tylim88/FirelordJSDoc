@@ -1,0 +1,293 @@
+---
+sidebar_position: 1
+---
+
+# Quick Start 🔥
+
+import { Header } from '@site/src/components/FirelordJSHeader'
+
+<Header />
+<div align="center">
+	<i>
+		Of The VFQAT &#160;&#160;||&#160;&#160; By The VFQAT
+		&#160;&#160;||&#160;&#160; For The VFQAT
+	</i>
+</div>
+<br />
+<div align="center">
+	<i>End Firestore Typing Madness</i>
+</div>
+<br />
+<div align="center">
+	<a href="https://github.com/tylim88/FirelordJS" target="_blank">
+		Github
+	</a>
+</div>
+<br />
+
+VFQAT = Victim Of Firestore Quarter Ass Typing
+
+support **[@firebase/rules-unit-testing and emulator](/guides/tests)**
+
+Coming from V1? See [what is new in V2](./what_is_new).
+
+## Installation
+
+```bash
+npm i firebase firelordjs
+npm i -D @firebase/rules-unit-testing typescript
+```
+
+:::caution
+
+require Typescript 4.8.2+, Firebase 9.9.4+ and @firebase/rules-unit-testing 2+
+
+:::
+
+:::tip
+
+The library size on disk is 300KB, most of the code are type definitions and comments, the runtime code is at mere 9KB after minified and gzipped, [see how we got this number](./minified_size).
+
+:::
+
+:::info
+
+The documentation is far from finish, to get the idea how many API this library has, look into the Firebase Firestore API [documentation](https://firebase.google.com/docs/reference/js/firestore_).
+
+We designed this library to look almost identical to the official SDK to lower the learning curve.
+
+Any help wth the documentation is welcomed.
+
+:::
+
+## Typescript Configuration
+
+```json title='tsconfig.json'
+{
+	// ...other configs
+	"compilerOptions": {
+		// ...other options
+		"strict": true, // compulsory
+		// below options are optional, be sure to google what they do!
+		"noUncheckedIndexedAccess": true,
+		"exactOptionalPropertyTypes": true
+	}
+}
+```
+
+## Define The Meta Type
+
+Meta Type is your single source of truth.
+
+```ts title='dataType.ts'
+import { MetaTypeCreator, ServerTimestamp } from 'firelordjs'
+
+export type Example = MetaTypeCreator<
+	{
+		a: number
+		b: { c: boolean; d: { e: string }[] }
+		f: { g: ServerTimestamp; h: 1010 | 2929 | 3838 }
+	}, // can go with even more crazy looking data type
+	'SomeCollectionName', // collection ID type, must be string literal type
+	string // document ID type, normally string
+>
+```
+
+## Create Firelord References
+
+:::tip
+After you created the Firelord Ref, you no longer need to write collection name in any operations.
+:::
+
+```ts title='init.ts'
+import { getFirelord, getFirestore } from 'firelordjs'
+import { initializeApp } from 'firebase/app'
+import { Example } from './define_meta_type'
+
+const app = initializeApp({
+	projectId: '### PROJECT ID ###',
+})
+
+export const db = getFirestore(app) // or getFirestore()
+
+export const example = getFirelord<Example>(
+	getFirestore(),
+	'SomeCollectionName'
+) // this is your firelordRef
+```
+
+:::tip
+You only need document IDs to create `docRef` and `collectionRef`.
+
+You only need to write collection ID when you create `MetaType` and `FirelordRef`, you never need to write any collection ID afterward.
+:::
+
+## Operations
+
+```ts title='operations.ts'
+import { example } from './init'
+import {
+	getDoc,
+	setDoc,
+	updateDoc,
+	deleteDoc,
+	addDoc,
+	serverTimestamp,
+	increment,
+	arrayUnion,
+} from 'firelordjs'
+
+await setDoc(example.doc('abc'), {
+	a: 100,
+	b: { c: true, d: [{ e: 'abc' }] },
+	f: { g: serverTimestamp(), h: 1010 },
+})
+
+await addDoc(example.collection(), {
+	a: 900,
+	b: { c: false, d: [{ e: 'hi' }] },
+	f: { g: serverTimestamp(), h: 3838 },
+})
+
+await updateDoc(example.doc('abc'), {
+	a: increment(1),
+	'b.d': arrayUnion({ e: 'hello' }), // dot notation form
+	f: { h: 2929 }, // nested form
+})
+
+await deleteDoc(example.doc('abc'))
+
+await getDoc(example.doc('abc')).then(docSnapshot => {
+	const data = docSnapshot.data()
+})
+```
+
+## Query And OnSnapshot
+
+```ts
+import { example } from './init'
+import {
+	getDocs,
+	query,
+	where,
+	orderBy,
+	onSnapshot,
+	startAfter,
+	limit,
+} from 'firelordjs'
+
+await getDocs(
+	query(
+		example.collection(), // also accept example.collectionGroup()
+		where('f.h', '>', 1010 as const),
+		orderBy('f.h'),
+		limit(10)
+	)
+)
+
+// listen to query
+const unsub = onSnapshot(
+	query(
+		example.collectionGroup(), // also accept example.collection()
+		where('b.d', 'array-contains', { e: 'hello' }),
+		orderBy('f.g'),
+		startAfter(new Date())
+	),
+	querySnapshot => {
+		querySnapshot.forEach(docSnapshot => {
+			const data = docSnapshot.data()
+		})
+	},
+	error => {}, // optional, you can skip this onError callback and move options to here instead
+	{ includeMetadataChanges: false } // optional
+)
+
+// listen to single document
+const unsub2 = onSnapshot(
+	example.doc('abc'),
+	documentSnapshot => {
+		const data = documentSnapshot.data()
+	},
+	error => {}, // optional, you can skip this onError callback and move options to here instead
+	{ includeMetadataChanges: true } // optional
+)
+```
+
+## Batch
+
+```ts title='batch.ts'
+import { example, db } from './init'
+import { writeBatch, serverTimestamp } from 'firelordjs'
+
+const batch = writeBatch(db)
+// OR
+const batch_Alt = writeBatch()
+
+batch.set(example.doc('hij'), {
+	a: 6,
+	b: { c: false, d: [{ e: 'xyz' }] },
+	f: { g: serverTimestamp(), h: 1010 },
+})
+
+batch.update(example.doc('hij'), {
+	a: 6,
+	b: { c: false }, // nested form
+	'f.g': serverTimestamp(), // dot notation form
+})
+
+batch.delete(example.doc('hij'))
+
+await batch.commit()
+```
+
+## Transaction
+
+```ts title='transaction.ts'
+import { example, db } from './init'
+import {
+	runTransaction,
+	serverTimestamp,
+	increment,
+	arrayRemove,
+} from 'firelordjs'
+
+try {
+	// db argument is optional, you can skip it
+	await runTransaction(db, async transaction => {
+		await transaction.get(example.doc('lmn')).then(docSnapshot => {
+			const data = docSnapshot.data()
+		})
+
+		transaction.set(example.doc('lmn'), {
+			a: 88,
+			b: { c: false, d: [{ e: 'opq' }] },
+			f: { g: serverTimestamp(), h: 2929 },
+		})
+
+		transaction.update(example.doc('lmn'), {
+			a: increment(1),
+			b: { d: arrayRemove({ e: 'rst' }) }, // nested form
+			'f.g': serverTimestamp(), // dot notation form
+		})
+
+		transaction.delete(example.doc('lmn'))
+	})
+	console.log('Transaction successfully committed!')
+} catch (e) {
+	console.log('Transaction failed: ', e)
+}
+```
+
+## Did I Learn Everything In A Page?
+
+FirelordJS API looks and feels nearly identical to the official Firestore SDK, to the point that in one page, you have learned almost everything, equipped with **full fledged** type safety, effortlessly.
+
+The knowledge gap between casual user and advanced user is only 5% (you can find the rest in [guides](./guides/about.)).
+
+Every value is safely typed, this including collection ID, document ID, all operations, all field paths, all inputs, all outputs, all query clauses, basically whatever FirelordJS exports.
+
+FirelordJS infers types of every single value from the MetaType defined in the very beginning, and this is the only time you ever have to deal with the type, there is no need for type annotation and type casting, **type it and forget**.
+
+This is done elegantly without complicated configuration while maintain API that is nearly identical to the official Firestore API, and simpler.
+
+FirelordJS offer deep type safe mechanisms that are not found in other wrappers: the **Rules Typing**.
