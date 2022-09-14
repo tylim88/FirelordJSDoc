@@ -12,21 +12,81 @@ import { Image } from '@site/src/components/Image'
 
 Pass the parent type into the 4 th argument of the child `MetaTypeCreator`.
 
+```ts
+import {
+	MetaTypeCreator,
+	getFirelord,
+	DocumentReference,
+	getFirestore,
+} from 'firelordjs'
+
+const db = getFirestore()
+
+type Parent = MetaTypeCreator<
+	{
+		a: number
+	},
+	'columnIDLevel1', // collectionId type
+	string // docId type
+>
+
+type Child = MetaTypeCreator<
+	{
+		a: 'a' | 'b' | 'c'
+		b: { c: number }
+	},
+	'columnIDLevel2', // collectionId type
+	string, // docId type
+	Parent // child's parent is Parent
+>
+
+type GrandChild = MetaTypeCreator<
+	{
+		e: { f: boolean }[]
+	},
+	'columnIDLevel3', // collectionId type
+	string, // docId type
+	Child // grandChild's parent is child
+>
+
+const firelordRef = getFirelord<GrandChild>(
+	db,
+	'columnIDLevel1', // parent
+	'columnIDLevel2', // child
+	'columnIDLevel3' // grandChild
+)
+
+// full doc path is columnIDLevel1/docIDLevel1/columnIDLevel2/docIDLevel2/columnIDLevel3/docIDLevel3
+// all docId types are string, you can use any name for documentID
+const docRef = firelordRef.doc('docIDLevel1', 'docIDLevel2', 'docIDLevel3')
+
+// full collection path is columnIDLevel1/docIDLevel1/columnIDLevel2/docIDLevel2/columnIDLevel3
+// full collection path don't need the last docID, in this case docIDLevel3
+// all docId types are string, you can use any name for documentID
+const colRef = firelordRef.collection('docIDLevel1', 'docIDLevel2')
+
+// collection group don't need any argument regardless of descendant level.
+const colGroupRef = firelordRef.collectionGroup()
+```
+
+:::tips
+Keep in mind you only need document IDs to create `docRef` and `collectionRef`.
+
+You only need to write collection ID when you create `MetaType` and `FirelordRef`, you never need to write any collection ID afterward.
+:::
+
+## Type Checking
+
+And of course, type safety:
+
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/metaType1.png?raw=true"
-	text="Create child collection."
+	text="Unknown collection ID trigger type error"
 />
-
-FirelordJS also check the collection path type for you.
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/metaType2.png?raw=true"
-	text="FirelordJS reject invalid characters. in collection path"
-/>
-
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/metaType3.png?raw=true"
-	text="FirelordJS reject incorrect collection path."
+	text="Missing collection ID trigger type error"
 />
 
 ## Index Accessor
@@ -34,6 +94,6 @@ FirelordJS also check the collection path type for you.
 In case you want to explore MetaType, you can use index accessor, this is useful if you want to do something ontop of FirelordJS.
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/metaType4.png?raw=true"
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/metaType3.png?raw=true"
 	text="Explore MetaType with index accessor."
 />
