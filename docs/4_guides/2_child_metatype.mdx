@@ -13,12 +13,7 @@ import { Image } from '@site/src/components/Image'
 Pass the parent type into the 4 th argument of the child `MetaTypeCreator`.
 
 ```ts
-import {
-	MetaTypeCreator,
-	getFirelord,
-	DocumentReference,
-	getFirestore,
-} from 'firelordjs'
+import { MetaTypeCreator, getFirelord, getFirestore } from 'firelordjs'
 
 const db = getFirestore()
 
@@ -69,6 +64,11 @@ const colRef = firelordRef.collection('docIDLevel1', 'docIDLevel2')
 const colGroupRef = firelordRef.collectionGroup()
 ```
 
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/metaType1.png?raw=true"
+	text="relations"
+/>
+
 :::tips
 Keep in mind you only need document IDs to create `docRef` and `collectionRef`.
 
@@ -80,12 +80,12 @@ You only need to write collection ID when you create `MetaType` and `FirelordRef
 And of course, type safety:
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/metaType1.png?raw=true"
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/metaType2.png?raw=true"
 	text="Unknown collection ID trigger type error"
 />
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/metaType2.png?raw=true"
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/metaType3.png?raw=true"
 	text="Missing collection ID trigger type error"
 />
 
@@ -96,6 +96,6 @@ The same check also apply to all document ID parameters
 In case you want to explore MetaType, you can use index accessor, this is useful if you want to do something ontop of FirelordJS.
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/metaType3.png?raw=true"
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/metaType4.png?raw=true"
 	text="Explore MetaType with index accessor."
 />
