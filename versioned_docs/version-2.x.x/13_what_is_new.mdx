@@ -83,7 +83,7 @@ But still it is awkward neither `docRef`,`colRef` nor `colGroupRef` feel intuiti
 
 Despite `colGroupRef` not needing any document ID, we still need to supply two documentIDs for it.
 
-No matter how we look at this pattern, it is harmful to your code structure because the way of exporting top level ref and child ref are different.
+The way of exporting top level ref and child ref is different, this is harmful to code structure.
 
 Finally we need to call `getFirelord` twice to create `FirelordRef` because `getFirelord` is a curry function.
 
