@@ -48,7 +48,7 @@ A perfect solution is to forbid set merge and only allow set merge on field that
 
 ## All Fields Read As Undefined 🦜
 
-:::Caution
+:::caution
 The setting `allFieldsPossiblyUndefined` had been renamed to `allFieldsPossiblyReadAsUndefined` in version 1.5.0
 :::
 
@@ -99,13 +99,15 @@ What happen to `PossiblyReadAsUndefined` type in write operation?
 
 Simple, FirelordJS excludes it.
 
+If a field has `PossiblyReadAsUndefined` unions:
+
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/possiblyReadAsUndefined6.png?raw=true" />
 	<small>left 'number' </small>
 </div>
 <br />
 
-If you assign only `PossiblyReadAsUndefined` type.
+If a field has only `PossiblyReadAsUndefined` type:
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 	<img src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/possiblyReadAsUndefined7.png?raw=true" />
