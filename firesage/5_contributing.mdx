@@ -44,7 +44,9 @@ Despite PROJECT_ID is not a secret, you should hide(don't upload to Github) it b
 TYPE="xxx"
 PROJECT_ID="xxx"
 PRIVATE_KEY_ID="xxx"
-PRIVATE_KEY='"xxx"'
+# must enclosed private key with single quotes
+# copy everything of private key including the double quotes
+PRIVATE_KEY='"-----BEGIN PRIVATE KEY-----\nSOME_SUPERLONG_STRING\n-----END PRIVATE KEY-----\n"'
 CLIENT_EMAIL="xxx"
 CLIENT_ID="xxx"
 AUTH_URI="xxx"
