@@ -100,22 +100,24 @@ After you created the Firelord Ref, you no longer need to write collection name 
 ```ts title='init.ts'
 import { getFirelord, getFirestore } from 'firelordjs'
 import { initializeApp } from 'firebase/app'
-import { Example } from './dataType'
+import { Example } from './define_meta_type'
 
 const app = initializeApp({
 	projectId: '### PROJECT ID ###',
 })
 
-export const db = getFirestore() // or getFirestore(app), you can skip this line
+export const db = getFirestore(app) // or getFirestore()
 
-// Recommendation: Export this if the collection is sub-collection and then fill in collection path later, because sub collection most likely have dynamic document ID.
-export const firelordExample = getFirelord<Example>() // or getFirelord<Example>(db)
-// then call them using
-// const example = firelordExample(`parentCollectionName/${someDocId}/SomeCollectionName`) // this is your firelordRef
+export const firelordExample = getFirelord<Example>()
 
-// Recommendation: Export this if the collection is root collection
-export const example = firelordExample('SomeCollectionName') // this is your firelordRef
+export const example = firelordExample('SomeCollectionName')
 ```
+
+:::tip
+You only need document IDs to create `docRef` and `collectionRef`.
+
+You only need to write collection ID when you create `MetaType` and `FirelordRef`, you never need to write any collection ID afterward.
+:::
 
 ## Operations
 
