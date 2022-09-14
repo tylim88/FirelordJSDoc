@@ -22,3 +22,18 @@ If you accidentally defined a direct nested array type, FirelordJS will replace 
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/array1.png?raw=true"
 	text="direct nested array"
 />
+
+## Filter with Partial Member Object Array
+
+One of the common mistake people make is trying to filter with partial member object array.
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/array2.png?raw=true"
+	text="filter with partial member get nothing"
+/>
+
+If you want to filter with object array, you have to filter with the exact shape of the object(all members must present), or else it wont match any of it.
+
+Unless such object element truly exist, then you will get something, but this also mean you have two data types and something is wrong.
+
+This is not FirelordJS limitation, this is how Firestore works.
