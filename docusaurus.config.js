@@ -75,6 +75,12 @@ const config = {
 						label: 'Realtime Database',
 						docsPluginId: 'firesage',
 					},
+					{
+						type: 'docsVersionDropdown',
+						position: 'right',
+						dropdownItemsAfter: [],
+						dropdownActiveClassDisabled: true,
+					},
 				],
 			},
 			footer: {
