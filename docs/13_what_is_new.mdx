@@ -53,28 +53,22 @@ export const grandchildRefCreator = (docID1: string, docID2: string) =>
 import { parentRef, childRefCreator, grandchildRefCreator } from './setup.ts'
 
 const parentDocRef = parentRef.doc('docIDLevel1')
-
-const parentColRef = parentRef.collection()
-
-const parentColGroupRef = parentRef.collectionGroup()
-
 const childDocRef = childRefCreator('docIDLevel1').doc('docIDLevel2')
-
-const childColRef = childRefCreator('docIDLevel1').collection()
-
-const childColGroupRef = childRefCreator(
-	'docIDLevel1' // any string is fine, collectionGroup does not care about document ID
-).collectionGroup()
-
 const grandChildDocRef = grandchildRefCreator('docIDLevel1', 'docIDLevel2').doc(
 	'docIDLevel3'
 )
 
+const parentColRef = parentRef.collection()
+const childColRef = childRefCreator('docIDLevel1').collection()
 const grandChildColRef = grandchildRefCreator(
 	'docIDLevel1',
 	'docIDLevel2'
 ).collection()
 
+const parentColGroupRef = parentRef.collectionGroup()
+const childColGroupRef = childRefCreator(
+	'docIDLevel1' // any string is fine, collectionGroup does not care about document ID
+).collectionGroup()
 const grandChildColGroupRef = grandchildRefCreator(
 	'docIDLevel1', // any string is fine, collectionGroup does not care about document ID
 	'docIDLevel2' // any string is fine, collectionGroup does not care about document ID
@@ -149,25 +143,19 @@ export const grandChildRef = getFirelord<GrandChild>(
 import { parentRef, childRef, grandChildRef } from './setup.ts'
 
 const parentDocRef = parentRef.doc('docIDLevel1')
-
-const parentColRef = parentRef.collection()
-
-const parentColGroupRef = parentRef.collectionGroup()
-
 const childDocRef = childRef.doc('docIDLevel1', 'docIDLevel2')
-
-const childColRef = childRef.collection('docIDLevel1')
-
-const childColGroupRef = childRef.collectionGroup()
-
 const grandChildDocRef = grandChildRef.doc(
 	'docIDLevel1',
 	'docIDLevel2',
 	'docIDLevel3'
 )
 
+const parentColRef = parentRef.collection()
+const childColRef = childRef.collection('docIDLevel1')
 const grandChildColRef = grandChildRef.collection('docIDLevel1', 'docIDLevel2')
 
+const parentColGroupRef = parentRef.collectionGroup()
+const childColGroupRef = childRef.collectionGroup()
 const grandChildColGroupRef = grandChildRef.collectionGroup()
 ```
 
@@ -181,4 +169,4 @@ read here for more about [Child Meta Type](./guides/child_metatype)
 
 ## Should I Update to V2?
 
-You can stay with V1 but we strongly recommend you use V2 in your future project.
+You can stay with V1 but we strongly recommend you use V2 in your future projects.
