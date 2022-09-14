@@ -2,7 +2,7 @@
 sidebar_position: 13
 ---
 
-# What Is New?
+# What Is New In V2?
 
 This section discuss what problem V2 solved.
 
@@ -49,16 +49,16 @@ export const grandchildRefCreator = (docID1: string, docID2: string) =>
 	)
 ```
 
-```ts title='implement.ts'
+```ts title='implementation.ts'
 import { parentRef, childRefCreator, grandchildRefCreator } from './setup.ts'
 
-const parentDocRef = parentRef.doc('docIDLevel3')
+const parentDocRef = parentRef.doc('docIDLevel1')
 
 const parentColRef = parentRef.collection()
 
 const parentColGroupRef = parentRef.collectionGroup()
 
-const childDocRef = childRefCreator('docIDLevel1').doc('docIDLevel3')
+const childDocRef = childRefCreator('docIDLevel1').doc('docIDLevel2')
 
 const childColRef = childRefCreator('docIDLevel1').collection()
 
@@ -145,7 +145,7 @@ export const grandChildRef = getFirelord<GrandChild>(
 )
 ```
 
-```ts title='implement.ts'
+```ts title='implementation.ts'
 import { parentRef, childRef, grandChildRef } from './setup.ts'
 
 const parentDocRef = parentRef.doc('docIDLevel1')
@@ -176,3 +176,5 @@ In version 2:
 1. top level and child collection are exported in a similar fashion.
 2. `collectionGroup` need 0 argument regardless of level.
 3. getFirelord is no longer a curry function and `db` paramter is now mandatory(this is to reduce confusion caused by funtion overloading).
+
+read here for more about [Child Meta Type](./guides/child_metatype)
