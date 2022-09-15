@@ -32,9 +32,9 @@ FirelordJS solves this by assigning [unique symbol type](https://www.typescriptl
 
 ## Special Field Values
 
-| Field Value | Interface                                                                 | Signature                                  | Note                                                | Assignable |
-| ----------- | ------------------------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------- | ---------- |
-| `delete`    | [`DeleteField`](../4_guides/3_delete_field.mdx)                           | `{ 'Firelord.FieldValue': unique symbol }` | allow a field to be read as undefiend and deletable | Yes        |
-| none        | [`PossiblyReadAsUndefined`](../4_guides/5_possibly_read_as_undefined.mdx) | `{ 'Firelord.FieldValue': unique symbol }` | allow a field to be read as undefiend               | Yes        |
+| Field Value | Interface                                                         | Signature                                  | Note                                                | Assignable |
+| ----------- | ----------------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------- | ---------- |
+| `delete`    | [`DeleteField`](../guides/delete_field)                           | `{ 'Firelord.FieldValue': unique symbol }` | allow a field to be read as undefiend and deletable | Yes        |
+| none        | [`PossiblyReadAsUndefined`](../guides/possibly_read_as_undefined) | `{ 'Firelord.FieldValue': unique symbol }` | allow a field to be read as undefiend               | Yes        |
 
 Special types serve as utility, eg: transform a field type or allow you to perform certain action on a field.
