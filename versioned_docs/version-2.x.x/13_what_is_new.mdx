@@ -6,10 +6,10 @@ sidebar_position: 13
 
 This section discuss what problems V2 has solved.
 
-## Version 1
+Assuming we have these Meta Types:
 
-```ts title='setup.ts'
-import { MetaTypeCreator, getFirelord, DocumentReference } from 'firelordjs'
+```ts title='metaType.ts'
+import { MetaTypeCreator } from 'firelordjs'
 
 type Parent = MetaTypeCreator<
 	{
@@ -37,6 +37,13 @@ type GrandChild = MetaTypeCreator<
 	string,
 	Child
 >
+```
+
+## Version 1
+
+```ts title='setup.ts'
+import { getFirelord } from 'firelordjs'
+import { Parent, Child, GrandChild } from './metatype.ts'
 
 export const parentRef = getFirelord<Parent>()(`collectionIDLevel1`) // don't ned to wrap it in a function
 
@@ -92,36 +99,10 @@ The curry function is useful if we have more than one Firestore instance, but mo
 ## Version 2
 
 ```ts title='setup.ts'
-import { MetaTypeCreator, getFirelord, getFirestore } from 'firelordjs'
+import { getFirelord, getFirestore } from 'firelordjs'
+import { Parent, Child, GrandChild } from './metatype.ts'
 
 const db = getFirestore()
-
-type Parent = MetaTypeCreator<
-	{
-		a: number
-	},
-	'collectionIDLevel1',
-	string
->
-
-type Child = MetaTypeCreator<
-	{
-		a: 'a' | 'b' | 'c'
-		b: { c: number }
-	},
-	'collectionIDLevel2',
-	string,
-	Parent
->
-
-type GrandChild = MetaTypeCreator<
-	{
-		e: { f: boolean }[]
-	},
-	'collectionIDLevel3',
-	string,
-	Child
->
 
 export const parentRef = getFirelord<Parent>(db, 'collectionIDLevel1')
 
