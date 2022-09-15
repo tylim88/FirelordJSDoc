@@ -229,8 +229,7 @@ import {
 			// the type of orderByChild argument is relative paths of 'g' grandchildren node
 			// type of 'g' node is PushAbleOnly<{ h: number; j: { k: boolean } }>
 			// descendants node are 'h', 'j' and 'j/k'
-			// however 'j' is not a valid type because the type of node 'j' is non-primitive
-			// in this case the error suggestion will appear on the cursor instead
+			// however 'j' is not a valid type because the type of node 'j' is non-primitive and will trigger type error
 			orderByChild('j/k'),
 			// the 1st argument is boolean because the type of node 'j/k' is boolean
 			// in this case it is non numeric string because 'f' is Record<string, 'a' | 'b' | 'c'>
