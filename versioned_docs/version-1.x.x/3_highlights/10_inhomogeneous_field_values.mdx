@@ -20,12 +20,11 @@ And they all sharing the same type: `FieldValue`, which means is it possible to 
 
 FirelordJS solves this by assigning [unique symbol type](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#unique-symbol):
 
-| Field Value                   | Interface               | Signature                                                                 | Note                     |
-| ----------------------------- | ----------------------- | ------------------------------------------------------------------------- | ------------------------ |
-| `increment`                   | `Increment`             | `{ 'Firelord.FieldValue': unique symbol }`                                | auto union with `number` |
-| `serverTimestamp`             | `ServerTimestamp`       | `{ 'Firelord.FieldValue': unique symbol }`                                |                          |
-| `arrayRemove` \| `arrayUnion` | `ArrayUnionOrRemove<T>` | `{ 'Firelord.FieldValue': unique symbol, 'Firelord.ArrayFieldValue': T }` | auto union with `T[]`    |
-| `deleteField`                 | `DeleteField`           | `{ 'Firelord.FieldValue': unique symbol }`                                |                          |
+| Field Value                   | Interface               | Signature                                                                 | Note                     | Assignable |
+| ----------------------------- | ----------------------- | ------------------------------------------------------------------------- | ------------------------ | ---------- |
+| `serverTimestamp`             | `ServerTimestamp`       | `{ 'Firelord.FieldValue': unique symbol }`                                |                          | Yes        |
+| `increment`                   | `Increment`             | `{ 'Firelord.FieldValue': unique symbol }`                                | auto union with `number` | No         |
+| `arrayRemove` \| `arrayUnion` | `ArrayUnionOrRemove<T>` | `{ 'Firelord.FieldValue': unique symbol, 'Firelord.ArrayFieldValue': T }` | auto union with `T[]`    | No         |
 
 Do note that they are concrete types, it is possible to access `Firelord.FieldValue` and `Firelord.ArrayFieldValue` value in run time.
 
@@ -35,9 +34,9 @@ Do note that they are concrete types, it is possible to access `Firelord.FieldVa
 
 ## Special Field Value
 
-| Interface                                                                 | Note                                                |
-| ------------------------------------------------------------------------- | --------------------------------------------------- |
-| [`DeleteField`](../4_guides/3_delete_field.mdx)                           | allow a field to be read as undefiend and deletable |
-| [`PossiblyReadAsUndefined`](../4_guides/5_possibly_read_as_undefined.mdx) | allow a field to be read as undefiend               |
+| Field Value | Interface                                                                 | Note                                                | Assignable |
+| ----------- | ------------------------------------------------------------------------- | --------------------------------------------------- | ---------- |
+| `delete`    | [`DeleteField`](../4_guides/3_delete_field.mdx)                           | allow a field to be read as undefiend and deletable | Yes        |
+| none        | [`PossiblyReadAsUndefined`](../4_guides/5_possibly_read_as_undefined.mdx) | allow a field to be read as undefiend               | Yes        |
 
 These are virtual types, they serve as utility, they are assignable but cannot be accessed in runtime.
