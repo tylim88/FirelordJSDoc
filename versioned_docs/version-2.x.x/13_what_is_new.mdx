@@ -6,7 +6,7 @@ sidebar_position: 13
 
 This section discuss what problems V2 has solved.
 
-## V1
+## Version 1
 
 ```ts title='setup.ts'
 import { MetaTypeCreator, getFirelord, DocumentReference } from 'firelordjs'
@@ -75,15 +75,15 @@ const grandChildColGroupRef = grandchildRefCreator(
 ).collectionGroup()
 ```
 
-V1 is pleasant to work with top collection but not with child collection.
+In V1, working with top collections is a pleasant but not so much with child collections.
 
-In order to resue `FirelordRef`, we need to wrap it in another function because in most cases document IDs are dynamic.
+In order to resue child colloection `FirelordRef`, we need to wrap it in another function because in most cases document IDs are dynamic.
 
-But still it is awkward neither `docRef`,`colRef` nor `colGroupRef` feel intuitive to create, especially `colGroupRef`.
+But still neither `docRef`,`colRef` nor `colGroupRef` feel intuitive to create, especially `colGroupRef`.
 
 Despite `colGroupRef` not needing any document ID, we still need to supply two documentIDs to it.
 
-The way of exporting top level ref and child ref is different, this is harmful to code structure.
+How we export top level ref is different than how we export child ref and this is harmful to code structure.
 
 Finally we need to call `getFirelord` twice to create `FirelordRef` because `getFirelord` is a curry function.
 
