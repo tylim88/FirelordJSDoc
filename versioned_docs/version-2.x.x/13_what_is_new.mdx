@@ -15,7 +15,7 @@ type Parent = MetaTypeCreator<
 	{
 		a: number
 	},
-	'columnIDLevel1',
+	'collectionIDLevel1',
 	string
 >
 
@@ -24,7 +24,7 @@ type Child = MetaTypeCreator<
 		a: 'a' | 'b' | 'c'
 		b: { c: number }
 	},
-	'columnIDLevel2',
+	'collectionIDLevel2',
 	string,
 	Parent
 >
@@ -33,19 +33,19 @@ type GrandChild = MetaTypeCreator<
 	{
 		e: { f: boolean }[]
 	},
-	'columnIDLevel3',
+	'collectionIDLevel3',
 	string,
 	Child
 >
 
-export const parentRef = getFirelord<Parent>()(`columnIDLevel1`) // don't ned to wrap it in a function
+export const parentRef = getFirelord<Parent>()(`collectionIDLevel1`) // don't ned to wrap it in a function
 
 export const childRefCreator = (docID1: string) =>
-	getFirelord<Child>()(`columnIDLevel1/${docID1}/columnIDLevel2`) // need to wrap it in a function
+	getFirelord<Child>()(`collectionIDLevel1/${docID1}/collectionIDLevel2`) // need to wrap it in a function
 
 export const grandchildRefCreator = (docID1: string, docID2: string) =>
 	getFirelord<GrandChild>()(
-		`columnIDLevel1/${docID1}/columnIDLevel2/${docID2}/columnIDLevel3` // need to wrap it in a function
+		`collectionIDLevel1/${docID1}/collectionIDLevel2/${docID2}/collectionIDLevel3` // need to wrap it in a function
 	)
 ```
 
@@ -100,7 +100,7 @@ type Parent = MetaTypeCreator<
 	{
 		a: number
 	},
-	'columnIDLevel1',
+	'collectionIDLevel1',
 	string
 >
 
@@ -109,7 +109,7 @@ type Child = MetaTypeCreator<
 		a: 'a' | 'b' | 'c'
 		b: { c: number }
 	},
-	'columnIDLevel2',
+	'collectionIDLevel2',
 	string,
 	Parent
 >
@@ -118,24 +118,24 @@ type GrandChild = MetaTypeCreator<
 	{
 		e: { f: boolean }[]
 	},
-	'columnIDLevel3',
+	'collectionIDLevel3',
 	string,
 	Child
 >
 
-export const parentRef = getFirelord<Parent>(db, 'columnIDLevel1')
+export const parentRef = getFirelord<Parent>(db, 'collectionIDLevel1')
 
 export const childRef = getFirelord<Child>(
 	db,
-	'columnIDLevel1',
-	'columnIDLevel2'
+	'collectionIDLevel1',
+	'collectionIDLevel2'
 )
 
 export const grandChildRef = getFirelord<GrandChild>(
 	db,
-	'columnIDLevel1',
-	'columnIDLevel2',
-	'columnIDLevel3'
+	'collectionIDLevel1',
+	'collectionIDLevel2',
+	'collectionIDLevel3'
 )
 ```
 
