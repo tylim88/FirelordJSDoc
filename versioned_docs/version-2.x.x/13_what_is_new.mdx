@@ -45,7 +45,7 @@ type GrandChild = MetaTypeCreator<
 import { getFirelord } from 'firelordjs'
 import { Parent, Child, GrandChild } from './metatype.ts'
 
-export const parentRef = getFirelord<Parent>()(`collectionIDLevel1`) // don't ned to wrap it in a function
+export const parentRef = getFirelord<Parent>()(`collectionIDLevel1`) // don't need to wrap it in a function
 
 export const childRefCreator = (docID1: string) =>
 	getFirelord<Child>()(`collectionIDLevel1/${docID1}/collectionIDLevel2`) // need to wrap it in a function
