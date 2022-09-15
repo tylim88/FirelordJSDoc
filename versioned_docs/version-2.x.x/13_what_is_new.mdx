@@ -92,9 +92,9 @@ Despite `colGroupRef` not needing any document IDs, we still need to supply two 
 
 How we export top-level ref is different than how we export child ref. This is inconvenient when we try to structure the code.
 
-Finally, we need to call `getFirelord` twice to create `FirelordRef` because `getFirelord` is a curry function.
+Finally, we need to call `getFirelord` twice to create `FirelordRef` because `getFirelord` is a curried function.
 
-The curry function is useful if we have more than one Firestore instance, but most applications need only one instance, so curry provides no real value other than increasing cognitive cost.
+Curried function is useful if we have more than one Firestore instance, but most applications need only one instance, so curry provides no real value other than increasing cognitive cost.
 
 ## Version 2
 
