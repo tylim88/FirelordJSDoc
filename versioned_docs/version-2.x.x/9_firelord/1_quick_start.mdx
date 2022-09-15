@@ -234,7 +234,7 @@ import {
 			// 2. { readOnly: true, readTime?: Timestamp }
 			// note that in case only readTime is optional and readOnly is true
 		)
-		console.log(result) // is 123 because it is what you return
+		console.log(result) // result is 123 because we return 123 in runTransaction callback
 	} catch (e) {
 		console.log('Transaction failed: ', e)
 	}

@@ -232,7 +232,7 @@ import {
 } from 'firelord'
 
 try {
-	await runTransaction(
+	const result = await runTransaction(
 		db, // db argument is optional, you can skip it
 		async transaction => {
 			await transaction.get(example.doc('lmn')).then(docSnapshot => {
@@ -258,6 +258,8 @@ try {
 			})
 
 			transaction.delete(example.doc('lmn'))
+
+			return 123 // return this to result
 		},
 		{ readOnly: true, readTime: Timestamp.now() } // optional
 		// we can supply 2 set of options:
@@ -266,7 +268,8 @@ try {
 		// 2. { readOnly: true, readTime?: Timestamp }
 		// note that in case only readTime is optional and readOnly is true
 	)
-	console.log('Transaction successfully committed!')
+
+	console.log(result) // result is 123 because we return 123 in runTransaction callback
 } catch (e) {
 	console.log('Transaction failed: ', e)
 }

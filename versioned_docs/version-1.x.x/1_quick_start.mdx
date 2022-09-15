@@ -250,7 +250,7 @@ import {
 
 try {
 	// db argument is optional, you can skip it
-	await runTransaction(db, async transaction => {
+	const result = await runTransaction(db, async transaction => {
 		await transaction.get(example.doc('lmn')).then(docSnapshot => {
 			const data = docSnapshot.data()
 		})
@@ -268,8 +268,10 @@ try {
 		})
 
 		transaction.delete(example.doc('lmn'))
+
+		return 123 // return this to result
 	})
-	console.log('Transaction successfully committed!')
+	console.log(result) // result is 123 because we return 123 in runTransaction callback
 } catch (e) {
 	console.log('Transaction failed: ', e)
 }
