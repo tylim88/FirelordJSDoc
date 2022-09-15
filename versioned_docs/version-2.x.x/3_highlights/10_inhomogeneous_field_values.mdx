@@ -34,9 +34,9 @@ Do note that they are concrete types, it is possible to access `Firelord.FieldVa
 
 ## Special Field Value
 
-| Field Value | Interface                                                                 | Note                                                | Assignable |
-| ----------- | ------------------------------------------------------------------------- | --------------------------------------------------- | ---------- |
-| `delete`    | [`DeleteField`](../4_guides/3_delete_field.mdx)                           | allow a field to be read as undefiend and deletable | Yes        |
-| none        | [`PossiblyReadAsUndefined`](../4_guides/5_possibly_read_as_undefined.mdx) | allow a field to be read as undefiend               | Yes        |
+| Field Value | Interface                                                                 | Note                                                    | Assignable |
+| ----------- | ------------------------------------------------------------------------- | ------------------------------------------------------- | ---------- |
+| `delete`    | [`DeleteField`](../4_guides/3_delete_field.mdx)                           | allow a field to be read as undefiend and deletable     | Yes        |
+| none        | [`PossiblyReadAsUndefined`](../4_guides/5_possibly_read_as_undefined.mdx) | allow a field to be read as undefiend, no runtime value | Yes        |
 
-These are virtual types, they serve as utility, they are assignable but cannot be accessed in runtime.
+Special types serve as utility, eg: transform a field type or allow you to perform certain action on a field.
