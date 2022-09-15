@@ -27,8 +27,17 @@ FirelordJS solves this by assigning [unique symbol type](https://www.typescriptl
 | `arrayRemove` \| `arrayUnion` | `ArrayUnionOrRemove<T>` | `{ 'Firelord.FieldValue': unique symbol, 'Firelord.ArrayFieldValue': T }` | auto union with `T[]`    |
 | `deleteField`                 | `DeleteField`           | `{ 'Firelord.FieldValue': unique symbol }`                                |                          |
 
-Do note that they are concrete types, which mean it is possible to access `Firelord.FieldValue` and `Firelord.ArrayFieldValue` value in run time.
+Do note that they are concrete types, it is possible to access `Firelord.FieldValue` and `Firelord.ArrayFieldValue` value in run time.
 
 ## UnassignAble Field Values
 
 `ArrayUnionOrRemove<T>` and `Increment` are not assignable types and are not exported, they are passive types that automatically union with other types.
+
+## Special Field Value
+
+| Interface                                                         | Note                                                |
+| ----------------------------------------------------------------- | --------------------------------------------------- |
+| [`DeleteField`](../guides/delete_field)                           | allow a field to be read as undefiend and deletable |
+| [`PossiblyReadAsUndefined`](../guides/possibly_read_as_undefined) | allow a field to be read as undefiend               |
+
+These are virtual types, they serve as utility, they are assignable but cannot be accessed in runtime.
