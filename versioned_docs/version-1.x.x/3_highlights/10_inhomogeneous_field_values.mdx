@@ -26,17 +26,15 @@ FirelordJS solves this by assigning [unique symbol type](https://www.typescriptl
 | `increment`                   | `Increment`             | `{ 'Firelord.FieldValue': unique symbol }`                                | auto union with `number` | No         |
 | `arrayRemove` \| `arrayUnion` | `ArrayUnionOrRemove<T>` | `{ 'Firelord.FieldValue': unique symbol, 'Firelord.ArrayFieldValue': T }` | auto union with `T[]`    | No         |
 
-Do note that they are concrete types, it is possible to access `Firelord.FieldValue` and `Firelord.ArrayFieldValue` value in run time.
-
 ## UnassignAble Field Values
 
 `ArrayUnionOrRemove<T>` and `Increment` are not assignable types and are not exported, they are passive types that automatically union with other types.
 
-## Special Field Value
+## Special Field Values
 
-| Field Value | Interface                                                                 | Note                                                    | Assignable |
-| ----------- | ------------------------------------------------------------------------- | ------------------------------------------------------- | ---------- |
-| `delete`    | [`DeleteField`](../4_guides/3_delete_field.mdx)                           | allow a field to be read as undefiend and deletable     | Yes        |
-| none        | [`PossiblyReadAsUndefined`](../4_guides/5_possibly_read_as_undefined.mdx) | allow a field to be read as undefiend, no runtime value | Yes        |
+| Field Value | Interface                                                                 | Signature                                  | Note                                                | Assignable |
+| ----------- | ------------------------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------- | ---------- |
+| `delete`    | [`DeleteField`](../4_guides/3_delete_field.mdx)                           | `{ 'Firelord.FieldValue': unique symbol }` | allow a field to be read as undefiend and deletable | Yes        |
+| none        | [`PossiblyReadAsUndefined`](../4_guides/5_possibly_read_as_undefined.mdx) | `{ 'Firelord.FieldValue': unique symbol }` | allow a field to be read as undefiend               | Yes        |
 
 Special types serve as utility, eg: transform a field type or allow you to perform certain action on a field.
