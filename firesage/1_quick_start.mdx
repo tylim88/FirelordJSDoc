@@ -310,8 +310,9 @@ import { runTransaction } from 'firesagejs'
 ;async () => {
 	const result = await runTransaction(
 		exampleRef('g/a1b2c3'),
-		() => {
-			return { h: 123, j: { k: false } }
+		// type of 'data' is { h: number, j: { k: boolean } } | null
+		data => {
+			return { h: 123, j: { k: false } } // return to result
 		},
 		{ applyLocally: true } // optional, options
 	)
