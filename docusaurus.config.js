@@ -115,6 +115,11 @@ const config = {
 							},
 						],
 					},
+					{
+						href: '/discord',
+						label: 'Discord',
+						position: 'right',
+					},
 				],
 			},
 			footer: {
