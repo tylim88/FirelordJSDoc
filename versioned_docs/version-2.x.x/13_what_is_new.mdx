@@ -86,11 +86,11 @@ In V1, working with top collections is a pleasure, but not so much with child co
 
 In order to resue child collections' `FirelordRef`, we need to wrap it in another function, this is because in most cases document IDs are dynamic.
 
-But still, neither `docRef`,`colRef` nor `colGroupRef` feel intuitive to create, especially `colGroupRef`.
+This result in how we export top-level ref is different than how we export child ref. This feel awkward when we try to structure our code.
+
+Also neither `docRef`,`colRef` nor `colGroupRef` of child collections are intuitive to create, especially `colGroupRef`.
 
 Despite `colGroupRef` not needing any document IDs, we still need to supply two documentIDs to it.
-
-How we export top-level ref is different than how we export child ref. This is inconvenient when we try to structure the code.
 
 Finally, we need to call `getFirelord` twice to create `FirelordRef` because `getFirelord` is a curried function.
 
