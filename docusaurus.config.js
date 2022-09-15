@@ -81,6 +81,40 @@ const config = {
 						dropdownItemsAfter: [],
 						dropdownActiveClassDisabled: true,
 					},
+					{
+						type: 'dropdown',
+						label: 'Github',
+						position: 'right',
+						items: [
+							{
+								label: 'FirelordJS',
+								href: 'https://github.com/tylim88/FirelordJS',
+							},
+							{
+								label: 'Firelord',
+								href: 'https://github.com/tylim88/Firelord',
+							},
+							{
+								label: 'FireSageJS',
+								href: 'https://github.com/tylim88/FireSageJS',
+							},
+						],
+					},
+					{
+						type: 'dropdown',
+						label: 'Discussion',
+						position: 'right',
+						items: [
+							{
+								label: 'FirelordJS',
+								href: 'https://github.com/tylim88/FirelordJS/discussions',
+							},
+							{
+								label: 'FireSageJS',
+								href: 'https://github.com/tylim88/FireSageJS/discussions',
+							},
+						],
+					},
 				],
 			},
 			footer: {
