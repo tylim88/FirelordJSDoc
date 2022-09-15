@@ -14,13 +14,13 @@ This section list limitions of FirelordJS due to reason unsupported or straight 
 4. union object type with any primitive type and object type.
 5. Interface
 
-1, 2: technically possible (implemented in FiresageJS) but they are not good practices recommend in Firestore.
+1, 2: technically possible (implemented in FireSageJS) but they are not good practices recommend in Firestore.
 
 Ideally key should not be arbitarly, using arbitary key as field indicate that we are trying to store potentially large data in a document, and due to size limitation(max 1 MB), it is better to save each entry as document instead.
 
 3: technically possible but why would we want to store a tuple? The only use case that is make sense is to store union of tuple: [1,2,3] | [4,5,6], but still doesn't offer huge advantage over array.
 
-4: technically possible (implemented in FiresageJS for internal use). By utilizing Typesript distributive properties it is possible to generate path for object literal unions field.
+4: technically possible (implemented in FireSageJS for internal use). By utilizing Typesript distributive properties it is possible to generate path for object literal unions field.
 
 Given noSQL flexibility, the idea of multiple schemas per document is indeed valid, but this is not something that most people do.
 

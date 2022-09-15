@@ -10,7 +10,7 @@ import { Image } from '@site/src/components/Image'
 
 ## Create Child MetaType 🦜
 
-Pass the parent type into the 4 th argument of the child `MetaTypeCreator`.
+To create child Meta Type, pass the parent type into the 4th argument of the child.
 
 ```ts
 import { MetaTypeCreator, getFirelord, getFirestore } from 'firelordjs'
@@ -23,6 +23,7 @@ type Parent = MetaTypeCreator<
 	},
 	'columnIDLevel1', // collectionId type
 	string // docId type
+	null // you can skip this, top collection don't need parent
 >
 
 type Child = MetaTypeCreator<
