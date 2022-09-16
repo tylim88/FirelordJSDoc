@@ -14,5 +14,42 @@ RTDB set does not have weird quirks like like Firestore, so the type check is st
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set1.png?raw=true"
-	text={`set basic type checks`}
+	text="set type checks"
 />
+
+## Understanding Error Message
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set2.png?raw=true"
+	text="incorrect path"
+/>
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set3.png?raw=true"
+	text="incorrect value"
+/>
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set4.png?raw=true"
+	text="expect non numeric key"
+/>
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set5.png?raw=true"
+	text="expect non numeric key"
+/>
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set6.png?raw=true"
+	text="expect numeric key"
+/>
+
+Do note that in above image set accept `T[]` data type if the node type is `NumericKeyRecord<T>`
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set7.png?raw=true"
+	text="expect numeric key"
+/>
+
+Do note that checking for numeric key path has more generic error message compare
+to non numeric key
