@@ -122,7 +122,21 @@ const app = initializeApp({
 
 export const db = getDatabase() // or getDatabase(app)
 
-export const exampleRef = createRef<Example>(db)
+export const exampleRef = createRef<Example>(db) // this is firesage ref
+```
+
+### Ref
+
+```ts
+import { exampleRef } from './createRef'
+
+exampleRef() // point to 'root' node, type is --too long, skipped--
+exampleRef('b') // point to 'b' node, type is --too long, skipped--
+exampleRef('b/d/e') // point to 'b/d/e' node, write type is ServerTimestamp, compare and read type is number
+exampleRef('g') // point to 'g' node, type is Record<string, { h: number; j: { k: boolean } }>
+exampleRef('g/abc') // point to 'g/abc' node, type is { h: number; j: { k: boolean } }
+exampleRef('f') // point to 'f' node, type is Record<`${number}`, string>
+exampleRef('f/123') // point to 'f/123' node, type is string
 ```
 
 ## Operations
@@ -143,7 +157,6 @@ import {
 	// the type of node 'a' is numeric literal 1 | 90 | 3700, it is not possible to use `increment` on it
 	await set(exampleRef('a'), 1)
 
-	// if path is empty, then it is a root path
 	// 1st array is relative child paths
 	// 2nd array is values, it will try to match the path by index, 'b/c' is boolean, 'b/d/e' is server timestamp
 	// the length of values will match the length of paths
