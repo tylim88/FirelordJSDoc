@@ -8,7 +8,7 @@ This page discusses how `get` works.
 
 import { Image } from '@site/src/components/Image'
 
-## Recursively Typed Data Snapshot
+## Data Snapshot Type
 
 :::note
 There is no `exportVal` method and `priority` prop because priority are [outdated](https://stackoverflow.com/questions/31577915/what-does-priority-mean-in-firebase).
@@ -72,7 +72,7 @@ const exampleRef = createRef<Example>(getDatabase())
 
 Child is also a snapshot and has access to properly typed `forEach`, `val`, `key`, `size`, `exists`, `child`, `hasChild`, `hasChildren`, `toJSON`.
 
-So with child of child because they data snapshots are recursively typed!
+So with child of child because data snapshots are recursively typed!
 
 :::
 
