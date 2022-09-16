@@ -1,0 +1,54 @@
+---
+sidebar_position: 2
+---
+
+# Update
+
+This page discusses how `update` works.
+
+import { Image } from '@site/src/components/Image'
+
+## Type Check
+
+RTDB `update` does not have weird quirks like like Firestore, so the type check is straight forward:
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update1.png?raw=true"
+	text="update type checks"
+/>
+
+## Understanding Error Messages
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update2.png?raw=true"
+	text="incorrect path"
+/>
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update3.png?raw=true"
+	text="incorrect value"
+/>
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update4.png?raw=true"
+	text="expect non numeric key"
+/>
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update5.png?raw=true"
+	text="expect non numeric key"
+/>
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update6.png?raw=true"
+	text="expect numeric key"
+/>
+
+<Image
+	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update7.png?raw=true"
+	text="expect numeric key"
+/>
+
+### PushAble and PushAbleOnly
+
+See [PushAble And PushAbleOnly](/guides/pushable) to understand how `update` interact with `PushAble` and `PushAbleOnly`.
