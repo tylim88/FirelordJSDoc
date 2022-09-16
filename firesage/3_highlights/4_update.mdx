@@ -1,0 +1,124 @@
+---
+sidebar_position: 4
+---
+
+# Update
+
+This page discusses how `update` works.
+
+import { Image } from '@site/src/components/Image'
+
+:::info
+The implementation of `update` is largely different than official SDK's update due to [deficiency](https://stackoverflow.com/questions/73263183/typescript-type-of-key-is-string-if-key-is-template-literal-a-string) in Typescript.
+
+Luckily array as parameters are not bad at all, personally I enjoy using tihs interface.
+:::
+
+## Type Check
+
+RTDB `update` does not have weird quirks like like Firestore, so the type check is straight forward:
+
+```ts
+import {
+	MetaTypeCreator,
+	ServerTimestamp,
+	NumericKeyRecord,
+	Removable,
+	createRef,
+	update,
+	serverTimestamp,
+	getDatabase,
+} from 'firesagejs'
+export type Example = MetaTypeCreator<{
+	b:
+		| {
+				c: boolean | Removable
+				d: {
+					e: ServerTimestamp
+				}
+		  }
+		| Removable
+	f: Record<string, 'a' | 'b' | 'c'>
+	i: NumericKeyRecord<boolean>
+}>
+const exampleRef = createRef<Example>(getDatabase())
+;async () => {
+	await update(
+		exampleRef(), // base path is root
+		['b/d', 'f/xyz', 'i'], // child path of 'root'
+		[{ e: serverTimestamp() }, 'a', { 123: false }] // data of 'b/d', 'f/xyz', 'i'respectively
+	)
+	await update(
+		exampleRef('b'), // base path is 'b'
+		['d', 'c'], // child path of b
+		[{ e: serverTimestamp() }, false] // data of 'b/d', 'b/c' respectively
+	)
+	await update(
+		exampleRef(), // base path is root
+		['b', 'f', 'i'], // child path of 'root'
+		[
+			{ c: true, d: { e: serverTimestamp() } },
+			{ xyz: 'a' },
+			[true, false, true, false], // 'i' is NumericKeyRecord can accept array as write value
+		] // data of 'b', 'f', 'i'respectively
+	)
+	await update(
+		exampleRef(), // base path is root
+		['b/d', 'f/xyz', 'i'], // child path of 'root'
+		[{ e: serverTimestamp() }, 'a'] // not ok, the number of values does not match the number of paths
+	)
+	await update(
+		exampleRef('b'), // base path is 'b'
+		['d', 'f/xyz', 'i'], // not ok, 'b/d', 'f/xyz', 'i' are not child path of 'b'
+		[]
+	)
+	await update(
+		exampleRef(), // base path is root
+		['b/c', 'f', 'i/123'], // child path of 'root'
+
+		[false, { 456: 'b' }, false] // not ok, the key of 'f' should be non-numeric
+	)
+	await update(
+		exampleRef(), // base path is root
+
+		['i/abc'], // not ok, the key of 'i' should be numeric
+		[false]
+	)
+	await update(
+		exampleRef('b'), // base path is 'b'
+		['d', 'd/e'], // not ok, because 'd/e' is child path of 'd'
+		[]
+	)
+}
+```
+
+<Image src="/firesage/update1.png" text="update type checks" />
+
+:::tip
+`update` accept `T[]` data type if the node type is `NumericKeyRecord<T>`
+:::
+
+## Understanding Error Messages
+
+<Image src="/firesage/update2.png" text="number of values does not match" />
+
+<Image src="/firesage/update3.png" text="expect non-numeric key" />
+
+:::note
+
+Due to complexity, the error suggestion for incorrect path check and numeric key check is generic,
+will give this a deeper though in the futrue.
+
+<Image src="/firesage/update4.png" text="incorrect path" />
+
+<Image src="/firesage/update5.png" text="expect numeric key" />
+:::
+
+<Image
+	src="/firesage/update6.png"
+	text="child path cannot be child path of another child path"
+/>
+
+### PushAble and PushAbleOnly
+
+See [PushAble And PushAbleOnly](/firesage/guides/pushable) to understand how `update` interact with `PushAble` and `PushAbleOnly`.

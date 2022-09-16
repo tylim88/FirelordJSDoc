@@ -1,0 +1,70 @@
+---
+sidebar_position: 2
+---
+
+# Ref
+
+This page discusses how `ref` works.
+
+import { Image } from '@site/src/components/Image'
+
+## Type Check
+
+1. The key of `Record<string, T>` is always non-numeric(this includes alphanumeric)
+2. The key of `NumericKeyRecord<T>` is always alphanumeric. `NumericKeyRecord<T>` is Record<`${number}`, T> under the hood
+
+```ts
+import {
+	MetaTypeCreator,
+	ServerTimestamp,
+	NumericKeyRecord,
+	Removable,
+	createRef,
+	getDatabase,
+} from 'firesagejs'
+
+export type Example = MetaTypeCreator<{
+	b:
+		| {
+				c: boolean | Removable
+				d: {
+					e: ServerTimestamp
+				}
+		  }
+		| Removable
+	f: Record<string, 'a' | 'b' | 'c'>
+	i: NumericKeyRecord<boolean>
+}>
+
+const exampleRef = createRef<Example>(getDatabase()) // firesage ref
+
+exampleRef() // point to 'root' node, type is --too long, skipped--
+exampleRef('b') // point to 'b' node, type is --too long, skipped--
+exampleRef('b/d/e') // point to 'b/d/e' node, write type is ServerTimestamp, compare and read type is number
+exampleRef('f') // point to 'f' node, type is Record<string, { h: number; j: { k: boolean } }>
+exampleRef('f/abc') // point to 'f/abc' node, type is { h: number; j: { k: boolean } }
+exampleRef('f/x1') // alphanumeric key is considered as non-numeric key
+exampleRef('i') // point to 'i' node, type is Record<`${number}`, string>
+exampleRef('i/123') // point to 'i/123' node, type is string
+
+exampleRef('b/c/d') // not ok, path not exist
+exampleRef('f/123') // not ok, expect non-numeric key because f is Record<string, 'a' | 'b' | 'c'>
+exampleRef('i/abc') // not ok, expect numeric key because i is NumericKeyRecord<boolean>
+```
+
+<Image src="/firesage/ref1.png" text="ref type checks" />
+
+## Understanding Error Messages
+
+<Image src="/firesage/ref2.png" text="path not exist" />
+
+<Image src="/firesage/ref3.png" text="expect non-numeric key" />
+
+:::note
+
+Numeric key check error message is generic(not quite good) while non-numeric check error message is a custom message(better).
+
+Due to complexity, this is not something that could be easily improved, will give this a deeper thought in the future.
+
+<Image src="/firesage/ref4.png" text="expect numeric key" />
+:::

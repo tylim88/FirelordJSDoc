@@ -1,0 +1,76 @@
+---
+sidebar_position: 3
+---
+
+# Set
+
+This page discusses how `set` works.
+
+import { Image } from '@site/src/components/Image'
+
+## Type Check
+
+RTDB `set` does not have weird quirks like like Firestore, so the type check is straight forward:
+
+```ts
+import {
+	MetaTypeCreator,
+	ServerTimestamp,
+	NumericKeyRecord,
+	Removable,
+	createRef,
+	set,
+	serverTimestamp,
+	getDatabase,
+} from 'firesagejs'
+
+export type Example = MetaTypeCreator<{
+	b:
+		| {
+				c: boolean | Removable
+				d: {
+					e: ServerTimestamp
+				}
+		  }
+		| Removable
+	f: Record<string, 'a' | 'b' | 'c'>
+	i: NumericKeyRecord<boolean>
+}>
+
+const exampleRef = createRef<Example>(getDatabase())
+
+;async () => {
+	await set(exampleRef('b/d'), { e: serverTimestamp() }) // ok
+	await set(exampleRef('b/d/e'), serverTimestamp()) // ok
+	await set(exampleRef('f'), { xyz: 'a' }) // ok
+	await set(exampleRef('f/xyz'), 'b') // ok
+	await set(exampleRef('i'), { 123: false }) // ok
+	await set(exampleRef('i/123'), false) // ok
+
+	await set(exampleRef('b/d/e'), 'incorrect value') // not ok, incorrect value
+	await set(exampleRef('f'), { 123: 'a' }) // not ok, expect the key to be non-numeric string
+	await set(exampleRef('f/123'), 'b') // not ok, expect the key to be non-numeric string
+	await set(exampleRef('i'), { abc: false }) // not ok, expect the key to be numeric string
+	await set(exampleRef('i/abc'), false) // not ok, expect the key to be numeric string
+}
+```
+
+<Image src="/firesage/set1.png" text="set type checks" />
+
+## Understanding Error Messages
+
+<Image src="/firesage/set2.png" text="incorrect value" />
+
+<Image src="/firesage/set3.png" text="expect non numeric key" />
+
+<Image src="/firesage/set4.png" text="expect non numeric key" />
+
+:::tip
+`set` accept `T[]` data type if the node type is `NumericKeyRecord<T>`
+
+<Image src="/firesage/set5.png" text="expect numeric key" />
+:::
+
+### PushAble and PushAbleOnly
+
+See [PushAble And PushAbleOnly](/firesage/guides/pushable) to understand how `set` interact with `PushAble` and `PushAbleOnly`.
