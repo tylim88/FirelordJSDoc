@@ -52,7 +52,7 @@ import { Image } from '@site/src/components/Image'
 
 ## With Emulator Only 🦤
 
-We do not recommend you run the test with only emulator, becaus emulator works in local but not in CI (tested in Github Action). Aparrently Firebase unable to pick up the database rule defined in firebase.json. You should use emulator with `@firebase/rules-unit-testing` because it can picks up database rule using `fs`, see example below for details.
+We do not recommend you to run the test with only emulator, becaus emulator works in local but not in CI (tested in Github Action). Aparrently Firebase unable to pick up the database rule defined in firebase.json. You should use emulator with `@firebase/rules-unit-testing` because it can picks up database rule using `fs`, see example below for details.
 
 :::info
 Emulator force all tests to use run in emulator if emulator is found eventhough they are not connected to emulator via `connectDatabaseEmulator`.
