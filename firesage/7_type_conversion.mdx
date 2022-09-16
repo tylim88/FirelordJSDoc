@@ -4,7 +4,7 @@ sidebar_position: 7
 
 # Type Conversion
 
-This page discusses how FirelordJS transforms your types for various uses internally.
+This page discusses how FireSageJS transforms your types for various uses internally.
 
 Type transformation is needed because read, write and compare operation require or output different data types.
 
@@ -19,7 +19,7 @@ Type transformation is needed because read, write and compare operation require 
 | `null`            | `null`            | `null`                  | `null`            |
 | `ServerTimestamp` | `number`          | `ServerTimestamp`       | `number`          |
 
-Internally, FirelordJS converts your type into 3 main types for different purpose:
+Internally, FireSageJS converts your type into 3 main types for different purpose:
 
 - Read type for `get`, `onChild*`, `onValue` and etc.
 - Write type for `set`, `update` and etc.
@@ -29,8 +29,8 @@ The main types are further transformed for even more specific use cases internal
 
 Key Points:
 
-- FirelordJS forbids you from increment `numeric literal` type, eg: if the type is `1 | 100 | 1000` then we should not be able to increment it from `1` to `2`.
+- FireSageJS forbids you from increment `numeric literal` type, eg: if the type is `1 | 100 | 1000` then we should not be able to increment it from `1` to `2`.
 
-- FirelordJS forbids you from writing `number` into `ServerTimestamp`, because some date time has to be server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, you can by union `ServerTimestamp` with `number`.
+- FireSageJS forbids you from writing `number` into `ServerTimestamp`, because some date time has to be server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, you can by union `ServerTimestamp` with `number`.
 
-- We can always compare `Date` or `Timestamp` to `ServerTimestamp`.
+- We can always compare `number` to `ServerTimestamp`.
