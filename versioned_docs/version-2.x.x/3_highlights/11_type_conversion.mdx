@@ -23,7 +23,7 @@ Type transformation is needed because read, write and compare operation require 
 | `T[]`               | `T[]`             | `T[]` \| `ArrayRemove<T>` \| `ArrayUnion<T>` | `T[]`                 |
 | `Bytes`             | `Bytes`           | `Bytes`                                      | `Bytes`               |
 
-Internally, FirelordJS converts your type into 3 main types for different purpose:
+Internally, FirelordJS converts base type into 3 main types for different purpose:
 
 - Read type for `getDoc`, `getDocs`, `onSnapshot` and etc.
 - Write type for `setDoc`, `updateDoc`, `addDoc`, `createDoc`(admin) and etc.
