@@ -17,36 +17,38 @@ RTDB `update` does not have weird quirks like like Firestore, so the type check 
 	text="update type checks"
 />
 
+:::tip
+`update` accept `T[]` data type if the node type is `NumericKeyRecord<T>`
+:::
+
 ## Understanding Error Messages
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update2.png?raw=true"
-	text="incorrect path"
+	text="number of values does not match"
 />
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update3.png?raw=true"
-	text="incorrect value"
+	text="incorrect path"
 />
+
+:::note
+Due to some complexity, the error suggestion for non-numeric and numeric key check are quite generic, will give this a deeper though in the futrue.
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update4.png?raw=true"
-	text="expect non numeric key"
+	text="expect non-numeric key"
 />
-
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update5.png?raw=true"
-	text="expect non numeric key"
+	text="expect numeric key"
 />
+:::
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update6.png?raw=true"
-	text="expect numeric key"
-/>
-
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update7.png?raw=true"
-	text="expect numeric key"
+	text="child path cannot be child path of another child path"
 />
 
 ### PushAble and PushAbleOnly
