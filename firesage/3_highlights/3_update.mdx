@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Update
@@ -7,6 +7,12 @@ sidebar_position: 2
 This page discusses how `update` works.
 
 import { Image } from '@site/src/components/Image'
+
+:::info
+The implementation of `update` is largely different than official SDK's update due to [deficiency](https://stackoverflow.com/questions/73263183/typescript-type-of-key-is-string-if-key-is-template-literal-a-string) in Typescript.
+
+Luckily array as parameters are not bad at all, personally I enjoy using tihs interface.
+:::
 
 ## Type Check
 
