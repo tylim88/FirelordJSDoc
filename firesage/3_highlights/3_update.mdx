@@ -18,10 +18,7 @@ Luckily array as parameters are not bad at all, personally I enjoy using tihs in
 
 RTDB `update` does not have weird quirks like like Firestore, so the type check is straight forward:
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update1.png?raw=true"
-	text="update type checks"
-/>
+<Image src="/firesage/update1.png" text="update type checks" />
 
 :::tip
 `update` accept `T[]` data type if the node type is `NumericKeyRecord<T>`
@@ -29,34 +26,22 @@ RTDB `update` does not have weird quirks like like Firestore, so the type check 
 
 ## Understanding Error Messages
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update2.png?raw=true"
-	text="number of values does not match"
-/>
+<Image src="/firesage/update2.png" text="number of values does not match" />
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update4.png?raw=true"
-	text="expect non-numeric key"
-/>
+<Image src="/firesage/update4.png" text="expect non-numeric key" />
 
 :::note
 
 Due to some complexity, the error suggestion for incorrect path check and numeric key check are generic,
 will give this a deeper though in the futrue.
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update3.png?raw=true"
-	text="incorrect path"
-/>
+<Image src="/firesage/update3.png" text="incorrect path" />
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update5.png?raw=true"
-	text="expect numeric key"
-/>
+<Image src="/firesage/update5.png" text="expect numeric key" />
 :::
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/update6.png?raw=true"
+	src="/firesage/update6.png"
 	text="child path cannot be child path of another child path"
 />
 

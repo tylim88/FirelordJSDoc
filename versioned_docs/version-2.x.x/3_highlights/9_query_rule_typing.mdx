@@ -17,55 +17,55 @@ FirelordJS protects you against Firestore runtime exceptions in your queries on 
 - In a compound query, range (<, <=, >, >=) and not equals (!=, not-in) comparisons must all filter on the same field
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/query1.png?raw=true"
+	src="/firelordv2/query1.png"
 	text="FirelordJS displays which query rule you violated in the hint."
 />
 
 - If you include a filter with a range comparison (<, <=, >, >=), your first ordering must be on the same field
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/query2.png?raw=true"
+	src="/firelordv2/query2.png"
 	text="FirelordJS display what field path you should use in the hint."
 />
 
 - You can't order your query by a field included in an equality (==) or (in) clause
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/query3.png?raw=true"
+	src="/firelordv2/query3.png"
 	text="FirelordJS displays which query rule you violated in the hint."
 />
 
 - You can use at most one in, not-in, or array-contains-any clause per query. You can't combine in , not-in, and array-contains-any in the same query
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/query4.png?raw=true"
+	src="/firelordv2/query4.png"
 	text="FirelordJS displays which query rule you violated in the hint."
 />
 
 - You can't combine not-in with not equals !=
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/query5.png?raw=true"
+	src="/firelordv2/query5.png"
 	text="FirelordJS displays which query rule you violated in the hint."
 />
 
 - You can use at most one array-contains clause per query. You can't combine array-contains with array-contains-any
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/query6.png?raw=true"
+	src="/firelordv2/query6.png"
 	text="FirelordJS displays which query rule you violated in the hint."
 />
 
 - Too many arguments provided to startAt/startAfter/endAt/endBefore(). The number of arguments must be less than or equal to the number of orderBy() clauses
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/query7.png?raw=true"
+	src="/firelordv2/query7.png"
 	text="FirelordJS displays which query rule you violated in the hint."
 />
 
 - You cannot use more than one '!=' filter (undocumented limitation)
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firelordv2/query8.png?raw=true"
+	src="/firelordv2/query8.png"
 	text="FirelordJS displays which query rule you violated in the hint."
 />

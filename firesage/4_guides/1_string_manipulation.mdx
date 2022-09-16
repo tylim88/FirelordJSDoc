@@ -37,7 +37,7 @@ update(ref('a'), [`${numericKey}`], [true]) // working, because `${number}` is n
 ```
 
 <Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/string1.png?raw=true"
+	src="/firesage/string1.png"
 	text="how to convert number to numeric string safely"
 />
 
@@ -73,9 +73,6 @@ const ref3 = ref(`a/b/${numericKey}`) //ok, type is `a/b/123`!
 const ref4 = ref(`a/c/${nonNumericKey}`) // ok, type is `a/c/x7y8z9`!
 ```
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/string2.png?raw=true"
-	text="how to concate string safely"
-/>
+<Image src="/firesage/string2.png" text="how to concate string safely" />
 
 Do not use `+` to concate the string because `+` output string type. Always use template string to concate string.

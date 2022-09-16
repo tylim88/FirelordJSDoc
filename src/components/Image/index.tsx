@@ -1,4 +1,5 @@
 import React from 'react'
+import useBaseUrl from '@docusaurus/useBaseUrl'
 
 export const Image = ({ src, text }: { src: string; text: string }) => {
 	return (
@@ -10,7 +11,7 @@ export const Image = ({ src, text }: { src: string; text: string }) => {
 					alignItems: 'center',
 				}}
 			>
-				<img src={src} />
+				<img src={useBaseUrl(src)} />
 				<small>{text}</small>
 			</div>
 			<br />

@@ -12,50 +12,29 @@ import { Image } from '@site/src/components/Image'
 
 RTDB `set` does not have weird quirks like like Firestore, so the type check is straight forward:
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set1.png?raw=true"
-	text="set type checks"
-/>
+<Image src="/firesage/set1.png" text="set type checks" />
 
 ## Understanding Error Messages
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set2.png?raw=true"
-	text="incorrect path"
-/>
+<Image src="/firesage/set2.png" text="incorrect path" />
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set3.png?raw=true"
-	text="incorrect value"
-/>
+<Image src="/firesage/set3.png" text="incorrect value" />
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set4.png?raw=true"
-	text="expect non numeric key"
-/>
+<Image src="/firesage/set4.png" text="expect non numeric key" />
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set5.png?raw=true"
-	text="expect non numeric key"
-/>
+<Image src="/firesage/set5.png" text="expect non numeric key" />
 
 :::tip
 `set` accept `T[]` data type if the node type is `NumericKeyRecord<T>`
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set6.png?raw=true"
-	text="expect numeric key"
-/>
+<Image src="/firesage/set6.png" text="expect numeric key" />
 :::
 
 :::note
 checking for numeric key path has more generic error message
 compare to non numeric key
 
-<Image
-	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set7.png?raw=true"
-	text="expect numeric key"
-/>
+<Image src="/firesage/set7.png" text="expect numeric key" />
 :::
 
 ### PushAble and PushAbleOnly
