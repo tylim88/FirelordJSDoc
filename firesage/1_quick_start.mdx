@@ -168,11 +168,11 @@ import {
 	const val = snapshot.val() // value type is what defined in MetaType union with null, in this case it is Record<string, 'a' | 'b' | 'c'> | null
 	const exists = snapshot.exists() // boolean
 	const size = snapshot.size // number
-	const hasChild = snapshot.hasChild('k') // type of argument is what defined in MetaType, in this case it is `string` because 'f' is Record<string, 'a' | 'b' | 'c'>
+	const hasChild = snapshot.hasChild('k') // boolean, type of argument is what defined in MetaType, in this case it is `string` because 'f' is Record<string, 'a' | 'b' | 'c'>
 	const hasChildren = snapshot.hasChildren() // boolean
-	const json = snapshot.toJSON() // object, you have to type cast it
+	const json = snapshot.toJSON() // object, we have to type cast it
 	snapshot.forEach((child, index) => {
-		// the official SDK does not provide index, but you get one here, for free
+		// the official SDK does not provide index, but we get one here, for free
 		// like official SDK, child is also snapshot and can access forEach, val, key, size, exists, child, hasChild, hasChildren, toJSON
 		// child is recursively typed, hooray!!
 	})
@@ -339,7 +339,7 @@ import { runTransaction } from 'firesagejs'
 
 	const committed = result.committed // boolean
 	const snapshot = result.snapshot // typing is same as 'get' snapshot
-	const json = result.toJSON() // object, you have to type cast it
+	const json = result.toJSON() // object, we have to type cast it
 }
 ```
 
