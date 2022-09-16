@@ -39,7 +39,7 @@ export const Header = () => (
 			</a>
 			&nbsp;
 			<img
-				src="https://img.shields.io/badge/gzipped-5KB-brightgreen"
+				src="https://img.shields.io/badge/gzipped-4KB-brightgreen"
 				alt="package size"
 			/>
 			&nbsp;
