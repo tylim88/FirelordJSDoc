@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Set
 
-This page discusses how set works.
+This page discusses how `set` works.
 
 import { Image } from '@site/src/components/Image'
 
@@ -17,7 +17,7 @@ RTDB set does not have weird quirks like like Firestore, so the type check is st
 	text="set type checks"
 />
 
-## Understanding Error Message
+## Understanding Error Messages
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set2.png?raw=true"
@@ -39,17 +39,25 @@ RTDB set does not have weird quirks like like Firestore, so the type check is st
 	text="expect non numeric key"
 />
 
+:::tip
+set accept `T[]` data type if the node type is `NumericKeyRecord<T>`
+
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set6.png?raw=true"
 	text="expect numeric key"
 />
+:::
 
-Do note that in above image set accept `T[]` data type if the node type is `NumericKeyRecord<T>`
+:::note
+checking for numeric key path has more generic error message
+compare to non numeric key
 
 <Image
 	src="https://github.com/tylim88/FirelordJSDoc/blob/main/static/firesage/set7.png?raw=true"
 	text="expect numeric key"
 />
+:::
 
-Do note that checking for numeric key path has more generic error message compare
-to non numeric key
+### PushAble and PushAbleOnly
+
+See [PushAble And PushAbleOnly](/guides/pushable) to understand how `set` interact with `PushAble` and `PushAbleOnly`.
