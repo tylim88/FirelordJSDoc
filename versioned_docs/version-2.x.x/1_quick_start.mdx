@@ -98,7 +98,7 @@ export type Example = MetaTypeCreator<
 ## Create Firelord References
 
 :::tip
-After you created the Firelord Ref, you no longer need to write collection name in any operations.
+After you created the Firelord Ref, you no longer need to supply collection name to any operation.
 :::
 
 ```ts title='init.ts'
@@ -112,10 +112,7 @@ const app = initializeApp({
 
 export const db = getFirestore(app) // or getFirestore()
 
-export const example = getFirelord<Example>(
-	getFirestore(),
-	'SomeCollectionName'
-) // this is your firelordRef
+export const example = getFirelord<Example>(db, 'SomeCollectionName') // this is your firelordRef
 ```
 
 ## Operations
