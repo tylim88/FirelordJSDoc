@@ -84,17 +84,17 @@ const grandChildColGroupRef = grandchildRefCreator(
 
 In V1, working with top collections is a pleasure, but not so much with child collections.
 
-In order to resue child collections' `FirelordRef`, we need to wrap it in another function, this is because in most cases document IDs are dynamic.
+In order to reuse child collections' FirelordRef, we need to wrap it in another function. This is due to the dynamic nature of document IDs.
 
-This result in how we export top-level ref is different than how we export child ref. This feel awkward when we try to structure our code.
+This results in how we export top-level ref being different than how we export child ref. This feels awkward when we try to structure our code.
 
-Also neither `docRef`,`colRef` nor `colGroupRef` of child collections are intuitive to create, especially `colGroupRef`.
+Also, neither `docRef`,`colRef` nor `colGroupRef` of child collections are intuitive to create, especially `colGroupRef`.
 
 Despite `colGroupRef` not needing any document IDs, we still need to supply two documentIDs to it.
 
-Finally, we need to call `getFirelord` twice to create `FirelordRef` because `getFirelord` is a curried function.
+Finally, we need to call `getFirelord` twice to create a `FirelordRef` because `getFirelord`` is a curry function.
 
-Curried function is useful if we have more than one Firestore instance, but most applications need only one instance, so curry provides no real value other than increasing cognitive cost.
+The curry function is useful if we have more than one Firestore instance, but most applications need only one instance, so curry provides no real value other than increasing cognitive cost.
 
 ## Version 2
 

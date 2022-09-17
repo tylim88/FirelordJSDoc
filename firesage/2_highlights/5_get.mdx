@@ -2,17 +2,21 @@
 sidebar_position: 5
 ---
 
-# Get
+# DataSnapshot
 
-This page discusses how `get` works.
+This page discusses how `DataSnapshot` works.
 
 import { Image } from '@site/src/components/Image'
 
-## Data Snapshot Type
+:::info
+`DataSnapshot` from `get`, `onValue` and `onChild*` linteners work in the same way.
+:::
 
 :::note
 There is no `exportVal` method and `priority` prop because priority are [outdated](https://stackoverflow.com/questions/31577915/what-does-priority-mean-in-firebase).
 :::
+
+## Type Checks
 
 ```ts
 import {
@@ -95,6 +99,8 @@ You see
 <Image src="/firesage/get5.png" text="narrowed data type" />
 
 <Image src="/firesage/get6.png" text="narrowed ref type" />
+
+## Understanding Error Messages
 
 :::note
 
