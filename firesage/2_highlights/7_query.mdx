@@ -186,3 +186,50 @@ query(
 <Image src="/firesage/query3.png" text="image 3" />
 
 ## Understanding Error Messages
+
+:::note
+We can only query index signature.
+
+The value type for all keys must be the same, example: `Record<string, T>`.
+
+If you have data type like `{a:number, b:boolean, c:string, d:boolean, e:string}`, it doesn't make sense to order them.
+
+RTDB wont throw error if we violate this rule but this not a good practise.
+
+We should always group similar things together.
+
+<Image src="/firesage/query4.png" text="we should only order index signature" />
+:::
+
+<Image src="/firesage/query5.png" text="cursors need at least one orderBy*" />
+
+<Image src="/firesage/query6.png" text="cursors must be unique*" />
+
+<Image src="/firesage/query7.png" text="don't use startAt with startAfter" />
+
+<Image src="/firesage/query8.png" text="don't use endAt with endBefore" />
+
+<Image
+	src="/firesage/query9.png"
+	text="don't use equalTo with all other cursors"
+/>
+
+<Image src="/firesage/query10.png" text="incorrect value type" />
+
+<Image src="/firesage/query11.png" text="no 2nd argument when order by key" />
+
+<Image
+	src="/firesage/query12.png"
+	text="when order by key, the first argument must be numeric or non numeric string"
+/>
+
+<Image src="/firesage/query13.png" text="expect numeric string" />
+
+<Image src="/firesage/query14.png" text="expect non-numeric string" />
+
+<Image
+	src="/firesage/query15.png"
+	text="illegal child or did not start at grandccild path"
+/>
+
+<Image src="/firesage/query16.png" text="there can be only 1 orderBy* clause" />
