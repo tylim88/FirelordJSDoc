@@ -10,8 +10,8 @@ import { Image } from '@site/src/components/Image'
 
 ## Type Checks
 
-1. The key of `Record<string, T>` is always non-numeric(this includes alphanumeric)
-2. The key of `NumericKeyRecord<T>` is always alphanumeric. `NumericKeyRecord<T>` is Record<`${number}`, T> under the hood
+1. The key of `Record<string, T>` is always non-numeric(string that has any two or more combination of number, alphabet and special characters).
+2. The key of `NumericKeyRecord<T>` is always alphanumeric. `NumericKeyRecord<T>` is Record<`${number}`, T> under the hood.
 
 ```ts
 import {
