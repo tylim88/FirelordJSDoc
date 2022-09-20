@@ -12,14 +12,14 @@ Type transformation is needed because read, write and compare operation require 
 
 | Base                                                                    | Read                                  | Write                                                     | Compare           |
 | ----------------------------------------------------------------------- | ------------------------------------- | --------------------------------------------------------- | ----------------- |
-| `number`                                                                | `number`                              | `number \| Increment`                                     | `number`          |
+| `number`                                                                | `number`                              | `number` \| `Increment`                                   | `number`          |
 | `numeric literal`                                                       | `numeric literal`                     | `numeric literal`                                         | `numeric literal` |
 | `string`                                                                | `string`                              | `string`                                                  | `string`          |
 | `string literal`                                                        | `string literal`                      | `string literal`                                          | `string literal`  |
 | `null`                                                                  | `null`                                | `null`                                                    | `null`            |
 | `ServerTimestamp`                                                       | `number`                              | `ServerTimestamp`                                         | `number`          |
 | `Record<string, T>`                                                     | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |
-| [`Removable`](/firesage/guides/removable)                               | `null \| undefined`                   | `never`                                                   | `never`           |
+| [`Removable`](/firesage/guides/removable)                               | `null` \| `undefined`                 | `never`                                                   | `never`           |
 | [`PossiblyReadAsUndefined`](/firesage/guides/possibly_read_as_nullable) | Record\<`${number}`, converted\<T\>\> | Record\<`${number}`, converted\<T\>\> \| converted\<T\>[] | invalid           |
 | [`PushAbleOnly`](/firesage/guides/pushable#pushableonly)                | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |
 | `NumericKeyRecord<T>`                                                   | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |

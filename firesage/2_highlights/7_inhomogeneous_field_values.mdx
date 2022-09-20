@@ -28,12 +28,12 @@ FireSageJS solves this by assigning [unique symbol type](https://www.typescriptl
 
 ## Special Field Values
 
-| Interface                                                               | Signature                   | Note                                                             | Assignable |
-| ----------------------------------------------------------------------- | --------------------------- | ---------------------------------------------------------------- | ---------- |
-| [`Removable`](/firesage/guides/removable)                               | `{ symbol: unique symbol }` | allow a node to be read as `undefiend \| null` and be removeable | Yes        |
-| [`PossiblyReadAsUndefined`](/firesage/guides/possibly_read_as_nullable) | `{ symbol: unique symbol }` | allow a node to be read as `undefiend \| null`                   | Yes        |
-| [`PushAbleOnly`](/firesage/guides/pushable#pushableonly)                | `{ symbol: unique symbol }` | be pushable only                                                 | Yes        |
-| [`PushAble`](/firesage/guides/pushable#pushable)                        | `{ symbol: unique symbol }` | be pushable, set-able and updatable                              | Yes        |
-| `NumericKeyRecord<T>`                                                   | `{ symbol: unique symbol }` | is Record<`${number}`, T> under the hodd                         | Yes        |
+| Interface                                                               | Signature                   | Note                                                               | Assignable |
+| ----------------------------------------------------------------------- | --------------------------- | ------------------------------------------------------------------ | ---------- |
+| [`Removable`](/firesage/guides/removable)                               | `{ symbol: unique symbol }` | allow a node to be read as `undefiend` \| `null` and be removeable | Yes        |
+| [`PossiblyReadAsUndefined`](/firesage/guides/possibly_read_as_nullable) | `{ symbol: unique symbol }` | allow a node to be read as `undefiend` \| `null`                   | Yes        |
+| [`PushAbleOnly`](/firesage/guides/pushable#pushableonly)                | `{ symbol: unique symbol }` | be pushable only                                                   | Yes        |
+| [`PushAble`](/firesage/guides/pushable#pushable)                        | `{ symbol: unique symbol }` | be pushable, set-able and updatable                                | Yes        |
+| `NumericKeyRecord<T>`                                                   | `{ symbol: unique symbol }` | is Record<`${number}`, T> under the hodd                           | Yes        |
 
 Special types serve as utility, eg: transform into another type or allow you to perform certain action to a node.
