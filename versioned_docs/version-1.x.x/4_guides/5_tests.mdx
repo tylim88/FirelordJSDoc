@@ -18,6 +18,14 @@ Remember to prepare script like this:
 This is not a tutorial for `emulator`, `@firebase/rules-unit-testing` and `jest`, we assume you already know them.
 :::
 
+:::info
+
+Emulator force all tests to use run in emulator if emulator is found eventhough they are not connected to emulator via `connectFirestoreEmulator`.
+
+This is completely true for Admin and partially true for Web.
+
+:::
+
 import { Image } from '@site/src/components/Image'
 
 ## With Emulator Only 🦜
