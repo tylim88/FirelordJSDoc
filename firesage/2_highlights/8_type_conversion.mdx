@@ -10,16 +10,16 @@ Type transformation is needed because read, write and compare operation require 
 
 ## Conversion Table
 
-| Base                   | Read                              | Write                                               | Compare           |
-| ---------------------- | --------------------------------- | --------------------------------------------------- | ----------------- |
-| `number`               | `number`                          | `number` \| `Increment`                             | `number`          |
-| `numeric literal`      | `numeric literal`                 | `numeric literal`                                   | `numeric literal` |
-| `string`               | `string`                          | `string`                                            | `string`          |
-| `string literal`       | `string literal`                  | `string literal`                                    | `string literal`  |
-| `null`                 | `null`                            | `null`                                              | `null`            |
-| `ServerTimestamp`      | `number`                          | `ServerTimestamp`                                   | `number`          |
-| `Record<string, T>`    | `Record<string, converted<T>>`    | `Record<string, converted<T>>`                      | invalid           |
-| Record<`${number}`, T> | Record<`${number}`, converted<T>> | Record<`${number}`, converted<T>> \| converted<T>[] | invalid           |
+| Base                     | Read                                  | Write                                                     | Compare           |
+| ------------------------ | ------------------------------------- | --------------------------------------------------------- | ----------------- |
+| `number`                 | `number`                              | `number` \| `Increment`                                   | `number`          |
+| `numeric literal`        | `numeric literal`                     | `numeric literal`                                         | `numeric literal` |
+| `string`                 | `string`                              | `string`                                                  | `string`          |
+| `string literal`         | `string literal`                      | `string literal`                                          | `string literal`  |
+| `null`                   | `null`                                | `null`                                                    | `null`            |
+| `ServerTimestamp`        | `number`                              | `ServerTimestamp`                                         | `number`          |
+| `Record<string, T>`      | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |
+| Record\<`${number}`, T\> | Record\<`${number}`, converted\<T\>\> | Record\<`${number}`, converted\<T\>\> \| converted\<T\>[] | invalid           |
 
 Internally, FireSageJS converts base type into 3 main types for different purpose:
 
