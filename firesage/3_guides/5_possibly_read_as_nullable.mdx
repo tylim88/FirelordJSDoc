@@ -66,9 +66,11 @@ export type Example2 = MetaTypeCreator<
 
 ## AllNodesPossiblyReadAsNullable
 
-This section discusses how to use `AllNodesPossiblyReadAsNullable`
+This section discusses how to use `AllNodesPossiblyReadAsNullable`.
 
 ### Type Checks
+
+`AllNodesPossiblyReadAsNullable` is not a type but a setting, basically what it does is union `null` and `undefined` to all nodes.
 
 ```ts
 import {
