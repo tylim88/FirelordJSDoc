@@ -1,0 +1,39 @@
+---
+sidebar_position: 7
+---
+
+# Inhomogeneous Field Values
+
+This page discusses how FirelordJS tackles the homogeneous `FieldValue` types.
+
+## Conversion Table
+
+There are 2 field values in RTDB:
+
+1. increment
+2. serverTimestamp
+
+And they all sharing the same type: `object`, which means is it possible to assign any field value to any field value, and this open up to mistakes.
+
+FireSageJS solves this by assigning [unique symbol type](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#unique-symbol):
+
+| Field Value       | Interface         | Signature                   | Note                     | Assignable |
+| ----------------- | ----------------- | --------------------------- | ------------------------ | ---------- |
+| `serverTimestamp` | `ServerTimestamp` | `{ symbol: unique symbol }` |                          | Yes        |
+| `increment`       | `Increment`       | `{ symbol: unique symbol }` | auto union with `number` | No         |
+
+## UnassignAble Field Values
+
+`Increment` are not assignable types and are not exported, it is passive types that automatically union with `number`.
+
+## Special Field Values
+
+| Interface                                                       | Signature                   | Note                                                             | Assignable |
+| --------------------------------------------------------------- | --------------------------- | ---------------------------------------------------------------- | ---------- |
+| [`Removable`](/guides/removable)                                | `{ symbol: unique symbol }` | allow a node to be read as `undefiend \| null` and be removeable | Yes        |
+| [`PossiblyReadAsUndefined`](/guides/possibly_read_as_undefined) | `{ symbol: unique symbol }` | allow a node to be read as `undefiend \| null`                   | Yes        |
+| [`PushAbleOnly`](/guides/pushableonly)                          | `{ symbol: unique symbol }` | be pushable only                                                 | Yes        |
+| [`PushAble`](/guides/pushAble)                                  | `{ symbol: unique symbol }` | be pushable, set-able and updatable                              | Yes        |
+| `NumericKeyRecord<T>`                                           | `{ symbol: unique symbol }` | is Record<`${number}`, T> under the hodd                         | Yes        |
+
+Special types serve as utility, eg: transform into another type or allow you to perform certain action to a node.
