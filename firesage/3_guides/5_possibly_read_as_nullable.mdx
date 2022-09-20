@@ -70,7 +70,9 @@ This section discusses how to use `AllNodesPossiblyReadAsNullable`.
 
 ### Type Checks
 
-`AllNodesPossiblyReadAsNullable` is not a type but a setting, basically what it does is union `null` and `undefined` to all nodes.
+:::tip
+`AllNodesPossiblyReadAsNullable` is not a type but a setting, it unions `null` and `undefined` to all nodes' read type.
+:::
 
 ```ts
 import {
