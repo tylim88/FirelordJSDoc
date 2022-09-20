@@ -6,6 +6,10 @@ sidebar_position: 7
 
 This page discusses how FireSageJS tackles the homogeneous `FieldValue` types.
 
+:::note
+All interfaces use the same signature `{ symbol: unique symbol }`.
+:::
+
 ## Field Values
 
 There are 2 field values in RTDB:
@@ -17,10 +21,10 @@ And they all sharing the same type: `object`, which means is it possible to assi
 
 FireSageJS solves this by assigning [unique symbol type](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#unique-symbol):
 
-| Field Value       | Interface         | Signature                   | Note                     | Assignable |
-| ----------------- | ----------------- | --------------------------- | ------------------------ | ---------- |
-| `serverTimestamp` | `ServerTimestamp` | `{ symbol: unique symbol }` |                          | Yes        |
-| `increment`       | `Increment`       | `{ symbol: unique symbol }` | auto union with `number` | No         |
+| Field Value       | Interface         | Note                     | Assignable |
+| ----------------- | ----------------- | ------------------------ | ---------- |
+| `serverTimestamp` | `ServerTimestamp` |                          | Yes        |
+| `increment`       | `Increment`       | auto union with `number` | No         |
 
 ## UnassignAble Field Values
 
@@ -28,12 +32,12 @@ FireSageJS solves this by assigning [unique symbol type](https://www.typescriptl
 
 ## Special Field Values
 
-| Interface                                                               | Signature                   | Note                                                               | Assignable |
-| ----------------------------------------------------------------------- | --------------------------- | ------------------------------------------------------------------ | ---------- |
-| [`Removable`](/firesage/guides/removable)                               | `{ symbol: unique symbol }` | allow a node to be read as `undefiend` \| `null` and be removeable | Yes        |
-| [`PossiblyReadAsUndefined`](/firesage/guides/possibly_read_as_nullable) | `{ symbol: unique symbol }` | allow a node to be read as `undefiend` \| `null`                   | Yes        |
-| [`PushAbleOnly`](/firesage/guides/pushable#pushableonly)                | `{ symbol: unique symbol }` | be pushable only                                                   | Yes        |
-| [`PushAble`](/firesage/guides/pushable#pushable)                        | `{ symbol: unique symbol }` | be pushable, set-able and updatable                                | Yes        |
-| `NumericKeyRecord<T>`                                                   | `{ symbol: unique symbol }` | is Record<`${number}`, T> under the hodd                           | Yes        |
+| Interface                                                               | Note                                                               | Assignable |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------- |
+| [`Removable`](/firesage/guides/removable)                               | allow a node to be read as `undefiend` \| `null` and be removeable | Yes        |
+| [`PossiblyReadAsUndefined`](/firesage/guides/possibly_read_as_nullable) | allow a node to be read as `undefiend` \| `null`                   | Yes        |
+| [`PushAbleOnly`](/firesage/guides/pushable#pushableonly)                | be pushable only                                                   | Yes        |
+| [`PushAble`](/firesage/guides/pushable#pushable)                        | be pushable, set-able and updatable                                | Yes        |
+| `NumericKeyRecord<T>`                                                   | is Record<`${number}`, T> under the hodd                           | Yes        |
 
-Special types serve as utility, eg: transform into another type or allow you to perform certain action to a node.
+Special types have no real value, they serve as utilities, eg: transform into another type or allow you to perform certain action to a node.
