@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Possibly Read As Nullable
 
-This page discusses how to use `PossiblyReadAsNullable` and `PossiblyReadAllAsNullable`.
+This page discusses how to use `PossiblyReadAsNullable` and `AllNodesPossiblyReadAsNullable`.
 
 import { Image } from '@site/src/components/Image'
 
@@ -64,6 +64,46 @@ export type Example2 = MetaTypeCreator<
 
 <Image src="/firesage/possibly1.png" text="how to use PossiblyReadAsNullable" />
 
-## PossiblyReadAsNullable
+## AllNodesPossiblyReadAsNullable
 
-This section discusses how to use `PossiblyReadAllAsNullable`
+This section discusses how to use `AllNodesPossiblyReadAsNullable`
+
+### Type Checks
+
+```ts
+import {
+	MetaTypeCreator,
+	ServerTimestamp,
+	NumericKeyRecord,
+	createRef,
+	getDatabase,
+	get,
+} from 'firesagejs'
+
+export type Example = MetaTypeCreator<
+	{
+		b: {
+			c: boolean
+			d: {
+				e: ServerTimestamp
+			}
+		}
+		f: Record<string, 'a' | 'b' | 'c'>
+		i: NumericKeyRecord<boolean>
+	},
+	{ AllNodesPossiblyReadAsNullable: true }
+>
+
+const exampleRef = createRef<Example>(getDatabase())
+
+get(exampleRef()).then(dataSnapshot => {
+	// AllNodesPossiblyReadAsNullable union all nodes read type with null and undefined
+
+	const data = dataSnapshot.val()
+})
+```
+
+<Image
+	src="/firesage/possibly1.png"
+	text="how to use AllNodesPossiblyReadAsNullable"
+/>
