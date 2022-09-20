@@ -9,18 +9,18 @@ This page discusses how to use `PushAbleOnly` and `PushAble`.
 import { Image } from '@site/src/components/Image'
 
 :::info
+
 `PushAbleOnly<T>` and `PushAble<T>` are `Record<string, T>` under the hood.
+
+The purpose of `PushAbleOnly` is to make sure only RTDB can generate keys for children.
+
+`PushAble<T>` is a relaxed `PushAbleOnly<T>`.
+
 :::
 
 ## PushAbleOnly
 
 This section discusses how to use `PushAbleOnly`
-
-:::info
-
-The purpose of `PushAbleOnly` is to make sure only RTDB can generate keys for children.
-
-:::
 
 ### Type Checks
 
@@ -70,12 +70,6 @@ update(exampleRef('a'), ['someKey'], [{ c: 123 }]) // ok, 'a/someKey' is not Pus
 ## PushAble
 
 This section discusses how to use `PushAbleOnly`
-
-:::note
-
-The
-
-:::
 
 :::info
 
