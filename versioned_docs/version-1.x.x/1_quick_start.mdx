@@ -167,27 +167,27 @@ await deleteDoc(example.doc('abc'))
 await getDoc(example.doc('abc')).then(docSnapshot => {
 	// everything here is narrowly typed based on MetaType
 	// ref.parent is recursively typed
-	console.log(docSnapshot.data()) // { a: number; b: { c: boolean; d: { e: string; }[]; }; f: { g: Timestamp | null; h: 1010 | 2929 | 3838; }; | undefined
-	console.log(docSnapshot.exists()) // boolean
-	console.log(docSnapshot.get('b.c')) // arguments type is "a" | "b.c" | "b.d" | "f.g" | "f.h"
-	console.log(docSnapshot.id) // string, based on documentId type
+	docSnapshot.data() // { a: number; b: { c: boolean; d: { e: string; }[]; }; f: { g: Timestamp | null; h: 1010 | 2929 | 3838; }; | undefined
+	docSnapshot.exists() // boolean
+	docSnapshot.get('b.c') // arguments type is "a" | "b.c" | "b.d" | "f.g" | "f.h"
+	docSnapshot.id // string, based on documentId type
 
-	console.log(docSnapshot.metadata.fromCache) // boolean
-	console.log(docSnapshot.metadata.hasPendingWrites) // boolean
-	console.log(docSnapshot.metadata.isEqual(docSnapshot)) // boolean, can compare with other docSnapshot
+	docSnapshot.metadata.fromCache // boolean
+	docSnapshot.metadata.hasPendingWrites // boolean
+	docSnapshot.metadata.isEqual(docSnapshot) // boolean, can compare with other docSnapshot
 
-	console.log(docSnapshot.ref.firestore) // firestore instance
-	console.log(docSnapshot.ref.id) // same as docSnapshot.id
-	console.log(docSnapshot.ref.path) // full path of this document, type is `SomeCollectionName/${string}`
-	console.log(docSnapshot.ref.type) // "document"
+	docSnapshot.ref.firestore // firestore instance
+	docSnapshot.ref.id // same as docSnapshot.id
+	docSnapshot.ref.path // full path of this document, type is `SomeCollectionName/${string}`
+	docSnapshot.ref.type // "document"
 
 	// parent of document is collection, parent of collection is document
-	console.log(docSnapshot.ref.parent) // in this case, it is collection reference of this document
-	console.log(docSnapshot.ref.parent.firestore) // firestore instance
-	console.log(docSnapshot.ref.parent.id) // collectionId, type is `SomeCollectionName`
-	console.log(docSnapshot.ref.parent.parent) // no more parent, null
-	console.log(docSnapshot.ref.parent.path) // full path of this collection, type is `SomeCollectionName`
-	console.log(docSnapshot.ref.parent.type) // "collection"
+	docSnapshot.ref.parent // in this case, it is collection reference of this document
+	docSnapshot.ref.parent.firestore // firestore instance
+	docSnapshot.ref.parent.id // collectionId, type is `SomeCollectionName`
+	docSnapshot.ref.parent.parent // no more parent, null
+	docSnapshot.ref.parent.path // full path of this collection, type is `SomeCollectionName`
+	docSnapshot.ref.parent.type // "collection"
 })
 ```
 
@@ -215,10 +215,10 @@ getDocs(
 ).then(querySnapshot => {
 	querySnapshot.docChanges().forEach(docChange => {
 		// native forEach, has index
-		console.log(docChange.doc) // return docSnapshot similar to docSnapshot of getDoc
-		console.log(docChange.type) // 'added', 'modified', or 'removed'
-		console.log(docChange.oldIndex) // number
-		console.log(docChange.newIndex) //  number
+		docChange.doc // return docSnapshot similar to docSnapshot of getDoc
+		docChange.type // 'added', 'modified', or 'removed'
+		docChange.oldIndex // number
+		docChange.newIndex //  number
 	})
 	querySnapshot.forEach(docSnapshot => {
 		// forEach is not native forEach, it has no index

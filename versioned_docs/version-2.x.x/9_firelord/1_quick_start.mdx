@@ -149,23 +149,23 @@ import {
 	await getDoc(example.doc('abc')).then(docSnapshot => {
 		// everything here is narrowly typed based on MetaType
 		// ref.parent is recursively typed
-		console.log(docSnapshot.data()) // { a: number; b: { c: boolean; d: { e: string; }[]; }; f: { g: Timestamp | null; h: 1010 | 2929 | 3838; }; | undefined
-		console.log(docSnapshot.exists()) // boolean
-		console.log(docSnapshot.get('b.c')) // arguments type is "a" | "b.c" | "b.d" | "f.g" | "f.h"
-		console.log(docSnapshot.id) // string, based on documentId type
+		docSnapshot.data() // { a: number; b: { c: boolean; d: { e: string; }[]; }; f: { g: Timestamp | null; h: 1010 | 2929 | 3838; }; | undefined
+		docSnapshot.exists() // boolean
+		docSnapshot.get('b.c') // arguments type is "a" | "b.c" | "b.d" | "f.g" | "f.h"
+		docSnapshot.id // string, based on documentId type
 
-		console.log(docSnapshot.ref.firestore) // firestore instance
-		console.log(docSnapshot.ref.id) // same as docSnapshot.id
-		console.log(await docSnapshot.ref.listCollections()) // an array of CollectionReference<Example>
-		console.log(docSnapshot.ref.path) // full path of this document, type is `SomeCollectionName/${string}`
+		docSnapshot.ref.firestore // firestore instance
+		docSnapshot.ref.id // same as docSnapshot.id
+		await docSnapshot.ref.listCollections() // an array of CollectionReference<Example>
+		docSnapshot.ref.path // full path of this document, type is `SomeCollectionName/${string}`
 
 		// parent of document is collection, parent of collection is document
-		console.log(docSnapshot.ref.parent) // in this case, it is collection reference of this document
-		console.log(docSnapshot.ref.parent.firestore) // firestore instance
-		console.log(docSnapshot.ref.parent.id) // collectionId, type is `SomeCollectionName`
-		console.log(await docSnapshot.ref.parent.listDocuments()) // an array of DocumentReference<Any>, NOTE: currently this is not possible to type, you need to type cast it
-		console.log(docSnapshot.ref.parent.parent) // no more parent, null
-		console.log(docSnapshot.ref.parent.path) // full path of this collection, type is `SomeCollectionName`
+		docSnapshot.ref.parent // in this case, it is collection reference of this document
+		docSnapshot.ref.parent.firestore // firestore instance
+		docSnapshot.ref.parent.id // collectionId, type is `SomeCollectionName`
+		await docSnapshot.ref.parent.listDocuments() // an array of DocumentReference<Any>, NOTE: currently this is not possible to type, you need to type cast it
+		docSnapshot.ref.parent.parent // no more parent, null
+		docSnapshot.ref.parent.path // full path of this collection, type is `SomeCollectionName`
 	})
 }
 ```
@@ -194,11 +194,11 @@ getDocs(
 ).then(querySnapshot => {
 	querySnapshot.docChanges().forEach(docChange => {
 		// native forEach, has index
-		console.log(docChange.doc) // return docSnapshot similar to docSnapshot of getDoc
-		console.log(docChange.type) // 'added', 'modified', or 'removed'
-		console.log(docChange.oldIndex) // number
-		console.log(docChange.newIndex) //  number
-		console.log(docChange.isEqual(docChange)) // boolean, compare with other docChange
+		docChange.doc // return docSnapshot similar to docSnapshot of getDoc
+		docChange.type // 'added', 'modified', or 'removed'
+		docChange.oldIndex // number
+		docChange.newIndex //  number
+		docChange.isEqual(docChange) // boolean, compare with other docChange
 	})
 	querySnapshot.forEach(docSnapshot => {
 		// forEach is not native forEach, it has no index
