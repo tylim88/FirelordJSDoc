@@ -32,8 +32,8 @@ FireSageJS solves this by assigning [unique symbol type](https://www.typescriptl
 | --------------------------------------------------------------- | --------------------------- | ---------------------------------------------------------------- | ---------- |
 | [`Removable`](/guides/removable)                                | `{ symbol: unique symbol }` | allow a node to be read as `undefiend \| null` and be removeable | Yes        |
 | [`PossiblyReadAsUndefined`](/guides/possibly_read_as_undefined) | `{ symbol: unique symbol }` | allow a node to be read as `undefiend \| null`                   | Yes        |
-| [`PushAbleOnly`](/guides/pushableonly)                          | `{ symbol: unique symbol }` | be pushable only                                                 | Yes        |
-| [`PushAble`](/guides/pushAble)                                  | `{ symbol: unique symbol }` | be pushable, set-able and updatable                              | Yes        |
+| [`PushAbleOnly`](/guides/pushable/pushableonly)                 | `{ symbol: unique symbol }` | be pushable only                                                 | Yes        |
+| [`PushAble`](/guides/pushable/pushable)                         | `{ symbol: unique symbol }` | be pushable, set-able and updatable                              | Yes        |
 | `NumericKeyRecord<T>`                                           | `{ symbol: unique symbol }` | is Record<`${number}`, T> under the hodd                         | Yes        |
 
 Special types serve as utility, eg: transform into another type or allow you to perform certain action to a node.
