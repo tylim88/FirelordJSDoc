@@ -6,10 +6,115 @@ sidebar_position: 4
 
 This page discusses how to use `PushAbleOnly` and `PushAble`.
 
+import { Image } from '@site/src/components/Image'
+
 :::info
 `PushAbleOnly<T>` and `PushAble<T>` are `Record<string, T>` under the hood.
 :::
 
 ## PushAbleOnly
 
+This section discusses how to use `PushAbleOnly`
+
+:::info
+
+The purpose of `PushAbleOnly` is to make sure only RTDB can generate keys for children.
+
+:::
+
+### Type Checks
+
+```ts
+import {
+	MetaTypeCreator,
+	createRef,
+	getDatabase,
+	PushAbleOnly,
+	push,
+	set,
+	update,
+} from 'firesagejs'
+
+export type Example = MetaTypeCreator<{
+	a: PushAbleOnly<{ c: number }>
+	b: Record<string, { c: number }>
+}>
+const exampleRef = createRef<Example>(getDatabase())
+
+push(exampleRef('a'), { c: 123 }) // ok, 'a' is PushAbleOnly
+
+push(exampleRef('b'), { c: 123 }) // not ok, 'b' is not PushAble or PushAbleOnly
+
+set(exampleRef('a'), { someKey: { c: 123 } }) // not ok, cannot set PushAbleOnly
+
+set(exampleRef('a/someKey'), { c: 123 }) // ok, 'a/someKey' is not PushAbleOnly
+
+update(exampleRef(), ['a'], [{ someKey: { c: 123 } }]) // not ok, 'a' is PushAbleOnly
+
+update(exampleRef('a'), ['someKey'], [{ c: 123 }]) // ok, 'a/someKey' is not PushAbleOnly
+```
+
+<Image src="/firesage/push1.png" text="how to use PushAbleOnly" />
+
+### Understanding Error Messages
+
+<Image
+	src="/firesage/push2.png"
+	text="you can only push PushAbleOnly or Pushable"
+/>
+
+<Image src="/firesage/push3.png" text="you cannot set PushAbleOnly" />
+
+<Image src="/firesage/push4.png" text="you cannot update PushAbleOnly" />
+
 ## PushAble
+
+This section discusses how to use `PushAbleOnly`
+
+:::note
+
+The
+
+:::
+
+:::info
+
+`PushAble` and `PushAbleOnly` work in the same way, except that you can set or update `PushAble` node.
+
+:::
+
+:::tip
+
+If you just want to temporary set or update `PushAbleOnly` node, instead of changing it to `PushAble` type, use `// @ts-expect-error` to supress the type error.
+
+Only use `PushAble` if you want RTDB and other sources to generate keys.
+
+:::
+
+### Type Checks
+
+```ts
+import {
+	MetaTypeCreator,
+	createRef,
+	getDatabase,
+	PushAble,
+	push,
+	set,
+	update,
+} from 'firesagejs'
+
+export type Example = MetaTypeCreator<{
+	a: PushAble<{ c: number }>
+	b: Record<string, { c: number }>
+}>
+const exampleRef = createRef<Example>(getDatabase())
+
+push(exampleRef('a'), { c: 123 }) // ok, 'a' is PushAble
+
+set(exampleRef('a'), { someKey: { c: 123 } }) // ok, 'a' is PushAble
+
+update(exampleRef(), ['a'], [{ someKey: { c: 123 } }]) // ok, 'a' is PushAble
+```
+
+<Image src="/firesage/push5.png" text="you cannot update PushAbleOnly" />

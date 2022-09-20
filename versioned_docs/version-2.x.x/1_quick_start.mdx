@@ -117,6 +117,14 @@ export const db = getFirestore(app) // or getFirestore()
 export const example = getFirelord<Example>(db, 'SomeCollectionName') // this is your firelordRef
 ```
 
+:::tip
+Every detail or rule stated in the code below may sound like runtime validation or something you have to memorize, but they are in fact type level validation.
+
+Unless stated explicitly, everything you read is type level validation.
+
+All IDs, paths, keys, values and returns are narrowly typed. Collection references, document references and data snapshots are recursively typed.
+:::
+
 ## Operations
 
 ```ts title='operations.ts'
