@@ -10,18 +10,20 @@ Type transformation is needed because read, write and compare operation require 
 
 ## Conversion Table
 
-| Base                | Read              | Write                                                  | Compare               |
-| ------------------- | ----------------- | ------------------------------------------------------ | --------------------- |
-| `number`            | `number`          | `number` \| `Increment`                                | `number`              |
-| `numeric literal`   | `numeric literal` | `numeric literal`                                      | `numeric literal`     |
-| `string`            | `string`          | `string`                                               | `string`              |
-| `string literal`    | `string literal`  | `string literal`                                       | `string literal`      |
-| `null`              | `null`            | `null`                                                 | `null`                |
-| `Timestamp`\|`Date` | `Timestamp`       | `Timestamp` \| `Date`                                  | `Timestamp` \| `Date` |
-| `ServerTimestamp`   | `Timestamp`       | `ServerTimestamp`                                      | `Timestamp` \| `Date` |
-| `GeoPoint`          | `GeoPoint`        | `GeoPoint`                                             | `GeoPoint`            |
-| `T[]`               | `converted<T>[]`  | `converted<T>[]` \| `ArrayUnionOrRemove<converted<T>>` | `converted<T>[]`      |
-| `Bytes`             | `Bytes`           | `Bytes`                                                | `Bytes`               |
+| Base                                                           | Read              | Write                                                  | Compare               |
+| -------------------------------------------------------------- | ----------------- | ------------------------------------------------------ | --------------------- |
+| `number`                                                       | `number`          | `number` \| `Increment`                                | `number`              |
+| `numeric literal`                                              | `numeric literal` | `numeric literal`                                      | `numeric literal`     |
+| `string`                                                       | `string`          | `string`                                               | `string`              |
+| `string literal`                                               | `string literal`  | `string literal`                                       | `string literal`      |
+| `null`                                                         | `null`            | `null`                                                 | `null`                |
+| `Timestamp`\|`Date`                                            | `Timestamp`       | `Timestamp` \| `Date`                                  | `Timestamp` \| `Date` |
+| `ServerTimestamp`                                              | `Timestamp`       | `ServerTimestamp`                                      | `Timestamp` \| `Date` |
+| `GeoPoint`                                                     | `GeoPoint`        | `GeoPoint`                                             | `GeoPoint`            |
+| `T[]`                                                          | `converted<T>[]`  | `converted<T>[]` \| `ArrayUnionOrRemove<converted<T>>` | `converted<T>[]`      |
+| `Bytes`                                                        | `Bytes`           | `Bytes`                                                | `Bytes`               |
+| [`DeleteField`](/guides/delete_field)                          | `undefined`       | `never`                                                | `never`               |
+| [`PossiblyReadAsUndefined`](/guides/possibly_read_as_undefined | `undefined`       | `never`                                                | `never`               |
 
 Internally, FirelordJS converts base type into 3 main types for different purpose:
 

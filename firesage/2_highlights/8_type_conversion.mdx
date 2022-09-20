@@ -10,18 +10,19 @@ Type transformation is needed because read, write and compare operation require 
 
 ## Conversion Table
 
-| Base                  | Read                                  | Write                                                     | Compare           |
-| --------------------- | ------------------------------------- | --------------------------------------------------------- | ----------------- |
-| `number`              | `number`                              | `number` \| `Increment`                                   | `number`          |
-| `numeric literal`     | `numeric literal`                     | `numeric literal`                                         | `numeric literal` |
-| `string`              | `string`                              | `string`                                                  | `string`          |
-| `string literal`      | `string literal`                      | `string literal`                                          | `string literal`  |
-| `null`                | `null`                                | `null`                                                    | `null`            |
-| `ServerTimestamp`     | `number`                              | `ServerTimestamp`                                         | `number`          |
-| `Record<string, T>`   | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |
-| `NumericKeyRecord<T>` | Record\<`${number}`, converted\<T\>\> | Record\<`${number}`, converted\<T\>\> \| converted\<T\>[] | invalid           |
-| `PushAbleOnly<T>`     | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |
-| `PushAble<T>`         | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |
+| Base                                                                    | Read                                  | Write                                                     | Compare           |
+| ----------------------------------------------------------------------- | ------------------------------------- | --------------------------------------------------------- | ----------------- |
+| `number`                                                                | `number`                              | `number \| Increment`                                     | `number`          |
+| `numeric literal`                                                       | `numeric literal`                     | `numeric literal`                                         | `numeric literal` |
+| `string`                                                                | `string`                              | `string`                                                  | `string`          |
+| `string literal`                                                        | `string literal`                      | `string literal`                                          | `string literal`  |
+| `null`                                                                  | `null`                                | `null`                                                    | `null`            |
+| `ServerTimestamp`                                                       | `number`                              | `ServerTimestamp`                                         | `number`          |
+| `Record<string, T>`                                                     | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |
+| [`Removable`](/firesage/guides/removable)                               | `null \| undefined`                   | `never`                                                   | `never`           |
+| [`PossiblyReadAsUndefined`](/firesage/guides/possibly_read_as_nullable) | Record\<`${number}`, converted\<T\>\> | Record\<`${number}`, converted\<T\>\> \| converted\<T\>[] | invalid           |
+| [`PushAbleOnly`](/firesage/guides/pushable#pushableonly)                | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |
+| `NumericKeyRecord<T>`                                                   | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |
 
 Internally, FireSageJS converts base type into 3 main types for different purpose:
 
