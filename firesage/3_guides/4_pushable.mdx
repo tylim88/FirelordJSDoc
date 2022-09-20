@@ -14,7 +14,7 @@ import { Image } from '@site/src/components/Image'
 
 The purpose of `PushAbleOnly` is to make sure only RTDB can generate keys for children.
 
-`PushAble<T>` is a relaxed `PushAbleOnly<T>`.
+`PushAble` and `PushAbleOnly` work in the same way, except that you can set or update `PushAble` node.
 
 :::
 
@@ -70,12 +70,6 @@ update(exampleRef('a'), ['someKey'], [{ c: 123 }]) // ok, 'a/someKey' is not Pus
 ## PushAble
 
 This section discusses how to use `PushAbleOnly`
-
-:::info
-
-`PushAble` and `PushAbleOnly` work in the same way, except that you can set or update `PushAble` node.
-
-:::
 
 :::tip
 
