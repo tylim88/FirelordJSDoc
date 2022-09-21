@@ -1,0 +1,92 @@
+---
+sidebar_position: 5
+---
+
+# Record And NumericKeyRecord
+
+This page discusses how to use `NumericRecord` and `Record`.
+
+import { Image } from '@site/src/components/Image'
+
+## Type Checks
+
+:::info
+
+1. `Record` is Typescript native utility, we don't need to import it.
+
+2. `NumericKeyRecord<T>` is Record<`${number}`, T> under the hood.
+
+3. With `Record<string, T>`, the key must be non-numeric.
+
+4. With `NumericKeyRecord<T>`, the key must be numeric string with one exception: it can be number if used as object key because JS object coerce number key into string key.
+
+5. With `NumericKeyRecord<T>`, write operations accept `T[]` as values.
+
+:::
+
+```ts
+import {
+	MetaTypeCreator,
+	createRef,
+	getDatabase,
+	push,
+	set,
+	update,
+	NumericKeyRecord,
+} from 'firesagejs'
+
+type Example = MetaTypeCreator<{
+	a: NumericKeyRecord<{ c: number }>
+	b: Record<string, { c: number }>
+}>
+
+const exampleRef = createRef<Example>(getDatabase())
+
+set(exampleRef('a'), { 123: { c: 999 } }) // ok, key is numeric
+set(exampleRef('b'), { abc: { c: 999 } }) // ok, key is non-numeric
+
+update(exampleRef('a'), ['123'], [{ c: 999 }]) // ok, key is numeric
+update(exampleRef('b'), ['a1b2c3'], [{ c: 999 }]) // ok, key is non-numeric
+
+set(exampleRef('a'), { a1b2c3: { c: 999 } }) // not ok, expect numeric key
+set(exampleRef('b'), { 123: { c: 999 } }) // not ok, expect non-numeric key
+
+update(exampleRef('a'), ['abc'], [{ c: 999 }]) // not ok, expect numeric key
+update(exampleRef('b'), ['123'], [{ c: 999 }]) // not ok, expect non-numeric key
+
+push(exampleRef('a'), { 123: { c: 999 } }) // ok, cannot push NumericKeyRecord<T>
+push(exampleRef('b'), { abc: { c: 999 } }) // ok, cannot push Record<string, T>
+
+update(exampleRef('a'), [123], [{ c: 999 }]) // ok, is number but expect numeric string
+
+// Record<`${number}`, T> and Record<number, T> is invalid type.
+// use NumericKeyRecord<T> instead
+type Example2 = MetaTypeCreator<{
+	a: Record<`${number}`, { c: number }>
+	b: Record<number, { c: number }>
+}>
+```
+
+<Image
+	src="/firesage/possibly1.png"
+	text="how to use `NumericRecord` and `Record"
+/>
+
+### Understanding Error Messages
+
+<Image src="/firesage/possibly2.png" text="expect numeric key" />
+
+<Image src="/firesage/possibly3.png" text="expect non-numeric key" />
+
+<Image src="/firesage/possibly4.png" text="expect numeric key" />
+
+<Image src="/firesage/possibly5.png" text="expect non-numeric key" />
+
+<Image src="/firesage/possibly6.png" text="cannot push NumericKeyRecord<T>" />
+
+<Image src="/firesage/possibly7.png" text="cannot push Record<string, T>" />
+
+<Image
+	src="/firesage/possibly8.png"
+	text="received number but expect numeric string"
+/>

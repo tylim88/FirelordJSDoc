@@ -14,7 +14,7 @@ import { Image } from '@site/src/components/Image'
 
 The purpose of `PushAbleOnly` is to make sure only RTDB can generate keys for children.
 
-`PushAble` and `PushAbleOnly` work in the same way, except that you can set or update `PushAble` node.
+`PushAble` and `PushAbleOnly` work in the same way, except that we can set or update `PushAble` node.
 
 :::
 
@@ -60,12 +60,12 @@ update(exampleRef('a'), ['someKey'], [{ c: 123 }]) // ok, 'a/someKey' is not Pus
 
 <Image
 	src="/firesage/push2.png"
-	text="you can only push PushAbleOnly or Pushable"
+	text="we can only push PushAbleOnly or Pushable"
 />
 
-<Image src="/firesage/push3.png" text="you cannot set PushAbleOnly" />
+<Image src="/firesage/push3.png" text="we cannot set PushAbleOnly" />
 
-<Image src="/firesage/push4.png" text="you cannot update PushAbleOnly" />
+<Image src="/firesage/push4.png" text="we cannot update PushAbleOnly" />
 
 ## PushAble
 
@@ -105,4 +105,4 @@ set(exampleRef('a'), { someKey: { c: 123 } }) // ok, 'a' is PushAble
 update(exampleRef(), ['a'], [{ someKey: { c: 123 } }]) // ok, 'a' is PushAble
 ```
 
-<Image src="/firesage/push5.png" text="you cannot update PushAbleOnly" />
+<Image src="/firesage/push5.png" text="we cannot update PushAbleOnly" />

@@ -12,6 +12,12 @@ import { Image } from '@site/src/components/Image'
 
 This section discusses how to use `PossiblyReadAsNullable`
 
+:::info
+
+`PossiblyReadAsNullable` unions nodes read type with `null` and `undefined`.
+
+:::
+
 ### Type Checks
 
 ```ts
@@ -81,7 +87,7 @@ This section discusses how to use `AllNodesPossiblyReadAsNullable`.
 ### Type Checks
 
 :::info
-`AllNodesPossiblyReadAsNullable` is not a type but a setting, it unions `null` and `undefined` to all nodes' read type.
+`AllNodesPossiblyReadAsNullable` is not a type but a setting, it unions `null` and `undefined` to all nodes read type.
 :::
 
 ```ts
