@@ -90,8 +90,8 @@ export type Example = MetaTypeCreator<
 		b: { c: boolean; d: { e: string }[] }
 		f: { g: ServerTimestamp; h: 1010 | 2929 | 3838 }
 	}, // can go with even more crazy looking data type
-	'SomeCollectionName', // collection ID type, must be string literal type
-	string // document ID type, normally string
+	'SomeCollectionName', // collection ID type, must be string literal type or else will be replaced by error message
+	string // optional, document ID type, default string
 >
 ```
 
