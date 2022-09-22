@@ -22,7 +22,7 @@ Type transformation is needed because read, write and compare operation require 
 | [`Removable`](/firesage/guides/removable)                               | `null` \| `undefined`                 | `never`                                                   | `never`           |
 | [`PossiblyReadAsUndefined`](/firesage/guides/possibly_read_as_nullable) | Record\<`${number}`, converted\<T\>\> | Record\<`${number}`, converted\<T\>\> \| converted\<T\>[] | invalid           |
 | [`PushAbleOnly`](/firesage/guides/pushable#pushableonly)                | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |
-| `NumericKeyRecord<T>`                                                   | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |
+| [`NumericKeyRecord<T>`](/firesage/guides/numeric_record)                | `Record<string, converted<T>>`        | `Record<string, converted<T>>`                            | invalid           |
 
 Internally, FireSageJS converts base type into 3 main types for different purpose:
 
