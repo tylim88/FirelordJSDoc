@@ -43,10 +43,16 @@ type Example = MetaTypeCreator<{
 const exampleRef = createRef<Example>(getDatabase())
 
 set(exampleRef('a'), { 123: { c: 999 } }) // ok, key is numeric
+set(exampleRef('a'), [{ c: 999 }, { c: 111 }]) // ok, accept array, store in db as { 0:{ c: 999 }, 1:{ c: 111 } }
 set(exampleRef('b'), { abc: { c: 999 } }) // ok, key is non-numeric
 
 update(exampleRef('a'), ['123'], [{ c: 999 }]) // ok, key is numeric
 update(exampleRef('b'), ['a1b2c3'], [{ c: 999 }]) // ok, key is non-numeric
+update(
+	exampleRef(),
+	['a', 'b'],
+	[[{ c: 999 }, { c: 111 }], { abc: { c: 999 }, efg: { c: 111 } }]
+) // ok, accept array, store in db as { a: { 0: { c: 999 }, 1: { c: 111 } }, b: { abc: { c: 999 }, efg: { c: 111 } }
 
 set(exampleRef('a'), { a1b2c3: { c: 999 } }) // not ok, expect numeric key
 set(exampleRef('b'), { 123: { c: 999 } }) // not ok, expect non-numeric key
@@ -102,3 +108,37 @@ will give this deeper thoughts in the futrue.
 	text="received number but expect numeric string"
 />
 :::
+
+## Never Read As Array
+
+According to this [blog](https://firebase.blog/posts/2014/04/best-practices-arrays-in-firebase), we can do 2 things
+
+1. Write data as array
+
+<Image src="/firesage/numeric9.png" text="store data as array" />
+
+2. Possibly Read data as array
+
+<Image src="/firesage/numeric10.png" text="possibly read data as array" />
+
+FireSageJS keep the `write data as array` functionality, because it is convenient and has no drawback.
+
+This is not true regarding `possibly read data as array`, despite Firebase team think this is a good idea, it introduces extra complexity: developers need to check the data type on runtime, to see if it is an array or an object.
+
+There are 2 ways to solve this:
+
+1. If it is an object, conver it to array, else do nothing.
+
+2. If it is an array, convert it to object, else do nothing. <-- FireSageJS implement this
+
+FireSageJS implement the 2nd approach and stay away from the 1st apporach because converting object to array resulting in incorrect `length`.
+
+For example, converting `{2: 'c', 4: 'e'}` to an array would end up with `[,,'c',,'e']` and the length is `5`, giving us the impression that we have `5` elements.
+
+But in fact, only `2` elements that really count, the rest are just `empty` elements.
+
+Meanwhile, converting an array to object is safer, take `{ 0: 'a', 2: 'c', 4: 'e' }`, it is read as `['a', undefined, 'c', undefined, 'e']` and FireSageJS convert it back to `{ 0: 'a', 2: 'c', 4: 'e' }`.
+
+Now, we lost some data because we discarded `undefined`, no, we don't. This is because `undefined` is not a valid RTDB data, we can read something as `undefined`, but we never able to write something as `undefined`.
+
+Now we know that `undefined` is safe to discard, what about lenght? Well, `Object.keys({ 0: 'a', 2: 'c', 4: 'e' })`, we get `3` and we do have `3` meaningful data point.
