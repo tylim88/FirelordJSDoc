@@ -121,32 +121,32 @@ According to this [blog](https://firebase.blog/posts/2014/04/best-practices-arra
 
 <Image src="/firesage/numeric10.png" text="possibly read data as array" />
 
-FireSageJS keep the `write data as array` functionality, because it is convenient and has no drawback.
+FireSageJS keeps the `write data as array` functionality, because it is convenient and has no drawbacks.
 
-This is not true regarding `possibly read data as array`, despite Firebase team think this is a good idea, it introduces extra complexity: developers need to check the data type on runtime, to see if it is an array or an object.
+This is not true regarding `possibly read data as array`. Althought the Firebase team thinks this is a good idea, it introduces extra complexity: developers need to check the data type on runtime to see if it is an array or an object.
 
 There are 2 ways to solve this:
 
-1. If it is an object, conver it to array, else do nothing.
+1. If it is an object, convert it to an array, else do nothing.
 
-2. If it is an array, convert it to object, else do nothing. <-- FireSageJS implements this
+2. If it is an array, convert it to an object, else do nothing. <-- FireSageJS implements this.
 
 :::note
 
-FireSageJS implement the 2nd approach and stay away from the 1st apporach because converting object to array resulting in incorrect `length`.
+FireSageJS implements the 2nd approach and stays away from the 1st approach because converting an object to an array results in incorrect understanding of `length`.
 
 :::
 
-For example, converting `{2: 'c', 4: 'e'}` to an array would end up with `[,,'c',,'e']` and the length is `5`, giving us the impression that we have `5` elements.
+For example, if we read `{2: 'c', 4: 'e'}` and convert it to an array would end up with `[,,'c',,'e']` and the length is `5`, giving us the impression that we have `5` elements.
 
-But in fact, only `2` elements that really count, the rest are just `empty` elements.
+But in fact, there are only `2` elements that really count; the rest are just `empty` elements.
 
-Meanwhile, converting an array to object is safer, take `{ 0: 'a', 2: 'c', 4: 'e' }`, it is read as `['a', undefined, 'c', undefined, 'e']` and FireSageJS convert it back to `{ 0: 'a', 2: 'c', 4: 'e' }`.
+Meanwhile, converting an array to object is safer. Take `{ 0: 'a', 2: 'c', 4: 'e' }`, it is read as `['a', undefined, 'c', undefined, 'e']` and FireSageJS converts it back to `{ 0: 'a', 2: 'c', 4: 'e' }`.
 
-Now, you may think that we lost some data because we discarded `undefined`, but actually we dont.
+You may think that we lost some data because we discarded `undefined`, but actually we didn't.
 
-This is because `undefined` is not a valid RTDB data type, we can read something as `undefined`, but we never able to write something as `undefined`.
+This is because `undefined` is not a valid RTDB data type. We can read something as `undefined`, but we are never able to write something as `undefined`.
 
-Now we know that `undefined` is safe to discard, what about lenght? Well, `Object.keys({ 0: 'a', 2: 'c', 4: 'e' })`, we get `3` and we do have `3` meaningful data points.
+Now we know that `undefined` is safe to discard, what about length? `Object.keys({ 0: 'a', 2: 'c', 4: 'e' }).length` returns `3` and we do have `3` meaningful data points.
 
-FireSageJS never read data as array.
+FireSageJS never reads data as an array, you always get an object or primitive data type.
