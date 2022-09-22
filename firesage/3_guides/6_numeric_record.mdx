@@ -111,7 +111,7 @@ will give this deeper thoughts in the futrue.
 
 ## Never Read As Array
 
-According to this [blog](https://firebase.blog/posts/2014/04/best-practices-arrays-in-firebase), we can do 2 things
+According to this [blog](https://firebase.blog/posts/2014/04/best-practices-arrays-in-firebase), we can:
 
 1. Write data as array
 
@@ -129,9 +129,13 @@ There are 2 ways to solve this:
 
 1. If it is an object, conver it to array, else do nothing.
 
-2. If it is an array, convert it to object, else do nothing. <-- FireSageJS implement this
+2. If it is an array, convert it to object, else do nothing. <-- FireSageJS implements this
+
+:::note
 
 FireSageJS implement the 2nd approach and stay away from the 1st apporach because converting object to array resulting in incorrect `length`.
+
+:::
 
 For example, converting `{2: 'c', 4: 'e'}` to an array would end up with `[,,'c',,'e']` and the length is `5`, giving us the impression that we have `5` elements.
 
