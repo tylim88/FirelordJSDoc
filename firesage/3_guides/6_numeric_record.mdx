@@ -147,4 +147,6 @@ Now, you may think that we lost some data because we discarded `undefined`, but 
 
 This is because `undefined` is not a valid RTDB data type, we can read something as `undefined`, but we never able to write something as `undefined`.
 
-Now we know that `undefined` is safe to discard, what about lenght? Well, `Object.keys({ 0: 'a', 2: 'c', 4: 'e' })`, we get `3` and we do have `3` meaningful data point.
+Now we know that `undefined` is safe to discard, what about lenght? Well, `Object.keys({ 0: 'a', 2: 'c', 4: 'e' })`, we get `3` and we do have `3` meaningful data points.
+
+FireSageJS never read data as array.
