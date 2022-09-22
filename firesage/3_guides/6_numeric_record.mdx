@@ -139,6 +139,8 @@ But in fact, only `2` elements that really count, the rest are just `empty` elem
 
 Meanwhile, converting an array to object is safer, take `{ 0: 'a', 2: 'c', 4: 'e' }`, it is read as `['a', undefined, 'c', undefined, 'e']` and FireSageJS convert it back to `{ 0: 'a', 2: 'c', 4: 'e' }`.
 
-Now, we lost some data because we discarded `undefined`, no, we don't. This is because `undefined` is not a valid RTDB data, we can read something as `undefined`, but we never able to write something as `undefined`.
+Now, you may think that we lost some data because we discarded `undefined`, but actually we dont.
+
+This is because `undefined` is not a valid RTDB data type, we can read something as `undefined`, but we never able to write something as `undefined`.
 
 Now we know that `undefined` is safe to discard, what about lenght? Well, `Object.keys({ 0: 'a', 2: 'c', 4: 'e' })`, we get `3` and we do have `3` meaningful data point.
