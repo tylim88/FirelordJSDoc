@@ -92,9 +92,9 @@ Also, neither `docRef`,`colRef` nor `colGroupRef` of child collections are intui
 
 Despite `colGroupRef` not needing any document IDs, we still need to supply two documentIDs to it.
 
-Finally, we need to call `getFirelord` twice to create a `FirelordRef` because `getFirelord`` is a curry function.
+Finally, we need to call `getFirelord` twice to create a `FirelordRef` because `getFirelord`` is a curried function.
 
-The curry function is useful if we have more than one Firestore instance, but most applications need only one instance, so curry provides no real value other than increasing cognitive cost.
+The curried function is useful if we have more than one Firestore instance, but most applications need only one instance, so curried provides no real value other than increasing cognitive cost.
 
 ## Version 2
 
@@ -144,7 +144,7 @@ In version 2:
 
 1. top level and child collection are exported in a similar fashion.
 2. `collectionGroup` need 0 argument regardless of level.
-3. getFirelord is no longer a curry function and `db` paramter is now mandatory(to reduce error suggestion confusion caused by funtion overloading).
+3. getFirelord is no longer a curried function and `db` paramter is now mandatory(to reduce error suggestion confusion caused by funtion overloading).
 
 More about [Child Meta Type](/guides/child_metatype).
 
