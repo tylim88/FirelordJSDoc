@@ -21,7 +21,6 @@ Type transformation is needed because read, write and compare operation require 
 | `ServerTimestamp`                                                    | `Timestamp`       | `ServerTimestamp`                                      | `Timestamp` \| `Date` |
 | `T[]`                                                                | `converted<T>[]`  | `converted<T>[]` \| `ArrayUnionOrRemove<converted<T>>` | `converted<T>[]`      |
 | `GeoPoint`                                                           | `GeoPoint`        | `GeoPoint`                                             | `GeoPoint`            |
-| `Bytes`                                                              | `Bytes`           | `Bytes`                                                | `Bytes`               |
 | [`DeleteField`](/1.x.x/guides/delete_field)                          | `undefined`       | `never`                                                | `never`               |
 | [`PossiblyReadAsUndefined`](/1.x.x/guides/possibly_read_as_undefined | `undefined`       | `never`                                                | `never`               |
 
