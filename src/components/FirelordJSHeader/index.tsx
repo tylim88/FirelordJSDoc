@@ -100,10 +100,6 @@ export const Header = () => (
 		</div>
 		<br />
 		<div align="center">
-			<i>Immaculate, One of a Kind, Unorthodox, Craftsmanship, Art</i>
-		</div>
-		<br />
-		<div align="center">
 			<i>
 				Modular, Minuscule, Intuitive, Unopinionated, Craftsmanship, Ultimate,
 				Peaceful, Deep
