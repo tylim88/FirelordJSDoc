@@ -10,7 +10,7 @@ This section discusses how `PossiblyReadAsUndefined` works and why do we need th
 
 Firestore has the flexibility to add any field we want, in case like this, the read type of newly added data is `undefined` if we try to read it from the old data.
 
-And this is not the only reason a field could be missing, data could be missing for various reason like insecure data integrity is generally main reason why a data is incomplete.
+And this is not the only reason a field could be missing, data could be missing for various reason a.k.a low data integrity.
 
 This is what `PossiblyReadAsUndefined` for, it allows you to read a particular field as `undefined`, here is how you use it.
 
@@ -34,9 +34,9 @@ Despite `null` being a popular default value, we strongly discourage the usage o
 
 Now recall that`updateDoc` cannot update and throw exception if the doc does not exist, so what does all this mean?
 
-This mean that with **only** `set` and `updateDoc` operation, it is guarantee that if certain data exists in the database, it has full members.(assuming that we did not modify the database by other means).
+This mean that with **only** `set` and `updateDoc` operation, it is guarantee that if certain data exists in the database, it has full members.
 
-This mean that the type everything we read is same as what we define in the `Meta Type`, assuming that we do not modify the database by other means.
+The type of everything we read is same as what we define in the `Meta Type`, assuming that we do not modify the database by other means.
 
 However set merge(setDoc with merge) update the doc if the doc exists and create it if it does not exist, also known as `upsert`.
 
