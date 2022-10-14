@@ -11,11 +11,22 @@ This section discusses limitions of FireSageJS due to reason unsupported or stra
 1. does not support numeric literal key eg: `{ 1:'a', 2:'b' }`
 2. cannot mix non-numeric key and numeric key eg: `{ 1:'a', b:2 }`
 3. Interface
+4. union object type with any primitive type and object type.
 
-Interface serve as utility type, to avoid conflict, we must declare all data types must with Type.
+3: Interface serve as utility type, to avoid conflict, we must declare all data types must with Type.
+
+4: technically possible (implemented in FireSageJS for internal use). By utilizing Typesript distributive properties it is possible to generate path for object literal unions field.
+
+Given noSQL flexibility, the idea of multiple schemas per document is indeed valid, but this is not something that most people do.
+
+:::note
+Multiple types per object also degrade developer experience, because you always need to do [runtime type check](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#working-with-union-types) everytime you read it since you don't what is the exact type it returns.
+
+This is simple with primitive types but unpleasant with object type.
+:::
 
 ## Empty Value Handling
 
 1. limit and limitToLast cannot prevent runtime value 0, resulting in runtime error.
 
-It is possible to solve 1 but the solution is too fragile, so not going to work on it.
+It is possible to solve but the solution is too fragile, so not going to work on it.
