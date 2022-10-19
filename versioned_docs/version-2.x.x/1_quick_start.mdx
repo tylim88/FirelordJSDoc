@@ -258,9 +258,7 @@ const unsub2 = onSnapshot(
 import { example, db } from './init'
 import { writeBatch, serverTimestamp } from 'firelordjs'
 
-const batch = writeBatch(db)
-// OR
-const batch_Alt = writeBatch()
+const batch = writeBatch(db) // db argument is optional
 
 batch.set(example.doc('hij'), {
 	a: 6,
@@ -291,7 +289,7 @@ import {
 } from 'firelordjs'
 
 try {
-	// db argument is optional, you can skip it
+	// db argument is optional
 	await runTransaction(db, async transaction => {
 		const result = await transaction
 			.get(example.doc('lmn'))
