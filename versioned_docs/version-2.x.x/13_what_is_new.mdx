@@ -84,11 +84,11 @@ const grandChildColGroupRef = grandchildRefCreator(
 
 In V1, working with top collections is a pleasure, but not so much with child collections.
 
-In order to reuse child collections' `FirelordRef`, we need to wrap it in another function. This is due to the dynamic nature of document IDs.
+In order to reuse child collection `FirelordRef`, we need to wrap it in another function. This is due to the dynamic nature of document IDs.
 
-This results in how we export top-level ref being different than how we export child ref. It feels awkward when we try to structure our code.
+The way we export child ref is different than the way we export child ref.
 
-Also, neither `docRef`,`colRef` nor `colGroupRef` of child collections are intuitive to create, especially `colGroupRef`.
+Furthermore, neither `docRef`,`colRef` nor `colGroupRef` of child collections are intuitive to create, especially `colGroupRef`.
 
 Despite `colGroupRef` not needing any document IDs, we still need to supply documentIDs to it.
 
