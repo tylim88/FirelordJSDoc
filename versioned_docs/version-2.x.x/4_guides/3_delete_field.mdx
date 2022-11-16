@@ -14,15 +14,17 @@ Firestore allow you to use `deleteField` anytime you want, but in FirelordJS, fi
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 	<img src="/firelordv2/deleteField1.png" />
-	<small>Only 'a' is deletable</small>
+	<small>
+		Only `a` is deletable because one of the type of `a` is `DeleteField`
+	</small>
 </div>
 <br />
 
-You can delete 'a' field because one of the 'a' field types is 'deleteField', this is not the same case with 'b'.
+You can delete `a` field because one of the `a` field types is `DeleteField`, this is not the same case with `b`.
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 	<img src="/firelordv2/deleteField2.png" />
-	<small>Union 'a' field's read type with 'undefined'</small>
+	<small>DeleteField union `a` field's read type with 'undefined'</small>
 </div>
 <br />
 
@@ -95,7 +97,7 @@ With set: no delete operation, trigger type error.
 
 With set merge: delete operation is allowed just like official SDK.
 
-With update: FirelordJS allow the delete operation regardless of nested or flatten.
+With update: delete operation is allowed for both nested and flatten form.
 
 ## Array
 
@@ -103,19 +105,19 @@ If you assign `DeleteField` as array type or as array element type, FirelordJS w
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 	<img src="/firelordv2/deleteField3.png" />
-	<small>as array type</small>
+	<small>illegal: as array type</small>
 </div>
 
 <br />
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 	<img src="/firelordv2/deleteField4.png" />
-	<small>as array element type</small>
+	<small>illegal: as array element type</small>
 </div>
 
 Explanations:
 
 1. `DeleteField[]`: doesn't make sense and field value is not allowed in array.
-2. `[{ a: DeleteField }]`: field value is not allowed in array.
+2. `[{ a: DeleteField }]`: field value is not allowed in array regardless of depth.
 
 <br />
 
