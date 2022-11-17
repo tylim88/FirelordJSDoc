@@ -47,7 +47,7 @@ update(ref('a'), [`${numericKey}`], [true]) // working, because `${number}` is n
 
 Every path and key must be string, so `number` type is not possible.
 
-the return type of `toString` is `string`, but FireSage needs narrowed type to tell apart non-numeric and numeric string and rejected it.
+the return type of `toString` is `string`, but FireSage needs narrowed type to tell apart non-numeric and numeric string.
 
 ## String Concatenation
 
