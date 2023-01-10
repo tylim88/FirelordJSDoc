@@ -32,11 +32,11 @@ sidebar_position: 9
 
 ## Running The Source Code
 
-Run `npm i`, then create a `.env` file in the project root directory and add this line:
-
 This library test against both emulator and real Firestore, please allow restriction free read and write in your Firestore rule.
 
-please use dummy Firebase project.
+Please use dummy Firebase project.
+
+Run `npm i`, then create a `.env` file in the project root directory and add this line:
 
 ### For FirelordJS(Web):
 
@@ -69,4 +69,4 @@ Place a copy the `.env` file into `codeForDoc` directory, then run:
 
 1. `npm run d-test` to test development code.
 2. `npm run d-b-test` to test built code.
-3. `npm run d-p-test` to test published code(change the `version` in `package.json`` to test the version you want).
+3. `npm run d-p-test` to test published code(You can specify which version to test by changing `version` in `package.json`).
