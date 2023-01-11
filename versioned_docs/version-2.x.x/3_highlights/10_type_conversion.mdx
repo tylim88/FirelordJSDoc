@@ -37,6 +37,6 @@ Key Points:
 
 - FirelordJS forbids you from increment `numeric literal` type, eg: if the type is `1 | 100 | 1000` then we should not be able to increment it from `1` to `2`.
 
-- FirelordJS forbids you from writing `Date` or `Timestamp` into `ServerTimestamp`, because some date time has to be server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, you can by union `ServerTimestamp` with `Date` and `Timestamp`.
+- FirelordJS forbids you from writing `Date` or `Timestamp` into `ServerTimestamp`, because some date time has to be server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, please union `ServerTimestamp` with `Date` and `Timestamp`.
 
 - We can always compare `Date` or `Timestamp` to `ServerTimestamp`.
