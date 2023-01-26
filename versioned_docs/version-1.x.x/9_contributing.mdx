@@ -20,9 +20,11 @@ sidebar_position: 9
 - Members with such type become `required` even in `updateDoc` operations(all members in `updateDoc` operations are partial by default).
 - Practical usage is something like `updatedAt` member that keep track of document last updated time.
 
-7. Query Constraint type affect Read type. For example for query `where('a', '==', true)`, we can further narrow down the type of field `a` to only `true`.
+7. Query Constraint type affect Read type. For example for query `where('a', '==', true)`, we can further narrow down the read data type of field `a` to only `true`. <-- this is most likely very difficult to implement
 
-8. Simplify getFirelord API, the current one seem unintuitive and confusing.
+8. Current children are aware of parents but not the other way around, this is needed for admin `listCollections` to works properly
+
+9. Optional members.
 
 ## Running The Source Code
 
