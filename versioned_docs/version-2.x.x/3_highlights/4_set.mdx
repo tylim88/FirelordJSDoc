@@ -35,6 +35,10 @@ A merge set(set with merge : true) can behave like update, all members are parti
 
 Merge set also possess the same weakness like update, that is accepting `undefined` value and `undefined` is not a valid firestore data type.
 
+:::note
+This is no longer relevant if you enabled `exactOptionalPropertyTypes` in tsconfig.
+:::
+
 <div  style={{ display:'flex', justifyContent:'space-around' }}>
     <div style={{ display:'flex', flexDirection:"column", alignItems:'center' }}>
         <img src='/firelordv2/set3.png' />

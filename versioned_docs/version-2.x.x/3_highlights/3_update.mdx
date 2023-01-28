@@ -75,6 +75,9 @@ Note 1: FirelordJS highlight the unknown member of the fresh value.
 Note 2: FirelordJS highlight the unknown member of the stale value and print out the unknown member in Typescript error message, the same error message is also shown for the fresh value.
 
 Note 3: Partial But no Undefined. FirelordJS update allows you to skip member while rejecting `undefined`, stopping undefined from entering database(undefined is not a valid data type).
+:::note
+Note 3 is no longer relevant if you enabled `exactOptionalPropertyTypes` in tsconfig.
+:::
 
 ## Solution to Implicit Data Deletion ☢️
 
