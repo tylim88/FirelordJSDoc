@@ -118,55 +118,57 @@ import {
 	arrayUnion,
 } from 'firelord'
 //
-;async () => {
-	await createDoc(example.doc('abc'), {
-		a: 500,
-		b: { c: true, d: [{ e: 'efg' }] },
-		f: { g: serverTimestamp(), h: 2929 },
-	})
 
-	await setDoc(example.doc('abc'), {
-		a: 100,
-		b: { c: true, d: [{ e: 'abc' }] },
-		f: { g: serverTimestamp(), h: 1010 },
-	})
+await createDoc(example.doc('abc'), {
+	a: 500,
+	b: { c: true, d: [{ e: 'efg' }] },
+	f: { g: serverTimestamp(), h: 2929 },
+})
 
-	await addDoc(example.collection(), {
-		a: 900,
-		b: { c: false, d: [{ e: 'hi' }] },
-		f: { g: serverTimestamp(), h: 3838 },
-	})
+await setDoc(example.doc('abc'), {
+	a: 100,
+	b: { c: true, d: [{ e: 'abc' }] },
+	f: { g: serverTimestamp(), h: 1010 },
+})
 
-	await updateDoc(example.doc('abc'), {
-		a: increment(1),
-		'b.d': arrayUnion({ e: 'hello' }), // dot notation form
-		f: { h: 2929 }, // nested form
-	})
+await updateDoc(example.doc('abc'), {
+	a: increment(1),
+	'b.d': arrayUnion({ e: 'hello' }), // dot notation form
+	f: { h: 2929 }, // nested form
+})
 
-	await deleteDoc(example.doc('abc'))
+await deleteDoc(example.doc('abc'))
 
-	await getDoc(example.doc('abc')).then(docSnapshot => {
-		// everything here is narrowly typed based on MetaType
-		// ref.parent is recursively typed
-		docSnapshot.data() // { a: number; b: { c: boolean; d: { e: string; }[]; }; f: { g: Timestamp | null; h: 1010 | 2929 | 3838; }; | undefined
-		docSnapshot.exists() // boolean
-		docSnapshot.get('b.c') // arguments type is "a" | "b.c" | "b.d" | "f.g" | "f.h"
-		docSnapshot.id // string, based on documentId type
+await getDoc(example.doc('abc')).then(docSnapshot => {
+	// everything here is narrowly typed based on MetaType
+	// ref.parent is recursively typed
+	docSnapshot.data() // { a: number; b: { c: boolean; d: { e: string; }[]; }; f: { g: Timestamp | null; h: 1010 | 2929 | 3838; }; | undefined
+	docSnapshot.exists() // boolean
+	docSnapshot.get('b.c') // arguments type is "a" | "b.c" | "b.d" | "f.g" | "f.h"
+	docSnapshot.id // string, based on documentId type
 
-		docSnapshot.ref.firestore // firestore instance
-		docSnapshot.ref.id // same as docSnapshot.id
-		await docSnapshot.ref.listCollections() // an array of CollectionReference<Example>
-		docSnapshot.ref.path // full path of this document, type is `SomeCollectionName/${string}`
+	docSnapshot.ref.firestore // firestore instance
+	docSnapshot.ref.id // same as docSnapshot.id
+	await docSnapshot.ref.listCollections() // an array of CollectionReference<Example>
+	docSnapshot.ref.path // full path of this document, type is `SomeCollectionName/${string}`
 
-		// parent of document is collection, parent of collection is document
-		docSnapshot.ref.parent // in this case, it is collection reference of this document
-		docSnapshot.ref.parent.firestore // firestore instance
-		docSnapshot.ref.parent.id // collectionId, type is `SomeCollectionName`
-		await docSnapshot.ref.parent.listDocuments() // an array of DocumentReference<Any>, NOTE: currently this is not possible to type, you need to type cast it
-		docSnapshot.ref.parent.parent // no more parent, null
-		docSnapshot.ref.parent.path // full path of this collection, type is `SomeCollectionName`
-	})
-}
+	// parent of document is collection, parent of collection is document
+	docSnapshot.ref.parent // in this case, it is collection reference of this document
+	docSnapshot.ref.parent.firestore // firestore instance
+	docSnapshot.ref.parent.id // collectionId, type is `SomeCollectionName`
+	await docSnapshot.ref.parent.listDocuments() // an array of DocumentReference<Any>, NOTE: currently this is not possible to type, you need to type cast it
+	docSnapshot.ref.parent.parent // no more parent, null
+	docSnapshot.ref.parent.path // full path of this collection, type is `SomeCollectionName`
+})
+
+// in case you want to create auto id doc
+await addDoc(example.collection(), {
+	a: 900,
+	b: { c: false, d: [{ e: 'hi' }] },
+	f: { g: serverTimestamp(), h: 3838 },
+})
+// in case you just want auto id doc ref
+const autoIdDocRef = example.doc(example.collection())
 ```
 
 ## Query And OnSnapshot
@@ -182,7 +184,7 @@ import {
 	startAfter,
 	limit,
 } from 'firelord'
-//
+// filter documents
 getDocs(
 	query(
 		example.collection(), // also accept example.collectionGroup()
@@ -208,7 +210,7 @@ getDocs(
 		// similar to docSnapshot of getDoc
 	})
 })
-
+// filter and listen to documents
 const unsub = onSnapshot(
 	query(
 		example.collectionGroup(), // also accept example.collection()
@@ -223,6 +225,25 @@ const unsub = onSnapshot(
 	},
 	error => {} // optional, onError callback
 )
+
+// listen to a single document
+const unsub2 = onSnapshot(
+	example.doc('abc'),
+	docSnapshot => {},
+	error => {},
+	{ includeMetadataChanges: true }
+)
+
+// remove listeners
+unsub()
+unsub2()
+
+// get aggregated count
+getCountFromServer(query(example.collection(), where('a', '>', 1))).then(
+	aggregatedQuerySnapshot => {
+		const count = aggregatedQuerySnapshot.data().count
+	}
+)
 ```
 
 ## Transaction
@@ -236,48 +257,47 @@ import {
 	arrayRemove,
 } from 'firelord'
 //
-;async () => {
-	try {
-		const result = await runTransaction(
-			db, // db argument is optional, you can skip it
-			async transaction => {
-				await transaction.get(example.doc('lmn')).then(docSnapshot => {
-					const data = docSnapshot.data()
-				})
 
-				transaction.create(example.doc('lmn'), {
-					a: 500,
-					b: { c: true, d: [{ e: 'efg' }] },
-					f: { g: serverTimestamp(), h: 3838 },
-				})
+try {
+	const result = await runTransaction(
+		db, // db argument is optional, you can skip it
+		async transaction => {
+			await transaction.get(example.doc('lmn')).then(docSnapshot => {
+				const data = docSnapshot.data()
+			})
 
-				transaction.set(example.doc('lmn'), {
-					a: 88,
-					b: { c: false, d: [{ e: 'opq' }] },
-					f: { g: serverTimestamp(), h: 2929 },
-				})
+			transaction.create(example.doc('lmn'), {
+				a: 500,
+				b: { c: true, d: [{ e: 'efg' }] },
+				f: { g: serverTimestamp(), h: 3838 },
+			})
 
-				transaction.update(example.doc('lmn'), {
-					a: increment(1),
-					b: { d: arrayRemove({ e: 'rst' }) }, // nested form
-					'f.g': serverTimestamp(), // dot notation form
-				})
+			transaction.set(example.doc('lmn'), {
+				a: 88,
+				b: { c: false, d: [{ e: 'opq' }] },
+				f: { g: serverTimestamp(), h: 2929 },
+			})
 
-				transaction.delete(example.doc('lmn'))
+			transaction.update(example.doc('lmn'), {
+				a: increment(1),
+				b: { d: arrayRemove({ e: 'rst' }) }, // nested form
+				'f.g': serverTimestamp(), // dot notation form
+			})
 
-				return 123 // return this to result
-			},
-			{ readOnly: true, readTime: Timestamp.now() } // optional
-			// we can supply 2 set of options:
-			// 1. { readOnly?: false, maxAttempts?: number }
-			// note that in case 1 both properties are optional and readOnly is false
-			// 2. { readOnly: true, readTime?: Timestamp }
-			// note that in case only readTime is optional and readOnly is true
-		)
-		console.log(result) // result is 123 because we return 123 in runTransaction callback
-	} catch (e) {
-		console.log('Transaction failed: ', e)
-	}
+			transaction.delete(example.doc('lmn'))
+
+			return 123 // return this to result
+		},
+		{ readOnly: true, readTime: Timestamp.now() } // optional
+		// we can supply 2 set of options:
+		// 1. { readOnly?: false, maxAttempts?: number }
+		// note that in case 1 both properties are optional and readOnly is false
+		// 2. { readOnly: true, readTime?: Timestamp }
+		// note that in case only readTime is optional and readOnly is true
+	)
+	console.log(result) // result is 123 because we return 123 in runTransaction callback
+} catch (e) {
+	console.log('Transaction failed: ', e)
 }
 ```
 
@@ -291,29 +311,27 @@ const batch = writeBatch(
 	db // optional
 )
 
-;async () => {
-	batch.create(example.doc('hij'), {
-		a: 6,
-		b: { c: true, d: [{ e: '123' }] },
-		f: { g: serverTimestamp(), h: 2929 },
-	})
+batch.create(example.doc('hij'), {
+	a: 6,
+	b: { c: true, d: [{ e: '123' }] },
+	f: { g: serverTimestamp(), h: 2929 },
+})
 
-	batch.set(example.doc('hij'), {
-		a: 7,
-		b: { c: false, d: [{ e: 'xyz' }] },
-		f: { g: serverTimestamp(), h: 1010 },
-	})
+batch.set(example.doc('hij'), {
+	a: 7,
+	b: { c: false, d: [{ e: 'xyz' }] },
+	f: { g: serverTimestamp(), h: 1010 },
+})
 
-	batch.update(example.doc('hij'), {
-		a: 8,
-		b: { c: false }, // nested form
-		'f.g': serverTimestamp(), // dot notation form
-	})
+batch.update(example.doc('hij'), {
+	a: 8,
+	b: { c: false }, // nested form
+	'f.g': serverTimestamp(), // dot notation form
+})
 
-	batch.delete(example.doc('hij'))
+batch.delete(example.doc('hij'))
 
-	await batch.commit()
-}
+await batch.commit()
 ```
 
 To learn more, read the [Web](https://firelordjs.com/3_highlights/about) section.

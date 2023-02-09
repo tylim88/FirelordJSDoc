@@ -186,6 +186,15 @@ await getDoc(example.doc('abc')).then(docSnapshot => {
 	docSnapshot.ref.parent.path // full path of this collection, type is `SomeCollectionName`
 	docSnapshot.ref.parent.type // "collection"
 })
+
+// in case you want to create auto id doc
+await addDoc(example.collection(), {
+	a: 900,
+	b: { c: false, d: [{ e: 'hi' }] },
+	f: { g: serverTimestamp(), h: 3838 },
+})
+// in case you just want auto id doc ref
+const autoIdDocRef = example.doc(example.collection())
 ```
 
 ## Query And OnSnapshot
@@ -202,6 +211,7 @@ import {
 	limit,
 } from 'firelordjs'
 
+// filter documents
 getDocs(
 	query(
 		example.collection(), // also accept example.collectionGroup()
@@ -227,7 +237,7 @@ getDocs(
 	})
 })
 
-// listen to a query
+// filter and listen to documents
 const unsub = onSnapshot(
 	query(
 		example.collectionGroup(), // also accept example.collection()
@@ -250,6 +260,17 @@ const unsub2 = onSnapshot(
 	},
 	error => {}, // optional, you can skip this onError callback and move options to here instead
 	{ includeMetadataChanges: true } // optional, options
+)
+
+// remove listeners
+unsub()
+unsub2()
+
+// get aggregated count
+getCountFromServer(query(example.collection(), where('a', '>', 1))).then(
+	aggregatedQuerySnapshot => {
+		const count = aggregatedQuerySnapshot.data().count
+	}
 )
 ```
 
