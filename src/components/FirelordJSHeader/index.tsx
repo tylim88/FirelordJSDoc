@@ -40,7 +40,7 @@ export const Header = () => (
 			&nbsp;
 			<a href="https://firelordjs.com/minified_size" target="_blank">
 				<img
-					src="https://img.shields.io/badge/gzipped-2.7KB-brightgreen"
+					src="https://img.shields.io/badge/gzipped-2.5KB-brightgreen"
 					alt="package size"
 				/>
 			</a>
