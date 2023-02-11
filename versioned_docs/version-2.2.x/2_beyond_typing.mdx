@@ -1,0 +1,65 @@
+---
+sidebar_position: 2
+---
+
+# Beyond Typing
+
+import { Header } from '@site/src/components/FirelordJSHeader'
+import { Image } from '@site/src/components/Image'
+
+<Header />
+
+## Rules Typing
+
+FirelordJS goes beyond guarding data type, FirelordJS further prevents **[Firestore Query Limitations](https://firebase.google.com/docs/firestore/query-data/queries#query_limitations)** and **[Firestore Pagination Limitation](https://firebase.google.com/docs/firestore/query-data/order-limit-data?hl=en&authuser=0#limitations)** on type level.
+
+Confused? Well it is not something that you see in your day to day Typescript, so let us take a look at an example, at how FirelordJS handles this limitation:
+
+<div align="center">
+	<i>
+		In a compound query, range (&lt, &lt=, &gt, &gt=) and not equals (!=,
+		not-in) comparisons must all filter on the same field:
+	</i>
+</div>
+<br />
+<Image
+	src="/firelordv2/query1.png"
+	text="FirelordJS warn you when you violate the limitation and display related error message in the hint."
+/>
+
+If this is left unchecked, you will be greeted with an runtime exception.
+
+FirelordJS stop many exceptions on type level, this including documented, indirectly documented, and undocumented exceptions.
+
+## Persistent And Deep
+
+FirelordJS handles types that are convoluted and seemly impossible to type. Example, one of the exception from Firestore states that:
+
+<div align="center">
+	<i>
+		When querying a collection group by documentId(), the value provided must
+		result in a valid document path, and should has an odd number of segments.
+	</i>
+</div>
+
+<Image
+	src="/firelordv2/documentId4.png"
+	text={`FirelordJS counts and compares the number of slashes and displays it in the hint`}
+/>
+
+Firestore further stricten the rule by checking whether the document full path is correct or not.
+
+## Utilities
+
+FirelordJS also come with utilies, for example able to read all field as `undefined`:
+
+<Image
+	src="/firelordv2/possiblyReadAsUndefined2.png"
+	text="FirelordJS union all read field with undefined."
+/>
+
+This is useful if you want absolute type safe.
+
+## Beyonds
+
+That is it, quick tour of FirelordJS highlight, read the **[Highlight](/highlights/about)** section to find out more!

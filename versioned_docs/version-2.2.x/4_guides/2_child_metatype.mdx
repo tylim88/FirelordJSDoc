@@ -1,0 +1,99 @@
+---
+sidebar_position: 2
+---
+
+# Child MetaType
+
+This section discuss how to create child `MetaType`.
+
+import { Image } from '@site/src/components/Image'
+
+## Create Child MetaType 🦜
+
+To create child Meta Type, pass the parent type into the 4th argument of the child.
+
+```ts
+import { MetaTypeCreator, getFirelord, getFirestore } from 'firelordjs'
+
+const db = getFirestore()
+
+type Parent = MetaTypeCreator<
+	{
+		a: number
+	},
+	'columnIDLevel1', // collectionId type
+	string // docId type
+	null // you can skip this, top collection don't need parent
+>
+
+type Child = MetaTypeCreator<
+	{
+		a: 'a' | 'b' | 'c'
+		b: { c: number }
+	},
+	'columnIDLevel2', // collectionId type
+	string, // docId type
+	Parent // child's parent is Parent
+>
+
+type GrandChild = MetaTypeCreator<
+	{
+		e: { f: boolean }[]
+	},
+	'columnIDLevel3', // collectionId type
+	string, // docId type
+	Child // grandChild's parent is child
+>
+
+const firelordRef = getFirelord<GrandChild>(
+	db,
+	'columnIDLevel1', // parent
+	'columnIDLevel2', // child
+	'columnIDLevel3' // grandChild
+)
+
+// full doc path is columnIDLevel1/docIDLevel1/columnIDLevel2/docIDLevel2/columnIDLevel3/docIDLevel3
+// all docId types are string, you can use any name for documentID
+const docRef = firelordRef.doc('docIDLevel1', 'docIDLevel2', 'docIDLevel3')
+
+// full collection path is columnIDLevel1/docIDLevel1/columnIDLevel2/docIDLevel2/columnIDLevel3
+// full collection path don't need the last docID, in this case docIDLevel3
+// all docId types are string, you can use any name for documentID
+const colRef = firelordRef.collection('docIDLevel1', 'docIDLevel2')
+
+// collection group don't need any argument regardless of descendant level.
+const colGroupRef = firelordRef.collectionGroup()
+```
+
+<Image src="/firelordv2/metaType1.png" text="relations" />
+
+:::tip
+You only need document IDs to create `docRef` and `collectionRef`.
+
+You only need to write collection ID when you create `MetaType` and `FirelordRef`, you never need to write any collection ID afterward.
+:::
+
+## Type Checking
+
+And of course, type safety:
+
+<Image
+	src="/firelordv2/metaType2.png"
+	text="Unknown collection ID trigger type error"
+/>
+
+<Image
+	src="/firelordv2/metaType3.png"
+	text="Missing collection ID trigger type error"
+/>
+
+The same check also apply to all document ID parameters
+
+## Index Accessor
+
+In case you want to explore MetaType, you can use index accessor, this is useful if you want to do something ontop of FirelordJS.
+
+<Image
+	src="/firelordv2/metaType4.png"
+	text="Explore MetaType with index accessor."
+/>
