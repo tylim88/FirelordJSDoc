@@ -2,9 +2,9 @@
 sidebar_position: 2
 ---
 
-# Child MetaType
+# MetaType
 
-This section discuss how to create child `MetaType`.
+This section discuss how to create parent and children `MetaType`.
 
 import { Image } from '@site/src/components/Image'
 
@@ -12,12 +12,12 @@ import { Image } from '@site/src/components/Image'
 
 To create child Meta Type, pass the parent type into the 4th argument of the child.
 
-```ts
+```ts title='metaType.ts'
 import { MetaTypeCreator, getFirelord, getFirestore } from 'firelordjs'
 
 const db = getFirestore()
 
-type Parent = MetaTypeCreator<
+export type Parent = MetaTypeCreator<
 	{
 		a: number
 	},
@@ -26,7 +26,7 @@ type Parent = MetaTypeCreator<
 	null // you can skip this, top collection don't need parent
 >
 
-type Child = MetaTypeCreator<
+export type Child = MetaTypeCreator<
 	{
 		a: 'a' | 'b' | 'c'
 		b: { c: number }
@@ -36,7 +36,7 @@ type Child = MetaTypeCreator<
 	Parent // child's parent is Parent
 >
 
-type GrandChild = MetaTypeCreator<
+export type GrandChild = MetaTypeCreator<
 	{
 		e: { f: boolean }[]
 	},
@@ -44,28 +44,61 @@ type GrandChild = MetaTypeCreator<
 	string, // docId type
 	Child // grandChild's parent is child
 >
-
-const firelordRef = getFirelord<GrandChild>(
-	db,
-	'columnIDLevel1', // parent
-	'columnIDLevel2', // child
-	'columnIDLevel3' // grandChild
-)
-
-// full doc path is columnIDLevel1/docIDLevel1/columnIDLevel2/docIDLevel2/columnIDLevel3/docIDLevel3
-// all docId types are string, you can use any name for documentID
-const docRef = firelordRef.doc('docIDLevel1', 'docIDLevel2', 'docIDLevel3')
-
-// full collection path is columnIDLevel1/docIDLevel1/columnIDLevel2/docIDLevel2/columnIDLevel3
-// full collection path don't need the last docID, in this case docIDLevel3
-// all docId types are string, you can use any name for documentID
-const colRef = firelordRef.collection('docIDLevel1', 'docIDLevel2')
-
-// collection group don't need any argument regardless of descendant level.
-const colGroupRef = firelordRef.collectionGroup()
 ```
 
-<Image src="/firelordv2/metaType1.png" text="relations" />
+```ts title='firelordRef.ts'
+import { Parent, Child, GrandChild } from './metaType.ts'
+
+export const parentRef = getFirelord<Child>(
+	db,
+	'columnIDLevel1' // parent col ID
+)
+
+export const childRef = getFirelord<Child>(
+	db,
+	'columnIDLevel1', // parent col ID
+	'columnIDLevel2' // child col ID
+)
+
+export const grandChildRef = getFirelord<GrandChild>(
+	db,
+	'columnIDLevel1', // parent col ID
+	'columnIDLevel2', // child col ID
+	'columnIDLevel3' // grandChild col ID
+)
+```
+
+```ts title='implementation.ts'
+import { parentRef, childRef, grandChildRef } from './firelordRef.ts'
+
+const parentDocRef = parentRef.doc(
+	'docIDLevel1' // parent doc ID
+)
+const childDocRef = childRef.doc(
+	'docIDLevel1', // parent doc ID
+	'docIDLevel2' // child doc ID
+)
+const grandChildDocRef = grandChildRef.doc(
+	'docIDLevel1', // parent doc ID
+	'docIDLevel2', // child doc ID
+	'docIDLevel3' // grand child doc ID
+)
+
+// collectionRef require only ANCESTORS document ID
+const parentColRef = parentRef.collection()
+const childColRef = childRef.collection(
+	'docIDLevel1' // parent doc ID
+)
+const grandChildColRef = grandChildRef.collection(
+	'docIDLevel1', // parent doc ID
+	'docIDLevel2' // child doc ID
+)
+
+// collection group doesn't need any ID.
+const parentColGroupRef = parentRef.collectionGroup()
+const childColGroupRef = childRef.collectionGroup()
+const grandChildColGroupRef = grandChildRef.collectionGroup()
+```
 
 :::tip
 You only need document IDs to create `docRef` and `collectionRef`.
@@ -75,7 +108,7 @@ You only need to write collection ID when you create `MetaType` and `FirelordRef
 
 ## Type Checking
 
-And of course, type safety:
+FirelordJS check for the type of your collection ID and document ID.
 
 <Image
 	src="/firelordv2/metaType2.png"
@@ -87,11 +120,9 @@ And of course, type safety:
 	text="Missing collection ID trigger type error"
 />
 
-The same check also apply to all document ID parameters
-
 ## Index Accessor
 
-In case you want to explore MetaType, you can use index accessor, this is useful if you want to do something ontop of FirelordJS.
+In case you want to explore MetaType, you can use index accessor, this is useful if you want to abstract FirelordJS.
 
 <Image
 	src="/firelordv2/metaType4.png"

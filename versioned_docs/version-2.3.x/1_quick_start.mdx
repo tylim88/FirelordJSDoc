@@ -29,11 +29,9 @@ VFQAT = Victim Of Firestore Quarter Ass Typing
 
 support **[@firebase/rules-unit-testing and emulator](/guides/tests)**
 
-Coming from V1? See [what is new in V2](/13_what_is_new.mdx).
+[Release Note](https://github.com/tylim88/FirelordJS/releases)
 
-What is new in [V2.2.0](https://github.com/tylim88/FirelordJS/releases/tag/2.2.0)?
-
-Looking for the [Admin](/firelord/quick_start) version?
+Looking for the [Admin version](/firelord/quick_start)?
 
 ## Installation
 
@@ -52,10 +50,6 @@ require Typescript 4.8.2+, Firebase 9.9.4+ and @firebase/rules-unit-testing 2+
 
 The library size on disk is 300KB, most of the code are type definitions and comments, the runtime code is tiny after minified and gzipped, [see how we got this number](/minified_size).
 
-:::
-
-:::tip
-
 The documentation is far from finish and will never be because most of contents are just duplication of the official SDK.
 
 We designed this library to look almost identical to the official SDK to lower the learning curve.
@@ -64,6 +58,14 @@ So if you cannot find what you want here, high chances it is in the official Fir
 
 Any help wth the documentation is welcomed.
 
+:::
+
+:::tip
+Every detail or rule stated in the code below may sound like runtime validation or something you have to memorize, but they are in fact type level validation.
+
+Unless stated explicitly, everything you read is type level validation and you do not need to memorize them.
+
+All IDs, paths, keys, values and returns are narrowly typed. Collection references, document references and data snapshots are recursively typed.
 :::
 
 ## Typescript Configuration
@@ -117,14 +119,6 @@ export const db = getFirestore(app) // or getFirestore()
 
 export const example = getFirelord<Example>(db, 'SomeCollectionName') // this is your firelordRef
 ```
-
-:::tip
-Every detail or rule stated in the code below may sound like runtime validation or something you have to memorize, but they are in fact type level validation.
-
-Unless stated explicitly, everything you read is type level validation and you do not need to memorize them.
-
-All IDs, paths, keys, values and returns are narrowly typed. Collection references, document references and data snapshots are recursively typed.
-:::
 
 ## Operations
 
@@ -182,7 +176,7 @@ await getDoc(example.doc('abc')).then(docSnapshot => {
 	docSnapshot.ref.parent // in this case, it is collection reference of this document
 	docSnapshot.ref.parent.firestore // firestore instance
 	docSnapshot.ref.parent.id // collectionId, type is `SomeCollectionName`
-	docSnapshot.ref.parent.parent // no more parent, null
+	docSnapshot.ref.parent.parent // no more parent for this case, null
 	docSnapshot.ref.parent.path // full path of this collection, type is `SomeCollectionName`
 	docSnapshot.ref.parent.type // "collection"
 })
@@ -316,30 +310,31 @@ import {
 } from 'firelordjs'
 
 try {
-	// db argument is optional
-	await runTransaction(db, async transaction => {
-		const result = await transaction
-			.get(example.doc('lmn'))
-			.then(docSnapshot => {
+	const result = await runTransaction(
+		db, // db argument is optional, you can skip it
+		async transaction => {
+			await transaction.get(example.doc('lmn')).then(docSnapshot => {
 				const data = docSnapshot.data()
 			})
 
-		transaction.set(example.doc('lmn'), {
-			a: 88,
-			b: { c: false, d: [{ e: 'opq' }] },
-			f: { g: serverTimestamp(), h: 2929 },
-		})
+			transaction.set(example.doc('lmn'), {
+				a: 88,
+				b: { c: false, d: [{ e: 'opq' }] },
+				f: { g: serverTimestamp(), h: 2929 },
+			})
 
-		transaction.update(example.doc('lmn'), {
-			a: increment(1),
-			b: { d: arrayRemove({ e: 'rst' }) }, // nested form
-			'f.g': serverTimestamp(), // dot notation form
-		})
+			transaction.update(example.doc('lmn'), {
+				a: increment(1),
+				b: { d: arrayRemove({ e: 'rst' }) }, // nested form
+				'f.g': serverTimestamp(), // dot notation form
+			})
 
-		transaction.delete(example.doc('lmn'))
+			transaction.delete(example.doc('lmn'))
 
-		return 123 // return this to result
-	})
+			return 123 // return this to result
+		},
+		{ maxAttempts: 10 } // max commit attempt, optional
+	)
 	console.log(result) // result is 123 because we return 123 in runTransaction callback
 } catch (e) {
 	console.log('Transaction failed: ', e)
