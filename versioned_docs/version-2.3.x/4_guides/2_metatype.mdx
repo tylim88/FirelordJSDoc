@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# MetaType
+# Meta Type
 
 This section discuss how to create parent and children `MetaType`.
 
@@ -22,7 +22,7 @@ export type Parent = MetaTypeCreator<
 		a: number
 	},
 	'columnIDLevel1', // collectionId type
-	string // docId type
+	string, // docId type
 	null // you can skip this, top collection don't need parent
 >
 
@@ -49,7 +49,7 @@ export type GrandChild = MetaTypeCreator<
 ```ts title='firelordRef.ts'
 import { Parent, Child, GrandChild } from './metaType.ts'
 
-export const parentRef = getFirelord<Child>(
+export const parentRef = getFirelord<Parent>(
 	db,
 	'columnIDLevel1' // parent col ID
 )
@@ -68,36 +68,37 @@ export const grandChildRef = getFirelord<GrandChild>(
 )
 ```
 
-```ts title='implementation.ts'
+```ts title='doc-col-group.ts'
 import { parentRef, childRef, grandChildRef } from './firelordRef.ts'
 
-const parentDocRef = parentRef.doc(
+// doc ref
+export const parentDocRef = parentRef.doc(
 	'docIDLevel1' // parent doc ID
 )
-const childDocRef = childRef.doc(
+export const childDocRef = childRef.doc(
 	'docIDLevel1', // parent doc ID
 	'docIDLevel2' // child doc ID
 )
-const grandChildDocRef = grandChildRef.doc(
+export const grandChildDocRef = grandChildRef.doc(
 	'docIDLevel1', // parent doc ID
 	'docIDLevel2', // child doc ID
 	'docIDLevel3' // grand child doc ID
 )
 
 // collectionRef require only ANCESTORS document ID
-const parentColRef = parentRef.collection()
-const childColRef = childRef.collection(
+export const parentColRef = parentRef.collection()
+export const childColRef = childRef.collection(
 	'docIDLevel1' // parent doc ID
 )
-const grandChildColRef = grandChildRef.collection(
+export const grandChildColRef = grandChildRef.collection(
 	'docIDLevel1', // parent doc ID
 	'docIDLevel2' // child doc ID
 )
 
 // collection group doesn't need any ID.
-const parentColGroupRef = parentRef.collectionGroup()
-const childColGroupRef = childRef.collectionGroup()
-const grandChildColGroupRef = grandChildRef.collectionGroup()
+export const parentColGroupRef = parentRef.collectionGroup()
+export const childColGroupRef = childRef.collectionGroup()
+export const grandChildColGroupRef = grandChildRef.collectionGroup()
 ```
 
 :::tip
