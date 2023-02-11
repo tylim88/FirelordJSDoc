@@ -157,7 +157,6 @@ await deleteDoc(example.doc('abc'))
 
 await getDoc(example.doc('abc')).then(docSnapshot => {
 	// everything here is narrowly typed based on MetaType
-	// ref.parent is recursively typed
 	docSnapshot.data() // { a: number; b: { c: boolean; d: { e: string; }[]; }; f: { g: Timestamp | null; h: 1010 | 2929 | 3838; }; | undefined
 	docSnapshot.exists() // boolean
 	docSnapshot.get('b.c') // arguments type is "a" | "b.c" | "b.d" | "f.g" | "f.h"
@@ -172,6 +171,7 @@ await getDoc(example.doc('abc')).then(docSnapshot => {
 	docSnapshot.ref.path // full path of this document, type is `SomeCollectionName/${string}`
 	docSnapshot.ref.type // "document"
 
+	// ref.parent is recursively typed
 	// parent of document is collection, parent of collection is document
 	docSnapshot.ref.parent // in this case, it is collection reference of this document
 	docSnapshot.ref.parent.firestore // firestore instance
