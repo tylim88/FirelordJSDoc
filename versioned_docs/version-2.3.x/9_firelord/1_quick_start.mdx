@@ -190,8 +190,7 @@ getDocs(
 		limit(10)
 	)
 ).then(querySnapshot => {
-	querySnapshot.docChanges().forEach(docChange => {
-		// native forEach, has index
+	querySnapshot.docChanges().forEach((docChange, index) => {
 		docChange.doc // return docSnapshot similar to docSnapshot of getDoc
 		docChange.type // 'added', 'modified', or 'removed'
 		docChange.oldIndex // number
@@ -199,11 +198,10 @@ getDocs(
 		docChange.isEqual(docChange) // boolean, compare with other docChange
 	})
 	querySnapshot.forEach(docSnapshot => {
-		// forEach is not native forEach, it has no index
+		// this forEach is not native forEach, it has no index
 		// similar to docSnapshot of getDoc
 	})
-	querySnapshot.docs.forEach(docSnapshot => {
-		// native forEach, has index
+	querySnapshot.docs.forEach((docSnapshot, index) => {
 		// similar to docSnapshot of getDoc
 	})
 })
@@ -290,10 +288,7 @@ try {
 
 			return 123 // return this to result
 		},
-		{ readOnly: true, readTime: Timestamp.now() } // optional
-		// we can supply 2 types of options:
-		// 1. { readOnly?: false, maxAttempts?: number }
-		// 2. { readOnly: true, readTime?: Timestamp }
+		{ readOnly: true, readTime: Timestamp.now() } // optional, { readOnly?: false, maxAttempts?: number } OR { readOnly: true, readTime?: Timestamp }
 	)
 	console.log(result) // result is 123 because we return 123 in runTransaction callback
 } catch (e) {

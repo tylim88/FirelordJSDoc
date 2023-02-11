@@ -214,19 +214,17 @@ getDocs(
 		limit(10)
 	)
 ).then(querySnapshot => {
-	querySnapshot.docChanges().forEach(docChange => {
-		// native forEach, has index
+	querySnapshot.docChanges().forEach((docChange, index) => {
 		docChange.doc // return docSnapshot similar to docSnapshot of getDoc
 		docChange.type // 'added', 'modified', or 'removed'
 		docChange.oldIndex // number
 		docChange.newIndex //  number
 	})
 	querySnapshot.forEach(docSnapshot => {
-		// forEach is not native forEach, it has no index
+		// this forEach is not native forEach, it has no index
 		// similar to docSnapshot of getDoc
 	})
-	querySnapshot.docs.forEach(docSnapshot => {
-		// native forEach, has index
+	querySnapshot.docs.forEach((docSnapshot, index) => {
 		// similar to docSnapshot of getDoc
 	})
 })
