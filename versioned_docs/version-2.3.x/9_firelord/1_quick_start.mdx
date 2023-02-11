@@ -27,6 +27,11 @@ require Typescript 4.8.2+, firebase-admin 11+
 
 The library size on disk is 300KB, most of the code are type definitions and comments, the runtime code is tiny after minified and gzipped, [see how we got this number](/minified_size).
 
+Every detail or rule stated in the code below may sound like runtime validation or something you have to memorize, but they are in fact type level validation.
+
+Unless stated explicitly, everything you read is type level validation and you do not need to memorize them.
+
+All IDs, paths, keys, values and returns are narrowly typed. Collection references, document references and data snapshots are recursively typed.
 :::
 
 :::tip
@@ -70,14 +75,6 @@ export type Example = MetaTypeCreator<
 	string // optional, document ID type, default string
 >
 ```
-
-:::tip
-Every detail or rule stated in the code below may sound like runtime validation or something you have to memorize, but they are in fact type level validation.
-
-Unless stated explicitly, everything you read is type level validation and you do not need to memorize them.
-
-All IDs, paths, keys, values and returns are narrowly typed. Collection references, document references and data snapshots are recursively typed.
-:::
 
 ## Create Firelord References
 
@@ -294,11 +291,9 @@ try {
 			return 123 // return this to result
 		},
 		{ readOnly: true, readTime: Timestamp.now() } // optional
-		// we can supply 2 set of options:
+		// we can supply 2 types of options:
 		// 1. { readOnly?: false, maxAttempts?: number }
-		// note that in case 1 both properties are optional and readOnly is false
 		// 2. { readOnly: true, readTime?: Timestamp }
-		// note that in case only readTime is optional and readOnly is true
 	)
 	console.log(result) // result is 123 because we return 123 in runTransaction callback
 } catch (e) {
