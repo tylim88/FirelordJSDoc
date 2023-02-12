@@ -27,7 +27,7 @@ This prevents runtime exceptions while keeping the query accurate.
 If you revert back to the official Firestore API, please handle the empty array.
 :::
 
-## Const Assertion (V2.3.2)
+## Const Assertion
 
 You need const assertion when you dealing array AND literal type:
 
@@ -45,7 +45,7 @@ const fs = getFirestore()
 type ABC = MetaTypeCreator<
 	{
 		a: 1 | 2 | 3 // literal type
-		b: ('a' | 'b' | 'c')[] // literal type
+		b: ('a' | 'b' | 'c')[] // literal array type
 	},
 	'ABC'
 >
@@ -62,12 +62,9 @@ query(ColRef, where('a', 'in', [1] as const)) // ok, const assertion!
 query(ColRef, where('b', '==', ['a'])) // not ok, dealing with array AND literal type, need const assertion!
 query(ColRef, where('b', '==', ['a' as const])) // ok, const assertion!
 query(ColRef, where('b', 'in', [['a' as const]])) // ok, const assertion!
-
-// case where even const assertion does not work!
-// v3.0.0 will address these issues
-query(ColRef, where('b', '==', ['a'] as const))
-query(ColRef, where('b', 'in', [['a'] as const]))
-query(ColRef, where('b', 'in', [['a']] as const))
+query(ColRef, where('b', '==', ['a'] as const)) // ok, const assertion!
+query(ColRef, where('b', 'in', [['a'] as const])) // ok, const assertion!
+query(ColRef, where('b', 'in', [['a']] as const)) // ok, const assertion!
 ```
 
 <Image src="/firelordv2/where4.png" text={`const assertion`} />
