@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Where
 
-This section discuss how FirelordJS handle `where` quirk.
+This section discuss how FirelordJS handle `where` empty array and when you should assert as const.
 
 import { Image } from '@site/src/components/Image'
 
@@ -15,7 +15,9 @@ import { Image } from '@site/src/components/Image'
 	text={`FirelordJS forbid never[] but allow correctType[] even if it is empty`}
 />
 
-FirelordJS block `never[]` and `[]` to stop you from accidentally assign empty array(never[]) directly, small convenience.
+Firestore throw if you supply empty array to `in`, `array-contains-any` and `not-in` operator.
+
+To solve this, FirelordJS block `never[]` and `[]` to stop you from accidentally assign empty array(never[]) directly.
 
 However it is impossible to block empty array on type level if its type is same as the type defined in Meta Type(eg: `string[]`, `number[]`), so FirelordJS handle the empty array in runtime by replacing empty array with `['some long unique value']`.
 
@@ -24,3 +26,52 @@ This prevents runtime exceptions while keeping the query accurate.
 :::danger
 If you revert back to the official Firestore API, please handle the empty array.
 :::
+
+## Const Assertion
+
+You need const assertion when you dealing array AND literal type:
+
+```ts
+import {
+	MetaTypeCreator,
+	getFirelord,
+	query,
+	where,
+	getFirestore,
+} from 'firelordjs'
+
+const fs = getFirestore()
+
+type ABC = MetaTypeCreator<
+	{
+		a: 1 | 2 | 3 // literal type
+		b: ('a' | 'b' | 'c')[] // literal type
+	},
+	'ABC'
+>
+
+const ColRef = getFirelord<ABC>(db, 'ABC').collection()
+
+// literal type
+query(ColRef, where('a', '>', 1)) // ok, not dealing with array
+query(ColRef, where('a', 'in', [1])) // not ok, it is an array AND literal type, need const assertion!
+query(ColRef, where('a', 'in', [1 as const])) // ok, const assertion!
+query(ColRef, where('a', 'in', [1] as const)) // ok, const assertion!
+
+// literal array type
+query(ColRef, where('b', '==', ['a'])) // not ok, dealing with array AND literal type, need const assertion!
+query(ColRef, where('b', '==', ['a' as const])) // ok, const assertion!
+query(ColRef, where('b', 'in', [['a' as const]])) // ok, const assertion!
+
+// case where even const assertion does not work!
+// v3.0.0 will address these issues
+query(ColRef, where('b', '==', ['a'] as const))
+query(ColRef, where('b', 'in', [['a'] as const]))
+query(ColRef, where('b', 'in', [['a']] as const))
+```
+
+<Image src="/firelordv2/where4.png" text={`const assertion`} />
+
+As you can see, depend on how you do const assertion, there are still some cases that cannot be handled.
+
+V3 will solve issue like this, so please be patient.
