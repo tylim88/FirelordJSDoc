@@ -69,6 +69,6 @@ query(ColRef, where('b', 'in', [['a'] as const])) // ok, const assertion!
 query(ColRef, where('b', 'in', [['a']] as const)) // ok, const assertion!
 ```
 
-<Image src="/firelordv2/where4.png" text={`const assertion`} />
+<Image src="/firelordv2.3/where1.png" text={`const assertion`} />
 
 There are still some cases that cannot be handled, TS 5.0 will solve the rest of the issue.
