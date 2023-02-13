@@ -75,7 +75,7 @@ export const Header = () => (
 		</div>
 		<br />
 		<div align="center">
-			<i>Extremely High Precision Typescript Wrapper for Firestore Admin</i>
+			<i>Extremely High Precision Firestore Admin Typescript Wrapper</i>
 		</div>
 		<br />
 		<div align="center">

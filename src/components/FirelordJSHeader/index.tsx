@@ -76,7 +76,7 @@ export const Header = () => (
 		<br />
 		<div align="center">
 			<i>
-				Extremely High Precision Typescript Wrapper for Firestore Web, Providing
+				Extremely High Precision Firestore Web Typescript Wrapper, Providing
 				Unparalleled Type Safe and Dev Experience
 			</i>
 		</div>
