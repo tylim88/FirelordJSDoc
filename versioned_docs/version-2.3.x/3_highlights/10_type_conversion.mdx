@@ -17,7 +17,7 @@ Type transformation is needed because read, write and compare operation require 
 | `string`                                                         | `string`               | `string`                                                        | `string`                  |
 | `string literal`                                                 | `string literal`       | `string literal`                                                | `string literal`          |
 | `null`                                                           | `null`                 | `null`                                                          | `null`                    |
-| `Timestamp`\|`Date`                                              | `Timestamp`            | `Timestamp` \| `Date`                                           | `Timestamp` \| `Date`     |
+| `Timestamp` \| `Date`                                            | `Timestamp`            | `Timestamp` \| `Date`                                           | `Timestamp` \| `Date`     |
 | `ServerTimestamp`                                                | `Timestamp`            | `ServerTimestamp`                                               | `Timestamp` \| `Date`     |
 | `T[]`                                                            | `converted<T>[]`       | `readonly converted<T>[]` \| `ArrayUnionOrRemove<converted<T>>` | `readonly converted<T>[]` |
 | `GeoPoint`                                                       | `GeoPoint`             | `GeoPoint`                                                      | `GeoPoint`                |
