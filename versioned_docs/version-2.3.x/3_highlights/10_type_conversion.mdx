@@ -6,7 +6,7 @@ sidebar_position: 10
 
 This page discusses how FirelordJS transforms your types for various uses internally.
 
-Type transformation is needed because read, write and compare operation require or output different data types.
+Type transformation is needed because read(output), write(input) and compare(query) are different data types.
 
 ## Conversion Table
 
@@ -21,15 +21,15 @@ Type transformation is needed because read, write and compare operation require 
 | `ServerTimestamp`                                                | `Timestamp`            | `ServerTimestamp`                                               | `Timestamp` \| `Date`     |
 | `T[]`                                                            | `converted<T>[]`       | `readonly converted<T>[]` \| `ArrayUnionOrRemove<converted<T>>` | `readonly converted<T>[]` |
 | `GeoPoint`                                                       | `GeoPoint`             | `GeoPoint`                                                      | `GeoPoint`                |
-| `DocumentReference<M>`                                           | `DocumentReference<M>` | `DocumentReference<M>`                                          | `DocumentReference<M>`    |
+| `DocumentReference<T>`                                           | `DocumentReference<T>` | `DocumentReference<T>`                                          | `DocumentReference<T>`    |
 | [`DeleteField`](./guides/delete_field)                           | `undefined`            | `never`                                                         | `never`                   |
 | [`PossiblyReadAsUndefined`](./guides/possibly_read_as_undefined) | `undefined`            | `never`                                                         | `never`                   |
 
 Internally, FirelordJS converts base type into 3 main types for different purpose:
 
-- Read type for `getDoc`, `getDocs`, `onSnapshot` and etc.
-- Write type for `setDoc`, `updateDoc`, `addDoc`, `createDoc`(admin) and etc.
-- Compare type for `where`, `orderBy` and etc.
+- Read type for output of `getDoc`, `getDocs`, `onSnapshot` and etc.
+- Write type for input of `setDoc`, `updateDoc`, `addDoc`, `createDoc`(admin) and etc.
+- Compare type for query clauses like `where`, `orderBy` and etc.
 
 The main types are further transformed for even more specific use cases internally.
 
@@ -37,6 +37,6 @@ Key Points:
 
 - FirelordJS forbids you from increment `numeric literal` type, eg: if the type is `1 | 100 | 1000` then we should not be able to increment it from `1` to `2`.
 
-- FirelordJS forbids you from writing `Date` or `Timestamp` into `ServerTimestamp`, because some date time has to be server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, please union `ServerTimestamp` with `Date` and `Timestamp`.
+- FirelordJS forbids you from writing `Date` or `Timestamp` into `ServerTimestamp`, because some date time **has to be** server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, please union `ServerTimestamp` with `Date` and `Timestamp`.
 
 - We can always compare `Date` or `Timestamp` to `ServerTimestamp`.
