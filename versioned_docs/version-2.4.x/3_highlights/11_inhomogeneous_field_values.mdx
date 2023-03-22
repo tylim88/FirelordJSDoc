@@ -1,0 +1,40 @@
+---
+sidebar_position: 11
+---
+
+# Inhomogeneous Field Values
+
+This page discusses how FirelordJS tackles the homogeneous `FieldValue` types.
+
+## Field Values
+
+There are 5 field values in Firestore:
+
+1. increment
+2. serverTimestamp
+3. arrayRemove
+4. arrayUnion
+5. deleteField
+
+And they all sharing the same type: `FieldValue`, which means is it possible to assign any field value to any field value, and this is obviously a big pain in the ass.
+
+FirelordJS solves this by assigning [unique symbol type](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#unique-symbol):
+
+| Field Value                   | Interface               | Signature                                                                 | Note                     | Assignable |
+| ----------------------------- | ----------------------- | ------------------------------------------------------------------------- | ------------------------ | ---------- |
+| `serverTimestamp`             | `ServerTimestamp`       | `{ 'Firelord.FieldValue': unique symbol }`                                |                          | Yes        |
+| `increment`                   | `Increment`             | `{ 'Firelord.FieldValue': unique symbol }`                                | auto union with `number` | No         |
+| `arrayRemove` \| `arrayUnion` | `ArrayUnionOrRemove<T>` | `{ 'Firelord.FieldValue': unique symbol, 'Firelord.ArrayFieldValue': T }` | auto union with `T[]`    | No         |
+
+## UnassignAble Field Values
+
+`ArrayUnionOrRemove<T>` and `Increment` are not assignable types and are not exported, they are passive types that automatically union with other types.
+
+## Labels
+
+Labels are FirelordJS special interfaces, you can use them to "mark" you field and they will carry out extra type transformation or allow you to perform certain action onto your field.
+
+| Field Value | Labels                                                           | Signature                                  | Note                                                | Assignable |
+| ----------- | ---------------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------- | ---------- |
+| `delete`    | [`DeleteField`](./guides/delete_field)                           | `{ 'Firelord.FieldValue': unique symbol }` | allow a field to be read as undefiend and deletable | Yes        |
+| -           | [`PossiblyReadAsUndefined`](./guides/possibly_read_as_undefined) | `{ 'Firelord.FieldValue': unique symbol }` | allow a field to be read as undefiend               | Yes        |
