@@ -23,29 +23,28 @@ require Typescript 5+, firebase-admin 11+
 
 [Please change your VS Code Typescript version to v5](./change_ts_version)
 
-Always install FirelordJS v2.4.LATEST whenever you read this documentation
+Always install FirelordJS v2.4.LATEST
 
 :::
 
 :::info
 
-The library size on disk is 300KB, most of the code are type definitions and comments, the runtime code is tiny after minified and gzipped, [see how we got this number](./minified_size).
+The library size on disk is 300KB, but the `js` code is less than 3KB, [see how we got this number](./minified_size).
 
+The documentation is far from finish and will never be because most of contents are just duplication of the official SDK.
+
+We designed this library to look almost identical to the official SDK to lower the learning curve.
+
+If you cannot find what you want here, high chances it is in the official Firestore [references](https://firebase.google.com/docs/reference/js/firestore_).
+
+:::
+
+:::tip
 Every detail or rule stated in the code below may sound like runtime validation or something you have to memorize, but they are in fact type level validation.
 
 Unless stated explicitly, everything you read is type level validation and you do not need to memorize them.
 
 All IDs, paths, keys, values and returns are narrowly typed. Collection references, document references and data snapshots are recursively typed.
-:::
-
-:::tip
-Firelord API is almost exactly as same as [FirelordJS](https://firelordjs.com/quick_start), which mean:
-
-1. They share basically the same documentation, hence we will skip most of the documentation to avoid repetition.
-2. They can also share data type definition.
-
-On surface, only the installation process is different and we import from `firelord` instead of `firelordjs`.
-
 :::
 
 ## Typescript Configuration
