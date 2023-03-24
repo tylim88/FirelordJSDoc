@@ -86,11 +86,12 @@ describe('test with jest', () => {
 	})
 
 	it('test transaction operations', async () => {
-		await runTransaction(async transaction => {
+		const result = await runTransaction(async transaction => {
 			await transaction.update(userRef.doc('user1'), {
 				age: 20,
 			})
 			// some other operations
+			return something
 		})
 		// do your assertion here...
 	})

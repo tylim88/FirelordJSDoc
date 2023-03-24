@@ -196,11 +196,12 @@ describe('test with @firebase/rules-unit-testing and jest', () => {
 	})
 
 	it('test transaction operations', async () => {
-		await runTransaction(testEnvFirestore, async transaction => {
+		const result = await runTransaction(testEnvFirestore, async transaction => {
 			await transaction.update(userRef.doc('user1'), {
 				age: 20,
 			})
 			// some other operations
+			return something
 		})
 		// do your assertion here...
 	})
