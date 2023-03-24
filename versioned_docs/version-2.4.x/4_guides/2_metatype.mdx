@@ -68,10 +68,10 @@ export const grandChildRef = getFirelord<GrandChild>(
 )
 ```
 
-```ts title='doc-col-group.ts'
+```ts title='doc.ts'
 import { parentRef, childRef, grandChildRef } from './firelordRef.ts'
 
-// doc ref
+// doc ref require all ANCESTORS and itself document ID
 export const parentDocRef = parentRef.doc(
 	'docIDLevel1' // parent doc ID
 )
@@ -84,8 +84,12 @@ export const grandChildDocRef = grandChildRef.doc(
 	'docIDLevel2', // child doc ID
 	'docIDLevel3' // grand child doc ID
 )
+```
 
-// collectionRef require only ANCESTORS document ID
+```ts title='col.ts'
+import { parentRef, childRef, grandChildRef } from './firelordRef.ts'
+
+// collectionRef does not require its own document ID, start from oldest ancestor to parent
 export const parentColRef = parentRef.collection()
 export const childColRef = childRef.collection(
 	'docIDLevel1' // parent doc ID
@@ -94,6 +98,10 @@ export const grandChildColRef = grandChildRef.collection(
 	'docIDLevel1', // parent doc ID
 	'docIDLevel2' // child doc ID
 )
+```
+
+```ts title='colGroup.ts'
+import { parentRef, childRef, grandChildRef } from './firelordRef.ts'
 
 // collection group doesn't need any ID.
 export const parentColGroupRef = parentRef.collectionGroup()
@@ -105,11 +113,13 @@ export const grandChildColGroupRef = grandChildRef.collectionGroup()
 You only need document IDs to create `docRef` and `collectionRef`.
 
 You only need to write collection ID when you create `MetaType` and `FirelordRef`, you never need to write any collection ID afterward.
+
+Please don't create files like `doc.ts`, `col.ts`, and `colGroup.ts`, they are for explanation only.
 :::
 
 ## Type Checking
 
-FirelordJS check for the type of your collection ID and document ID.
+FirelordJS check for the type and number of your collection ID and document ID.
 
 <Image
 	src="/firelordv2/metaType2.png"
@@ -123,9 +133,14 @@ FirelordJS check for the type of your collection ID and document ID.
 
 ## Index Accessor
 
-In case you want to explore MetaType, you can use index accessor, this is useful if you want to abstract FirelordJS.
+Explore MetaType with index accessor, this is useful if you want to abstract FirelordJS.
 
 <Image
 	src="/firelordv2/metaType4.png"
 	text="Explore MetaType with index accessor."
 />
+
+read: output type of query operation.
+compare: input type of query operation.
+write: input type of `set`, `create` and `add` operation.
+writeFlatten: input type of `update` and `set merge` operation.
