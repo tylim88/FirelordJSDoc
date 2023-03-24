@@ -4,7 +4,7 @@ sidebar_position: 12
 
 # Minified Size
 
-We obtained the minified size using `rollupjs` with below configuration:
+To obtain the minified size, we use `rollupjs` with the following configuration:
 
 ```ts
 import typescript from '@rollup/plugin-typescript'
@@ -25,11 +25,10 @@ export default {
 }
 ```
 
-Then we gzip the js file to obtain final size.
+Afterwards, we gzip the resulting JavaScript file to obtain the final size.
 
 You can run `npm run rollup` in the source code to build the minified `js` file (also see how to run the source code of [Firelord](./contributing#running-the-source-code) and [FireSage](./firesage/contributing#running-the-source-code)).
 
-However we do not publish the minified file, we publish the compiled files so you can:
+To build the minified `js` file, you can run `npm run rollup` in the source code. For information on running the source code for Firelord and FireSage, please see [running Firelord source code](./contributing#running-the-source-code) and [running FireSage source code](./firesage/contributing#running-the-source-code).
 
-- view the source code properly in `node_modules`.
-- minify it with your choice of tool and setting.
+Please note that we do not publish the minified file. Instead, we publish the compiled files, which allow you to view the source code properly in `node_modules`. You can also choose to minify the code yourself using your preferred tool and settings.

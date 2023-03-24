@@ -4,28 +4,22 @@ sidebar_position: 10
 
 # Why Not Merge?
 
-Why not merge Firelord, FirelordJS and FirelordRN?
+The idea of merging Firelord, FirelordJS, and FirelordRN is to achieve code reuse and reduce maintenance efforts. However, merging these libraries may not be a good idea due to various technical reasons.
 
-The idea behind merging is code reuse and reduce maintenance, but there are technical reasons that make merging a terrible idea.
+Firstly, V8 and V9 do not behave the same way. For instance, V9 `arrayUnion` and `arrayRemove` accept an empty array argument, which is not possible in V8 and results in a runtime exception. Therefore, we need extra code for V8 wrapper, making the logic become dead code in environments that use V9 wrapper.
 
-1. V8 and V9 do not share the same behavior. One example is V9 `arrayUnion` and `arrayRemove` able to accept empty array argument, but this is not possible in V8 and will result in runtime exception. To solve this we need extra code for V8 wrapper thus the logic become dead code in environment that use V9 wrapper. This is not a big deal, it adds negligible amount of code, but what it tells us is, we cannot assume V8 and V9 are the same.
+Secondly, there are mutually exclusive APIs. For example, admin is more powerful and has APIs like `create`, `getAll`, and `listCollections`, whereas web has cache-related APIs like `getDocFromCache`, `getDocFromServer`, and `enableIndexedDbPersistence`. It is not possible to export everything.
 
-2. Mutually exclusive APIs. For example admin is more powerful and has APIs like `create`, `getAll` and `listCollections`; while web has cache related APIs like `getDocFromCache`, `getDocFromServer` and `enableIndexedDbPersistence`. It is not possible to export everything.
+Thirdly, there are mutually inclusive APIs with platform-dependent parameters. For instance, admin's `delete` and `update` have an extra parameter called `precondition`, while web's `onSnapshots` has `snapshotListerOptions` parameter and `documentSnapshot`.data has snapshotOptions parameter. Even if we ignore those parameters under the hood if it runs in the irrelevant environment, developers would still be able to see it via type hint or `JSDoc`, which can be confusing.
 
-3. Mutually inclusive API with platform dependent parameter. For example, admin's `delete` and `update` has extra parameter: `precondition` while web's `onSnapshots` has `snapshotListerOptions` parameter and `documentSnapshot.data` has `snapshotOptions` parameter. Even though we can ignore those parameters under the hood if it runs in the irrelevant environment, developer would still able to see it via type hint or JSDoc, which can be confusing.
+Fourthly, FirelordJS wraps V9 into type-safe V9, and Firelord wraps V8 into type-safe V9. Therefore, the wrapping logics are different, which means that merging will add a significant amount of code.
 
-4. FirelordJS wraps V9 into type safe V9 and Firelord wraps V8 into type safe V9. So the wrapping logics are different, which mean merging will add significant amount of code.
+Fifthly, both libraries import official types from official SDKs to keep internal type safe. If we merge both libraries, then we would have two sets of official types.
 
-5. Both libraries import official types from official SDKs to keep internal type safe. If we merge both library, then we would have 2 set of official types.
+Lastly, some tests are also different, for example, FirelordJS needs to test against `@firebase/rules-unit-testing`, but Firelord does not have to.
 
-6. Some tests are also different, for example FirelordJS need to test against `@firebase/rules-unit-testing` but Firelord don't have to.
+Therefore, merging could do more harm than good in this case, especially point 2 and 3, which are detrimental to the developer experience. Firelord is not merely a copy and paste of FirelordJS, and there are many details that need to be taken care of.
 
-So that is why merging could do more harm than good in this case, especially point 2 and 3 which are detrimental to developer experience. Firelord is not simply a copy and paste of FirelordJS, there are a lot of details need to be taken care of.
+One of the core principles of these libraries is to preserve originality. If we aim for an absolute unified interface, then we need to give up a lot.
 
-One of the core principal of the libraries is to preserve originality, if we went for absolute unified interface, then we need to give up a lot.
-
-TLDR: they look the same, but they are not the same.
-
-As for FirelordRN:
-
-7. React Native Firebase interface is similar to V8 interface, thus FirelordRN runtime wrapping logic is similar to Firelord. And since we want V9 interface, it use the same interface as FirelordJS (however some parameters is missing, like `Document.Snapshot.data` method is missing parameter `SnapshotOptions`, which make it similar to Firelord instead because admin doesn't have this parameter.). So FirelordRN is a mix of Firelord and FirelordJS, plus its own quirks (@react-native-firebase/firestore also seem to mess up the `Query` type). Also running tests are also totally different in FirelordRN.
+In terms of FirelordRN, the React Native Firebase interface is similar to V8, so the FirelordRN runtime wrapping logic is similar to Firelord. However, since we want a V9 interface, it uses the same interface as FirelordJS (although some parameters are missing, like the `document.snapshot.data` method is missing the `SnapshotOptions` parameter, which makes it similar to Firelord instead because admin doesn't have this parameter.). So FirelordRN is a mix of Firelord and FirelordJS, plus its own quirks (@react-native-firebase/firestore also seems to mess up the Query type). Also, running tests is entirely different in FirelordRN.
