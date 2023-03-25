@@ -17,12 +17,12 @@ import { Image } from '@site/src/components/Image'
 
 Firestore throw if you supply empty array to `in`, `array-contains-any` and `not-in` operator.
 
-To solve this, FirelordJS block `never[]` and `[]` to stop you from accidentally assign empty array(never[]) directly.
+To prevents this runtime error, FirelordJS block `never[]` and `[]` to stop you from accidentally assign empty array(never[]) directly.
 
-However it is impossible to block empty array on type level if its type is same as the type defined in Meta Type(eg: `string[]`, `number[]`), so FirelordJS handle the empty array in runtime by replacing empty array with `['some long unique value']`.
+However it is impossible to block empty array on type level if the type is type other than `never[]` and `[]`(eg: `string[]`, `number[]`), so FirelordJS handle the empty array at runtime by replacing the empty array with `['some long unique value']`.
 
-This prevents runtime exceptions while keeping the query accurate.
+This avoids runtime exceptions while keeping the query accurate and always return empty result for `in` comparator and all results for `not-in` comparator.
 
 :::danger
-If you revert back to the official Firestore API, please handle the empty array.
+If you revert back to the official Firestore API, please handle the empty array by yourself.
 :::

@@ -54,8 +54,6 @@ Data/field deletion(or any operation in general) should be done explicitly, a pr
 
 This is a very questionable API design by Firestore with no proper documentation on such dangerous behavior.
 
-Truly lack of consideration.
-
 :::
 
 ## Solution To Unsafe Type
@@ -91,8 +89,6 @@ Important, if you want to uninstall FirelordJS and revert to official SDK, pleas
 
 ## Why Not Just Drop The Nested Form Support?
 
-_Q: Why not simply forbid developers from using nested form? It would be easier for user to revert to official SDK._
+_Why not forbid developers from using nested form? It would be easier for developers to revert to official SDK._
 
-The reason is simple: usability.
-
-If FirelordJS allows only dot notation form, then developers have to flatten the object by himself, this is not ideal as object literal is a common syntax.
+The reason is simple: usability. If FirelordJS only allows dot notation form, developers have to flatten objects by themselve.
