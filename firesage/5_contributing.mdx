@@ -28,41 +28,4 @@ sidebar_position: 5
 
 ## Running The Source Code
 
-This library test against both emulator and real Firestore, please allow restriction free read and write in your Firestore rule.
-
-please use dummy Firebase project.
-
-Run `npm i`, then create a `.env` file in the project root directory and add this line:
-
-### For FireSageJS(Web):
-
-```
-PROJECT_ID="your-firebase-project-id"
-```
-
-Despite PROJECT_ID is not a secret, you should hide(don't upload to Github) it because we dont want any restriction for smooth testing.
-
-{/\* ### For FireSage(Admin):
-
-```
-TYPE="xxx"
-PROJECT_ID="xxx"
-PRIVATE_KEY_ID="xxx"
-# must enclosed private key with single quotes
-# copy everything of private key including the double quotes
-PRIVATE_KEY='"-----BEGIN PRIVATE KEY-----\nSOME_SUPERLONG_STRING\n-----END PRIVATE KEY-----\n"'
-CLIENT_EMAIL="xxx"
-CLIENT_ID="xxx"
-AUTH_URI="xxx"
-TOKEN_URI="xxx"
-AUTH_PROVIDER_X509_CERT_URL="xxx"
-CLIENT_X509_CERT_URL="xxx"
-```
-
-Do not expose admin secrets.
-
-Place a copy the `.env` file into `codeForDoc` directory, then run:
-
-1. `npm run d-test` to test development code.
-2. `npm run d-b-test` to test built code.
-3. `npm run d-p-test` to test published code(change the `version` in `package.json`` to test the version you want). \*/}
+see [running the source code](../contributing#running-the-source-code)
