@@ -58,10 +58,10 @@ initializeApp({
 })
 
 type User = MetaTypeCreator<{ name: string; age: number }, 'User', string>
-const port = firebasejson.emulators.firestore.port
 const firestore = getFirestore()
-connectFirestoreEmulator(firestore, 'localhost', port)
 const userRef = getFirelord<User>(firestore)('User')
+const port = firebasejson.emulators.firestore.port
+connectFirestoreEmulator(firestore, 'localhost', port)
 
 describe('test whether works with emulator', () => {
 	it('test basic operation like setDoc, updateDoc, addDoc, deleteDoc etc etc', async () => {
@@ -141,10 +141,10 @@ import {
 import firebasejson from '../firebase.json'
 
 type User = MetaTypeCreator<{ name: string; age: number }, 'User', string>
-const port = firebasejson.emulators.firestore.port
 let userRef: FirelordRef<User> = undefined!
 let firestore: ReturnType<RulesTestContext['firestore']> = undefined!
 let testEnv: RulesTestEnvironment = undefined!
+const port = firebasejson.emulators.firestore.port
 
 describe('test with @firebase/rules-unit-testing and jest', () => {
 	beforeAll(async () => {
