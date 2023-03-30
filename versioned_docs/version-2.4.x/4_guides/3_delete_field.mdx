@@ -116,12 +116,13 @@ If you assign `DeleteField` as array type or as array element type, FirelordJS w
 
 Explanations:
 
-1. `DeleteField[]`: doesn't make sense and field value is not allowed in array.
+1. `DeleteField[]`: doesn't make sense.
 2. `[{ a: DeleteField }]`: field value is not allowed in array regardless of depth.
+3. Keep in mind that any field value is illegal inside an array(Firestore undocumented limitation).
 
 <br />
 
-However it is legal to union `DeleteField` with array type:
+However it is legal to union `DeleteField` with array type, it simply means you can delete property `a`:
 
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 	<img src="/firelordv2/deleteField5.png" />
