@@ -21,7 +21,7 @@ Ideally key should not be arbitarly, using arbitary key as field indicate that w
 
 3: technically possible but why would we want to store a tuple? The only use case that is make sense is to store union of tuple: [1,2,3] | [4,5,6], but still doesn't offer huge advantage over array.
 
-4: technically possible (implemented in FireSageJS for internal use). By utilizing Typesript distributive properties it is possible to generate path for object literal unions field.
+4: technically possible (already in use internally). By utilizing Typesript distributive properties it is possible to generate path for object literal unions field.
 
 Objects unions type seem to be a good type to have in NoSQL database. However, this is not the case because it brings uncertainty that cannot be handled reasonably. For example, with `{a:number}|{b:string}`, you can set `{a:1}` then update `{b:"x"}`, in this case the type is no longer a unions type but an intersection type: `{a:number} & {b:string}`. So I will not implement this feature and will remove it from [FireSageJS](https://github.com/tylim88/FireSageJS) too. A better way to solve this is to use [`PossiblyReadAsUndefined`](https://firelordjs.com/guides/possibly_read_as_undefined) label instead.
 
