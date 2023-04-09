@@ -244,7 +244,7 @@ unsub2()
 ```ts title='aggregatedCount.ts'
 // get collection aggregated count
 getCountFromServer(
-	example.collection() // also accept example/collectionGroup()
+	example.collection() // also accept example.collectionGroup()
 ).then(aggregatedQuerySnapshot => {
 	const count = aggregatedQuerySnapshot.data().count
 })
@@ -252,7 +252,7 @@ getCountFromServer(
 // get query aggregated count
 getCountFromServer(
 	query(
-		example.collection(), // also accept example/collectionGroup()
+		example.collection(), // also accept example.collectionGroup()
 		where('a', '>', 1)
 	)
 ).then(aggregatedQuerySnapshot => {
