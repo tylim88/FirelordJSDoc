@@ -260,18 +260,27 @@ const unsub2 = onSnapshot(
 // remove listeners
 unsub()
 unsub2()
+```
 
+## Aggregated Count
+
+```ts title='aggregatedCount.ts'
 // get collection aggregated count
-getCountFromServer(example.collection()).then(aggregatedQuerySnapshot => {
+getCountFromServer(
+	example.collection() // also accept example/collectionGroup()
+).then(aggregatedQuerySnapshot => {
 	const count = aggregatedQuerySnapshot.data().count
 })
 
 // get query aggregated count
-getCountFromServer(query(example.collection(), where('a', '>', 1))).then(
-	aggregatedQuerySnapshot => {
-		const count = aggregatedQuerySnapshot.data().count
-	}
-)
+getCountFromServer(
+	query(
+		example.collection(), // also accept example/collectionGroup()
+		where('a', '>', 1)
+	)
+).then(aggregatedQuerySnapshot => {
+	const count = aggregatedQuerySnapshot.data().count
+})
 ```
 
 ## Batch
