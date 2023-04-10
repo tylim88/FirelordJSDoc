@@ -1,0 +1,71 @@
+---
+sidebar_position: 2
+---
+
+# Get
+
+This page discusses how `getDoc` works in general, the same theory apply for `transaction.get`.
+
+## SnapshotOptions
+
+If `SnapshotOptions` is `{ serverTimestamps: 'none' | 'previous' }`, then all the server timestamp is null if it is not yet resolved when you read it, **[source](https://stackoverflow.com/a/65627037/5338829)**.
+
+:::note
+
+The default value of `SnapshotOptions` is `{ serverTimestamps: 'none' }` but made explicit in all examples in this page.
+
+This option is not available in `admin`.
+
+:::
+
+:::info
+
+The official SDK does not have distinct type for server timestamp, all field values in Firestore have the same type, that is `FieldValue`, read **[Inhomogeneous Field Values](./inhomogeneous_field_values)** for more info.
+
+:::
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/get1.png" />
+	<small>Firestore</small>
+</div>
+<br />
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/get2.png" />
+	<small>
+		FirelordJS union the `null` with `Timestamp` regardless of depth.{' '}
+	</small>
+</div>
+
+<br />
+
+If `estimate` is selected:
+
+<div style={{ display: 'flex', justifyContent: 'space-around' }}>
+	<div
+		style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+	>
+		<img src="/firelordv2/get3.png" />
+		<small>
+			FirelordJS will not union null with Timestamp if 'estimate' is
+			selected.{' '}
+		</small>
+	</div>
+</div>
+<br />
+
+## documentSnapshot.get
+
+Firestore chooses to go YOLO on documentSnapshot.get, it simply does not care.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/get4.png" />
+	<small>Firestore does not reject unknown path and return any.</small>
+</div>
+<br />
+
+We care.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/get5.png" />
+	<small>FirelordJS reject unknown path and return accurate type.</small>
+</div>

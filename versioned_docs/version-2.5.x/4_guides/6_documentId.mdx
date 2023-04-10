@@ -1,0 +1,44 @@
+---
+sidebar_position: 6
+---
+
+# DocumentId
+
+This section discuss how `where` and field path sentinel `documentId()` types works.
+
+import { Image } from '@site/src/components/Image'
+
+## No Value Autocompletion 🐧
+
+When using `where` with `documentId`, there would be no auto complete for the value argument(`where` clause third argument) because we need to make way for more type checks.
+
+FirelordJS will still make sure the value type is correct.
+
+## Collection
+
+When querying a collection by documentId(), you must provide a plain document ID, without any forward slash.
+
+<Image
+	src="/firelordv2.3/docId1.png"
+	text={`FirelordJS displays error mesagae in the hint if it detects any invalid character.`}
+/>
+
+## Collection Group
+
+When querying a collection group by documentId(), FirelorsJS rejects the value if the value is not a valid full document path.
+
+<Image
+	src="/firelordv2.3/docId2.png"
+	text={`FirelordJS displays error mesagae in the hint if it detects path is wrong.`}
+/>
+
+<Image
+	src="/firelordv2.3/docId3.png"
+	text={`FirelordJS counts and compares the number of slash and displays it in the hint`}
+/>
+
+## With OrderBy 🦜
+
+The field path of `documentId()` is `__name__`, this is how you use it with orderBy(to order document by id).
+
+<Image src="/firelordv2.3/docId4.png" text={`Order by document Id`} />
