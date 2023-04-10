@@ -173,23 +173,16 @@ await addDoc(example.collection(), {
 const autoIdDocRef = example.doc(example.collection())
 ```
 
-## Query And OnSnapshot
+## Query
 
-```ts
+```ts title='query.ts'
 import { example } from './init'
-import {
-	getDocs,
-	query,
-	where,
-	orderBy,
-	onSnapshot,
-	startAfter,
-	limit,
-} from 'firelord'
+import { getDocs, query, where, orderBy, limit } from 'firelordjs'
+
 // filter documents
 getDocs(
 	query(
-		example.collection(), // also accept example.collectionGroup()
+		example.collection(),
 		where('f.h', '>', 1010),
 		orderBy('f.h'),
 		limit(10)
@@ -200,7 +193,6 @@ getDocs(
 		docChange.type // 'added', 'modified', or 'removed'
 		docChange.oldIndex // number
 		docChange.newIndex //  number
-		docChange.isEqual(docChange) // boolean, compare with other docChange
 	})
 	querySnapshot.forEach(docSnapshot => {
 		// this forEach is not native forEach, it has no index
@@ -210,28 +202,35 @@ getDocs(
 		// similar to docSnapshot of getDoc
 	})
 })
+```
+
+## Onsnapshot
+
+```ts title='onSnapshot.ts'
+import { example } from './init'
+import { query, where, orderBy, onSnapshot, startAfter } from 'firelordjs'
+
 // filter and listen to documents
 const unsub = onSnapshot(
 	query(
-		example.collectionGroup(), // also accept example.collection()
+		example.collectionGroup(),
 		where('b.d', 'array-contains', { e: 'hello' }),
 		orderBy('f.g'),
 		startAfter(new Date())
 	),
 	querySnapshot => {
-		querySnapshot.forEach(docSnapshot => {
-			// same as querySnapshot of getDocs
-		})
+		// return querySnapshot similar to querySnapshot of getDocs
 	},
-	error => {} // optional, onError callback
+	error => {}
 )
 
 // listen to a single document
 const unsub2 = onSnapshot(
 	example.doc('abc'),
-	docSnapshot => {},
-	error => {},
-	{ includeMetadataChanges: true }
+	docSnapshot => {
+		// return docSnapshot similar to docSnapshot of getDoc
+	},
+	error => {}
 )
 
 // remove listeners
@@ -239,9 +238,12 @@ unsub()
 unsub2()
 ```
 
-## Aggregated Counts
+## Aggregated Count
 
 ```ts title='aggregatedCount.ts'
+import { example } from './init'
+import { query, where, getCountFromServer } from 'firelordjs'
+
 // get collection aggregated count
 getCountFromServer(
 	example.collection() // also accept example.collectionGroup()

@@ -194,24 +194,16 @@ await addDoc(example.collection(), {
 const autoIdDocRef = example.doc(example.collection())
 ```
 
-## Query And OnSnapshot
+## Query
 
-```ts title='queryAndOnSnapshot.ts'
+```ts title='query.ts'
 import { example } from './init'
-import {
-	getDocs,
-	query,
-	where,
-	orderBy,
-	onSnapshot,
-	startAfter,
-	limit,
-} from 'firelordjs'
+import { getDocs, query, where, orderBy, limit } from 'firelord'
 
 // filter documents
 getDocs(
 	query(
-		example.collection(), // also accept example.collectionGroup()
+		example.collection(),
 		where('f.h', '>', 1010),
 		orderBy('f.h'),
 		limit(10)
@@ -231,30 +223,38 @@ getDocs(
 		// similar to docSnapshot of getDoc
 	})
 })
+```
+
+## Onsnapshot
+
+```ts title='onSnapshot.ts'
+import { example } from './init'
+import { query, where, orderBy, onSnapshot, startAfter } from 'firelord'
 
 // filter and listen to documents
 const unsub = onSnapshot(
 	query(
-		example.collectionGroup(), // also accept example.collection()
+		example.collectionGroup(),
 		where('b.d', 'array-contains', { e: 'hello' }),
 		orderBy('f.g'),
-		startAfter(new Date())
+		startAfter(new Date()),
+		offset(1)
 	),
 	querySnapshot => {
-		// same as querySnapshot of getDocs
+		// return querySnapshot similar to querySnapshot of getDocs
 	},
-	error => {}, // optional, you can skip this onError callback and move options to here instead
-	{ includeMetadataChanges: false } // optional, options
+	error => {},
+	{ includeMetadataChanges: false }
 )
 
 // listen to a single document
 const unsub2 = onSnapshot(
 	example.doc('abc'),
 	docSnapshot => {
-		// same as documentSnapshot of getDoc
+		// return docSnapshot similar to docSnapshot of getDoc
 	},
-	error => {}, // optional, you can skip this onError callback and move options to here instead
-	{ includeMetadataChanges: true } // optional, options
+	error => {},
+	{ includeMetadataChanges: true }
 )
 
 // remove listeners
@@ -265,6 +265,9 @@ unsub2()
 ## Aggregated Count
 
 ```ts title='aggregatedCount.ts'
+import { example } from './init'
+import { query, where, getCountFromServer } from 'firelord'
+
 // get collection aggregated count
 getCountFromServer(
 	example.collection() // also accept example.collectionGroup()
@@ -287,7 +290,7 @@ getCountFromServer(
 
 ```ts title='batch.ts'
 import { example, db } from './init'
-import { writeBatch, serverTimestamp } from 'firelordjs'
+import { writeBatch, serverTimestamp } from 'firelord'
 
 const batch = writeBatch(db) // db argument is optional
 
