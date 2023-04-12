@@ -15,7 +15,7 @@ import { Image } from '@site/src/components/Image'
 	text={`FirelordJS forbid never[] but allow correctType[] even if it is empty`}
 />
 
-Firestore throw if you supply empty array to `in`, `array-contains-any` and `not-in` operator.
+Firestore admin throw if you supply empty array to `in`, `array-contains-any` and `not-in` operator.
 
 To prevents this runtime error, FirelordJS block `never[]` and `[]` to stop you from accidentally assign empty array(never[]) directly.
 
