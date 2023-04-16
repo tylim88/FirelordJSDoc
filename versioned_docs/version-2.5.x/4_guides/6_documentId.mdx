@@ -12,7 +12,7 @@ import { Image } from '@site/src/components/Image'
 
 When using `where` with `documentId`, there would be no auto complete for the **value** argument(`where` clause third parameter) because we need to make way for more type checks.
 
-FirelordJS will still make sure the value type is correct.
+This only matter if your value type is literal type. Regardless FirelordJS will still make sure the value type is correct, only autocomplete is missing.
 
 The autocomplete of field path argument(1st parameter) and operation string argument(2nd parameter) are not affected and will work as intended.
 
