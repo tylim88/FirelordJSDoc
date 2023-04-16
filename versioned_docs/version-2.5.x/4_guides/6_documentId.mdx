@@ -8,6 +8,14 @@ This section discuss how `where` and field path sentinel `documentId()` types wo
 
 import { Image } from '@site/src/components/Image'
 
+## No Value Autocompletion 🐧
+
+When using `where` with `documentId`, there would be no auto complete for the **value** argument(`where` clause third parameter) because we need to make way for more type checks.
+
+FirelordJS will still make sure the value type is correct.
+
+The autocomplete of field path argument(1st parameter) and operation string argument(2nd parameter) are not affected and will work as intended.
+
 ## Is `__name__`
 
 `documentId` return `__name__`, you can use `documentId()` and `__name__` interchangeably. The reason we keep `documentId` is because of backward compatibility.
