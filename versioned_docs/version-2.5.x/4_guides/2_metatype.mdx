@@ -23,7 +23,7 @@ export type Parent = MetaTypeCreator<
 	},
 	'collectionIDLevel1', // collectionId type
 	string, // docId type
-	null // you can skip this, top collection don't need parent
+	null // you can skip this, top collection has no parent
 >
 
 export type Child = MetaTypeCreator<
@@ -71,7 +71,8 @@ export const grandChildRef = getFirelord<GrandChild>(
 ```ts title='doc.ts'
 import { parentRef, childRef, grandChildRef } from './firelordRef.ts'
 
-// doc ref require all ANCESTORS and itself document ID
+// doc ref require all ANCESTORS' and its own document ID
+// doc ids start from oldest ancestor's doc id till its own doc id
 export const parentDocRef = parentRef.doc(
 	'docIDLevel1' // parent doc ID
 )
@@ -89,7 +90,8 @@ export const grandChildDocRef = grandChildRef.doc(
 ```ts title='col.ts'
 import { parentRef, childRef, grandChildRef } from './firelordRef.ts'
 
-// collectionRef does not require its own document ID, start from oldest ancestor to parent
+// collection ref requires only ancestors' doc id
+// doc ids start from oldest ancestor's doc id till parent's doc id
 export const parentColRef = parentRef.collection()
 export const childColRef = childRef.collection(
 	'docIDLevel1' // parent doc ID
@@ -103,7 +105,7 @@ export const grandChildColRef = grandChildRef.collection(
 ```ts title='colGroup.ts'
 import { parentRef, childRef, grandChildRef } from './firelordRef.ts'
 
-// collection group doesn't need any ID.
+// collection group doesn't need any kind of ID.
 export const parentColGroupRef = parentRef.collectionGroup()
 export const childColGroupRef = childRef.collectionGroup()
 export const grandChildColGroupRef = grandChildRef.collectionGroup()
