@@ -15,21 +15,19 @@ This section discusses limitions of FirelordJS due to reason unsupported or stra
 3. union object type with object type.
    technically possible (already in use internally). By utilizing Typesript distributive properties it is possible to generate path for object literal unions field.
    Objects unions type seem to be a good type to have in NoSQL database. However, this is not the case because it brings uncertainty that cannot be handled reasonably. For example, with `{a:number}|{b:string}`, you can set `{a:1}` then update `{b:"x"}`, in this case the type is no longer a unions type but an intersection type: `{a:number} & {b:string}`. So I will not implement this feature and will remove it from [FireSageJS](https://github.com/tylim88/FireSageJS) too. A better way to solve this is to use [`PossiblyReadAsUndefined`](https://firelordjs.com/guides/possibly_read_as_undefined) label instead.
+   :::note
+   Multiple types per object also degrade developer experience, because you always need to do [runtime type check](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#working-with-union-types) everytime you read it since you don't know the exact type it returns.
+
+   This is easy with primitive types but unpleasant with object type.
+   :::
+
 4. union object type with any primitive type, eg" `{x:{a:number}|'string'}`.
    technically possible (already in use internally). By utilizing Typesript distributive properties it is possible to generate path for object literal unions field.
 5. Interface
    Reserved for special type
 
-:::note
-Multiple types per object also degrade developer experience, because you always need to do [runtime type check](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#working-with-union-types) everytime you read it since you don't what is the exact type it returns.
-
-This is simple with primitive types but unpleasant with object type.
-:::
-
-6: Interface serve as utility type, to avoid conflict, we must declare all data types with Type.
-
 :::info
-4 will not be supported, will give 1, 2, 3 and 5 deeper thoughts in the future.
+3 will not be supported, will give the rest deeper thoughts in the future.
 :::
 
 ## Empty Value Handling
