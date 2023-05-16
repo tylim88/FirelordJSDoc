@@ -32,30 +32,6 @@ Fresh value refer to value that is not attached to a variable.
 </div>
 <br />
 
-## Implicit Data Deletion🦤
-
-Guess what will happens to the code below:
-
-<div align="center">
-	<img src="/firelordv2/update2.png" />
-</div>
-<div align="center">
-	<small>Do You Know What Will Happen After This Code Run?</small>
-</div>
-<br />
-
-The value of `a`, `c` and `e` will be updated, meanwhile `d` will be deleted.
-
-Yup you see that right, `d` is deleted in the **update** operation. This is terrible because it is not intuitive and totally unexpected.
-
-Data/field deletion(or any operation in general) should be done explicitly, a proper way to do so is by assigning a `delete` field value and by looking at the code, so that even beginner knows it is going to delete the field without the need to look into the Firestore documentation.
-
-:::note
-
-This is a very questionable API design by Firestore with no proper documentation on such dangerous behavior.
-
-:::
-
 ## Solution To Unsafe Type
 
 FirelordJS solves all the stated concerns:
@@ -77,9 +53,37 @@ Note 3: Partial But no Undefined. FirelordJS update allows you to skip member wh
 Note 3 is no longer relevant if you enabled `exactOptionalPropertyTypes` in tsconfig.
 :::
 
+## Implicit Data Deletion🦤
+
+:::info
+
+By defaukt, official SDK update will deletes nested properties(non-top level properties) that are NOT included from database.
+
+:::
+
+<div align="center">
+	<img src="/firelordv2/update2.png" />
+</div>
+<div align="center">
+	<small>Do You Know What Will Happen After This Code Run?</small>
+</div>
+<br />
+
+The value of `a`, `c` and `e` will be updated, meanwhile `d` will be deleted.
+
+Yup you see that right, `d` is deleted in the **update** operation.
+
+:::tips
+
+I used to think this is a very terrible design because it deletes your data if you do not pay attention.
+
+But apparently it has [use case](https://github.com/tylim88/Firelord/issues/20#issuecomment-1545975918), so I added `transaction.updateNoFlatten`, `batch.updateNoFlatten`, and `updateDocNoFlatten` for those who needs the original behavior.
+
+:::
+
 ## Solution to Implicit Data Deletion ☢️
 
-How FirelordJS circumvent data deletion? While the official SDK not able to handle nested properly, it has no issue with top level property, so FirelordJS simply flatten down the data object to top level only object before pass it to official SDK update. Your input is always what you expect in the database, with no extra knowledge and attention required.
+Internally, FirelordJS flatten the data object to top level only object before pass it to official SDK update. Your input is always what you expect in the database, with no extra knowledge and attention required.
 
 :::caution
 
