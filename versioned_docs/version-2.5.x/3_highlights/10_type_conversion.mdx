@@ -10,20 +10,21 @@ Type transformation is needed because read(output), write(input) and compare(que
 
 ## Conversion Table
 
-| Base                                                             | Read                   | Write                                                                   | Compare                   |
-| ---------------------------------------------------------------- | ---------------------- | ----------------------------------------------------------------------- | ------------------------- |
-| `number`                                                         | `number`               | `number` \| `Increment`                                                 | `number`                  |
-| `numeric literal`                                                | `numeric literal`      | `numeric literal`                                                       | `numeric literal`         |
-| `string`                                                         | `string`               | `string`                                                                | `string`                  |
-| `string literal`                                                 | `string literal`       | `string literal`                                                        | `string literal`          |
-| `null`                                                           | `null`                 | `null`                                                                  | `null`                    |
-| `Timestamp` \| `Date`                                            | `Timestamp`            | `Timestamp` \| `Date`                                                   | `Timestamp` \| `Date`     |
-| `ServerTimestamp`                                                | `Timestamp`            | `ServerTimestamp`                                                       | `Timestamp` \| `Date`     |
-| `T[]`                                                            | `converted<T>[]`       | `readonly converted<T>[]` \| `ArrayUnionOrRemove<converted<T>>`         | `readonly converted<T>[]` |
-| `GeoPoint`                                                       | `GeoPoint`             | `GeoPoint`                                                              | `GeoPoint`                |
-| `DocumentReference<T>`                                           | `DocumentReference<T>` | `DocumentReference<T>`                                                  | `DocumentReference<T>`    |
-| [`DeleteField`](./guides/delete_field)                           | `undefined`            | `never` for set, add and create. `DeleteField` for update and set merge | `never`                   |
-| [`PossiblyReadAsUndefined`](./guides/possibly_read_as_undefined) | `undefined`            | `never`                                                                 | `never`                   |
+| Base                                                             | Read                                      | Write                                                                                 | Compare                                   |
+| ---------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `number`                                                         | `number`                                  | `number` \| `Increment`                                                               | `number`                                  |
+| `numeric literal`                                                | `numeric literal`                         | `numeric literal`                                                                     | `numeric literal`                         |
+| `string`                                                         | `string`                                  | `string`                                                                              | `string`                                  |
+| `string literal`                                                 | `string literal`                          | `string literal`                                                                      | `string literal`                          |
+| `null`                                                           | `null`                                    | `null`                                                                                | `null`                                    |
+| `Timestamp` \| `Date`                                            | `Timestamp`                               | `Timestamp` \| `Date`                                                                 | `Timestamp` \| `Date`                     |
+| `ServerTimestamp`                                                | `Timestamp`                               | `ServerTimestamp`                                                                     | `Timestamp` \| `Date`                     |
+| `T[]`                                                            | `RecursivelyConverted<T>[]`               | `readonly RecursivelyConverted<T>[]` \| `ArrayUnionOrRemove<RecursivelyConverted<T>>` | `readonly RecursivelyConverted<T>[]`      |
+| `GeoPoint`                                                       | `GeoPoint`                                | `GeoPoint`                                                                            | `GeoPoint`                                |
+| `DocumentReference<M>`                                           | `DocumentReference<M>`                    | `DocumentReference<M>`                                                                | `DocumentReference<M>`                    |
+| [`DeleteField`](./guides/delete_field)                           | `undefined`                               | `never` for set, add and create. `DeleteField` for update and set merge               | `never`                                   |
+| [`PossiblyReadAsUndefined`](./guides/possibly_read_as_undefined) | `undefined`                               | `never`                                                                               | `never`                                   |
+| `Record<string, T>`                                              | `Record<string, RecursivelyConverted<T>>` | `Record<string, RecursivelyConverted<T>>`                                             | `Record<string, RecursivelyConverted<T>>` |
 
 Internally, FirelordJS converts base type into 3 main types for different purpose:
 
@@ -35,7 +36,7 @@ The main types are further transformed for even more specific use cases internal
 
 Key Points:
 
-- FirelordJS forbids you from increment `numeric literal` type, eg: if the type is `1 | 100 | 1000` then we should not be able to increment it from `1` to `2`.
+- FirelordJS forbids you from increment `numeric literal` type, eg: if the type is `1 | 100 | 1000` we should not be able to increment the value from `1` to `2`.
 
 - FirelordJS forbids you from writing `Date` or `Timestamp` into `ServerTimestamp`, because some date time **has to be** server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, please union `ServerTimestamp` with `Date` and `Timestamp`.
 
