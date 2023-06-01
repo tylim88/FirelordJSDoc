@@ -119,6 +119,21 @@ You only need to write collection ID when you create `MetaType` and `FirelordRef
 Please don't create files like `doc.ts`, `col.ts`, and `colGroup.ts`, they are not practical and are for explanation only. However we encourage you to create files like `metatype.ts` and `firelordRef.ts`.
 :::
 
+## Ancestor Type Awareness
+
+All children are aware of their ancestors type.
+
+```ts
+import { grandChildDocRef } from './doc.ts'
+// ancestor type awareness
+grandChildDocRef.parent // GrandChild CollectionReference
+grandChildDocRef.parent.parent // Child DocumentReference
+grandChildDocRef.parent.parent.parent // Child CollectionReference
+grandChildDocRef.parent.parent.parent.parent // Parent DocumentReference
+grandChildDocRef.parent.parent.parent.parent.parent // Parent CollectionReference
+grandChildDocRef.parent.parent.parent.parent.parent.parent // null
+```
+
 ## Type Checking
 
 FirelordJS check for the type and number of your collection ID and document ID.
