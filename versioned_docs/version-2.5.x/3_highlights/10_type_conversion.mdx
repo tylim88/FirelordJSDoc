@@ -18,7 +18,7 @@ Type transformation is needed because read(output), write(input) and compare(que
 | `string literal`                                                 | `string literal`                          | `string literal`                                                                      | `string literal`                          |
 | `null`                                                           | `null`                                    | `null`                                                                                | `null`                                    |
 | `Timestamp` \| `Date`                                            | `Timestamp`                               | `Timestamp` \| `Date`                                                                 | `Timestamp` \| `Date`                     |
-| `ServerTimestamp`                                                | `Timestamp`                               | `ServerTimestamp`                                                                     | `Timestamp` \| `Date`                     |
+| `ServerTimestamp`                                                | `Timestamp`(see point 4)                  | `ServerTimestamp`                                                                     | `Timestamp` \| `Date`                     |
 | `T[]`                                                            | `RecursivelyConverted<T>[]`               | `readonly RecursivelyConverted<T>[]` \| `ArrayUnionOrRemove<RecursivelyConverted<T>>` | `readonly RecursivelyConverted<T>[]`      |
 | `GeoPoint`                                                       | `GeoPoint`                                | `GeoPoint`                                                                            | `GeoPoint`                                |
 | `DocumentReference<M>`                                           | `DocumentReference<M>`                    | `DocumentReference<M>`                                                                | `DocumentReference<M>`                    |
@@ -36,8 +36,10 @@ The main types are further transformed for even more specific use cases internal
 
 Key Points:
 
-- FirelordJS forbids you from increment `numeric literal` type, eg: if the type is `1 | 100 | 1000` we should not be able to increment the value from `1` to `2`.
+1. FirelordJS forbids you from increasing `numeric literal` type data with `increment`.
 
-- FirelordJS forbids you from writing `Date` or `Timestamp` into `ServerTimestamp`, because some date time **has to be** server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, please union `ServerTimestamp` with `Date` and `Timestamp`.
+2. FirelordJS forbids you from writing `Date` or `Timestamp` into `ServerTimestamp`, because some date time **has to be** server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, please union `ServerTimestamp` with `Date` and `Timestamp`.
 
-- We can always compare `Date` or `Timestamp` to `ServerTimestamp`.
+3. We can always compare `Date` or `Timestamp` to `ServerTimestamp`.
+
+4. Firestore need time to resolve sever time stamp, so it is possible to retrieve a null value if we read the value immediately after we write it. However this is a very rare case. For smoother coding experience, I decided not to union Server Timestamp read type(Timestamp) with null anymore, users no longer need to check for `null`. Users can union ServerTimestamp with null in Meta Type to deal with edge case.
