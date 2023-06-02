@@ -42,4 +42,4 @@ Key Points:
 
 3. We can always compare `Date` or `Timestamp` to `ServerTimestamp`.
 
-4. Firestore need time to resolve sever time stamp, so it is possible to retrieve a null value if we read the value immediately after we write it. However this is a very rare case. For smoother coding experience, I decided not to union Server Timestamp read type(Timestamp) with null anymore, users no longer need to check for `null`. Users can union ServerTimestamp with null in Meta Type to deal with edge case.
+4. Firestore need time to resolve sever time stamp, so it is possible to retrieve a null value if we read the value immediately after we write it. However this is a very rare case. For smoother coding experience, I decided not to union Server Timestamp read type(Timestamp) with null anymore, users no longer need to check for `null`. Users can union ServerTimestamp with null in Meta Type to handle edge cases.
