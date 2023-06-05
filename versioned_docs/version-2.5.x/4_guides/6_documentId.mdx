@@ -12,6 +12,10 @@ import { Image } from '@site/src/components/Image'
 
 `documentId` return `__name__`, you can use `documentId()` and `__name__` interchangeably. The reason we keep `documentId` is because of backward compatibility.
 
+:::tip
+We encourage you to use `__name__` because we may remove `documentId` in the next big update.
+:::
+
 ```ts
 // filter
 where('__name__', '==', 'abc') // equivalent to where(documentId(),'==','abc')
