@@ -50,6 +50,7 @@ const config = {
 	themeConfig:
 		/** @type {import('@docusaurus/preset-classic').ThemeConfig} */
 		({
+			metadata: [{ name: 'og:title', content: 'Typescript Wrapper' }],
 			colorMode: {
 				defaultMode: 'dark',
 				disableSwitch: false,

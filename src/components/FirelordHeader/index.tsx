@@ -2,6 +2,7 @@ import React from 'react'
 
 export const Header = () => (
 	<>
+		<br />
 		<div align="center">
 			<img
 				src="https://raw.githubusercontent.com/tylim88/Firelord/main/img/ozai.png"
