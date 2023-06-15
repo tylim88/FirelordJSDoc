@@ -6,25 +6,19 @@ sidebar_position: 5
 
 1. Simplify type logic and remove dead code.
 
-2. Utilizing the latest Typescript feature.
+2. Implement latest Typescript features.
 
-3. Cover more tests, type tests, run time tests etc etc.
+3. Cover more type tests and run time tests.
 
-4. You can also work on the [documentation](https://github.com/tylim88/FirelordJSDoc).
+4. Better [documentation](https://github.com/tylim88/FirelordJSDoc).
 
-5. Implement `mandatory field type`:
+5. Implement `mandatory field type`, a special type that mark keys as `required` in `update` operations. Practical usage is to mark a key like `updatedAt`.
 
-- It is a special type that assign (with union) to object member.
-- Members with such type become `required` even in `update` operations(all members in `update` operations are partial by default).
-- Practical usage is something like `updatedAt` member that keep track of document last updated time.
+6. Query Constraint type change Read type. For example for query `where('a', '==', true)`, we can further narrow down the type of field `a` to only `true`.
 
-6. Query Constraint type affect Read type. For example for `query(ref, orderByChild('a'), equalTo(true))`, we can further narrow down the type of child node `a` to only `true`.
+7. New Logo
 
-7. Functionality test for onDisconnect.
-
-8. Support compile to ESM.
-
-9. New Logo
+8. Functionality test for onDisconnect.
 
 ## Running The Source Code
 
