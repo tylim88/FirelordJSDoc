@@ -1,0 +1,91 @@
+---
+sidebar_position: 6
+---
+
+# Library Exports
+
+FirelordJS wraps and exports Firestore functions found in the `@firebase/firestore/dist/index.d.ts`.
+
+:::note
+Firelord does not support any function and methods related to `withConverter`.
+
+Because `Meta Type` should be the single source of truth and if we allow `withConverter`, we have the second source of truth: the returns of `toFirestore` and `fromFirestore`.
+:::
+
+## Functions
+
+With wrapping:
+
+- queryEqual
+- refEqual
+- snapshotEqual
+- documentId
+- arrayRemove
+- arrayUnion
+- deleteField
+- increment
+- serverTimestamp
+- onSnapshot
+- addDoc
+- deleteDoc
+- getDoc
+- getDocs
+- setDoc
+- updateDoc
+- updateDocNoFlatten
+- endAt
+- endBefore
+- orderBy
+- startAfter
+- startAt
+- where
+- collection
+- collectionGroup
+- doc
+- query
+- runTransaction
+- writeBatch
+
+Without wrapping:
+
+- Timestamp
+- GeoPoint
+- Bytes
+- getFirestore
+
+## Type Definitions
+
+Field Types:
+
+- ServerTimestamp
+- DeleteField
+- [PossiblyReadAsUndefined](./guides/possibly_read_as_undefined)
+
+References:
+
+- DocumentReference
+- CollectionReference
+- Query
+- FirelordRef
+
+Snapshots:
+
+- DocumentSnapshot
+- QuerySnapshot
+- QueryDocumentSnapshot
+
+Operations:
+
+- RunTransaction
+- Transaction
+- WriteBatch
+
+Meta Types:
+
+- MetaType
+- MetaTypeCreator
+
+Abstraction
+
+- [AbstractMetaTypeCreator](./guides/AbstractMetaTypeCreator)
+- [GetDocIds And GetCollectionIds](./guides/AbstractDocAndColIds)

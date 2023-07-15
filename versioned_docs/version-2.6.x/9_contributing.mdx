@@ -1,0 +1,60 @@
+---
+sidebar_position: 9
+---
+
+# Contributing
+
+1. Simplify type logic and remove dead code.
+
+2. Implement latest Typescript features.
+
+3. Cover more type tests and run time tests.
+
+4. Better [documentation](https://github.com/tylim88/FirelordJSDoc).
+
+5. Implement `mandatory field type`, a special type that mark keys as `required` in `update` operations. Practical usage is to mark a key like `updatedAt`.
+
+6. Query Constraint type change Read type. For example for query `where('a', '==', true)`, we can further narrow down the type of field `a` to only `true`.
+
+7. New Logo
+
+## Running The Source Code
+
+This library is tested against both emulators and live database, so please allow for unrestricted read and write access in your Firestore rules. Also, make sure to use a dummy Firebase project.
+
+To get started, run `npm i`. Then, create a `.env` file in the project root directory and add the following line:
+
+### For Web:
+
+```
+PROJECT_ID="your-firebase-project-id"
+```
+
+Do not upload PROJECT_ID because we do not restrict any access to Firestore for smooth testing purposes!
+
+### For Admin:
+
+```
+TYPE="xxx"
+PROJECT_ID="xxx"
+PRIVATE_KEY_ID="xxx"
+# must enclosed private key with single quotes
+# copy everything of private key including the double quotes
+PRIVATE_KEY='"-----BEGIN PRIVATE KEY-----\nSOME_SUPERLONG_STRING\n-----END PRIVATE KEY-----\n"'
+CLIENT_EMAIL="xxx"
+CLIENT_ID="xxx"
+AUTH_URI="xxx"
+TOKEN_URI="xxx"
+AUTH_PROVIDER_X509_CERT_URL="xxx"
+CLIENT_X509_CERT_URL="xxx"
+```
+
+Do not expose admin secrets.
+
+### Final Step:
+
+Once you have your `.env` file set up, place a copy of it into the `codeForDoc` directory(for both web and admin). Then, you can run the following commands:
+
+1. `npm run d-test` to test development code.
+2. `npm run b-q-test` to test built code.
+3. `npm run p-q-test` to test published code(You can specify which version to test by changing the `version` in `package.json`).

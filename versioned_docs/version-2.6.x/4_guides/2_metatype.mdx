@@ -1,0 +1,173 @@
+---
+sidebar_position: 2
+---
+
+# Meta Type
+
+This section discusses how to create parent and children `MetaType`.
+
+import { Image } from '@site/src/components/Image'
+
+## Create Child MetaType 🦜
+
+To create child Meta Type, pass the parent type into the 4th argument of the child. In this example, we create 3 generations of collection.
+
+```ts title='metaType.ts'
+import { MetaTypeCreator, getFirelord, getFirestore } from 'firelordjs'
+
+const db = getFirestore()
+
+export type Parent = MetaTypeCreator<
+	{
+		a: number
+	},
+	'collectionIDLevel1', // collectionId type
+	string, // docId type
+	null // you can skip this, top collection has no parent
+>
+
+export type Child = MetaTypeCreator<
+	{
+		a: 'a' | 'b' | 'c'
+		b: { c: number }
+	},
+	'collectionIDLevel2', // collectionId type
+	string, // docId type
+	Parent // child's parent is Parent
+>
+
+export type GrandChild = MetaTypeCreator<
+	{
+		e: { f: boolean }[]
+	},
+	'collectionIDLevel3', // collectionId type
+	string, // docId type
+	Child // grandChild's parent is child
+>
+```
+
+```ts title='firelordRef.ts'
+import { Parent, Child, GrandChild } from './metaType.ts'
+
+export const parentRef = getFirelord<Parent>(
+	db,
+	'collectionIDLevel1' // parent col ID
+)
+
+export const childRef = getFirelord<Child>(
+	db,
+	'collectionIDLevel1', // parent col ID
+	'collectionIDLevel2' // child col ID
+)
+
+export const grandChildRef = getFirelord<GrandChild>(
+	db,
+	'collectionIDLevel1', // parent col ID
+	'collectionIDLevel2', // child col ID
+	'collectionIDLevel3' // grandChild col ID
+)
+```
+
+```ts title='doc.ts'
+import { parentRef, childRef, grandChildRef } from './firelordRef.ts'
+
+// doc ref require all ANCESTORS' and its own document ID
+// doc ids start from oldest ancestor's doc id till its own doc id
+export const parentDocRef = parentRef.doc(
+	'docIDLevel1' // parent doc ID
+)
+export const childDocRef = childRef.doc(
+	'docIDLevel1', // parent doc ID
+	'docIDLevel2' // child doc ID
+)
+export const grandChildDocRef = grandChildRef.doc(
+	'docIDLevel1', // parent doc ID
+	'docIDLevel2', // child doc ID
+	'docIDLevel3' // grand child doc ID
+)
+```
+
+```ts title='col.ts'
+import { parentRef, childRef, grandChildRef } from './firelordRef.ts'
+
+// collection ref requires only ancestors' doc id
+// doc ids start from oldest ancestor's doc id till parent's doc id
+export const parentColRef = parentRef.collection()
+export const childColRef = childRef.collection(
+	'docIDLevel1' // parent doc ID
+)
+export const grandChildColRef = grandChildRef.collection(
+	'docIDLevel1', // parent doc ID
+	'docIDLevel2' // child doc ID
+)
+```
+
+```ts title='colGroup.ts'
+import { parentRef, childRef, grandChildRef } from './firelordRef.ts'
+
+// collection group doesn't need any kind of ID.
+export const parentColGroupRef = parentRef.collectionGroup()
+export const childColGroupRef = childRef.collectionGroup()
+export const grandChildColGroupRef = grandChildRef.collectionGroup()
+```
+
+:::tip
+You only need document IDs to create `docRef` and `collectionRef`.
+
+You only need to write collection ID when you create `MetaType` and `FirelordRef`, you never need to write any collection ID afterward.
+
+Please don't create files like `doc.ts`, `col.ts`, and `colGroup.ts`, they are not practical and are for explanation only. However we encourage you to create files like `metatype.ts` and `firelordRef.ts`.
+:::
+
+## Know Your Ancestors
+
+All children can track back all their ancestors type.
+
+```ts
+import { grandChildDocRef } from './doc.ts'
+// ancestor type awareness
+grandChildDocRef.parent // GrandChild CollectionReference
+grandChildDocRef.parent.parent // Child DocumentReference
+grandChildDocRef.parent.parent.parent // Child CollectionReference
+grandChildDocRef.parent.parent.parent.parent // Parent DocumentReference
+grandChildDocRef.parent.parent.parent.parent.parent // Parent CollectionReference
+grandChildDocRef.parent.parent.parent.parent.parent.parent // null
+```
+
+## Type Checking
+
+FirelordJS check for the type and number of your collection ID and document ID.
+
+<Image
+	src="/firelordv2/metaType2.png"
+	text="Unknown collection ID trigger type error"
+/>
+
+<Image
+	src="/firelordv2/metaType3.png"
+	text="Missing collection ID trigger type error"
+/>
+
+## Index Accessor
+
+Explore MetaType with index accessor, this is useful if you want to create abstraction.
+
+<Image
+	src="/firelordv2/metaType4.png"
+	text="Explore MetaType with index accessor."
+/>
+
+| Indexes        | Descriptions                                                                                   |
+| -------------- | ---------------------------------------------------------------------------------------------- |
+| base           | the original type                                                                              |
+| read           | output type of query operation.                                                                |
+| compare        | input type of query operation.                                                                 |
+| write          | input type of `set`, `create` and `add` operations.                                            |
+| writeFlatten   | input type of `update` operation.                                                              |
+| writeMerge     | input type of `set merge` operation.                                                           |
+| collectionID   | collection ID type                                                                             |
+| collectionPath | collection full path type                                                                      |
+| docID          | document ID type                                                                               |
+| docPath        | document full path type                                                                        |
+| parent         | Parent MetaType if exist, else Null                                                            |
+| ancestors      | all ancestors MetaType in array, starting from itself, then Parent till to the oldest ancestor |

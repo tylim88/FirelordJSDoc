@@ -3,6 +3,7 @@
 		"versioned_docs/version-1.x.x": true,
 		"versioned_docs/version-2.2.x": true,
 		"versioned_docs/version-2.3.x": true,
-		"versioned_docs/version-2.4.x": true
+		"versioned_docs/version-2.4.x": true,
+		"versioned_docs/version-2.5.x": true
 	}
 }
