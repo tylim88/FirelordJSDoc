@@ -202,7 +202,7 @@ const autoIdDocRef = example.doc(example.collection())
 
 ```ts title='query.ts'
 import { example } from './init'
-import { getDocs, query, where, orderBy, limit } from 'firelord'
+import { getDocs, query, where, orderBy, limit } from 'firelordjs'
 
 // filter documents
 getDocs(
@@ -257,7 +257,7 @@ query(
 
 ```ts title='onSnapshot.ts'
 import { example } from './init'
-import { query, where, orderBy, onSnapshot, startAfter } from 'firelord'
+import { query, where, orderBy, onSnapshot, startAfter } from 'firelordjs'
 
 // filter and listen to documents
 const unsub = onSnapshot(
@@ -294,7 +294,7 @@ unsub2()
 
 ```ts title='aggregatedCount.ts'
 import { example } from './init'
-import { query, where, getCountFromServer } from 'firelord'
+import { query, where, getCountFromServer } from 'firelordjs'
 
 // get collection aggregated count
 getCountFromServer(
@@ -318,7 +318,7 @@ getCountFromServer(
 
 ```ts title='batch.ts'
 import { example, db } from './init'
-import { writeBatch, serverTimestamp } from 'firelord'
+import { writeBatch, serverTimestamp } from 'firelordjs'
 
 const batch = writeBatch(db) // db argument is optional
 
