@@ -27,6 +27,20 @@ require Typescript 5.1.3+, firebase-admin 11+
 
 Always install firelord v2.CURRENT.LATEST
 
+ESLint rules to turn off because they give false errors:
+
+```json
+{
+	"rules": {
+		"@typescript-eslint/no-unsafe-assignment": "off",
+		"@typescript-eslint/no-unsafe-call": "off",
+		"@typescript-eslint/no-redundant-type-constituents": "off",
+		"@typescript-eslint/no-unsafe-return": "off",
+		"@typescript-eslint/no-unsafe-member-access": "off"
+	}
+}
+```
+
 :::
 
 :::info
