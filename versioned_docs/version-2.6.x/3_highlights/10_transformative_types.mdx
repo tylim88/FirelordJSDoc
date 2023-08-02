@@ -18,7 +18,7 @@ Type transformation is needed because read(output), write(input) and compare(que
 | `string literal`                                                 | `string literal`                          | `string literal`                                                                      | `string literal`                          |
 | `null`                                                           | `null`                                    | `null`                                                                                | `null`                                    |
 | `Timestamp` \| `Date`                                            | `Timestamp`                               | `Timestamp` \| `Date`                                                                 | `Timestamp` \| `Date`                     |
-| `ServerTimestamp`                                                | `Timestamp`(see point 4)                  | `ServerTimestamp`                                                                     | `Timestamp` \| `Date`                     |
+| `ServerTimestamp`                                                | `Timestamp`(see point 3)                  | `ServerTimestamp`                                                                     | `Timestamp` \| `Date`                     |
 | `T[]`                                                            | `RecursivelyConverted<T>[]`               | `readonly RecursivelyConverted<T>[]` \| `ArrayUnionOrRemove<RecursivelyConverted<T>>` | `readonly RecursivelyConverted<T>[]`      |
 | `GeoPoint`                                                       | `GeoPoint`                                | `GeoPoint`                                                                            | `GeoPoint`                                |
 | `DocumentReference<M>`                                           | `DocumentReference<M>`                    | `DocumentReference<M>`                                                                | `DocumentReference<M>`                    |
@@ -26,20 +26,41 @@ Type transformation is needed because read(output), write(input) and compare(que
 | [`PossiblyReadAsUndefined`](./guides/possibly_read_as_undefined) | `undefined`                               | `never`                                                                               | `never`                                   |
 | `Record<string, T>`                                              | `Record<string, RecursivelyConverted<T>>` | `Record<string, RecursivelyConverted<T>>`                                             | `Record<string, RecursivelyConverted<T>>` |
 
-Internally, FirelordJS converts base type into 3 main types for different purpose:
+FirelordJS converts base type into 3 main types for different purpose:
 
-- Read type for output of `getDoc`, `getDocs`, `onSnapshot` and etc.
-- Write type for input of `setDoc`, `updateDoc`, `addDoc`, `createDoc`(admin) and etc.
-- Compare type for query clauses like `where`, `orderBy` and etc.
-
-The main types are further transformed for even more specific use cases internally.
+- Read type is the output type of `getDoc`, `getDocs`, `onSnapshot` and etc.
+- Write type is the input type of `setDoc`, `updateDoc`, `addDoc`, `createDoc`(admin) and etc.
+- Compare type is the input type for query clauses like `where`, `orderBy`, `startAfter` and etc.
 
 Key Points:
 
 1. FirelordJS forbids you from increasing `numeric literal` type data with `increment`.
 
-2. FirelordJS forbids you from writing `Date` or `Timestamp` into `ServerTimestamp`, because some date time **has to be** server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, please union `ServerTimestamp` with `Date` and `Timestamp`.
+2. FirelordJS forbids you from writing `Date` or `Timestamp` into `ServerTimestamp`, because some date time **has to be** server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, you can union `ServerTimestamp` with `Date` and `Timestamp`.
 
-3. We can always compare `Date` or `Timestamp` to `ServerTimestamp`.
+3. Firestore need time to resolve sever time stamp, so it is possible to retrieve a null value if we read the value immediately after we write it. However this is a very rare case. For smoother coding experience, I decided not to union Server Timestamp read type(Timestamp) with null anymore, users no longer need to check for `null`. Users can union ServerTimestamp with null in Meta Type to handle edge cases.
 
-4. Firestore need time to resolve sever time stamp, so it is possible to retrieve a null value if we read the value immediately after we write it. However this is a very rare case. For smoother coding experience, I decided not to union Server Timestamp read type(Timestamp) with null anymore, users no longer need to check for `null`. Users can union ServerTimestamp with null in Meta Type to handle edge cases.
+4. We can always compare `Date` or `Timestamp` to `ServerTimestamp`.
+
+5. `Timestamp`(Firestore Timestamp) and `Date`(Javascript Date) have the same transformation.
+
+## Persistent Types
+
+| Base                                | Read                          | Write                  | Compare                |
+| ----------------------------------- | ----------------------------- | ---------------------- | ---------------------- |
+| `TimestampPersist` \| `DatePersist` | `TimestampPersist`            | `Timestamp` \| `Date`  | `Timestamp` \| `Date`  |
+| `ServerTimestampPersist`            | `TimestampPersist`            | `ServerTimestamp`      | `Timestamp` \| `Date`  |
+| `GeoPointPersist`                   | `GeoPointPersist`             | `GeoPoint`             | `GeoPoint`             |
+| `DocumentReferencePersist<M>`       | `DocumentReferencePersist<M>` | `DocumentReference<M>` | `DocumentReference<M>` |
+
+Serializing object to JSON will strip all the methods and functions, the persistent types keep only valid JSON type.
+
+Use persistent types if you plan to serialize object to JSON.
+
+Use case example: Persist `Timestamp` in browser local storage, the read type is `{seconds:number, nanoseconds:number}`, no methods.
+
+:::danger
+Do not persist document reference, because most of the document reference information cannot be serialized.
+
+Store the path in a document field instead.
+:::
