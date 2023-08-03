@@ -46,12 +46,12 @@ Key Points:
 
 ## Serial Types
 
-| Base                               | Read                         | Write                  | Compare                |
-| ---------------------------------- | ---------------------------- | ---------------------- | ---------------------- |
-| `SerialTimeStamp` \| `DatePersist` | `SerialTimeStamp`            | `Timestamp` \| `Date`  | `Timestamp` \| `Date`  |
-| `SerialServerTimestamp`            | `SerialTimeStamp`            | `ServerTimestamp`      | `Timestamp` \| `Date`  |
-| `SerialGeoPoint`                   | `SerialGeoPoint`             | `GeoPoint`             | `GeoPoint`             |
-| `SerialDocumentReference<M>`       | `SerialDocumentReference<M>` | `DocumentReference<M>` | `DocumentReference<M>` |
+| Base                              | Read                         | Write                  | Compare                |
+| --------------------------------- | ---------------------------- | ---------------------- | ---------------------- |
+| `SerialTimeStamp` \| `SerialDate` | `SerialTimeStamp`            | `Timestamp` \| `Date`  | `Timestamp` \| `Date`  |
+| `SerialServerTimestamp`           | `SerialTimeStamp`            | `ServerTimestamp`      | `Timestamp` \| `Date`  |
+| `SerialGeoPoint`                  | `SerialGeoPoint`             | `GeoPoint`             | `GeoPoint`             |
+| `SerialDocumentReference<M>`      | `SerialDocumentReference<M>` | `DocumentReference<M>` | `DocumentReference<M>` |
 
 Serializing object to JSON will strip all the methods and functions, the serial types keep only valid JSON type.
 
