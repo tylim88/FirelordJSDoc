@@ -44,23 +44,25 @@ Key Points:
 
 5. `Timestamp`(Firestore Timestamp) and `Date`(Javascript Date) have the same transformation.
 
-## Serial Types
+## JSON Types
 
-| Base                              | Read                         | Write                  | Compare                |
-| --------------------------------- | ---------------------------- | ---------------------- | ---------------------- |
-| `SerialTimeStamp` \| `SerialDate` | `SerialTimeStamp`            | `Timestamp` \| `Date`  | `Timestamp` \| `Date`  |
-| `SerialServerTimestamp`           | `SerialTimeStamp`            | `ServerTimestamp`      | `Timestamp` \| `Date`  |
-| `SerialGeoPoint`                  | `SerialGeoPoint`             | `GeoPoint`             | `GeoPoint`             |
-| `SerialDocumentReference<M>`      | `SerialDocumentReference<M>` | `DocumentReference<M>` | `DocumentReference<M>` |
+| Base                          | Read                       | Write                  | Compare                |
+| ----------------------------- | -------------------------- | ---------------------- | ---------------------- |
+| `JSONTimeStamp` \| `JSONDate` | `JSONTimeStamp`            | `Timestamp` \| `Date`  | `Timestamp` \| `Date`  |
+| `JSONServerTimestamp`         | `JSONTimeStamp`            | `ServerTimestamp`      | `Timestamp` \| `Date`  |
+| `JSONGeoPoint`                | `JSONGeoPoint`             | `GeoPoint`             | `GeoPoint`             |
+| `JSONDocumentReference<M>`    | `JSONDocumentReference<M>` | `DocumentReference<M>` | `DocumentReference<M>` |
 
-Serializing object to JSON will strip all the methods and functions, the serial types keep only valid JSON type.
+Serializing object to JSON will strip all the methods and functions, the JSON types keep only proprty with valid JSON type.
 
-Use serial types if you plan to serialize object to JSON.
+Use JSON types if you plan to serialize object to JSON.
 
-Use case example: Persist `Timestamp` in browser local storage using tools like `redux-persist` or `zustand-persist` or just `JSON.stringify`, the read type is `{ seconds:number, nanoseconds:number }`, no methods.
+Use case example: Persist `Timestamp` in browser local storage using tools like `redux-persist` or `zustand-persist` or just `JSON.stringify()`, the read type is `{ seconds:number, nanoseconds:number }`, no methods.
 
 :::danger
-Do not persist document reference, because most of the document reference information cannot be serialized.
+Do not serialize document reference to JSON, because most of the document reference information cannot be serialized to JSON, leaving no meaningful information.
 
 Store the path in a document field instead.
+
+May provide custom solution in the future
 :::
