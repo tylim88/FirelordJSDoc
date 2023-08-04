@@ -60,9 +60,9 @@ Use JSON types if you plan to serialize object to JSON.
 Use case example: Persist `Timestamp` in browser local storage using tools like `redux-persist` or `zustand-persist` or just `JSON.stringify()`, the read type is `{ seconds:number, nanoseconds:number }`, no methods.
 
 :::danger
+
 Do not serialize document reference to JSON, because most of the document reference information cannot be serialized to JSON, leaving no meaningful information.
 
 Store the path in a document field instead.
 
-May provide custom solution in the future
 :::
