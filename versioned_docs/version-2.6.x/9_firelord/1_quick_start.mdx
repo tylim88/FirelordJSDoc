@@ -89,7 +89,7 @@ After you created the Firelord Ref, you are no longer need to write collection n
 
 ```ts title='init.ts'
 import { getFirelord, getFirestore } from 'firelord'
-import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app' // IMPORTANT: import from 'firebase-admin/app' not 'firebase/admin', the official guide(https://firebase.google.com/docs/firestore/extend-with-functions#data_outside_the_trigger_event) is wrong!
+import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app' // IMPORTANT: import from 'firebase-admin/app' not 'firebase/admin', the official guide(https://firebase.google.com/docs/firestore/extend-with-functions#data_outside_the_trigger_event) is INCRRECT!
 import { Example } from './dataType'
 
 // if you run in cloud function
