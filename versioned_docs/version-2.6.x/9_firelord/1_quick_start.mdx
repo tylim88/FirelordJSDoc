@@ -95,7 +95,7 @@ import { Example } from './dataType'
 // if you run in cloud function
 const app = initializeApp()
 
-// if you run in custom backend or run in cloud function but want to access other project firestore
+// if you run in custom backend
 import serviceAccount from './serviceAccount.json' // get it from firebase console --> project setting --> service accounts, THIS IS A SECERT!
 const app_ = initializeApp({
 	credential: cert(serviceAccount as ServiceAccount),
