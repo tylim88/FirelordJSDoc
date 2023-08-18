@@ -89,12 +89,13 @@ After you created the Firelord Ref, you are no longer need to write collection n
 
 ```ts title='init.ts'
 import { getFirelord, getFirestore } from 'firelord'
-import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app'
+import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app' // IMPORTANT: import from 'firebase-admin/app' not 'firebase/admin', the official guide(https://firebase.google.com/docs/firestore/extend-with-functions#data_outside_the_trigger_event) is wrong!
 import { Example } from './dataType'
+
 // if you run in cloud function
 const app = initializeApp()
 
-// if you run in custom backend or you run in cloud function but want to access other project firestore
+// if you run in custom backend or run in cloud function but want to access other project firestore
 import serviceAccount from './serviceAccount.json' // get it from firebase console --> project setting --> service accounts, THIS IS A SECERT!
 const app_ = initializeApp({
 	credential: cert(serviceAccount as ServiceAccount),
