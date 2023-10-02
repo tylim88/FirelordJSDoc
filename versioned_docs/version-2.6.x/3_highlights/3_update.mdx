@@ -60,7 +60,7 @@ Note 3 is no longer relevant if you enabled `exactOptionalPropertyTypes` in tsco
 
 :::info
 
-By default, official SDK update will deletes nested properties(non-top level properties) that are NOT included from database.
+By default, official SDK update will deletes nested properties(non-top level properties) that are NOT included.
 
 :::
 
@@ -78,7 +78,7 @@ The value of `a`, `c` and `e` will be updated, meanwhile `d` will be deleted.
 
 I used to think this is a very terrible design because it deletes your data if you do not pay attention.
 
-But apparently it has [use case](https://github.com/tylim88/Firelord/issues/20#issuecomment-1545975918), so I added `transaction.updateNoFlatten`, `batch.updateNoFlatten`, and `updateDocNoFlatten` for those who needs the original behavior.
+But apparently it has [use cases](https://github.com/tylim88/Firelord/issues/20#issuecomment-1545975918), so I added `transaction.updateNoFlatten`, `batch.updateNoFlatten`, and `updateDocNoFlatten` for those who needs the original behavior.
 
 :::
 
