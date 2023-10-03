@@ -125,7 +125,7 @@ const config = {
 			},
 			footer: {
 				style: 'dark',
-				copyright: `© 2021-${new Date().getFullYear()}. Brought To You By Acid Coder`,
+				copyright: `© 2021-${new Date().getFullYear()}.`,
 				links: [
 					{
 						html: `
