@@ -59,6 +59,14 @@ Use JSON types if you plan to serialize object to JSON.
 
 Use case example: Persist `Timestamp` in browser local storage using tools like `redux-persist` or `zustand-persist` or just `JSON.stringify()`, the read type is `{ seconds:number, nanoseconds:number }`, no methods like `toDate` or `toMilis`.
 
+you can use `toTimestamp` to convert JSONTimeStamp to Firestore Timestamp:
+
+```ts
+import { toTimestamp } from 'firelordjs'
+
+const firestoreTimestamp = toTimestamp(someJSONTimestamp)
+```
+
 :::danger
 
 Do not serialize document reference to JSON, because most of the document reference information cannot be serialized to JSON, leaving no meaningful information.
