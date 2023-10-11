@@ -28,16 +28,6 @@ export const Header = () => (
 				/>
 			</a>
 			&nbsp;
-			<a
-				href="https://www.npmjs.com/package/firelordjs?activeTab=dependencies"
-				target="_blank"
-			>
-				<img
-					src="https://img.shields.io/badge/dynamic/json?url=https://api.npmutil.com/package/firelordjs&label=dependencies&query=$.dependencies.count&color=brightgreen"
-					alt="dependency count"
-				/>
-			</a>
-			&nbsp;
 			<a href="https://firelordjs.com/minified_size" target="_blank">
 				<img
 					src="https://img.shields.io/badge/gzipped-2.5KB-brightgreen"
