@@ -1,0 +1,35 @@
+---
+sidebar_position: 1
+---
+
+# String Manipulation
+
+import { Image } from '@site/src/components/Image'
+
+It is important to understand how Typescript string literal works in order for Typescript to understand the literal type of your documentID.
+
+## String Concatenation
+
+```ts
+import { MetaTypeCreator, getFirelord, getFirestore } from 'firelordjs'
+
+const db = getFirestore()
+
+type Example = MetaTypeCreator<
+	{
+		a: number
+	},
+	'colName',
+	`${string}12345`
+>
+
+const suffix = 12345
+
+const docRef = getFirelord<Example>(db, 'colName').doc('a' + suffix) // type error, type is string!
+
+const docRef2 = getFirelord<Example>(db, 'colName').doc(`a${suffix}`) // ok, type is `a12345`!
+```
+
+<Image src="/firelordv2/string1.png" text="how to concate string safely" />
+
+Do not use `+` to concate the string because `+` output string type. Always use template string to concate string.

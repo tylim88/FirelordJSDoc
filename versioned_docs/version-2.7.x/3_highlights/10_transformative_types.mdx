@@ -1,0 +1,45 @@
+---
+sidebar_position: 10
+---
+
+# Transformative Types
+
+This page discusses how FirelordJS transforms your types for various uses internally.
+
+Type transformation is needed because read(output), write(input) and compare(query) require different data types.
+
+## Conversion Table
+
+| Base                                                             | Read                                      | Write                                                                                 | Compare                                   |
+| ---------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------- | ----------------------------------------- |
+| `number`                                                         | `number`                                  | `number` \| `Increment`                                                               | `number`                                  |
+| `numeric literal`                                                | `numeric literal`                         | `numeric literal`                                                                     | `numeric literal`                         |
+| `string`                                                         | `string`                                  | `string`                                                                              | `string`                                  |
+| `string literal`                                                 | `string literal`                          | `string literal`                                                                      | `string literal`                          |
+| `null`                                                           | `null`                                    | `null`                                                                                | `null`                                    |
+| `Timestamp` \| `Date`                                            | `Timestamp`                               | `Timestamp` \| `Date`                                                                 | `Timestamp` \| `Date`                     |
+| `ServerTimestamp`                                                | `Timestamp`(see point 3)                  | `ServerTimestamp`                                                                     | `Timestamp` \| `Date`                     |
+| `T[]`                                                            | `RecursivelyConverted<T>[]`               | `readonly RecursivelyConverted<T>[]` \| `ArrayUnionOrRemove<RecursivelyConverted<T>>` | `readonly RecursivelyConverted<T>[]`      |
+| `GeoPoint`                                                       | `GeoPoint`                                | `GeoPoint`                                                                            | `GeoPoint`                                |
+| `DocumentReference<M>`                                           | `DocumentReference<M>`                    | `DocumentReference<M>`                                                                | `DocumentReference<M>`                    |
+| [`DeleteField`](./guides/delete_field)                           | `undefined`                               | `never` for set, add and create. `DeleteField` for update and set merge               | `never`                                   |
+| [`PossiblyReadAsUndefined`](./guides/possibly_read_as_undefined) | `undefined`                               | `never`                                                                               | `never`                                   |
+| `Record<string, T>`                                              | `Record<string, RecursivelyConverted<T>>` | `Record<string, RecursivelyConverted<T>>`                                             | `Record<string, RecursivelyConverted<T>>` |
+
+FirelordJS converts base type into 3 main types for different purpose:
+
+- Read type is the output type of `getDoc`, `getDocs`, `onSnapshot` and etc.
+- Write type is the input type of `setDoc`, `updateDoc`, `addDoc`, `createDoc`(admin) and etc.
+- Compare type is the input type for query clauses like `where`, `orderBy`, `startAfter` and etc.
+
+Key Points:
+
+1. FirelordJS forbids you from increasing `numeric literal` type data with `increment`.
+
+2. FirelordJS forbids you from writing `Date` or `Timestamp` into `ServerTimestamp`, because some date time **has to be** server timestamp, such as `createdAt` and `updatedAt`. However if this is your intention, you can union `ServerTimestamp` with `Date` or `Timestamp`.
+
+3. Firestore need time to resolve sever timestamp, so it is possible to retrieve a null value if we read the value immediately after we write it. However this is a very rare case. For smoother coding experience, I decided not to union Server Timestamp read type(Timestamp) with null anymore, users no longer need to check for `null`. Users can union ServerTimestamp with null in Meta Type to handle edge cases.
+
+4. We can always compare `Date` or `Timestamp` to `ServerTimestamp`.
+
+5. `Timestamp`(Firestore Timestamp) and `Date`(Javascript Date) have the same transformation, use either one as base type.

@@ -1,0 +1,93 @@
+---
+sidebar_position: 3
+---
+
+# Update
+
+This page discusses how `update` works and its quirks.
+
+We will use `updateDoc` in the example, but it works the same for `batch.update` and `transaction.update`.
+
+There are 3 type safe issues and 1 critical runtime issue in the official Firestore SDK update API.
+
+## Unsafe Type
+
+<div align="center">
+	<img src="/firelordv2.6/update1.png" />
+</div>
+<div align="center">
+	<small>Figure Showing Unsafe Firestore Update Type</small>
+</div>
+<br />
+
+1. Does not reject excess member.
+
+2. Accept unknown(excess) member from stale value,
+   resulting in storing unnecessary information in Firestore.
+
+:::info
+
+Stale value refer to value that is attached to a variable.
+
+Fresh value refer to value that is not attached to a variable.
+
+:::
+
+3. Accept `undefined` but `undefined` is not a valid Firestore value.
+
+## Solution To Unsafe Type
+
+FirelordJS solves all the stated concerns:
+
+<div align="center">
+	<img src="/firelordv2/update3.png" />
+</div>
+<div align="center">
+	<small>FirelordJS Able to Detect Unknown Member In The Stale Value</small>
+</div>
+<br />
+
+Note 1: FirelordJS highlight the unknown member of the fresh value.
+
+Note 2: FirelordJS highlight the unknown member of the stale value and print out the unknown member in Typescript error message, the same error message is also shown for the fresh value.
+
+Note 3: Partial But no Undefined. FirelordJS update allows you to skip member while rejecting `undefined`, stopping undefined from entering database(undefined is not a valid data type).
+:::note
+Note 3 is no longer relevant if you enabled `exactOptionalPropertyTypes` in tsconfig.
+:::
+
+## Implicit Data Deletion🦤
+
+:::info
+
+By default, official SDK update will deletes nested properties(non-top level properties) that are NOT included.
+
+:::
+
+<div align="center">
+	<img src="/firelordv2/update2.png" />
+</div>
+<div align="center">
+	<small>Do You Know What Will Happen After This Code Run?</small>
+</div>
+<br />
+
+The value of `a`, `c` and `e` will be updated, meanwhile `d` will be deleted.
+
+:::tip update
+
+I used to think this is a very terrible design because it deletes your data if you do not pay attention.
+
+But apparently it has [use cases](https://github.com/tylim88/Firelord/issues/20#issuecomment-1545975918), so I added `transaction.updateNoFlatten`, `batch.updateNoFlatten`, and `updateDocNoFlatten` for those who needs the original behavior.
+
+:::
+
+## Solution to Implicit Data Deletion ☢️
+
+Internally, FirelordJS flatten the data object to top level only object before pass it to official SDK update. Your input is always what you expect in the database, with no extra knowledge and attention required.
+
+:::caution
+
+Important, if you want to uninstall FirelordJS and revert to official SDK, please replace all the nested form with dot notation form or else your fields may get deleted due to official SDK behavior.
+
+:::
