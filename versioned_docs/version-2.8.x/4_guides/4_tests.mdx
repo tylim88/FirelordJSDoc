@@ -1,0 +1,216 @@
+---
+sidebar_position: 4
+---
+
+# Tests 🧪
+
+This section discusses how to use FirelordJS with [emulator](https://firebase.google.com/docs/emulator-suite), [@firebase/rules-unit-testing](https://www.npmjs.com/package/@firebase/rules-unit-testing) and [jest](https://jestjs.io/).
+
+Remember to prepare script like this:
+
+```json
+{
+	"test": "firebase emulators:exec --only firestore \"jest --forceExit\""
+}
+```
+
+:::note
+This is not a tutorial for `emulator`, `@firebase/rules-unit-testing` and `jest`, we assume you already know them.
+:::
+
+:::info
+
+Emulator forces all tests to use run in emulator if emulator is found eventhough they are not connected to emulator via `connectFirestoreEmulator`.
+
+This is true for Admin and partially true for Web.
+
+:::
+
+import { Image } from '@site/src/components/Image'
+
+## With Emulator Only 🦜
+
+Exmaple:
+
+```ts
+import {
+	setDoc,
+	getFirelord,
+	getDocs,
+	query,
+	where,
+	onSnapshot,
+	runTransaction,
+	writeBatch,
+	getFirestore,
+	connectFirestoreEmulator,
+	MetaTypeCreator,
+} from 'firelordjs'
+import { initializeApp } from 'firebase/app'
+import firebasejson from '../firebase.json'
+
+initializeApp({
+	apiKey: 'AIza....', // Auth / General Use
+	authDomain: 'YOUR_APP.firebaseapp.com', // Auth with popup/redirect
+	databaseURL: 'https://YOUR_APP.firebaseio.com', // Realtime Database
+	storageBucket: 'YOUR_APP.appspot.com', // Storage
+	messagingSenderId: '123456789', // Cloud Messaging
+})
+
+type User = MetaTypeCreator<{ name: string; age: number }, 'User', string>
+const firestore = getFirestore()
+const userRef = getFirelord<User>(firestore)('User')
+const port = firebasejson.emulators.firestore.port
+connectFirestoreEmulator(firestore, 'localhost', port)
+
+describe('test whether works with emulator', () => {
+	it('test basic operation like setDoc, updateDoc, addDoc, deleteDoc etc etc', async () => {
+		const ref = userRef.doc('user1')
+		await setDoc(ref, { age: 30, name: 'John' })
+		// some other operations
+		// do your assertion here...
+	})
+	it('test getDocs', async () => {
+		const querySnapshot = await getDocs(
+			query(userRef.collectionGroup(), where('name', '==', 'abc'))
+		)
+		// do your assertion here...
+	})
+
+	it('test onSnapshot', done => {
+		expect.hasAssertions()
+
+		const unsub = onSnapshot(
+			query(userRef.collection(), where('age', '>', 10)),
+			async querySnapshot => {
+				// do your assertion here...
+				unsub()
+				done()
+			}
+		)
+	})
+	it('test transaction operations', async () => {
+		await runTransaction(async transaction => {
+			await transaction.update(userRef.doc('user1'), {
+				age: 20,
+			})
+			// some other operations
+		})
+		// do your assertion here...
+	})
+
+	it('test batch operations', async () => {
+		const batch = writeBatch()
+		batch.delete(userRef.doc('user1'))
+		// some other operations
+		// do your assertion here...
+	})
+})
+```
+
+## With Both @firebase/rules-unit-testing And Emulator 🦜
+
+:::caution
+When using `@firebase/rules-unit-testing`, you must supply Firestore instance to `WriteBatch` and `runTransaction`.
+
+We can migitate this problem by making the parameter mandatory, but it degrades dev experience (we don't want to always supply the Firestore instance).
+
+We will give this deeper thoughts in the future, nevertheless, it only affects tests, so it is ok to leave it as it is for now.
+:::
+
+Example:
+
+```ts
+import {
+	initializeTestEnvironment,
+	RulesTestContext,
+	RulesTestEnvironment,
+} from '@firebase/rules-unit-testing'
+import {
+	setDoc,
+	getFirelord,
+	getDocs,
+	query,
+	where,
+	onSnapshot,
+	runTransaction,
+	writeBatch,
+	FirelordRef,
+	MetaTypeCreator,
+} from 'firelordjs'
+import firebasejson from '../firebase.json'
+
+type User = MetaTypeCreator<{ name: string; age: number }, 'User', string>
+let userRef: FirelordRef<User> = undefined!
+let firestore: ReturnType<RulesTestContext['firestore']> = undefined!
+let testEnv: RulesTestEnvironment = undefined!
+const port = firebasejson.emulators.firestore.port
+
+describe('test with @firebase/rules-unit-testing and jest', () => {
+	beforeAll(async () => {
+		testEnv = await initializeTestEnvironment({
+			projectId: 'any',
+			firestore: { host: 'localhost', port },
+		})
+		await testEnv.clearFirestore()
+		testEnvFirestore = testEnv
+			.authenticatedContext('alice', {
+				email: 'alice@example.com',
+			})
+			.firestore()
+		userRef = getFirelord<User>(testEnvFirestore)('User')
+	})
+
+	afterAll(() => {
+		testEnv.cleanup()
+	})
+
+	it('test basic operation like setDoc, updateDoc, addDoc, deleteDoc etc etc', async () => {
+		const ref = userRef.doc('user1')
+		await setDoc(ref, { age: 30, name: 'John' })
+		// some other operations
+		// do your assertion here...
+	})
+
+	it('test getDocs', async () => {
+		const querySnapshot = await getDocs(
+			query(
+				userRef.collectionGroup(testEnvFirestore),
+				where('name', '==', 'abc')
+			)
+		)
+		// do your assertion here...
+	})
+
+	it('test onSnapshot', done => {
+		expect.hasAssertions()
+
+		const unsub = onSnapshot(
+			query(userRef.collection(testEnvFirestore), where('age', '>', 10)),
+			async querySnapshot => {
+				// do your assertion here...
+				unsub()
+				done()
+			}
+		)
+	})
+
+	it('test transaction operations', async () => {
+		const result = await runTransaction(testEnvFirestore, async transaction => {
+			await transaction.update(userRef.doc('user1'), {
+				age: 20,
+			})
+			// some other operations
+			return something
+		})
+		// do your assertion here...
+	})
+
+	it('test batch operations', async () => {
+		const batch = writeBatch(testEnvFirestore)
+		batch.delete(userRef.doc('user1'))
+		// some other operations
+		// do your assertion here...
+	})
+})
+```

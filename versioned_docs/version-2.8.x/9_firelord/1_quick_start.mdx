@@ -1,0 +1,370 @@
+---
+sidebar_position: 1
+---
+
+# Quick Start 🔥
+
+import { Header } from '@site/src/components/FirelordHeader'
+
+<Header />
+
+Support [emulator](https://firelordjs.com/firelord/tests)
+
+Composite query(`or()` & `and()`) is only available in web for now because the official admin SDK is lagging behind the official web sdk.
+
+## Installation
+
+```bash
+npm i firebase-admin firelord
+npm i -D typescript
+```
+
+:::caution
+
+require Typescript 5.4.2+, firebase-admin 11+
+
+[Please change your VS Code Typescript version to v5](../change_ts_version)
+
+Always install firelord v2.CURRENT.LATEST
+
+:::
+
+:::info
+
+The library size on disk is 300KB, but the `js` code is less than 3KB, [see how we got this number](../minified_size).
+
+The documentation is far from finish and will never be because most of contents are just duplication of the official SDK.
+
+We designed this library to look almost identical to the official SDK to lower the learning curve.
+
+If you cannot find what you want here, high chances it is in the official Firestore [references](https://firebase.google.com/docs/reference/js/firestore_).
+
+:::
+
+:::tip
+Every detail or rule stated in the code below may sound like runtime validation or something you have to memorize, but they are in fact type level validation.
+
+Unless stated explicitly, everything you read is type level validation and you do not need to memorize them.
+
+All IDs, paths, keys, values and returns are narrowly typed. Collection references, document references and data snapshots are recursively typed.
+:::
+
+## Typescript Configuration
+
+```json title='tsconfig.json'
+{
+	// ...other configs
+	"compilerOptions": {
+		// ...other options
+		"strict": true, // compulsory
+		"exactOptionalPropertyTypes": true, // compulsory
+		"noUncheckedIndexedAccess": true // optional and does not affect how Firelord works but recommended
+	}
+}
+```
+
+## Define The Meta Type
+
+Meta Type is your single source of truth.
+
+```ts title='dataType.ts'
+import { MetaTypeCreator, ServerTimestamp } from 'firelord'
+
+export type Example = MetaTypeCreator<
+	{
+		a: number
+		b: { c: boolean; d: { e: string }[] }
+		f: { g: ServerTimestamp; h: 1010 | 2929 | 3838 }
+	}, // can go with even more crazy looking data type
+	'SomeCollectionName', // collection ID type, must be string literal
+	string // optional, document ID type, default string
+>
+```
+
+## Create Firelord References
+
+:::tip
+After you created the Firelord Ref, you are no longer need to write collection name in any operations.
+:::
+
+```ts title='init.ts'
+import { getFirelord, getFirestore } from 'firelord'
+import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app' // IMPORTANT: import from 'firebase-admin/app' not 'firebase/admin', the official guide(https://firebase.google.com/docs/firestore/extend-with-functions#data_outside_the_trigger_event) is INCRRECT!
+import { Example } from './dataType'
+
+// if you run in cloud function
+const app = initializeApp()
+
+// if you run in custom backend
+import serviceAccount from './serviceAccount.json' // get it from firebase console --> project setting --> service accounts, THIS IS A SECERT!
+const app_ = initializeApp({
+	credential: cert(serviceAccount as ServiceAccount),
+})
+
+export const db = getFirestore(app) // or getFirestore()
+
+export const example = getFirelord<Example>(db, 'SomeCollectionName') // this is your firelordRef
+```
+
+## Operations
+
+```ts title='operations.ts'
+import { example } from './init'
+import {
+	getDoc,
+	setDoc,
+	updateDoc,
+	deleteDoc,
+	addDoc,
+	serverTimestamp,
+	increment,
+	arrayUnion,
+} from 'firelord'
+//
+
+await createDoc(example.doc('abc'), {
+	a: 500,
+	b: { c: true, d: [{ e: 'efg' }] },
+	f: { g: serverTimestamp(), h: 2929 },
+})
+
+await setDoc(example.doc('abc'), {
+	a: 100,
+	b: { c: true, d: [{ e: 'abc' }] },
+	f: { g: serverTimestamp(), h: 1010 },
+})
+
+await updateDoc(example.doc('abc'), {
+	a: increment(1),
+	'b.d': arrayUnion({ e: 'hello' }), // dot notation form
+	f: { h: 2929 }, // nested form
+})
+
+await deleteDoc(example.doc('abc'))
+
+await getDoc(example.doc('abc')).then(docSnapshot => {
+	// everything here is narrowly typed based on MetaType
+	docSnapshot.data() // { a: number; b: { c: boolean; d: { e: string; }[]; }; f: { g: Timestamp | null; h: 1010 | 2929 | 3838; }; | undefined
+	docSnapshot.exists() // boolean
+	docSnapshot.get('b.c') // arguments type is "a" | "b.c" | "b.d" | "f.g" | "f.h"
+	docSnapshot.id // string, based on documentId type
+
+	docSnapshot.ref.firestore // firestore instance
+	docSnapshot.ref.id // same as docSnapshot.id
+	await docSnapshot.ref.listCollections() // an array of CollectionReference<Example>
+	docSnapshot.ref.path // full path of this document, type is `SomeCollectionName/${string}`
+
+	// ref.parent is recursively typed
+	// parent of document is collection, parent of collection is document
+	docSnapshot.ref.parent // in this case, it is collection reference of this document
+	docSnapshot.ref.parent.firestore // firestore instance
+	docSnapshot.ref.parent.id // collectionId, type is `SomeCollectionName`
+	await docSnapshot.ref.parent.listDocuments() // an array of DocumentReference<Any>, NOTE: currently this is not possible to type, you need to type cast it
+	docSnapshot.ref.parent.parent // no more parent for this case, null
+	docSnapshot.ref.parent.path // full path of this collection, type is `SomeCollectionName`
+})
+
+// in case you want to create auto id doc
+await addDoc(example.collection(), {
+	a: 900,
+	b: { c: false, d: [{ e: 'hi' }] },
+	f: { g: serverTimestamp(), h: 3838 },
+})
+// in case you just want auto id doc ref
+const autoIdDocRef = example.doc(example.collection())
+```
+
+## Query
+
+```ts title='query.ts'
+import { example } from './init'
+import { getDocs, query, where, orderBy, limit } from 'firelordjs'
+
+// filter documents
+getDocs(
+	query(
+		example.collection(), // or example.collectionGroup()
+		where('f.h', '>', 1010),
+		orderBy('f.h'),
+		limit(10)
+	)
+).then(querySnapshot => {
+	querySnapshot.docChanges().forEach((docChange, index) => {
+		docChange.doc // return docSnapshot similar to docSnapshot of getDoc
+		docChange.type // 'added', 'modified', or 'removed'
+		docChange.oldIndex // number
+		docChange.newIndex //  number
+	})
+	querySnapshot.forEach(docSnapshot => {
+		// this forEach is not native forEach, it has no index
+		// similar to docSnapshot of getDoc
+	})
+	querySnapshot.docs.forEach((docSnapshot, index) => {
+		// similar to docSnapshot of getDoc
+	})
+})
+
+// get all collection documents
+getDocs(
+	example.collection() // or example.collectionGroup()
+)
+```
+
+## OnSnapshot
+
+```ts title='onSnapshot.ts'
+import { example } from './init'
+import { query, where, orderBy, onSnapshot, startAfter, offset } from 'firelord'
+
+// listen to filtered collection
+const unsub = onSnapshot(
+	query(
+		example.collection(), // or example.collectionGroup()
+		where('b.d', 'array-contains', { e: 'hello' }),
+		orderBy('f.g'),
+		startAfter(new Date())
+	),
+	querySnapshot => {
+		// return querySnapshot similar to querySnapshot of getDocs
+	},
+	error => {
+		// handle error
+	}
+)
+
+// listen to entire collection
+const unsub2 = onSnapshot(
+	example.collection(), // or example.collectionGroup()
+	querySnapshot => {
+		// return querySnapshot similar to querySnapshot of getDocs
+	},
+	error => {
+		// handle error
+	}
+)
+
+// listen to a single document
+const unsub3 = onSnapshot(
+	example.doc('abc'),
+	docSnapshot => {
+		// return docSnapshot similar to docSnapshot of getDoc
+	},
+	error => {
+		// handle error
+	}
+)
+
+// remove listeners
+unsub()
+unsub2()
+unsub3()
+```
+
+## Aggregated Count
+
+```ts title='aggregatedCount.ts'
+import { example } from './init'
+import { query, where, getCountFromServer } from 'firelordjs'
+
+// get collection aggregated count
+getCountFromServer(
+	example.collection() // also accept example.collectionGroup()
+).then(aggregatedQuerySnapshot => {
+	const count = aggregatedQuerySnapshot.data().count
+})
+
+// get query aggregated count
+getCountFromServer(
+	query(
+		example.collection(), // also accept example.collectionGroup()
+		where('a', '>', 1)
+	)
+).then(aggregatedQuerySnapshot => {
+	const count = aggregatedQuerySnapshot.data().count
+})
+```
+
+## Transaction
+
+```ts title='transaction.ts'
+import { example, db } from './init'
+import {
+	runTransaction,
+	serverTimestamp,
+	increment,
+	arrayRemove,
+} from 'firelord'
+//
+
+try {
+	const result = await runTransaction(
+		db, // db argument is optional, you can skip it
+		async transaction => {
+			await transaction.get(example.doc('lmn')).then(docSnapshot => {
+				const data = docSnapshot.data()
+			})
+
+			transaction.create(example.doc('lmn'), {
+				a: 500,
+				b: { c: true, d: [{ e: 'efg' }] },
+				f: { g: serverTimestamp(), h: 3838 },
+			})
+
+			transaction.set(example.doc('lmn'), {
+				a: 88,
+				b: { c: false, d: [{ e: 'opq' }] },
+				f: { g: serverTimestamp(), h: 2929 },
+			})
+
+			transaction.update(example.doc('lmn'), {
+				a: increment(1),
+				b: { d: arrayRemove({ e: 'rst' }) }, // nested form
+				'f.g': serverTimestamp(), // dot notation form
+			})
+
+			transaction.delete(example.doc('lmn'))
+
+			return 123 // return this to result
+		},
+		{ readOnly: true, readTime: Timestamp.now() } // optional, { readOnly?: false, maxAttempts?: number } OR { readOnly: true, readTime?: Timestamp }
+	)
+	console.log(result) // result is 123 because we return 123 in runTransaction callback
+} catch (e) {
+	console.log('Transaction failed: ', e)
+}
+```
+
+## Batch
+
+```ts title='batch.ts'
+import { example, db } from './init'
+import { writeBatch, serverTimestamp } from 'firelord'
+
+const batch = writeBatch(
+	db // optional
+)
+
+batch.create(example.doc('hij'), {
+	a: 6,
+	b: { c: true, d: [{ e: '123' }] },
+	f: { g: serverTimestamp(), h: 2929 },
+})
+
+batch.set(example.doc('hij'), {
+	a: 7,
+	b: { c: false, d: [{ e: 'xyz' }] },
+	f: { g: serverTimestamp(), h: 1010 },
+})
+
+batch.update(example.doc('hij'), {
+	a: 8,
+	b: { c: false }, // nested form
+	'f.g': serverTimestamp(), // dot notation form
+})
+
+batch.delete(example.doc('hij'))
+
+await batch.commit()
+```
+
+To learn more, read the [Web](https://firelordjs.com/3_highlights/about) section.
