@@ -1,6 +1,6 @@
 {
 	"name": "firelordjs-doc",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"private": true,
 	"scripts": {
 		"reinstall": "rm -rf node_modules/ && rm package-lock.json && npm i",
