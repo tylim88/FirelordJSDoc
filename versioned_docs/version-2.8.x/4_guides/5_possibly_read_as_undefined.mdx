@@ -29,7 +29,9 @@ In `setDoc` operation, both Firestore and FirelordJS typing forbid you from skip
 If you are using set without merge or merge field, it is recommended to set all members and fill the field we do not need now with **default value** rather than dropping it.
 
 :::caution
-Despite `null` being a popular default value, we strongly discourage the usage of null because it [messes up query](https://stackoverflow.com/a/71173190/5338829).
+Despite `null` being a popular default value, you might not want to use `null` because it [messes up query](https://stackoverflow.com/a/71173190/5338829)
+
+However those are edge cases so you should be fine for the most of the time.
 :::
 
 Now recall that`updateDoc` cannot update and throw exception if the doc does not exist, so what does all this mean?
