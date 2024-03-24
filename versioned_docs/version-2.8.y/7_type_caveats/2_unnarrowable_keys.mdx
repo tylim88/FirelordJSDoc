@@ -1,0 +1,38 @@
+---
+sidebar_position: 2
+---
+
+# Unnarrowable Keys
+
+import { Image } from '@site/src/components/Image'
+
+Numeric string keys only works if they are fresh(non variable).
+
+This is Typescript issue and nothing we can do about it now, do not use numeric string if possible.
+
+```ts
+import { MetaTypeCreator, getFirelord, getFirestore } from 'firelordjs'
+
+type A = MetaTypeCreator<{ k: Record<'a', number> }, 'a'>
+
+const a = getFirelord<DU>(getFirestore(), 'abc')
+
+const docRef = a.doc('123')
+
+const b = 1 as const
+
+const c = {
+	k: { [b]: 1 as const } as const,
+} as const
+
+updateDoc(docRef, c) // not matter how much we as const, it is not ok!
+
+updateDoc(docRef, {
+	k: { '1': 1 },
+}) // ok if we use fresh value!
+```
+
+<Image
+	src="/firelordv2.8/unnarrowable.png"
+	text="unnarrowable numeric string"
+/>
