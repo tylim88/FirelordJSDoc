@@ -1,0 +1,117 @@
+---
+sidebar_position: 5
+---
+
+# Possibly Read As Undefined
+
+This section discusses how `PossiblyReadAsUndefined` works and why do we need them.
+
+## Undefined Read Field 🦜
+
+Firestore has the flexibility to add any field we want, in case like this, the read type of newly added data is `undefined` if we try to read it from the old data.
+
+And this is not the only reason a field could be missing, data could be missing for various reason a.k.a low data integrity.
+
+This is what `PossiblyReadAsUndefined` for, it allows you to read a particular field as `undefined`, here is how you use it.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/possiblyReadAsUndefined1.png" />
+	<small>Union 'a' field's read type with 'undefined'</small>
+</div>
+<br />
+
+## Why We Need To Read As Undefined? 🦜
+
+To understand why we do you need to read as undefined, we need to first understand how `setDoc` typing work.
+
+In `setDoc` operation, both Firestore and FirelordJS typing forbid you from skipping any member(field).
+
+If you are using set without merge or merge field, it is recommended to set all members and fill the field we do not need now with **default value** rather than dropping it.
+
+:::caution
+Despite `null` being a popular default value, you might not want to use `null` because it [messes up query](https://stackoverflow.com/a/71173190/5338829)
+
+However those are edge cases so you should be fine for the most of the time.
+:::
+
+Now recall that`updateDoc` cannot update and throw exception if the doc does not exist, so what does all this mean?
+
+This mean that with **only** `set` and `updateDoc` operation, it is guarantee that if certain data exists in the database, it has full members.
+
+The type of everything we read is same as what we define in the `Meta Type`, assuming that we do not modify the database by other means.
+
+However set merge(setDoc with merge) update the doc if the doc exists and create it if it does not exist, also known as `upsert`.
+
+This is a convenient methods but it can be problematic because the data can now exist without full members and we may read certain members as `undefined`.
+
+This is where `PossiblyReadAsUndefined` is useful, though it is not a perfect solution, it is a good enough solution.
+
+A perfect solution is to forbid set merge and only allow set merge on field that has special type(like how delete field works), will give this deeper thoughts in future.
+
+## All Fields Read As Undefined 🦜
+
+:::caution
+The setting `allFieldsPossiblyUndefined` had been renamed to `allFieldsPossiblyReadAsUndefined` in version 1.5.0
+:::
+
+If you want maximum type safe, you can easily union every field read type with one configuration:
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/possiblyReadAsUndefined2.png" />
+	<small>Union every field's read type with 'undefined'</small>
+</div>
+<br />
+
+:::note
+
+Union all read fields with `undefined` degrade developer experience because you always need to check for `undefined`(albeit safer).
+
+The trade-off of security is ease of use.
+
+:::
+
+## Array
+
+If you assign `PossiblyReadAsUndefined` to an array type directly, FirelordJS will replaces them with error message.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/possiblyReadAsUndefined3.png" />
+	<small>directly</small>
+</div>
+
+<br />
+
+Explanation: `PossiblyReadAsUndefined[]` simply doesn't make sense.
+
+However assigning to array indirectly and union with array are legal:
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/possiblyReadAsUndefined4.png" />
+	<small>union</small>
+</div>
+<br />
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/possiblyReadAsUndefined5.png" />
+	<small>indirectly</small>
+</div>
+
+## Write
+
+What happen to `PossiblyReadAsUndefined` type in write operation?
+
+Simple, FirelordJS excludes it.
+
+If a field has `PossiblyReadAsUndefined` unions:
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/possiblyReadAsUndefined6.png" />
+	<small>left 'number' </small>
+</div>
+<br />
+
+If a field has only `PossiblyReadAsUndefined` type:
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/possiblyReadAsUndefined7.png" />
+	<small>nothing left, hence 'never'</small>
+</div>

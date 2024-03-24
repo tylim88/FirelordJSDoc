@@ -65,7 +65,7 @@ const config = {
 				items: [
 					{
 						type: 'doc',
-						docId: 'quick_start',
+						docId: 'installation',
 						position: 'left',
 						label: 'Firestore',
 					},
