@@ -6,7 +6,7 @@ sidebar_position: 1
 
 import { Image } from '@site/src/components/Image'
 
-It is important to understand how Typescript string literal works in order for Typescript to understand the literal type of your documentID.
+It is important to understand how Typescript string literal works in order for Typescript to infer the literal type properly.
 
 ```ts
 import { MetaTypeCreator, getFirelord, getFirestore } from 'firelordjs'
@@ -30,4 +30,4 @@ const docRef2 = getFirelord<Example>(db, 'colName').doc(`a${suffix}`) // ok, typ
 
 <Image src="/firelordv2/string1.png" text="how to concate string safely" />
 
-Do not use `+` to concate the string because `+` output string type. Always use template string to concate string.
+Do not use `+` to concate the string because `+` output wide `string` type. Always use template string to concate string.
