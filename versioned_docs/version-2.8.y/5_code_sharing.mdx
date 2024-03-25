@@ -17,11 +17,13 @@ functions
       clients
       employees
 src // front end code
+tsconfig.json // front end tscongfig
+vite.config.ts // front end vite config
 ```
 
 Assuming we have structure like this and back end (functions) is our source of truth(recommended), with below setup we can easily share code without copy paste.
 
-```json title='front end(root) tsconfig.json'
+```json title='front end tsconfig.json'
 {
 	"compilerOptions": {
 		"paths": {
