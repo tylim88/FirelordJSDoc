@@ -9,25 +9,18 @@ import { Image } from '@site/src/components/Image'
 It is important to understand how Typescript string literal works in order for Typescript to infer the literal type properly.
 
 ```ts
-import { MetaTypeCreator, getFirelord, getFirestore } from 'firelordjs'
+const a = 'a'
+const b = 'b'
 
-const db = getFirestore()
+const ab = a + b
+//    ^?
 
-type Example = MetaTypeCreator<
-	{
-		a: number
-	},
-	'colName',
-	`${string}12345`
->
-
-const suffix = 12345
-
-const docRef = getFirelord<Example>(db, 'colName').doc('a' + suffix) // type error, type is string!
-
-const docRef2 = getFirelord<Example>(db, 'colName').doc(`a${suffix}`) // ok, type is `a12345`!
+const ab1 = `${a}${b}`
+//    ^?
 ```
 
-<Image src="/firelordv2/string1.png" text="how to concate string safely" />
+<Image src="/firelordv2.8/string1.png" text="how to concate string safely" />
 
-Do not use `+` to concate the string because `+` output wide `string` type. Always use template string to concate string.
+[playground](https://www.typescriptlang.org/play?#code/MYewdgzgLgBAhjAvDA5HFBYAUKSsBGSq+mW2u08hycA1PtgPSMyswB6A-NueJXPgCMRAAYASAN5wAvpPzSRTFmy7YgA)
+
+Do not use `+` to concate the string because `+` output wide `string` type. Always use template string to concate string for literal types.
