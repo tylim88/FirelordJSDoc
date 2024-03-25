@@ -21,11 +21,12 @@ const docRef = a.doc('123')
 
 const b = 1 as const
 
+// not matter how much we assert as const, it is not ok!
 const c = {
 	k: { [b]: 1 as const } as const,
 } as const
 
-updateDoc(docRef, c) // not matter how much we as const, it is not ok!
+updateDoc(docRef, c) // error
 
 updateDoc(docRef, {
 	k: { '1': 1 },
