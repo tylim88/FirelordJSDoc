@@ -145,11 +145,11 @@ getDocs(
 )
 ```
 
-## Composite Query `or()` `and()`
+## `or()` `and()` Queries
 
 This API is not available in admin version because the official admin SDK is lagging behind the official web sdk.
 
-```ts title='composite.ts'
+```ts title='or_and.ts'
 import { example } from './init'
 import { query, where, orderBy, limit } from 'firelordjs'
 
@@ -160,7 +160,7 @@ query(
 	example.or(
 		where('f.h', '>', 2929),
 		where('a', '==', 1),
-		// you can nest composite query https://firebase.google.com/docs/firestore/query-data/queries#disjunctive_normal_form
+		// you can nest or and query https://firebase.google.com/docs/firestore/query-data/queries#disjunctive_normal_form
 		example.and(
 			where('f.g', 'in', [new Date(999), new Date(3000)]),
 			where('b.d', 'array-contains', { e: 'a' })

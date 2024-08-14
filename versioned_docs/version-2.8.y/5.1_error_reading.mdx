@@ -16,23 +16,23 @@ Most of the time we just need to read the **last** error message and ignore the 
 
 In this example, the correct field path is `a` and `__name__`(`__name__` is a default comparison path of every document, see [document Id](./api/documentId))
 
-## Peeling Composite Query Error Messages
+## Peeling `or` `and` Query Error Messages
 
-### Composite Query
+### `or` `and` Query
 
-When using composite query, we need peel the error messages in order to find out the real culprit:
+When using `or` `and` query, we need peel the error messages in order to find out the real culprit:
 
-<Image src="/firelordv2.5/error2.png" text="composite error message" />
+<Image src="/firelordv2.5/error2.png" text="`or` `and` error message" />
 
 <Image src="/firelordv2.5/error3.png" text="narrowing down" />
 
-### Nested Composite Query
+### Nested `or` `and` Query
 
-Nested composite query error messages are messy:
+Nested `or` `and` query error messages are messy:
 
 <Image
 	src="/firelordv2.5/error4.png"
-	text="nested composite error message is a huge mess and you should ignore them"
+	text="nested `or` `and` error message is a huge mess and you should ignore them"
 />
 
 Solution is to peel until you see an error message that makes sense:
