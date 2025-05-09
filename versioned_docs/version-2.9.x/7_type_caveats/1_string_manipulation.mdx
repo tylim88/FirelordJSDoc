@@ -1,0 +1,26 @@
+---
+sidebar_position: 1
+---
+
+# String Manipulation
+
+import { Image } from '@site/src/components/Image'
+
+It is important to understand how Typescript string literal works in order for Typescript to infer the literal type properly.
+
+```ts
+const a = 'a'
+const b = 'b'
+
+const ab = a + b
+//    ^?
+
+const ab1 = `${a}${b}`
+//    ^?
+```
+
+<Image src="/firelordv2.8/string1.png" text="how to concate string safely" />
+
+[playground](https://www.typescriptlang.org/play?#code/MYewdgzgLgBAhjAvDA5HFBYAUKSsBGSq+mW2u08hycA1PtgPSMyswB6A-NueJXPgCMRAAYASAN5wAvpPzSRTFmy7YgA)
+
+Do not use `+` to concate the string because `+` output wide `string` type. Always use template string to concate string for literal types.

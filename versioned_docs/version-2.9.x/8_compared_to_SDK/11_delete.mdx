@@ -1,0 +1,73 @@
+---
+sidebar_position: 11
+---
+
+# Delete Field
+
+This section discusses the complexity of`deleteField`.
+
+## Possible exceptions from `DeleteField`.
+
+This is the rule you need to obey when using official Firestore SDK deleteField:
+
+1. To use deleteField with set operation, you need to set merge to true, or have any merge field(empty array also works), else:
+
+:::info this is how the exception look:
+
+Function setDoc() called with invalid data. deleteField() cannot be used with set() unless you pass {merge:true} (found in field x in document sandBox/mergeTestCase)
+
+:::
+
+2. To use deleteField with update operation, you can only use it on top level (no nested object, full dot notation is considered as top level.), else:
+
+:::info this is how the exception look:
+
+Function updateDoc() called with invalid data. deleteField() can only appear at the top level of your update data (found in field x in document sandBox/mergeTestCase)
+
+:::
+
+## With FirelordJS
+
+<Image
+	src="/firelordv2/deleteField7.png"
+	text="FirelordJS stops you from doing it the wrong way, provide hint and relax certain limitation with internal flatten."
+/>
+
+For field union with `DeleteField` type.
+
+With set: no delete operation, trigger type error.
+
+With set merge: delete operation is allowed just like official SDK.
+
+With update: delete operation is allowed for both nested and flatten form.
+
+## `DeleteField` And Array
+
+If you assign `DeleteField` as array type or as array element type, FirelordJS will replaces them with error message.
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/deleteField3.png" />
+	<small>illegal: as array type</small>
+</div>
+
+<br />
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/deleteField4.png" />
+	<small>illegal: as array element type</small>
+</div>
+
+Explanations:
+
+1. `DeleteField[]`: doesn't make sense.
+2. `[{ a: DeleteField }]`: field value is not allowed in array regardless of depth.
+3. Keep in mind that any field value is illegal inside an array(Firestore undocumented limitation).
+
+<br />
+
+However it is legal to union `DeleteField` with array type, it simply means you can delete property `a`:
+
+<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+	<img src="/firelordv2/deleteField5.png" />
+	<small>DeleteField | any[]</small>
+</div>
+<br />

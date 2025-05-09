@@ -1,0 +1,60 @@
+---
+sidebar_position: 5
+---
+
+# Code Sharing
+
+Easiest way to share code is to copy, paste and rename `firelod` to `firelordjs` or vice versa, we can also write a script to automate the synchronization.
+
+However there is a simpler way: by utilizing bundler and Typescript configuration.
+
+In this example, we will demostarte with Vite bundler(recommended).
+
+```
+functions
+  src // back end code
+    db_types
+      clients
+      employees
+src // front end code
+tsconfig.json // front end tscongfig
+vite.config.ts // front end vite config
+```
+
+Assuming we have structure like this and back end (functions) is our source of truth(recommended), with below setup we can easily share code without copy paste.
+
+```json title='front end tsconfig.json'
+{
+	"compilerOptions": {
+		"paths": {
+			"@/db_types": ["./functions/src/db_types"],
+			"firelord": ["./node_modules/firelordjs/dist"]
+		}
+	}
+}
+```
+
+```ts title='front end vite.config.ts'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
+
+export default defineConfig({
+	plugins: [react()],
+	resolve: {
+		alias: [
+			{
+				find: '@/db_types',
+				replacement: resolve(__dirname, 'functions/src/db_types'),
+			},
+			{ find: 'firelord', replacement: 'firelordjs' },
+		],
+	},
+})
+```
+
+In our front end code, simply import:
+
+```ts title='front end code'
+import { clients } from '@/db_types/clients'
+```

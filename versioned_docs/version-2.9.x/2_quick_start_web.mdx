@@ -1,0 +1,316 @@
+---
+sidebar_position: 2
+---
+
+# Quick Start (Web) 🔥
+
+## Define The Meta Type
+
+Meta Type is your single source of truth.
+
+```ts title='dataType.ts'
+import { MetaTypeCreator, ServerTimestamp } from 'firelordjs'
+
+export type Example = MetaTypeCreator<
+	{
+		a: number
+		b: { c: boolean; d: { e: string }[] }
+		f: { g: ServerTimestamp; h: 1010 | 2929 | 3838 }
+	}, // can go with even more crazy looking data type
+	'SomeCollectionName', // collection ID type, must be string literal type or else will be replaced by error message
+	string // optional, document ID type, default string
+>
+```
+
+## Create Firelord References
+
+```ts title='init.ts'
+import { getFirelord, getFirestore } from 'firelordjs'
+import { initializeApp } from 'firebase/app'
+import { Example } from './define_meta_type'
+
+const app = initializeApp({
+	projectId: '### PROJECT ID ###',
+})
+
+export const db = getFirestore(app) // or getFirestore()
+
+export const example = getFirelord<Example>(db, 'SomeCollectionName') // this is your firelordRef
+```
+
+## Operations
+
+```ts title='operations.ts'
+import { example } from './init'
+import {
+	getDoc,
+	setDoc,
+	updateDoc,
+	deleteDoc,
+	addDoc,
+	serverTimestamp,
+	increment,
+	arrayUnion,
+} from 'firelordjs'
+
+await setDoc(example.doc('abc'), {
+	a: 100,
+	b: { c: true, d: [{ e: 'abc' }] },
+	f: { g: serverTimestamp(), h: 1010 },
+})
+
+await addDoc(example.collection(), {
+	a: 900,
+	b: { c: false, d: [{ e: 'hi' }] },
+	f: { g: serverTimestamp(), h: 3838 },
+})
+
+await updateDoc(example.doc('abc'), {
+	a: increment(1),
+	'b.d': arrayUnion({ e: 'hello' }), // dot notation form
+	f: { h: 2929 }, // nested form
+})
+
+await deleteDoc(example.doc('abc'))
+
+await getDoc(example.doc('abc')).then(docSnapshot => {
+	// everything here is narrowly typed based on MetaType
+	docSnapshot.data() // { a: number; b: { c: boolean; d: { e: string; }[]; }; f: { g: Timestamp | null; h: 1010 | 2929 | 3838; }; | undefined
+	docSnapshot.exists() // boolean
+	docSnapshot.get('b.c') // arguments type is "a" | "b.c" | "b.d" | "f.g" | "f.h"
+	docSnapshot.id // string, based on documentId type
+
+	docSnapshot.metadata.fromCache // boolean
+	docSnapshot.metadata.hasPendingWrites // boolean
+	docSnapshot.metadata.isEqual(docSnapshot) // boolean, can compare with other docSnapshot
+
+	docSnapshot.ref.firestore // firestore instance
+	docSnapshot.ref.id // same as docSnapshot.id
+	docSnapshot.ref.path // full path of this document, type is `SomeCollectionName/${string}`
+	docSnapshot.ref.type // "document"
+
+	// ref.parent is recursively typed
+	// parent of document is collection, parent of collection is document
+	docSnapshot.ref.parent // in this case, it is collection reference of this document
+	docSnapshot.ref.parent.firestore // firestore instance
+	docSnapshot.ref.parent.id // collectionId, type is `SomeCollectionName`
+	docSnapshot.ref.parent.parent // no more parent for this case, null
+	docSnapshot.ref.parent.path // full path of this collection, type is `SomeCollectionName`
+	docSnapshot.ref.parent.type // "collection"
+})
+
+// in case you want to create auto id doc
+await addDoc(example.collection(), {
+	a: 900,
+	b: { c: false, d: [{ e: 'hi' }] },
+	f: { g: serverTimestamp(), h: 3838 },
+})
+// in case you just want auto id doc ref
+const autoIdDocRef = example.doc(example.collection())
+```
+
+## Query
+
+```ts title='query.ts'
+import { example } from './init'
+import { getDocs, query, where, orderBy, limit } from 'firelordjs'
+
+// filter documents
+getDocs(
+	query(
+		example.collection(), // or example.collectionGroup()
+		where('f.h', '>', 1010),
+		orderBy('f.h'),
+		limit(10)
+	)
+).then(querySnapshot => {
+	querySnapshot.docChanges().forEach((docChange, index) => {
+		docChange.doc // return docSnapshot similar to docSnapshot of getDoc
+		docChange.type // 'added', 'modified', or 'removed'
+		docChange.oldIndex // number
+		docChange.newIndex //  number
+	})
+	querySnapshot.forEach(docSnapshot => {
+		// this forEach is not native forEach, it has no index
+		// similar to docSnapshot of getDoc
+	})
+	querySnapshot.docs.forEach((docSnapshot, index) => {
+		// similar to docSnapshot of getDoc
+	})
+})
+
+// get all collection documents
+getDocs(
+	example.collection() // or example.collectionGroup()
+)
+```
+
+## `or()` `and()` Queries
+
+This API is not available in admin version because the official admin SDK is lagging behind the official web sdk.
+
+```ts title='or_and.ts'
+import { example } from './init'
+import { query, where, orderBy, limit } from 'firelordjs'
+
+query(
+	example.collection(),
+	orderBy('f.h'),
+	limit(10),
+	example.or(
+		where('f.h', '>', 2929),
+		where('a', '==', 1),
+		// you can nest or and query https://firebase.google.com/docs/firestore/query-data/queries#disjunctive_normal_form
+		example.and(
+			where('f.g', 'in', [new Date(999), new Date(3000)]),
+			where('b.d', 'array-contains', { e: 'a' })
+		)
+	)
+)
+```
+
+## OnSnapshot
+
+```ts title='onSnapshot.ts'
+// filter and listen to documents
+import { example } from './init'
+import { query, where, orderBy, onSnapshot, startAfter } from 'firelordjs'
+
+// listen to filtered collection
+const unsub = onSnapshot(
+	query(
+		example.collection(), // or example.collectionGroup()
+		where('b.d', 'array-contains', { e: 'hello' }),
+		orderBy('f.g'),
+		startAfter(new Date())
+	),
+	querySnapshot => {
+		// return querySnapshot similar to querySnapshot of getDocs
+	},
+	error => {
+		// handle error
+	},
+	{ includeMetadataChanges: false }
+)
+
+// listen to entire collection
+const unsub2 = onSnapshot(
+	example.collection(), // or example.collectionGroup()
+	querySnapshot => {
+		// return querySnapshot similar to querySnapshot of getDocs
+	},
+	error => {
+		// handle error
+	},
+	{ includeMetadataChanges: false }
+)
+
+// listen to a single document
+const unsub3 = onSnapshot(
+	example.doc('abc'),
+	docSnapshot => {
+		// return docSnapshot similar to docSnapshot of getDoc
+	},
+	error => {
+		// handle error
+	},
+	{ includeMetadataChanges: true }
+)
+
+// remove listeners
+unsub()
+unsub2()
+unsub3()
+```
+
+## Aggregated Count
+
+```ts title='aggregatedCount.ts'
+import { example } from './init'
+import { query, where, getCountFromServer } from 'firelordjs'
+
+// get collection aggregated count
+getCountFromServer(
+	example.collection() // also accept example.collectionGroup()
+).then(aggregatedQuerySnapshot => {
+	const count = aggregatedQuerySnapshot.data().count
+})
+
+// get query aggregated count
+getCountFromServer(
+	query(
+		example.collection(), // also accept example.collectionGroup()
+		where('a', '>', 1)
+	)
+).then(aggregatedQuerySnapshot => {
+	const count = aggregatedQuerySnapshot.data().count
+})
+```
+
+## Batch
+
+```ts title='batch.ts'
+import { example, db } from './init'
+import { writeBatch, serverTimestamp } from 'firelordjs'
+
+const batch = writeBatch(db) // db argument is optional
+
+batch.set(example.doc('hij'), {
+	a: 6,
+	b: { c: false, d: [{ e: 'xyz' }] },
+	f: { g: serverTimestamp(), h: 1010 },
+})
+
+batch.update(example.doc('hij'), {
+	a: 6,
+	b: { c: false }, // nested form
+	'f.g': serverTimestamp(), // dot notation form
+})
+
+batch.delete(example.doc('hij'))
+
+await batch.commit()
+```
+
+## Transaction
+
+```ts title='transaction.ts'
+import { example, db } from './init'
+import {
+	runTransaction,
+	serverTimestamp,
+	increment,
+	arrayRemove,
+} from 'firelordjs'
+
+try {
+	const result = await runTransaction(
+		db, // db argument is optional, you can skip it
+		async transaction => {
+			await transaction.get(example.doc('lmn')).then(docSnapshot => {
+				const data = docSnapshot.data()
+			})
+
+			transaction.set(example.doc('lmn'), {
+				a: 88,
+				b: { c: false, d: [{ e: 'opq' }] },
+				f: { g: serverTimestamp(), h: 2929 },
+			})
+
+			transaction.update(example.doc('lmn'), {
+				a: increment(1),
+				b: { d: arrayRemove({ e: 'rst' }) }, // nested form
+				'f.g': serverTimestamp(), // dot notation form
+			})
+
+			transaction.delete(example.doc('lmn'))
+
+			return 123 // return this to result
+		},
+		{ maxAttempts: 10 } // max commit attempt, optional
+	)
+	console.log(result) // result is 123 because we return 123 in runTransaction callback
+} catch (e) {
+	console.log('Transaction failed: ', e)
+}
+```

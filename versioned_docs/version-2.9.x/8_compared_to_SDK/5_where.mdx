@@ -1,0 +1,36 @@
+---
+sidebar_position: 5
+---
+
+# Where
+
+This section discusses `where`'s quirks.
+
+import { Image } from '@site/src/components/Image'
+
+## No Value Autocompletion 🐧
+
+No auto complete for the **value** argument(`where` clause third parameter) because we need to make way for more type checks.
+
+This only matter if your value type is literal type. Regardless FirelordJS will still make sure the value type is correct, only autocomplete is missing.
+
+The autocomplete of field path argument(1st parameter) and operation string argument(2nd parameter) are not affected and will work as intended.
+
+## Dealing With Empty Array ☢️
+
+<Image
+	src="/firelordv2/where3.png"
+	text={`FirelordJS forbid never[] but allow correctType[] even if it is empty`}
+/>
+
+Firestore admin throw if you supply empty array to `in`, `array-contains-any` and `not-in` operator.
+
+To prevents this runtime error, FirelordJS block `never[]` and `[]` to stop you from accidentally assign empty array(never[]) directly.
+
+However it is impossible to block empty array on type level if the type is type other than `never[]` and `[]`(eg: `string[]`, `number[]`), so FirelordJS handle the empty array at runtime by replacing the empty array with `['some long unique value']`.
+
+This avoids runtime exceptions while keeping the query accurate and always return empty result for `in` comparator and all results for `not-in` comparator.
+
+:::danger
+If you revert back to the official Firestore API, please handle the empty array by yourself.
+:::

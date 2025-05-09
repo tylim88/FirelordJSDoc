@@ -1,0 +1,47 @@
+---
+sidebar_position: 5.1
+---
+
+# Error Reading
+
+This section discusses how to understand error messages from Typescript.
+
+## Read The Last One
+
+import { Image } from '@site/src/components/Image'
+
+Most of the time we just need to read the **last** error message and ignore the rest. Example:
+
+<Image src="/firelordv2.5/error1.png" text="take the last error message" />
+
+In this example, the correct field path is `a` and `__name__`(`__name__` is a default comparison path of every document, see [document Id](./api/documentId))
+
+## Peeling `or` `and` Query Error Messages
+
+### `or` `and` Query
+
+When using `or` `and` query, we need peel the error messages in order to find out the real culprit:
+
+<Image src="/firelordv2.5/error2.png" text="`or` `and` error message" />
+
+<Image src="/firelordv2.5/error3.png" text="narrowing down" />
+
+### Nested `or` `and` Query
+
+Nested `or` `and` query error messages are messy:
+
+<Image
+	src="/firelordv2.5/error4.png"
+	text="nested `or` `and` error message is a huge mess and you should ignore them"
+/>
+
+Solution is to peel until you see an error message that makes sense:
+
+<Image
+	src="/firelordv2.5/error5.png"
+	text="continue peeling until you find the relevant error message"
+/>
+
+Currently it is a mess, I am still trying to understand why the error bubble up into a clunky error message.
+
+Hopefully we dont need to peel any error anymore in the future.

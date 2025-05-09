@@ -1,0 +1,87 @@
+---
+sidebar_position: 1
+---
+
+# Installation
+
+import { Header } from '@site/src/components/FirelordJSHeader'
+import { Image } from '@site/src/components/Image'
+
+<Header />
+<div align="center">
+	<i>
+		Of The VFQAT &#160;&#160;&#160;&#160;&#160;||&#160;&#160;&#160;&#160;&#160;
+		By The VFQAT &#160;&#160;&#160;&#160;&#160;|| &#160;&#160;&#160;&#160;&#160;
+		For The VFQAT
+	</i>
+</div>
+<br />
+<div align="center">
+	<i>Be The Master Of Your Fire, Be Firelord</i>
+</div>
+<br />
+<div align="center">
+	<i>Beyond Typing</i>
+</div>
+<br />
+<div align="center">
+	<a href="https://github.com/tylim88/FirelordJS" target="_blank">
+		Github
+	</a>
+</div>
+<br />
+
+[Release Notes](https://github.com/tylim88/FirelordJS/releases)
+
+:::caution
+
+require Typescript 5.4.2+, Firebase 10+ and @firebase/rules-unit-testing 3+
+
+Always install FirelordJS v2.CURRENT.LATEST.
+
+:::
+
+## Web
+
+```bash
+npm i firebase firelordjs
+npm i -D @firebase/rules-unit-testing typescript
+```
+
+## Web(cjs)
+
+if above version does not work, you might need the cjs version, see [what happened](https://github.com/tylim88/FirelordJS?tab=readme-ov-file#esm-commonjs).
+
+```bash
+npm i firebase@cjs firelordjs
+npm i -D @firebase/rules-unit-testing typescript
+```
+
+## Admin
+
+```bash
+npm i firebase-admin firelord
+npm i -D typescript
+```
+
+## Typescript Configuration
+
+```json title='tsconfig.json'
+{
+	// ...other configs
+	"compilerOptions": {
+		// ...other options
+		"strict": true, // compulsory
+		"noUncheckedIndexedAccess": true, // compulsory
+		"exactOptionalPropertyTypes": true // optional and does not affect how Firelord works but is recommended for general use cases
+	}
+}
+```
+
+## VS Code Configuration
+
+Optional but recommended.
+
+So VS Code will always use your project's Typescript, not VS Code Typescript.
+
+<Image src="/firelordv2.8/vscode.png" text="VS Code configuration" />
